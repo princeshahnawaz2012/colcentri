@@ -1,0 +1,11 @@
+<%= dont_answer %>
+
+<%= t('emailer.colcentricdata.hey', :user_name => h(@user.name)) %>
+
+<% if @error %>
+<%= t('emailer.colcentricdata.data_import_failed') %>
+<%= colcentric_data_url(@data) %>
+<% else %>
+<%= t('emailer.colcentricdata.data_imported') %>
+<%= colcentric_data_url(@data) %>
+<% end %>

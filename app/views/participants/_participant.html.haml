@@ -1,0 +1,28 @@
+- videoconference = Videoconference.find(participant.videoconference_id)
+- user = User.find(participant.user_id)
+
+
+/ If current participant is not the videoconference owner
+- if videoconference.user_id != user.id
+  .videoconference
+    / Show current videoconference
+    .video_topic
+      = videoconference.topic
+    .video_start_time
+      = (videoconference.start_time + videoconference.timezone.to_i).strftime("%d-%m-%Y %H:%M")
+    .video_duration
+      = t('videoconferences.videoconference.duration', :duration => videoconference.duration)
+    .video_timezone
+      =# videoconference.timezone
+    - if not videoconference.old?
+      .init
+        = link_to '', start_videoconference_path(:id => videoconference.id, :login => current_user.login), :class => 'webcam_icon', :title => t('videoconferences.videoconference.init')
+      =# link_to '', videoconference.get_personal_session_link(user.email), :class => 'webcam_icon', :title => t('videoconferences.videoconference.init')
+    .edit
+      =# link_to '', edit_videoconference_path(:id => videoconference.id), :class => 'edit_video_icon', :title => t('.edit')
+    .show
+      = link_to '', show_videoconference_path(:id => videoconference.id), :class => 'show_video_details_icon', :title => t('videoconferences.videoconference.show')
+    .delete
+      =# link_to '', delete_videoconference_path(:id => videoconference.id), :class => 'trash_icon', :title => t('.delete'), :confirm => t('videoconferences.feedback.sure')
+
+

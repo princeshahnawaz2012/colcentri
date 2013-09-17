@@ -1,0 +1,21 @@
+.reset_password
+  -#
+    - if Colcentric.config.community
+      %h1= image_tag 'LogoColcentric1.png', :alt => 'Colcentric'
+    -else
+      = image_tag 'colcentric-logo.gif', :alt => 'Colcentric logo'
+    %h2= t('.title')
+
+  .column_reset
+
+    = form_for(@reset_password) do |f|
+      .explanation
+        = f.label :explanation, t('.send_your_email')
+      .email
+        = f.label :email, 'E-mail'
+        = errors_for @reset_password, :email
+        = f.text_field :email, :autofocus => true
+      .submit
+        = submit_tag t('.submit'), :class => 'form_button'
+
+    = link_to t('.back'), login_path, :style => 'color: white'

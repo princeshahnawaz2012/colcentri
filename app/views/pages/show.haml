@@ -1,0 +1,42 @@
+=# page_column(@current_project,@pages,@page)
+
+=# page_buttons(@current_project,@page) -- TO DELETE
+
+- if can? :update, @page
+  = render 'pages/buttons', :project => @current_project, :page => @page
+
+.clear
+
+%h2=h @page
+.page_edit_icon= link_to image_tag('/iconos/editar22x22.png'), edit_project_page_path(@current_project,@page), :title => t('common.edit')
+.page_delete_icon= link_to image_tag('/iconos/borrar22x22.png'), project_page_path(@current_project,@page), :method => :delete, :title => t('common.delete'), :confirm => t('confirm.delete_page')
+
+
+.clear
+
+%p=h @page.description
+
+.clear
+
+
+.pageSlots
+  -# Util widgets
+  #pageInsert{:style => 'display:none'}
+    %p#PIB= t('pages.slots.insert_here')
+
+  #pageInsertItems
+    #pageInsertItemsBar{:style => 'display:none'}
+      #pageInsertItemCancel
+        %a{:href => '#'}= t('common.cancel')
+      #pageInsertItemWidgets
+        = page_buttons(@current_project,@page)
+
+    #pageForms
+      = render 'notes/new', :project => @current_project, :page => @page, :note => Note.new
+      = render 'dividers/new', :project => @current_project, :page => @page, :divider => Divider.new
+      = render 'uploads/form', :project => @current_project, :page => @page, :upload => Upload.new(:page_id => @page.id)
+
+  #slots
+    = render :partial => 'slot', :collection => @page.slots.with_widgets, :locals => {:page => @page, :project => @current_project}
+
+  .page_slot.pageFooter#page_slot_footer{:slot => -1}

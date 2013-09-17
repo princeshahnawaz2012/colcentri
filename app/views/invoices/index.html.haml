@@ -1,0 +1,32 @@
+-#
+  %h2= t('.title', :name => @name)
+
+-#
+  %body
+    :javascript
+      onload= window.location.reload();
+
+.invoices
+  .invoice_titles
+    .invoice_title_number
+      = t('.invoice_number')
+    .invoice_title_date
+      = t('.date')
+    .invoice_title_ammount
+      = t('.ammount')
+
+  .invoice_list
+    - if current_user.invoices.any?
+      - num_files = 0
+      - @invoices.each do |i|
+        - if num_files % 2 == 0
+          - row_class = 'table_row1'
+          - num_files += 1
+        - else
+          - row_class = 'table_row2'
+          - num_files += 1
+
+        %div{ :class => row_class}
+          = render i
+
+      =# render @invoices

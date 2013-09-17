@@ -1,0 +1,21 @@
+= form_for [note.project,note.page,note], :html => { :'data-remote' => 'true' } do |f|
+
+  =# note_fields(f)
+
+  .note_title= f.label :name, t('notes.fields.title')
+  .clear
+  .note_text_field= f.text_field :name
+
+  .note_title= f.label :body, t('notes.fields.body')
+  .note_text_field= f.text_area :body, :id => :note_body, :cols => 56, :rows => 5
+
+
+
+  .submit{ :id => "note_submit_#{note.id}" }
+    = #preview_button
+    = image_submit_tag(t('buttons.save'), :class => 'note_save_button')
+
+    =# f.submit t('.submit'), :class => 'form_button', :style => 'margin-left: 250px'
+    = loading('note_form', note.id)
+
+    = link_to_function t('common.cancel'), remove_form("note_#{note.id}"), :class => 'text_button', :style => 'margin-left: 5px'

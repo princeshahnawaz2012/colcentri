@@ -1,0 +1,15 @@
+-#not used anymore
+.renameUpload
+  %h2= t('.title')
+
+  .renameUploadForm
+    = form_tag(change_name_uploads_path, :method => 'post', :multipart => true) do
+      .rename
+        = t('.name')
+        = text_field_tag "newName", @currentName
+      .id
+        = hidden_field_tag "uploadId", params[:uploadId]
+      .currentProjectId
+        = hidden_field_tag "currentProjectId", @currentProjectId
+      .submit
+        = image_submit_tag t('buttons.save')

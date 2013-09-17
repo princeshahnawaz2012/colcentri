@@ -1,0 +1,26 @@
+.conversation_header
+
+  - if can? :update, conversation
+    .text_actions
+      = link_to image_tag('/iconos/renombrar22x22.png'), [:edit, project, conversation], :title => t('common.edit')
+      
+      - if can? :destroy, conversation
+        =# t('common.or')
+        = link_to '', [project, conversation],
+          :'data-method' => 'delete', :'data-confirm' => t('conversations.actions.confirm_delete'),
+          :class => 'big_trash_icon', :title => t('common.delete')
+  
+  %h2=h conversation.name
+
+- if can? :update, conversation
+  = form_for [project, conversation], :html => { :'data-remote' => true, :style => 'display: none', :class => 'edit_conversation app_form' } do |f|
+    =# render 'fields', :f => f, :project => @current_project
+    .conversation_title{ :style => 'margin-right: 10px'}= f.label :name, t('conversations.fields.name')
+    .conversation_text_field= f.text_field :name, :style => 'width: 130px; margin-right: 20px'
+    =# errors_for f.object, :name
+
+
+    =# f.submit t('conversations.edit.submit')
+
+    .conversation_submit{ :style => 'margin-top: -27px; margin-left: 380px; margin-bottom: 5px'}= image_submit_tag t('buttons.save')
+    .conversation_cancel{ :style => 'margin-top: -30px; margin-left: 477px'}= link_to t('common.cancel'), '#cancel', :class => 'text_button'

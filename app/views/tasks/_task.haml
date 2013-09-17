@@ -1,0 +1,48 @@
+-# this code supports the "tasks_for_all_projects" template
+- project ||= task.project
+- task_list ||= task.task_list
+- form_id = 'edit_task_form_' + task.id.to_s
+
+- if can_see_task?(task)
+  %div[task]{ :class => task_classes(task), :'data-task-id' => task.id }
+    .taskStatus
+      = image_tag('drag.png', :class => 'task_drag') if editable and !task.archived?
+      = task_status(task, :content)
+    .taskName
+      .expanded_actions{ :style => 'display: none' }
+        =# link_to '', [:edit, project, task_list, task], :class => 'rename_icon'
+        = link_to_function image_tag('/iconos/renombrar.png'), 'Element.show("' + form_id + '");'
+        - if can? :destroy, task
+          = link_to '', [project, task_list, task], :'data-method' => 'delete',
+            :'data-confirm' => t('confirm.delete_task'), :class => 'trash_icon'
+      = link_to h(task), [project, task], :class => :name
+      - unless task.closed?
+        - if task.start_date
+          %span.start_date= start_date(task)
+        - if task.due_on
+          %span.assigned_date= due_on(task)
+        - if task.assigned
+          %span.assigned_user= link_to h(task.assigned.login), user_path(task.assigned.user)
+        %span.priority= localized_priority_name(Task::PRIORITIES_NAMES[task.priority])
+      - unless @current_project
+        .extended
+          %span.project
+            = link_to h(project), project
+            &rarr;
+          %span.task_list
+            = link_to h(task_list), project_task_lists_path(project)+"#project_#{project.id}_task_list_#{task.task_list_id}"
+
+
+    = form_for [project,task_list,task], :html => {:class => 'app_form', :id => form_id, :style => 'display: none; padding: 3px; margin-left: 20px; margin-top: 10px; height: 30px'} do |f|
+      =# render 'tasks/fields', :f => f, :project => @current_project, :task_list => @task_list, :task => @task
+
+      .task_title{ :style => 'margin-top: 5px'}= f.label :name, t('tasks.fields.name_html')
+      .task_text_field{ :style => 'float: left; margin-right: 20px'}= f.text_field :name, :autofocus => %w[new edit].include?(action_name), :style => 'width: 200px' || nil
+      =# f.submit t('.submit'), :class => 'form_button'
+      .submit_button{ :style => 'float: left'}= image_submit_tag t('buttons.save'), :onclick => 'Element.hide("edit_task_form");'
+      .cancel_button{ :style => 'float: left; margin-left: 4px; margin-top: 2px'}= link_to_function 'Cancelar', 'Element.hide("' + form_id + '");', :class => 'text_button', :style => 'color: green'
+
+
+
+
+    .clear

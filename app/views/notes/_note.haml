@@ -1,0 +1,15 @@
+%div[note]
+
+  -# Buttons
+  - if current_user && can?(:update, note.page)
+    = render 'notes/actions', :note => note
+
+  -# Note title
+  %ul
+    %li.title
+      = note.name
+  .clear
+
+  -# And the note's content
+  .textilized{ :style => 'margin-left: 39px'}
+    ~raw note.body_html

@@ -1,0 +1,46 @@
+.licence
+  / Show current subscription
+  / TO DO consider videoconference, storage...
+  .product
+    = t('.licence')
+    = licence_type_name_without_price(subscription.licence_type)
+  .quantity
+    - if subscription.user || subscription.invitation
+      = 1
+    - else
+      .number= number if number
+  .owner
+    - if subscription.user
+      = subscription.user
+    - else
+      = t('subscriptions.status.Unassigned')
+
+  .type
+    / TO DO - Check for assigned sponsors and show "Assigned"
+    - if subscription.user || subscription.invitation
+      = licence_type_name(subscription.licence_type)
+    - else
+      = t('subscriptions.status.Unassigned')
+
+  .expiration_date
+    - if subscription.trial_expiration_date != nil && subscription.trial_expiration_date > Time.now
+      = (subscription.trial_expiration_date).strftime("%d-%m-%Y")
+    - elsif subscription.expiration_date != nil && subscription.expiration_date > Time.now
+      = (subscription.expiration_date).strftime("%d-%m-%Y")
+    - else
+      = " - "
+  .cancel_button
+    - if subscription.user || subscription.invitation
+      - if subscription.cancelled?
+        = t('.cancelled_html')
+      - else
+        = cancel_subscription_link(subscription)
+    - else
+      = assign_subscription_link(subscription.licence_type)
+      =# link_to_function "Asignar", "alert('HOLA'); Element.show('monthly_invitations_fields'); document.getElementById('monthly_invitations_fields').scrollIntoView();"
+
+
+
+
+
+

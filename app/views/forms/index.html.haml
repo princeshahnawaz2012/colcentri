@@ -1,0 +1,85 @@
+.forms
+  - if current_user.id == @current_project.user_id
+    .create_form_button= link_to image_tag(t('buttons.create_form')), new_form_path(:project_permalink => @current_project.permalink)
+
+    -#
+      .list
+        %h2= t('forms.index.own_forms')
+
+    .form_list_header
+      .form_name_header
+        = t('forms.index.name')
+    .clear
+
+    - num_files = 0
+
+    - @own_forms.each do |f|
+      - if num_files % 2 == 0
+        - row_class = 'form_row1'
+        - num_files += 1
+      - else
+        - row_class = 'form_row2'
+        - num_files += 1
+      %div{ :class => row_class}
+
+        .form_list_row
+          .form_name
+            = link_to f.title, show_answers_form_path(:id => f.id, :project_permalink => @current_project.permalink)
+
+          .form_delete
+            = link_to image_tag('/iconos/borrar.png'), delete_form_path(:id => f.id, :project_permalink => @current_project.permalink), :confirm => t('forms.destroy.confirm'), :title => t('forms.index.destroy')
+
+
+          .form_edit
+            = link_to image_tag('/iconos/editar.png'), edit_form_path(:id => f.id, :project_permalink => @current_project.permalink), :title => t('forms.index.edit')
+
+
+          .form_publish
+            - if f.publish
+              = link_to t('forms.index.close'), close_form_path(:id => f.id, :project_permalink => @current_project.permalink)
+            - else
+              = link_to t('forms.index.publish'), publish_form_path(:id => f.id, :project_permalink => @current_project.permalink)
+
+      .clear
+
+  - else
+    -#%h2= t('forms.index.other_forms')
+
+    - header = 0
+    - num = 0
+    - @other_forms.each do |f|
+      - if f.publish
+        - if header == 0
+          - header = 1
+          .form_list_header
+            .form_name_header
+              = t('forms.index.name')
+            .form_answer_header
+              = t('forms.index.answers')
+            .form_index_date_header
+              = t('forms.index.date')
+          .clear
+        =# t('forms.answers.list')
+        .form_index_row
+          - num_results = f.num_results(current_user.id)
+          -# num_fields = @fields.count
+          - num_pixels = 'height: ' + (num_results*25).to_s + 'px'
+          - if num % 2 == 0
+            - row_class = 'form_show_answer_row1'
+            - num += 1
+          - else
+            - row_class = 'form_show_answer_row2'
+            - num += 1
+          %div{ :class => row_class, :style => num_pixels}
+            - (0..num_results-1).each do |r|
+              .form_index_name
+                - if r == 0
+                  = link_to f.title, list_answers_form_path(:id => f.id, :project_permalink => @current_project.permalink)
+                - else
+                  .nothing{ :style => 'color: white'} ="-"
+              .form_index_answer
+                = link_to t('forms.index.answer', :result => r+1), list_answers_form_path(:id => f.id, :project_permalink => @current_project.permalink, :anchor => "result" + r.to_s)
+              .form_index_date
+                = f.get_last_result(current_user.id, r).strftime("%d/%m/%Y")
+        .clear
+

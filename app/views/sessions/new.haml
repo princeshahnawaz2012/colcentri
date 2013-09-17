@@ -1,0 +1,11 @@
+%h2= t('.title')
+
+- if @conflict
+  .box= render 'sessions/user_exists', :provider => @profile[:provider]
+
+= form_tag session_path, :class => 'new_session', :id => 'new_session' do
+  = upgrade_browser
+  = chrome_frame
+  = render 'sessions/fields'
+  = submit_tag t('.submit'), :class => 'form_button'
+  =# image_submit_tag ('/buttons/enviar.png')

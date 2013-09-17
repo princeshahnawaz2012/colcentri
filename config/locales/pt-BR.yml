@@ -1,0 +1,3334 @@
+--- 
+pt-BR: 
+  activerecord: 
+    attributes: 
+      address: 
+        city: Cidade
+        country: País
+        state: Estado
+        street: "Endereço"
+        zip: Cep
+      card: 
+        city: Cidade
+        country: País
+        state: Estado
+        street: "Endereço"
+        zip: Cep
+      comment: 
+        body: Corpo
+        hours: Horas
+        status: Estado
+      conversation: 
+        name: Nome
+      divider: 
+        name: Nome
+      email_address: 
+        account_type: Tipo
+        name: Endereço
+      im: 
+        account_im_type: "Serviço"
+        account_type: Tipo
+        name: "Endereço"
+      invitation: 
+        email: E-mail
+      note: 
+        body: Corpo
+        name: Nome
+      pages: 
+        description: "Descrição"
+        name: Página
+      phone_number: 
+        account_type: Tipo
+        name: Telefone
+      project: 
+        name: Nome
+        permalink: "Endereço"
+      project_group:
+        name: Nome
+        permalink: "Endereço"
+      social_network: 
+        account_network_type: Serviço
+        account_type: Tipo
+        name: "Endereço"
+      task: 
+        due_on: Data limite
+        name: Nome
+        status: Estado
+      task_list: 
+        finish_on: "Data final"
+        name: Nome
+        start_on: "Data Inicial"
+      upload: 
+        description: Descrição
+      user: 
+        biography: Biografia
+        company_name: Organização
+        country: País
+        email: E-mail
+        first_day_of_week: "Primeiro dia da semana"
+        first_name: Nome
+        language: Idioma
+        last_name: Sobrenome
+        login: "Nome de usuário"
+        time_zone: "Fuso Horário"
+      website: 
+        name: "Endereço"
+    errors: 
+      messages: 
+        accepted: "Deve ser aceito"
+        blank: "Não pode estar em branco"
+        confirmation: "A confirmação não coincide"
+        empty: "Não pode estar vazio"
+        equal_to: "deve ser igual a %{count}"
+        even: "deve ser par"
+        exclusion: "está reservado"
+        greater_than: "deve ser maior que %{count}"
+        greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+        inclusion: "Não está incluído na lista"
+        invalid: "Não é válido"
+        less_than: "deve ser menor que %{count}"
+        less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+        not_a_number: "Não é um número"
+        odd: "deve ser ímpar"
+        record_invalid: "A validação falhou: %{errors}"
+        taken: "Já está em uso"
+        terms_of_use: "Você deve aceitar as condições de uso"
+        too_long: "Grande demais (%{count} caracteres máximo)"
+        too_short: "Curto demais (%{count} caracteres mínimo)"
+        wrong_length: "Revise o tamanho  (%{count} caracteres exactos)"
+      models: 
+        comment: 
+          attributes: 
+            body: 
+              blank: "Inclua um comentário antes de salvar"
+              duplicate: "Comentário duplicado"
+        conversation: 
+          attributes: 
+            comments: 
+              must_have_one: "Comece a conversação com um comentário"
+            name: 
+              no_title: "Escreva um título"
+        task: 
+          attributes: 
+            assigned: 
+              doesnt_belong: "Usuários adicionados não pertencem ao projeto"
+        user_directories:
+          attributes: 
+            name: 
+              blank: "Inclua um nome antes de salvar"
+          search:
+            size:
+              nan: "Os tamanhos devem ser valores numéricos"
+              min_sup_max: 'A opção tamanho mínimo deve ter um valor menor que a opção tamanho máximo'
+
+    models: 
+      address: Endereço
+      card: "Cartão"
+      comment: "Comentário"
+      conversation: "Conversação"
+      divider: Separador
+      email_address: E-mail
+      im: "Mensagem instantânea"
+      invitation: "Convite"
+      note: Texto
+      organization: Organização
+      page: Página
+      phone_number: Telefone
+      project: Projeto
+      social_network: "Rede social"
+      task: Tarefa
+      task_list: "Lista de tarefas"
+      upload: Enviar
+      website: Web
+
+  activities: 
+    create_comment: 
+      create_comment: "criou o comentario"
+      title: "%{user} comentou em %{target}"
+    create_comment_conversation: 
+      title: "%{user} respondeu à conversação %{target}"
+    create_comment_project: 
+      title: "%{user} atualizou seu estado em %{target}"
+    create_comment_task: 
+      title: "%{user} atualizou a tarefa %{target}"
+    create_conversation: 
+      create_conversation: "começou uma conversação"
+      title: "%{user} começou uma conversação: %{target}"
+    create_note: 
+      create_note: "adicionou uma nota"
+      title: "%{user} criou a nota %{note} em %{page}"
+    create_page: 
+      create_page: "Criou a página"
+      title: "%{user} Criou a página %{target}"
+    create_person: 
+      by: por
+      create_person: "Ingressou no projeto"
+      title: "%{person} foi convidado ao projeto %{project}"
+    create_project: 
+      left: "criou o projeto"
+      title: "%{person} criou o projeto %{project}"
+    create_task: 
+      create_task: "criou a tarefa"
+      title: "%{user} criou a tarefa %{task} em %{task_list}"
+    create_task_list: 
+      create_task_list: "criou a lista de tarefas"
+      title: "%{user} criou a lista de tarefas %{task_list}"
+    create_colcentric_data:
+      title: "%{person} importadas ao projeto %{project}"
+    create_upload: 
+      title: "%{user} comentou em %{target}"
+      title_with_page: "%{user} enviou um arquivo a %{page}: "
+    delete_person: 
+      by: por
+      delete_person: "deixou o projeto"
+      left: "deixou o projeto"
+      title: "%{person} deixou o projeto %{project}"
+    edit_note: 
+      edit_note: "editou uma nota"
+      title: "%{user} editou a nota \"%{note}\" en %{page}"
+    edit_page: 
+      edit_page: "editou uma página"
+      title: "%{user} editou a página %{target}"
+    thread: 
+      conversation_with_title_html: "%{conversation} no projeto %{project}"
+      conversation_without_title_html: "Conversa no projeto %{project}"
+      created: 
+        conversation: "criou a conversação"
+        task: "criou a tarefa"
+      more_comments: 
+        one: "Mostrar um comentário anterior"
+        other: "Mostrar %{count} comentários anteriores"
+      task_on_task_list_html: "%{task} na lista de tarefas %{task_list}"
+
+  admin:
+    editSubscription:
+      Active: "Ativa"
+      additional_data: "Espaço adicional"
+      annual: "Anual"
+      ask_new_expiration_date: "Quero indicar uma nova data para expirar"
+      ask_new_trial_expiration_date: "Quero indicar uma nova data de expiração do período de prova"
+      biannual: "Semestral"
+      cancelled: "Cancelada"
+      confirmDelete: "Tem certeza que deseja excluir a inscrição?"
+      created_at: "Criado em"
+      delete: "Excluir esta inscrição"
+      deleted: "Excluído"
+      expiration_date: "Data de validade"
+      Failed: "Falha"
+      goBackSubscriptionsManagement: "Voltar ao painel de gestão de inscrições"
+      id: "ID"
+      inactive: "Inativa"
+      Incomplete: "Incompleta"
+      last_payment_date: "Última data de pagamento"
+      licence_type: "Tipo de licença"
+      monthly: "Mensal"
+      new_expiration_date: "Nova data de vencimento (UTC)"
+      new_trial_expiration_date: "Nova data de vencimento do período de prova (UTC)"
+      paypal_correlationid: "CorrelationId de Paypal"
+      paypal_profileid: "ProfileId de Paypal"
+      paypal_profilestatus: "ProfileStatus de Paypal"
+      pending: "Pendente"
+      shopping_cart_id: "ID do carro de compra associado"
+      special: "Especial"
+      sponsor_user_id: "ID do usuário patrocinado"
+      status: Estado
+      submit: "Atualizar inscrição"
+      subscriptionDeleted: "Sim"
+      subscriptionNotDeleted: "Não"
+      Suspended: "Suspensa"
+      title: "Editou a inscrição com ID = %{subscriptionId}"
+      trial: "Prova"
+      trial_expiration_date: "Data de vencimento do período de prova"
+      updated_at: "Atualizado em"
+      user_id: "ID do usuário proprietário"
+      videoconference: "Videoconferência"
+    index: 
+      invoicesManagement: "Gestão de faturas"
+      notAdmin: "É necessária a permissão do administrador para entrar nessa página"
+      statistics: "Estatísticas"
+      subscriptionsManagement: "Gestão de inscrições"
+      title: "Painel de administração"
+      usersManagement: "Gestão de usuários"
+    invoicesManagement:
+      amount: "Valor"
+      confirmDelete: "Tem certeza que deseja eliminar a fatura?"
+      created_at: "Criada em"
+      delete: "Eliminar"
+      first_name: Nome
+      goBackAdminPanel: "Voltar ao painel de usuário"
+      invoice_number: "Número da fatura"
+      invoiceNumber: "Fatura número"
+      last_name: Sobrenomes
+      show: "Mostrar detalhes"
+      title: "Gestão de faturas"
+    showInvoice:
+      address: "Endereço"
+      amount: "Quantidade a pagar"
+      city: "Cidade"
+      completed: "Completo"
+      country: "País"
+      created_at: "Criada em"
+      email: "Email"
+      Failed: "Falha"
+      first_name: Nome
+      goBackInvoicesManagement: "Voltar a opção Faturação."
+      id: "ID"
+      incompleted: "Incompleto"
+      invoice_number: "Número de fatura"
+      iva: "IVA"
+      last_name: Sobrenomes
+      n_annual_licenses: "Número de licenças anuais compradas"
+      n_biannual_licenses: "Número de licenças semestrais compradas"
+      n_monthly_licenses: "Número de licenças mensais compradas"
+      n_storage: "Armazenamento contratado"
+      n_videoconferences: "Número de salas de videoconferencia contratadas"
+      organization: Organização
+      phone: "Telefone"
+      postal_code: "Código postal"
+      promotional_code: "Código promocional"
+      shopping_cart_id: "ID do carro de compra associado"
+      status: Estado
+      title: "Informação da fatura com número %{invoiceNumber}"
+      updated_at: "Atualizada em"
+      user_id: "ID do usuário"
+    showSubscription:
+      Active: "Ativa"
+      additional_data: "Espaço adicional"
+      annual: "Anual"
+      biannual: "Semestral"
+      cancelled: "Cancelada"
+      created_at: "Criada em"
+      deleted: "Eliminada"
+      expiration_date: "Data de vencimento"
+      Failed: "Falha"
+      goBackSubscriptionsManagement: "Voltar a opção Painel de usuário"
+      id: "ID"
+      inactive: "Inativa"
+      Incomplete: "Incompleta"
+      last_payment_date: "Data do último pagamento"
+      licence_type: "Tipo de licença"
+      monthly: "Mensual"
+      paypal_correlationid: "CorrelationId de Paypal"
+      paypal_profileid: "ProfileID de Paypal"
+      paypal_profilestatus: "ProfileStatus de Paypal"
+      pending: "Pendente"
+      shopping_cart_id: "ID do carro de compra associado"
+      special: "Especial"
+      sponsor_user_id: "ID del usuario patrocinado"
+      status: Estado
+      subscriptionDeleted: "Eliminada: Sim"
+      subscriptionNotDeleted: "Eliminada: Não"
+      Suspended: "Suspensa"
+      title: "Informação da inscrição com ID %{subscriptionId}"
+      trial: "Período de prova"
+      trial_expiration_date: "Data de vencimento da licença de prova"
+      updated_at: "Atualizada em"
+      user_id: "ID do usuário proprietário"
+      videoconference: "Videoconferência"
+    showUser:
+      comercialCode: "Código do comercial"
+      company: "Empresa"
+      confirmed: "Usuário confirmado"
+      confirmedUser: "Usuário confirmado: Sim"
+      country: "País"
+      created: "Data de ingresso "
+      deletedUser: "Usuário eliminado: Sim"
+      deleteUser: "Eliminar usuário"
+      editUser: "Editar usuário"
+      email: "Email"
+      goBackUsersManagement: "Voltar ao painel de gestão de usuários"
+      id: "ID"
+      invitedBy: "Convidado pelo usuário com ID"
+      lastName: "Sobrenomes"
+      locale: "Idioma"
+      login: Login
+      name: "Nome"
+      notConfirmedUser: "Usuário confirmado: Não"
+      notDeletedUser: "Usuário eliminado: Não"
+      phone: "Telefone"
+      title: "Informação do usuário %{user}"
+      updated: "Última atualização dos seus dados"
+    statistics:
+      title: "Estatísticas"
+      goBackAdminPanel: "Voltar ao painel de usuário"
+      numberOfUsers: "Número total de usuários no sistema"
+    subscriptionsManagement:
+      Active: "Ativa"
+      additional_data: "Dados adicionais"
+      annual: "Anual"
+      biannual: "Semestral"
+      cancelled: "Cancelada"
+      confirmDelete: "Tem certeza que deseja eliminar a inscrição?"
+      created_at: "Criada em"
+      delete: "Eliminar"
+      edit: "Editar"
+      failed: "Falhou"
+      goBackAdminPanel: "Voltar ao painel de usuário"
+      id: "ID"
+      inactive: "Inativa"
+      Incomplete: "Incompleta"
+      licence_type: "Tipo de liceça"
+      monthly: "Mensal"
+      pending: "Pendente"
+      show: "Mostrar detalhes"
+      special: "Especial"
+      sponsor_user_id: "ID do usuário patrocinado"
+      status: Estado
+      Suspended: "Suspensa"
+      title: "Gestão de inscrições"
+      trial: "Período de prova"
+      user_id: "ID do proprietário"
+      videoconference: "Videoconferência"
+    updateSubscription:
+      errorLicences: "As licencias que são mensais, semestrais, anuais, de videoconferência ou de espaço
+        adicional devem ter tempo de expiração, mas não como o período de prova"
+      errorSpecialLicence: "Uma licença especial não pode ter nenhum tempo de expiração nem tempo
+        expiração do período de prova"
+      errorTrialLicence: "Uma licença de prova não debe ter tempo de expiração, mas debe ter tempo de
+        expiração do período de prova"
+      ownerUserNotFound: "Não existe um usuário com o ID do proprietário indicado"
+      sponsorUserNotFound: "No existe un usuario con el ID de patrocinado indicado"
+    usersManagement:
+      confirmDelete: "Tem certeza que deseja eliminar o usuário?"
+      created_at: "Data d eingresso"
+      delete: "Eliminar"
+      first_name: Nome
+      goBackAdminPanel: "Voltar ao painel de usuário"
+      last_name: Sobrenomes
+      login: Usuário
+      show: "Mostrar detalhes"
+      title: "Gestão de usuários"
+
+  avatars: #eliminar
+    edit: 
+      upload: "Carregar essa imagem"
+      upload_new_image: "Envie uma nova imagem de perfil"
+    new: 
+      title: "Carregar essa imagem"
+      upload: Enviar
+    show: 
+      save: "Salvar as alterações"
+
+  buttons:
+    contract: "/buttons/pt/contract_pt.png"
+    create_conversation: "/buttons/pt/create_conversation_pt.png"
+    create_divider: "/buttons/pt/create_divider_pt.png"
+    create_folder: "/buttons/pt/create_folder_pt.png"
+    create_form: "/buttons/pt/create_form_pt.png"
+    create_group: "/buttons/pt/create_group_pt.png"
+    create_input: "/buttons/pt/create_input_pt.png"
+    create_note: "/buttons/pt/create_note_pt.png"
+    create_organization: "/buttons/pt/create_organization_pt.png"
+    create_page: "/buttons/pt/create_page_pt.png"
+    create_project: "/buttons/pt/create_project_pt.png"
+    create_task: "/buttons/pt/create_task_pt.png"
+    create_task_list: "/buttons/pt/create_task_list_pt.png"
+    create_videoconference: "/buttons/pt/create_videoconference_pt.png"
+    filter: "/buttons/pt/filter_pt.png"
+    invite: "/buttons/pt/invite_pt.png"
+    publish: "/buttons/pt/publish_pt.png"
+    save: "/buttons/pt/save_pt.png"
+    search: "/buttons/pt/search_pt.png"
+    send: "/buttons/pt/send_pt.png"
+    upload_file: "/buttons/pt/upload_file_pt.png"
+
+
+  calendar: 
+    abbr_weekdays: 
+      - Dom
+      - Seg
+      - Ter
+      - Qua
+      - Qui
+      - Sex
+      - Sáb
+    collaboration_calendar:
+      title: "Calendário Colaborativo"
+    clear: Limpar
+    index: 
+      all: "Todas as organizações"
+      category: "Categoria"
+      date_header: "Data"
+      end_date_header: "Data final"
+      entry: "Entradas"
+      filter: "Filtrar"
+      filter_by: "Filtrar por:"
+      new_entry: "Criar Entrada"
+      project: "Projeto"
+      responsible: "Responsável"
+      start_date_header: "Data início"
+      task: "Tarefas"
+      task_header: "Título"
+      title: "Meu calendário"
+    now: Agora
+    project_calendar:
+      title: "Calendário do Projeto"
+    ok: OK
+    today: Hoje
+
+  calendar_entries:
+    edit: 
+      submit: "Editar entrada"
+      title: "Editar a entrada do calendário %{entry_title}"
+    new: 
+      date_error: "A data de início não pode ser posterior à data final"
+      description: Descrição
+      end_date: "Data final"
+      introduce_start_date: "Desejo indicar uma data de início"
+      name_html: Nome da entrada
+      no_title_error: "Você debe reescrever o campo Nome"
+      optional: "opcional"
+      start_date: "Data início"
+      submit: "Converter"
+      title: "Criar Entrada"
+    show: 
+      delete: "Eliminar"
+      delete_error: "Você não tem permissão para eliminar a entrada do calendário selecionado"
+      description: Descrição
+      edit: "Editar"
+      edit_error: "Você não possui permissão para editar a entrada do calendário selecionado"
+      end_date: "Data final"
+      entry_title: "Nome da entrada"
+      not_owner_error: "Você não tem permissão para visualizar a entrada de calendário selecionada"
+      start_date: "Data início"
+      title: "%{entry_title}"
+
+  cards: 
+    address:
+      city: "Cidade"
+      state: "Estado"
+      street: "Rua"
+      zip: "Código postal"
+    card: 
+      address: 
+        Work: "Trabalho"
+        Home: "Casa"
+        Other: "Outro"
+      addresses: Endereços
+      email_address: 
+        Work: "Trabalho"
+        Home: "Casa"
+        Other: "Outro"
+      email_addresses: "Endereços de e-mail"
+      im: 
+        Work: "Trabalho"
+        Personal: "Pessoal"
+        Other: "Outro"
+      ims: Chat
+      phone_number: 
+        Work: "Trabalho"
+        Mobile: "Celular"
+        Fax: "Fax"
+        Home: "Casa"
+        Skype: "Skype"
+        Other: "Outro"
+      phone_numbers: Telefones
+      social_network: 
+        Business: "Negócios"
+        Personal: "Pessoal"
+        Other: "Outro"
+      social_networks: "Redes sociais"
+      vcard: "Baixar vCard"
+      website: 
+        Work: "Trabalho"
+        Personal: "Pessoal"
+        Other: "Outro"
+      websites: "Páginas de internet"
+    card_types: 
+      business: Negócios
+      fax: Fax
+      home: Casa
+      mobile: Celular
+      other: Outro
+      personal: Pessoal
+      work: Trabalho
+    field: 
+      add_addresses: "Adicionar endereço"
+      add_email_addresses: "Adicionar e-mail"
+      add_ims: "Adicionar Chat"
+      add_phone_numbers: "Adicionar telefone"
+      add_social_networks: "Adicionar perfil"
+      add_websites: "Adicionar página de internet"
+
+  colcentric_datas:
+    column: 
+      description: "Aqui você pode mover os dados dentro e fora de Kinubi."
+    data:
+      confirm_delete: "Tem certeza que deseja apagar esse comentário?"
+      Incomplete: "Incompleta"
+      processed_at: "Elaboradas em %{processed_at}"
+      processing: "Processando atualmente..."
+      remove: "retirar desta organização"
+    export_fields: 
+      description: "Por favor, selecione os projetos que quer exportar"
+    import_fields: 
+      in_organization: "Coloque todos os projetos nesta organização"
+      please_supply_user_map: "Detectamos os seguintes usuários em sua importação. Por favor, confirme quais usuários correspondem aos usuários de Kinubi."
+      select_file: "Por favor, escolha um arquivo que contenha seus dados."
+      service: "De qual serviço você exportou seus dados?"
+      colcentric_user: "Usuário de Kinubi"
+      user: 
+    index: 
+      exports: "Exporte seus projetos"
+      imports: "Importe dados de um arquivo"
+      imports_explain: "Você poderá importar seus arquivos de backup de Kinubi."
+      no_exports: "Não há exportações recentes"
+      no_imports: "Não há importações recentes"
+      title: "Importe o exporte seus dados"
+    new_export: 
+      submit: "Exportar dados"
+      title: "Exportar dados"
+    new_import: 
+      submit: "Importar dados"
+      title: "Dados importados"
+    show_export: 
+      download: "Exportar o download"
+      projects: "Projetos exportados"
+      title: Importar/Exportar
+    show_import: 
+      import_error: "Ocorreu um erro ao carregar sua importação. Por favor, tente novamente"
+      projects: Projetos importados
+      submit: Importar
+      title: "Importar datos"
+
+  comments: 
+    actions: 
+      confirm_delete: "Tem certeza que deseja apagar esse comentário?"
+      conversation_url: "Página da conversação"
+      convert_task: "Converter em uma tarefa"
+      edit: "Editar comentário"
+    attach: 
+      tooltip: Anexar
+    comment: 
+      cannot_edit: "O comentário não poderá ser editado 15 minutos após sua publicação"
+      commented_in_project: "%{user} em %{project}"
+      commented_on: "-"
+      commented_on_a_task_list: "-"
+      confirm_delete: "Tem certeza que deseja apagar esse comentário?"
+      hours: "%{hours}h"
+      hours_with_minutes: "%{hours}h %{minutes}m"
+      loading: Carregando...
+    conversations: 
+      convert_to_task: "Converter em tarefa"
+      task_name: "ex. Enviar proposta de Logo"
+    convert_form: 
+      destination: "Selecione uma lista de tarefas para o destino"
+      name: "Escreva um nome para esta tarefa"
+      submit: Converter
+    edit: 
+      submit: Salvar
+    errors: 
+      cannot_update: "Você não tem permissão para editar este comentário."
+    fields: 
+      attach: Anexar
+      attach_file: Anexar um arquivo
+      log_hours: Notificar horas
+      notify_people: "Notificar"
+    hours: 
+      add_hours: Horas
+      hours: "Quantas horas você trabalhou nesta tarefa?"
+      time_tracking_docs: "Aprenda a usar o registro de tempo"
+      tooltip: "Adicione horas a esta tarefa"
+    new: 
+      assigned_to: "Responsável"
+      assigned_to_nobody: "Sem atribuir"
+      comment_on_project: "Comentário sobre:"
+      conversation:  "Envie uma mensagem para toda equipe"
+      due_on_html: "<b>Data final</b> "
+      due_on: "Data final"
+      participants: "Participantes"
+      priority_html: "<b>Prioridade</b>"
+      project: "O que  você está fazendo? Compartilhe ideias, links, arquivos e conversações"
+      responsible_html: "<b>Responsável</b> "
+      sending: Enviando...
+      start_date2_html: "<b>Data início</b> "
+      start_date_html: "Data início  "
+      status_html: "<b>Estado</b> "
+      submit: Publicar
+      task: "Defina o que debe ser feito em um comentário"
+      task_list: "Compartilhe ideias para esta lista de tarefas"
+    preview: 
+      close: Fechar
+      preview: Pré-visualizar
+    watchers:
+      explain: "Selecione os usuários que você quer notificar por e-mail."
+      popup_note_html: "Selecione <b>Notificar</b> para enviar notificações desta conversação."
+
+  common: 
+    accept: Aceitar
+    and: "e"
+    calendar: Calendário
+    cancel: Cancelar
+    close: Fechar
+    comment: 
+      one: "%{count} comentário"
+      other: "%{count} comentários"
+    continue: Continuar
+    decline: Rejeitar
+    delete: Apagar
+    edit: 
+    format_name: "%{first_name} %{last_name}"
+    format_name_short: "%{first_name_first_character}. %{last_name} "
+    home: "Início"
+    in_project: em
+    logged_out: "Encerrada a sua sessão."
+    next: Seguinte
+    not_allowed: "Você não possui permissão para fazer isso"
+    optional: Opcional
+    prev: Anterior
+    print: "Imprimir esta página"
+    rename: Renomear
+    return: Voltar
+    save: Salvar
+    show_more: "Ver mais"
+    signup: Identifique-se
+
+  confirm: 
+    delete_group: "Tem certeza que deseja apagar este grupo?"
+    delete_page: "Tem certeza que deseja apagar esta página?"
+    delete_task: "Tem certeza que deseja apagar esta tarefa?"
+    delete_task_list: "Tem certeza que deseja apagar esta lista de tarefas?"
+    delete_upload: "Tem certeza que deseja apagar este arquivo?"
+
+  conversations: 
+    actions: 
+      confirm_delete: "Tem certeza que deseja apagar essa conversação?"
+    column: 
+      cant_create: "Você não tem permissão para criar conversações neste projeto."
+      new_conversation: "Criar conversação"
+    conversation_with_extract: 
+      posted_by: "Publicado por"
+    convert_form: 
+      name: "Nomeie esta tarefa"
+      status: Estado
+      task_list:  "Criar tarefa em"
+    edit: 
+      submit: "Modificar Conversação"
+    fields: 
+      body: "Primeira mensagem"
+      name: "Nome da Conversação"
+    index: 
+      cant_create: "Você não tem permissão para criar uma conversação nesse projeto."
+      new_conversation: "Criar Conversação"
+      rss: 
+        description: "Conversações no projeto %{name}"
+        title: "Conversações de %{name}"
+      title: "Conversações em %{project} "
+      view_single: "Ler mais"
+    link: 
+      edit: "Editar"
+    new:
+      description: "Descrição"
+      submit: "Criar Conversação"
+      title: "Criar Conversação"
+    primer: 
+      create_first: "Crie a primeira conversação para este projeto!"
+      define_html: "<b>Converse sobre as decisões</b> y <b>Mantenha sua equipe atualizada</b> de uma forma centralizada.<br/>Cada conversa é uma lista de mensagens, que substituem os confusos e-mails."
+      empty: "Ainda não há nenhuma conversação neste projeto."
+      footer1_html: "As conversações são perfeitas para <b>compartilhar um desenho</b>, <b>definir uma data</b> para compreender ou <b>informar</b> sobre as notícias do projeto."
+      footer2_html: "Sendo ordenadas por tópicos, è fácil voltar atrás no tempo e ver quais arquivos foram enviados e o que foi dito por cada membro da equipe. Em Kinubi, com a <b>colaboração</b> é possível <b>observar</b> tudo o que foi feito."
+      item1_html: "<b>Compartilhe arquivos</b>. Pode-se anexar arquivos a cada mensagem."
+      item2_html: "<b>Inscreva-se</b> em uma conversação para receber notificações de respostas por e-mail e RSS."
+      item3_html: "<b>Expresse-se</b>. Pode utilizar negrito, itálico e estilos de texto."
+      item4_html: "<b>Integrado com o seu e-mail</b>. Pode responder as publicações através do seu e-mail."
+    short_conversation: 
+      comment: 
+      comments: respostas
+    show: 
+      edit: "Editar título"
+      message: Mensagem
+      messages:  Mensajes
+      started_by: "Iniciado por"
+    watcher_fields: 
+      add_suscribers: "Quem participará desta conversação?"
+      cant_notify: "Trata-se de um projeto público."
+      invite_users: "Você é o único usuário neste projeto!"
+      no_users_yet_html: "Conversar é mais útil quando não se faz sozinho. <a href='%{invite_link}'>Convide alguns usuários</a> a este projeto para que possam ler, comentar e receber atualizações desta conversa."
+      people_all: "Todas as pessoas do projeto"
+      subscribe_note_html: "Estas pessoas receberão uma notificação por e-mail desta mensagem e de comentários posteriores.<br/>Podem deixar de seguir a conversação em qualquer momento."
+
+  countries: 
+    AD: Andorra
+    AE: "Emirados Árabes"
+    AF: Afeganistão
+    AL: Albânia
+    AM: Armênia
+    AO: Angola
+    AR: Argentina
+    AT: Áustria
+    AU: Austrália
+    AW: Aruba
+    AZ: Azerbaiyán
+    BA: Bosnia-Herzegovina
+    BB: Barbados
+    BD: Bangladesh
+    BE: Bélgica
+    BG: Bulgária
+    BI: Burundi
+    BM: Bermudas
+    BO: Bolívia
+    BR: Brasil
+    BS: Bahamas
+    BT: Butão
+    BW: Botsuana
+    BY: Bielorrusia
+    CA: Canadá
+    CH: Suíça
+    CI: "Costa do Marfim"
+    CK: "Islas Cook"
+    CL: Chile
+    CM: Camerún
+    CN: China
+    CO: Colômbia
+    CR: "Costa Rica"
+    CU: Cuba
+    CX: "Ilha de Páscoa"
+    CY: Chipre
+    CZ: "República Checa"
+    DE: Alemanha
+    DJ: Yibuti
+    DK: Dinamarca
+    DO: "República Dominicana"
+    DZ: Argélia
+    EC: Equador
+    EE: Estônia
+    EG: Egito
+    ER: Eritrea
+    ES: España
+    ET: Etiópia
+    FI: Finlândia
+    FJ: Fiyi
+    FR: França
+    GA: Gabón
+    GB: "Reino Unido"
+    GD: Granada
+    GE: Georgia
+    GF: "Guiana Francesa"
+    GH: Ghana
+    GI: Gibraltar
+    GL: Groenlândia
+    GM: Gambia
+    GN: Guinea
+    GP: Guadalupe
+    GQ: "Guiné Ecuatorial"
+    GR: Grécia
+    GT: Guatemala
+    GW: Guiné-Bissau
+    HK: "Hong Kong"
+    HN: Honduras
+    HR: Croácia
+    HT: Haití
+    HU: Hungria
+    ID: Indonésia
+    IE: Irlanda
+    IL: Israel
+    IN: Índia
+    IQ: Iraque
+    IR: Irã
+    IS: Islândia
+    IT: Itália
+    JM: Jamaica
+    JO: Jordânia
+    JP: Japão
+    KE: Quênia
+    KG: KirguistánR042
+    KH: Camboja
+    KP: "Coréia do Norte"
+    KR: "Coréia do Sul"
+    KW: Kuwait
+    KY: "Ilhas Caiman"
+    KZ: Kazaquistão
+    LA: Laos
+    LB: Líbano
+    LI: Liechtenstein
+    LK: "Sri Lanka"
+    LR: Liberia
+    LS: Lesoto
+    LT: Lituânia
+    LU: Luxemburgo
+    LV: Letônia
+    LY: Líbia
+    MA: Marrocos
+    MC: Mônaco
+    MD: MoldaviaR039
+    ME: Montenegro
+    MG: Madagascar
+    ML: Mali
+    MN: Mongólia
+    MO: Macao
+    MQ: Martinica
+    MR: Mauritania
+    MS: Montserrat
+    MT: Malta
+    MU: Maurício
+    MV: Maldivas
+    MW: Malaui
+    MX: México
+    MY: Malásia
+    MZ: Mozambique
+    NA: Namíbia
+    NE: Níger
+    NG: Nigéria
+    NI: Nicarágua
+    NL: "Países Baixos"
+    NO: Noruega
+    NP: Nepal
+    NR: Nauru
+    NZ: "Nova Zelândia"
+    OM: Omán
+    PA: Panamá
+    PE: Perú
+    PF: "Polinésia Francesa"
+    PG: "Papúa Nova Guiné"
+    PH: Filipinas
+    PK: Paquistão
+    PL: Polônia
+    PR: "Porto Rico"
+    PT: Portugal
+    PY: Paraguai
+    QA: Qatar
+    RE: Reunión
+    RO: Rumanía
+    RS: Sérvia
+    RU: Rússia
+    RW: Ruanda
+    SA: "Arábia Saudita"
+    SD: Sudão
+    SE: Suécia
+    SG: Cingapura
+    SI: Eslovênia
+    SK: Eslováquia
+    SN: Senegal
+    SO: Somália
+    SR: Suriname
+    SV: "El Salvador"
+    SY: Síria
+    TG: Togo
+    TH: Tailândia
+    TJ: Tayikistán
+    TK: Tokelau
+    TM: Turkmenistán
+    TN: Túnez
+    TO: Tonga
+    TR: Turquia
+    TV: Tuvalu
+    TW: Taiwan
+    TZ: Tanzânia
+    UA: Ucrânia
+    UG: Uganda
+    US: "Estados Unidos"
+    UY: Uruguai
+    UZ: Uzbequistão
+    VE: Venezuela
+    VN: Vietnã
+    YE: Iemên
+    ZA: África do Sul
+    ZM: Zâmbia
+    ZW: Zimbábue
+    ZZ: "Región desconocida o no válida"
+
+
+  date: 
+    abbr_day_names: 
+      - Dom
+      - Seg
+      - Ter
+      - Qua
+      - Qui
+      - Sex
+      - Sáb
+    abbr_month_names: 
+      - ~
+      - Jan
+      - Fev
+      - Mar
+      - Abr
+      - Mai
+      - Jun
+      - Jul
+      - Ago
+      - Set
+      - Out
+      - Nov
+      - Dez
+    day_names: 
+      - Domingo
+      - Segunda
+      - Terça
+      - Quarta
+      - Quinta
+      - Sexta
+      - Sábado
+    formats: 
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names: 
+      - ~
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+    order: 
+      - !ruby/symbol year
+      - !ruby/symbol month
+      - !ruby/symbol day
+    yesterday: Ontem
+
+  date_picker: 
+    no_date_assigned: "Sem data atribuída"
+
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "Há cerca de 1 hora"
+        other: "Há cerca de %{count} horas"
+      about_x_months: 
+        one: "Há cerca de 1 mês"
+        other: "Há cerca de %{count} meses"
+      about_x_years: 
+        one: "Há cerca de 1 ano"
+        other: "Há cerca de %{count} anos"
+      almost_x_years: 
+        one: "Quase 1 ano"
+        other: "Quase %{count} anos"
+      half_a_minute: "meio minuto"
+      less_than_x_minutes: 
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds: 
+        one: agora
+        other: agora
+      over_x_years: 
+        one: "mais de 1 ano"
+        other: "mais de %{count} anos"
+      x_days: 
+        one: "1 dia"
+        other: "%{count} dias"
+      x_minutes: 
+        one: "1 minuto"
+        other: "%{count} minutos"
+      x_months: 
+        one: "1 mês"
+        other: "%{count} meses"
+      x_seconds: 
+        one: agora
+        other: agora
+    prompts: 
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundos
+      year: Ano
+    time_ago: "Há %{time_ago_in_words}"
+
+  deleted: 
+    conversation: "apagou a conversa %{name}"
+    left_project: "deixou o projeto"
+    page: "apagou a página %{name}"
+    person: "%{name} já não pertence ao projeto"
+    task: "apagou a tarefa %{name}"
+    task_list: "apagou a lista de tarefas %{name}"
+    upload: "apagou o arquivo %{name}"
+
+  dividers: 
+    actions: 
+      delete_confirm: "Você tem certeza que deseja apagar este separador?"
+    edit: 
+      submit: Atualizar
+    fields: 
+      title: "Nome do Separador"
+    new: 
+      new_divider: "Criar Separador"
+      submit: Adicionar
+
+  emailer: 
+    bounce: 
+      not_delivered: "Kinubi não pôde processar seu e-mail."
+      not_project_member_error: "O remetente desta mensagem não é membro do projeto especificado"
+      project_not_found_error: "O projeto especificado não foi encontrado"
+      subject: "Seu e-mail não foi criado corretamente"
+      target_not_found_error: "O elemento não foi encontrado para adicionar"
+      user_not_found_error: "O remetente desta mensagem parece não ter conta em Colcnetric."
+    colcentricdata:
+      data_export_failed: "Seus dados não puderam ser exportados por Kinubi. Para tentar novamente, por favor clique no seguinte link:"
+      data_exported: "Seus dados foram foram exportados por Kinubi, e estão disponíveis para download através do seguinte link:"
+      data_import_failed: "Seus dados não puderam ser importados dentro de Kinubi. Por favor, observe se os dados que enviou são válidos. Para tentar de novo, clique no seguinte link:"
+      data_imported: "Seus dados foram importados corretamente dentro de Kinubi. Para ver os detalhes, por favor clique no seguinte link:"
+      export_failed: "Seus dados não puderam ser exportados."
+      exported: "Seus dados estão prontos para download"
+      hey: "Olá!, %{user_name}!"
+      import_failed: "Seus dados não puderam ser importados"
+      imported: "Seus dados foram importados"
+    common: 
+      answer_above_this_line: "Escreva em cima desta linha para responder"
+      do_not_answer: "Não responda a este e-mail."
+    confirm: 
+      complete: "Complete seu registro"
+      complete_registration: "Para completar o registro em Kinubi, Clique no seguinte "
+      complete_registration2: "Uma vez registrado, vocè poderá trabalhar em nossa plataforma, colaborando e comunicando-se em tempo real com as pessoas da sua equipe."
+      follow_this_link: "Clique neste link para completar seu registro em Kinubi:"
+      hey: "Olá!, %{user_name}!"
+      log_in: "Entre em Kinubi"
+      plaintext_link: "Se o link acima não funcionar, copie e cole na barra de endereços do seu navegador:"
+      problems_html: "Se tiver problemas, entre em contato conosco em %{support}"
+      report_abuse: "Você está recebendo esta mensagem porque foi registrado em Kinubi com o endereço %{email}"
+      subject: "Comece a usar Kinubi"
+    forgot_password: 
+      subject: "Recuperar senha de Kinubi"
+    invitation: 
+      accept_the_invitation: "Aceitar o convite"
+      collaborate_with: "%{name} quer colaborar com você em Kinubi:"
+      current_users: "Usuários neste projeto:"
+      plaintext_link: "Se o link não funcionar, copie e cole na barra de endereços do seu navegador:"
+      plan_share_and_collaborate: "Planeje, compartilhe e mantenha-se atualizado sobre o que é feito."
+      report_abuse: "Um contato seu quis que você recebesse este e-mail. Por favor, informe-nos de qualquer abuso."
+      subject: "%{user} lhe convidou a [%{target}]"
+      subject_without_project: "%{name} lhe convida a Kinubi"
+      colcentric_is_a_pm_platform: "Kinubi é um software de colaboração online. Comunique-se e trabalhe com sua rede profissional de maneira privada. "
+      you_have_been_invited_to_project: "%{user} lhe convidou a participar no projeto %{target}"
+      you_have_been_invited_to_organization: "%{user} lhe convidou a participar na organização %{target}"
+      you_have_been_invited_to_project_group: "%{user} lhe convidou a participar no grupo de projetos %{target}"
+    license:
+      expiration_subject: "Fim da licença Kinubi"
+      item1: "Lembramos que faltam 5 dias para que sua licença expire."
+      item2: "Para contratar nossos produtos, entre em qualquer momento em Painel de usuário dentro de Configuração de usuário ou clique no seguinte link:"
+      item3: "Sua licença Kinubi acaba de expirar."
+      reminder_subject: "Lembrete próximo fim de licença Kinubi"
+      user_panel: "Painel de usuário"
+    membership_notification:
+      target_link: "Clique no link para começar a colaborar %{target} agora"
+      subject: "%{user} compartilhe [%{target}] contigo"
+      you_have_been_added_to_organization: "Agora você é um membro da organização %{target}"
+      you_have_been_added_to_project: "Agora você é um membro do projeto %{target}"
+      you_have_been_added_to_project_group: "Agora você é um membro do grupo de projetos %{target}"
+    notify: 
+      are_watching: 
+        one: " foi adicionado à conversação, e será notificado das respostas futuras."
+        other: foram adicionadas à conversação, e receberão notificações de comentários futuros.
+      are_watching_task: 
+        one: " foi atribuído à esta tarefa, e receberá notificações de comentários futuros."
+        other: " foram atribuídos à esta tarefa, e receberão notificações de comentários futuros."
+      assigned_to_html: "Atribuída a <b>%{user}</b>"
+      assigned_to_task: "%{user} foi atribuído a seguinte tarefa: %{task}"
+      comment: "Comentário em atividade recente do projeto: "
+      comments: "%{number} comentários"
+      conversation: 
+      due_on: "Data final: %{date}"
+      go_to_conversation: "Entrar na conversação"
+      go_to_task: "Entrar na tarefa"
+      my_tasks: "Outras tarefas suas em %{project}"
+      notification_settings_link_html: "Pode modificar seus %{settings_link} para futuros e-mails."
+      path: "Ec > Projetos > "
+      project: 
+      project_group:
+      reply: "Você também pode responder à este e-mail para publicar um comentário na conversação."
+      settings_link: "configuracão das notificações"
+      start_date: "Data início: %{start_date}"
+      status: Estado
+      stop_watch: "Deixar de ver"
+      stop_watching_link_html: "%{stop_watch} esta lista para deixar de receber mensagens por e-mail."
+      task: "Tarefa:"
+      task_commands: "Escribe #resolve, #reject o #hold no início de sua resposta para alterar o status da tarefa. Escreva #%{username} para atribuir a @%{username}, etc."
+      task_link: "Ver esta tarefa on-line"
+      task_list: "Lista de tarefas:"
+      view_this_conversation_online_html: "Você pode ingressar na conversa %{conversation} através do seguinte link:"
+      view_this_task_online_html: "Você pode ingressar na tarefa %{task} através do seguinte link."
+    membership_notification:
+      target_link: "Clique no seguinte link para começar a colaborar em %{target}"
+      subject: "%{user} compartilhe [%{target}] contigo"
+      you_have_been_added_to_organization: "Agora você é um membro da organização %{target}"
+      you_have_been_added_to_project: "Agora você é um membro do projeto %{target}"
+      you_have_been_added_to_project_group: "Agora você é um membro do grupo de projetos %{target}"
+    reset_password:
+      access_platform: "Você poderá entrar na plataforma através do link:"
+      follow_this_link_html: "Clique em <a href= %{url}><font color= #008ac0>link</font></a> para restaurar sua senha em Kinubi"
+      follow_this_link1: "Clique em "
+      follow_this_link2: " para restaurar sua senha em Kinubi."
+      hey: "Olá!, %{user_name}!"
+      log_in: "Entre em Kinubi agora"
+      new_password: "Crie uma nova senha"
+      plaintext_link: "Se o link acima não funcionar, copie e cole na barra de endereços do seu navegador:"
+      problems: "Se tiver problemas, entre em contato conosco em "
+      problems_html: "Se tiver problemas, entre em contato conosco em %{support}"
+      report_abuse: "Você está recebendo esta mensagem porque foi registrado em Kinubi com o endereço %{email}"
+      subject: "Sua senha foi restaurada"
+      successfully_reset: "Sua senha de acesso à Kinubi foi restaurada."
+    colcentricdata:
+      data_export_failed: "Seus dados não puderam ser exportados por Kinubi. Para tentar novamente, por favor clique no seguinte link:"
+      data_exported: "Seus dados foram foram exportados por Kinubi, e estão disponíveis para download através do seguinte link:"
+      data_import_failed: "Seus dados não puderam ser importados dentro de Kinubi. Por favor, observe se os dados que enviou são válidos. Para tentar de novo, clique no seguinte link:"
+      data_imported: "Seus dados foram importados corretamente dentro de Kinubi. Para ver os detalhes, por favor clique no seguinte link:"
+      export_failed: "Seus dados não puderam ser exportados."
+      exported: "Seus dados estão prontos para download"
+      hey: "Olá!, %{user_name}!"
+      import_failed: "Seus dados não puderam ser importados"
+      imported: "Seus dados foram importados"
+    license:
+      expiration_subject: "Fim da licença Kinubi"
+      item1: "Lembramos que faltam 5 dias para que sua licença expire."
+      item2: "Para contratar nossos produtos, entre em qualquer momento na opção <b> Painel de usuário dentro de Configuração de usuário</b> ou clique no seguinte link:"
+      item3: "Sua licença acaba de expirar."
+      reminder_subject: "Lembrete próximo fim de licença Kinubi"
+      user_panel: "Painel de usuário"
+    trial:
+      expiration_subject: "Fim do período de prova"
+      item1: "Lembramos que faltam 5 dias para que sua licença expire."
+      item2: "Para contratar nossos produtos, entre em qualquer momento na opção <b> Painel de usuário dentro de Configuração de usuário</b> ou clique no seguinte link:"
+      item3: "Seu período de prova gratuito acab de expirar."
+      reminder_subject: "Lembrete próximo fim do período de prova"
+      user_panel: "Painel de usuário"
+    upload: 
+      file: "Arquivo:"
+    videoconference:
+      destruction:
+        subject: "Videoconferência cancelada"
+        hello: "Olá %{user_name}"
+        item1: "Lhe informamos que o usuário %{owner} cancelou a videoconferência prevista para o dia %{day}."
+      invitation: 
+        duration: "Duração: %{duration} minutos"
+        hello: "Olá %{user_name}"
+        hello2: "Olá"
+        item1: "%{invited_by_name} lhe convidou para uma videoconferência on-line."
+        item2: "Antes de entrar na sala, assegure-se de que o microfone e a webacam estão conectados. Você pode entrar na videoconferência alguns minutos antes da hora no seguinte link: "
+        item3: "IMPORTANTE: Não compartilhe este link com nenhuma outra pessoa. O link identifica os participantes durante a videoconferência."
+        item4: "Se possui dificuldades, entre em contato com a pessoa ou organização que lhe convidou para a videoconferência. Você pdoe enviar um e-mail ao organizador da videoconferência: %{user_email}"
+        item5_html: "Ao entrar na sala, você aceitou as <a href='http://pro.kinubi.com/terms_of_use_es.html' target='_blank'>Condiciones de Uso</a>"
+        link: "Link da videoconferência"
+        link2: "Kinubi"
+        start: "Começo: %{start_time}"
+        subject: "Invitación a videoconferencia: "
+
+
+  errors: 
+    format: "%{attribute} %{message} "
+    messages: 
+      accepted: "deve ser aceito"
+      blank: "não pode estar em branco"
+      confirmation: "a confirmação não coincide"
+      empty: "não pode estar vazio"
+      equal_to: "deve ser igual a %{count}"
+      even: "deve ser par"
+      exclusion: "está reservado"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      inclusion: "não está incluído na lista"
+      invalid: "é inválido"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      not_a_number: "não é um número"
+      not_an_integer: "deve ser inteiro"
+      odd: "deve ser ímpar"
+      too_long: "é grande demais (máximo %{count} caracteres)"
+      too_short: "é curto demais (mínimo %{count} caracteres)"
+      wrong_length: "tem o tamanho incorreto (debe tener %{count} caracteres)"
+    projects: 
+      archived: "Não pode acessar o projeto arquivado."
+    template: 
+      body: "Houveram problemas com os seguintes campos:"
+      header: 
+        one: "Um erro impediu que este %{model} fosse salvo"
+        other: "%{count} erros impediram que este %{model} fosse salvo"
+
+  forms:
+    answers:
+      list: "Lista de respostas"
+    close:
+      error: "Não foi possível fechar o formulário"
+      success: "Formulário fechado"
+    destroy:
+      confirm: "Tem certeza?"
+      success: "Formulário eliminado com êxito"
+    edit_fields:
+      back: "Voltar à lista de respostas"
+      error: "Não foi possível salvar as alterações"
+      success: "Respostas atualizadas"
+    get_answers:
+      no: "Não"
+      yes: "Sim"
+    index:
+      close: "Fechar"
+      edit: "Editar"
+      destroy: "Eliminar"
+      name: "Nome"
+      new_formular: "Crie um formulário clicando o seguinte link"
+      other_forms: "Formulários"
+      own_forms: "Formulários"
+      publish: "Publicar"
+    list_answers:
+      item: "Respostas introduzidas em %{date}"
+      new: "Adicionar nova resposta"
+    new: 
+      add_text_field: "Adicionar campo de texto"
+      add_checkbox: "Adicionar checkbox"
+      add_date: "Adicionar data"
+      add_select: "Adicionar lista suspensa"
+      description: "Descrição"
+      error: "Não foi possível criar o formulário"
+      formular_name: "Nome do formulário"
+      multiple: "Permitir ao usuário múltiplas respostas?"
+      name: "Nome"
+      success: "Formulário criado com êxito"
+      title: "Criar novo formulário"
+      confirm: "Uma vez criado o formulário, não é possível editá-lo, Tem certeza que deseja continuar?"
+      name: "Nome"
+      option: "Opção"
+    publish:
+      error: "Não foi possível publicar o formulário"
+      success: "Formulário publicado"
+    show_answers:
+      title_html: "Respostas do formulário <strong>%{form}</strong>"
+    update:
+      success: "Formulário atualizado"
+      error: "Não foi possível salvar as alterações"
+
+  form: 
+    cancel: Cancelar
+
+  google_docs: 
+    attach: "Anexar um documento do Google"
+    authorization_required: "Para utilizar Google Docs primeiro deve autorizar Kinubi a usar sua conta do Google."
+    authorize_link: "Autorizar Google Docs"
+    create: Criar
+    create_new: "Criar um novo documento"
+    creating: Criando...
+    new_document_placeholder: "Título do novo documento"
+    search_placeholder: "Busque documentos do Google"
+
+  help:
+    title: "Manual do usuário"
+    index:
+      first:
+        collaborative_area: "+ Ambiente colaborativo"
+        menu: "+ Menu funcionalidades"
+        personal_area: "+ Ambiente pessoal"
+        title: "1.- Como se estrutura Kinubi"
+      second:
+        invite: "+ Convide usuários"
+        project: "+ Crie projeto"
+        project_groups: "+ Crie grupo de projetos"
+        start_working: "+ Comece a trabalhar"
+        title: "2.- Comece a trabalhar"
+      third:
+        collaborative_area:
+          calendar: "+ Calendário"
+          projects:
+            calendar: "+ Calendário"
+            configuration: "+ Conf."
+            conversations: "+ Conversações"
+            files: "+ Arquivos"
+            pages: "+ Páginas"
+            people: "+ Pess. equipe"
+            recent_activity: "+ Feed"
+            tasks: "+ Tarefas"
+            title: "+ Projetos"
+          recent_activity: "+ Feed"
+          title: "+ Amb. colaborativo"
+        personal_area:
+          calendar: "+ Calendário"
+          files: "+ Arquivos"
+          recent_activity: "+ Feed"
+          tasks: "+ Tarefas"
+          title: "+ Ambiente pessoal"
+          user_settings: "+ Conf. usuário"
+        title: "3.- Detalhe de cada uma das opções"
+
+
+
+  helpers:  #eliminar
+    select: 
+      prompt: "Por favor selecione"
+    submit: 
+      create: "Criar %{model}"
+      submit: "Salvar %{model}"
+      update: "Atualizar %{model}"
+
+  hours: 
+    all_tasks: "Todas as tarefas"
+    all_users: "Todos os usuários"
+    comments: Entradas
+    entry_hours: h
+    entry_total: Total
+    filter_assigned: 
+      anybody: Qualquer
+      my_tasks: "Minhas tarefas"
+    filter_by: "Filtrar por"
+    filter_organization: 
+      all: "Todas as organizações"
+    filter_project: 
+      all: "Todos os projetos"
+    filters: 
+      assigned_to: Usuários
+      organizations: Organizações
+      projects: Projetos
+      tasks: Tarefas
+    report: Informe
+    reports: 
+      project: Projetos
+      task: Tarefas
+      user: Usuários
+    week_num: "Semana %{num}"
+    week_total: Total
+
+  invitations: 
+    destroy: 
+      discarded: "O convite a %{user} foi descartado"
+    errors: 
+      invalid: "Convite inválido"
+      invalid_code: "Código do convite inválido"
+    fields: 
+      user_or_email: "Escreva o e-mail ou nome de usuário do seu companheiro:"
+    index_user: 
+      no_invitations: "Não possui convites pendentes."
+      title: "Convites pendentes"
+    invitation: 
+      discard: "Descartar convite"
+      invited_email_html: "%{inviter} foi convidado a <b>%{email}</b>."
+      invited_user_html: "%{inviter} foi convidado a <b>%{invitee}</b>."
+      just_now: "(justo agora)"
+      pending: "Enviamos um e-mail à este usuário, mas ele ainda não confirmou"
+      sponsorized: "O convite é patrocinado"
+      resend: "Reenviar e-mail de convite"
+      time_ago: "(há %{time_ago_in_words})"
+    invite_format: 
+      enter_this: 
+        title: Introduza
+      title: "No quadro de texto, você pode colocar uma lista de usuários ou endereços de e-mail. Ex.:"
+      to_invite: 
+        not_example_html: "(Ni <span class=\"mention\">@fred</span> ni <span class=\"mention\">@lisa</span>)"
+        title: "Convidarás a"
+    new: 
+      also_invite_to_organization: "Convide também a organização '%{organization}'"
+      role_in_the_organization: "Selecione a função que terá o usuário em '%{organization}'"
+      sponsor: "patrocine até %{number} convites"
+    pending: 
+      invited_to_join: "%{by} foi convidado a unir-se ao projeto %{project}."
+      to_access_or: "para ingressar ao projeto ou"
+    recent: 
+      invite: "Convidar a %{username}"
+    resend: 
+      resent: "Reenviamos o convite a %{recipient}. Se não foi possível encontrar o e-mail, verifique se não foi classificado como spam."
+      return: "Voltar atrás"
+    search:
+      help: Ajuda
+      invite: "Convidar"
+      invite_from_project: "Convidar alguém de outro projeto"
+      invite_people: "Convidar usuários a '%{target}'"
+      invite_people_html: "Convidar usuários a <b>%{target}</b>"
+      role: "Escolha um papel"
+      submit: Enviar
+      username_or_email: "Escreva, separados por vírgulas, os e-mails ou nomes de usuário das pessoas que deseja convidar"
+    sent: 
+      email_sent: "<b>Enviamos um e-mail avisando ao usuário para que aceite seu convite</b>. Se não foi possível encontrar o e-mail, verifique se não foi classificado como spam. Se o problema persistir, escreva-nos um e-mail."
+
+  invoices:
+    index: 
+      ammount: "Valor"
+      date: "Data"
+      invoice_number: "Núm. fatura"
+      title: "%{user} comentou em %{target}"
+    invoice:
+      show: "Mostrar detalhes"
+
+  locales: 
+    AR: Argentina
+    BS: Bahamas
+    BT: Butão
+    CA: Canadá
+    CZ: "República Checa"
+    da: Danés
+    DE: Alemanha
+    el: Grego
+    en: Inglês
+    ES: España
+    ET: Etiópia
+    fa: Persa
+    FI: Finlândia
+    FR: França
+    he: Hebreo
+    HR: Croácia
+    HU: Hungria
+    ID: Indonésia
+    IS: Islândia
+    IT: Itália
+    ja: Japonês
+    ko: Coreano
+    lo: Lao
+    LT: Lituânia
+    LV: Letônia
+    MK: "Macedônia [ERYM]"
+    NL: "Países Baixos"
+    no: Noruego
+    PL: Polônia
+    pt-BR: "Português (Brasil)"
+    pt-PT: "Português (Portugal)"
+    RO: Rumanía
+    RU: Rússia
+    SE: Suécia
+    SK: Eslováquia
+    SL: "Serra Leoa"
+    SR: Suriname
+    sw: Suajili
+    TH: Tailândia
+    TR: Turquia
+    uk: Ucraniano
+    VI: "Islas Virgens dos Estados Unidos"
+    zh: Chino
+
+  mail:
+    mailbox:
+      sent_messages: "Mensagens enviadas"
+      saved_messages: "Mensagens salvas"
+      received_messages: "Mensagens recebidas"
+      since: "desde"
+      ago: ""
+      to: "a"
+      no_subject: "(sem assunto)"
+    new_message:
+      write: "Escreva uma nova mensagem"
+      subject: "Assunto"
+      body: "Mensagem"
+      to: "Destinatários"
+    show_message:
+      edit_draft:
+        subject: "Assunto"
+        body: "Mensagem"
+        to: "Destinatários"
+
+  memberships:  #elminar roles
+    index: 
+      add_as_admin: "adicionar como administrador"
+      add_to_the_org: "adicionar à organização como um participante"
+      admins: 
+        explain: "Pode participar de qualquer projeto e administrar a configuração da organização."
+        title: Administradores
+      in_projects_but_not_in_the_organization: 
+        explain: "Pode participar somente dos projetos em que foi convidado. Não pode criar projetos dentro da organização."
+        title: "conversações de %{name}"
+      make_admin: "Obter permissões do administrador"
+      members:
+        explain: "Pode acessar os projetos da organização em que é convidado."
+        title: Membros
+      no_users: "Não existem usuários"
+      participants:
+        explain: "Pode criar projetos dentro da organização, mas somente acessa aos projetos a que lhe pertence."
+        title: Participantes
+      remove: "eliminar desta organização"
+      remove_admin: "Retirar os direitos do administrador"
+      title: "'%{name}' organização"
+    roles: 
+      admin: "Como administrador. Poderá adicionar novos usuários e administrar a organização."
+      external: "Sem convidar. Não poderá criar projetos nesta organização."
+      member: "Usuário da organização. Poderá unir-se aos projetos da organização."
+      participant: "Como participante. Será capaz de criar seus próprios projetos."
+
+  navigation:
+    sidebar:
+      calendar:
+        index: "Calendário"
+        collaboration_calendar: "Calendário"
+        project_calendar: "Calendário"
+      calendar_entries: "Calendário"
+      conversations:
+        index: "Conversações"
+        new: "Conversações"
+        show: "Conversações"
+        create: "Conversações"
+      fields:
+        edit_fields: "Formulários"
+      forms:
+        answer: "Formulários"
+        edit: "Formulários"
+        index: "Formulários"
+        list_answers: "Formulários"
+        new: "Formulários"
+        show_answers: "Formulários"
+      invoices: "Fatura"
+      mailbox: "Caixa de Entrada"
+      sent: "Mensagens enviadas"
+      drafts: "Mensagens salvas"
+      messages: "Mail"
+      memberships:
+        index: "Gerencie usuários"
+      organizations:
+        appearance: "Aparência"
+        delete: "Apagar"
+        edit: "Configuração geral"
+        projects: "Gerencie projetos"
+      pages: 
+        edit: "Páginas"
+        index: "Páginas"
+        new: "Páginas"
+        show: "Páginas"
+      people:
+        list: "Pessoas da equipe"
+        index: "Configuração"
+      project_groups:
+        new: "Projetos"
+        settings: "Projetos"
+        show_all: "Projetos"
+      projects:
+        edit: "Configuração"
+        index: "Atividade recente"
+        show: "Atividade recente"
+        new: "Projetos"
+        update: "Configuração"
+      shopping_carts:
+        buy: "Painel de usuário"
+        set_checkout: "Painel de usuário"
+        show_details: "Painel de usuário"
+        thanks: "Painel de usuário"
+      subscriptions:
+        error: "Atividade recente"
+        index: "Painel de usuário"
+      task_lists:
+        my_tasks: "Tarefas"
+        index: "Tarefas"
+        show: "Tarefas"
+        show_filtered: "Tarefas"
+      tasks:
+        show: "Tarefas"
+        edit: "Tarefas"
+      uploads:
+        index: "Arquivos"
+        new: "Arquivos"
+        search: "Arquivos"
+      upload_directories:
+        changeDirectory: "Arquivos"
+        new: "Arquivos"
+        show_content: "Arquivos"
+        rename: "Arquivos"
+      user_directories: "Arquivos"
+      user_files: "Arquivos"
+      users:
+        notifications: "Notificações"
+        picture: "Imagem de perfil"
+        settings: "Dados de usuário"
+        show: "Atividade recente"
+      videoconferences: "Videoconferências"
+
+
+    header: 
+      first_bar:
+       ec: "%{action} de Ambiente colaborativo"
+       ec_project: "%{action} de %{p_name}"
+       ec_organizations: "%{action} de %{o_name}"
+       ec_delete_organization: "%{action} %{o_name}"
+       ep: "%{action} de %{user}"
+      second_bar:
+        ec: "Ec > %{action}"
+        ec_project: "Ec > Projetos > %{pg_name} > %{p_name} > %{action}"
+        ep: "Ep > %{action}"
+        ep_user_settings: "Ep > Configuração de usuário > %{action}"
+        ec_project_groups: "Ec > Projetos > %{action}"
+        ec_organizations: "Ec > Organizações > %{o_name} > %{action}"
+        ec_create: "Ec > Projetos"
+
+  not_found: 
+    conversation: "Não foi encontrada a conversação %{id} nesse projeto."
+    data: "Houve um problema ao localizar seus dados."
+    page: "Não foi encontrada a página %{id} nesse projeto."
+    project: "O projeto %{id} não existe."
+    project_group: "O grupo de projetos %{id} não existe."
+    task: "Não foi encontrada a tarefa %{id} nesse projeto."
+    task_list: "Não foi encontrada a lista de tarefas %{id} nesse projeto."
+    user: "O usuário não existe"
+
+  notes: 
+    actions: 
+      delete_confirm: "Você tem certeza que deseja apagar essa nota?"
+    edit: 
+      submit: "Atualizar nota"
+    fields: 
+      body: Descrição
+      text_styling: "Estilos de texto"
+      title: Nome da Nota
+    new: 
+      new_note: "Criar Nota"
+      submit: "Criar Nota"
+
+  number: 
+    currency: 
+      format: 
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: 0
+        strip_insignificant_zeros: 0
+        unit: $
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: 0
+      strip_insignificant_zeros: 0
+    human: 
+      decimal_units: 
+        format: "%u%n"
+        units: 
+          billion: "Bilhão"
+          million: Milhão
+          quadrillion: "Quatrilhão"
+          thousand: Mil
+          trillion: Trilhão
+      format: 
+        delimiter: ","
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units: 
+        format: "%u%n"
+        units: 
+          byte: 
+            one: byte
+            other: bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage: 
+      format: 
+        delimiter: ","
+    precision: 
+      format: 
+        delimiter: ","
+
+  oauth: #elminar casi segur  -REVISAR AFILIADOS
+    account_linked: "Sua conta foi associada."
+    already_linked_to_your_account: "Este serviço já está associado à sua conta. Poderá identificar-se usando este serviço."
+    already_taken_by_other_account: "Este servicio já está associado com outra conta do sistema. Tente encerrar a sessão e voltar a entrar. Para associá-la com uma conta diferente, é necessário desativar a conta atual."
+    app_unlinked: "Aplicação desassociada"
+    auth_status: "Autenticação OAuth"
+    auth_status_link: "Associar com a sua conta"
+    auth_status_linked: "Associado com o provedor"
+    link_account: "Associar conta."
+    logged_in: "Identificado corretamente"
+    not_linked: "Este serviço não está associado à sua conta Kinubi."
+    signup_for_a_new_account: "Clique aqui para inscrever-se em uma nova conta"
+    this_account_will_be_linked_to: "Esta conta será associada com %{provider}"
+    unlink_account: "Não associar a conta"
+    user_already_exists_by_email: "O usuário %{email} já possui uma conta em Kinubi.<br/>inicie a sessão com esta conta e vincule ao painel de configuração."
+    user_already_exists_by_login: "O usuário %{login} já possui uma conta em Kinubi.<br/>inicie a sessão com esta conta e vincule ao painel de administração."
+    user_exists: "O perfil de %{provider} ainda não está associado a nenhuma conta."
+    user_exists_instruction: "Se já possui uuma conta em Kinubi, acesse para associar com a sua conta de %{provider}."
+    user_exists_is_not_yours_html: "Se não é o proprietário da conta '%{account}', %{signup_for_a_new_account}."
+    your_account_is_linked_html: "Sua conta de %{provider} <strong>está associada</strong> com Kinubi."
+    your_account_is_not_linked_html: "Sua conta de %{provider} <strong>não está associada</strong> com Kinubi."
+
+  organizations:
+    other:
+      to_organization: "à organização"
+    active_projects: 
+      dont_belong: "Não faz parte deste projeto"
+      no_active_projects: "Não há projetos ativos nesta organização."
+      role_html: "É <strong>%{role}</strong> "
+      settings: configuração
+      storage: "%{now} de arquivos"
+      title: "Projetos ativos"
+    appearance: 
+      submit: "Salvar alterações"
+      title: "Aparência de %{organization} "
+    appearance_fields: 
+      colours: "Cores do site"
+      description_html: "HTML a mostrar na página inicial <a href=\"http://help.kinubi.com/faqs/more-ways-to-access-colcentric/customize-organizations\">Aprenda como utilizar isso.</a>"
+      header_bar_colour: "Cor da barra superior"
+      highlight_colour: "Cor do realce"
+      link_hover_colour: "Cor ao passar o mouse por cima do link"
+      links_colour: "Cor padrão dos links"
+      logo_html: "A logomarca <em> ideal deve medir 134x36 pixeles</em> "
+      text_colour: "Cor padrão do texto"
+    archived_projects: 
+      last_activity: "última atividade em %{date}"
+      title: "Projetos arquivados"
+    column: 
+      admin_projects: "Gerencie projetos"
+      admin_users: "Gerencie usuários"
+      appearance: Aparência
+      billing: "Planos e fatura"
+      delete: "Apague esta organização"
+      general_settings: "Configuração geral"
+      invoices: Faturas
+    delete: 
+      clarification: "Se a organização for apagada, toda a informação anexada à esta organização será perdida para sempre. Os usuários que pertencem à esta organização, entretanto, poderão entrar em Kinubi e trabalhar em suas outras organizações"
+      confirm: "Compreendo que a supressão desta organização é irreversível e que todos os conteúdos relacionados a esta organização serão perdidos."
+      delete: "Apague esta organização"
+      deleted: "Apagou a organização"
+      go_delete_some_projects_html: "Não é possível apagar esta organização porque ainda existem projetos. Por favor <a href='%{link}'>elimine o transfira</a> todos os projetos desta organização antes de eliminá-la."
+      need_to_be_admin: "É necessário ser um administrador para apagar esta organização"
+      not_paid_plan: "Não é possível apagar uma organização que possua um plano de pagamento."
+      not_with_projects: "Não é possível apagar esta organização porque ainda existem projetos."
+    edit: 
+      invalid: "Organização inválida"
+      number_of_projects: "%{count} projetos"
+      number_of_users: "%{count} usuários"
+      public_site: "O local público da sua organização é %{link}"
+      saved: "As alterações foram salvas"
+      submit: "Salvar alterações"
+      there_are: "Estão aqui"
+      title: "Configuração para %{organization} "
+    external_view: 
+      create_your_own_org_html: "Contudo, é possível <a href='%{link}'>criar sua própria organização</a> para seus projetos."
+      request_permission: "Para entrar nesta organização, peça permissão a um dos administradores:"
+      title: "%{name}"
+      you_cant_access: "Sem permissão para entrar ou editar esta organização."
+    fields: 
+      domain_html: "Domínio <em>Você pode utilizar seu próprio domínio para sua organização, comprove em <a href='http://help.kinubi.com/faqs/more-ways-to-access-colcentric/custom-domain' title='Cómo utilizar tu propio dominio para tu organización en Kinubi'>documentación</a>.</em>"
+      name_html: "Nome da organização"
+      name_placeholder: "Sua organização"
+      permalink_html: "Código curto da organização <em>Espaços não são permitidos. Será utilizado para o endereço do site.</em>"
+    index: 
+      about: 
+        explain1: "Uma organização que permite aos projetos do grupo e seus usuários abaixo do nome da marca."
+        explain2: "Você pode incluir um link em seu domínio para personalizar Kinubi. Use sua própria logomarca e página de início, e assim poderá compartilhar com os seus clientes"
+        title: "Sobre Organizações"
+      new: 
+        create: "Criar Organização"
+        explain: "Marque sua própria logomarca e página web, e crie projetos internamente."
+      title: Organizações
+    new: 
+      created: "Sua organziação foi criada"
+      explain: "Organzie equipes e projetos dentro de uma organização."
+      invalid_organization: "Organização inválida, corrija os erros e tente novamente"
+      submit: "Criar organização"
+      title: "Nova organização"
+    not_admin: "Não é possível acessar a página de faturamento, pois não é um administrador."
+    not_in_community: "A versão da comunidade não é compatível com múltiplas organizações"
+    organization: 
+      admin: admin
+      external: "trabalhador externo"
+      member: "membro"
+      more_users: "e %{count} usuários mais"
+      number_of_projects: 
+        one: "Um projeto"
+        other: "%{count} projetos"
+      participant: participante
+      upgrade: "Altere seu plano"
+      you_are_html: "Você é <strong>%{role}</strong> desta organização"
+      your_plan_is: "Seu plano atual é %{plan}"
+    projects: 
+      instructions_html: "Estes são os projetos desta organização. Se você for o adminsitrador, poderá transferir um projeto a <a href='%{organizations_link}'>outras organizações</a> abrindo a configuração do projeto."
+      new_project: "Novo projeto"
+      title: "Organização '%{organization}'"
+    usage: 
+      active_projects: 
+        explain: "Projetos eliminados e arquivados não contam para o limite."
+        title: "%{now} / %{max} projetos ativos"
+      storage: 
+        explain: "Anexar arquivos à sua organização"
+        title: "%{now} / %{max} "
+    you_are_not_admin: "Você não é um administrador desta organização. Somente os administradores podem editar a configuração e gerenciar os usuários."
+    you_are_not_superadmin: "Somente os superadministradores podem criar novas organizações."
+
+  page_title: #ELIMINAR
+    archived_task_lists: "Tarefas arquivadas"
+    create_uploads: "Enviar arquivo"
+    create_users: "Criar conta"
+    edit_projects: "Editar Projeto"
+    edit_users: Editar
+    index_conversations: "Minhas conversações"
+    index_pages: "Minhas páginas"
+    index_people: Pessoas
+    index_projects: Projetos
+    index_task_lists: "Minhas tarefas"
+    index_uploads: "Meus arquivos"
+    new_conversations: "Nova Conversação"
+    new_pages: "Página nova"
+    new_projects: "Novo projeto"
+    new_users: "Criar conta"
+    results_search: Busca
+    show_plans: Planos
+    show_projects: Resumo
+    welcome_users: ¡Bem-vindo!
+
+  pages: 
+    buttons: 
+      new_divider: Criar Separador
+      new_note: Criar Nota
+      new_task_list: "Lista de Tarefas"
+      new_upload: Arquivo
+      upload_file: "Enviar arquivo"
+    column: 
+      all_pages: "Todas as páginas"
+      reorder: Reordenar listas
+      reorder_done: Listas ordenadas
+    edit: 
+      submit: Atualizar
+      title: "Editar Página"
+    fields: 
+      description: Descrição
+      description_description: "Opcional. Não admite estilos de texto."
+      name: Nome da Página
+      name_description: "Escolha um título breve e descritivo"
+    index: 
+      cant_create: "Sem permissões para criar páginas neste projeto."
+      new_page: "Criar página"
+      rss: 
+        description: "Páginas do projeto %{name}"
+        title: "Páginas %{name}"
+      title: "Páginas em %{project}"
+    new: 
+      define1_html: "Aqui poderá <b>compartilhar informações de uso frequente</b> com sua equipe: Um mapa de estradas, links úteis, instruções, planilhas de e-mails..."
+      define2_html: "Você pode editar uma página de maneira simples."
+      feature1_html: "<b>Compartilhe</b>. Todos os membros d projeto podem vê-las e editá-las."
+      feature2_html: "<b>Publique</b>. Publicação instantânea na internet com as páginas compartilhadas. Crie um site em segundos."
+      feature3_html: "<b>Imprima</b>. As pàginas estão preparadas para ser impressas. Experimente imprimi-las e exportá-las em PDF!"
+      feature4_html: "<b>Wiki</b>. Atuam como um wiki, dando todas as informações do seu projeto."
+      footer1_html: "As conversas são perfeitas para <b>compartilhar um desenho</b>, <b>definir uma data</b> para compreender ou <b>informar</b> sobre as notícias do projeto."
+      footer2_html: "Sendo ordenadas por tópicos, è fácil voltar atrás no tempo e ver quais arquivos foram enviados e o que foi dito por cada membro da equipe. Em Kinubi, com a <b>colaboração</b> é possível <b>observar</b> tudo o que foi feito."
+      sending: Enviando...
+      submit: "Criar Página"
+      title: "Criar Página"
+    primer: 
+      create_first: "Crie a primeira página"
+      define1_html: "Aqui poderá <b>compartilhar informações de uso frequente</b> com sua equipe: Um mapa de estradas, links úteis, instruções, planilhas de e-mails..."
+      define2_html: "Você pode editar uma página de maneira simples."
+      empty: "Ainda não há nenhuma página neste projeto."
+      footer1_html: "Use Kinubi como um <b>conselho compartilhado</b> com informações de uso frequente."
+      footer2_html: "Você também pode anexar arquivos a qualquer página do projeto."
+      item1_html: "<b>Compartilhe</b>. Todos os membros do projeto podem vê-las e editá-las."
+      item2_html: "<b>Publique</b>. Publicação instantânea na web com páginas compartilhadas."
+      item3_html: "<b>Imprima</b>. As páginas estão preparadas para impressão."
+      item4_html: "<b>Wiki</b>. Atuam como um Wiki, dando toda informação do seu projeto."
+    slots: 
+      insert_here: "Inserir aqui"
+
+  password_strength: 
+    average: Média
+    strong: Forte
+    too_long: "Grande demais"
+    too_short: "Curta demais"
+    weak: Fraco
+
+  people: 
+    column: 
+      confirm_delete: "Tem certeza que deseja deixar essse projeto?"
+      contact_admins: "Neste projeto, somente %{admins} podem convidar novos membros."
+      inviting: "Convidar outros usuários"
+      leave_project: "Deixar este projeto"
+      leaving: "Deixar o projeto"
+      no_contacts: "Não há pessoas a enviar."
+      only_admins_can_invite: "Somente um administrador pode convidar pessoas ao projeto."
+      select_project: "Selecione um projeto"
+      you_can_leave: "Se desejar, você pode deixar esse projeto clicando no botão à direita."
+    edit: 
+      submit: Modificar
+    errors: 
+      user_or_email: "O usuário não foi encontrado. Introduza o seu e-mail ou nome de usuário."
+      users_or_emails: "Nomes de usuários ou e-mails válidos"
+    fields: 
+      admin_html: "<font color=#003869><b>Chefe do projeto</font></b> - Acesso total à gestão de um projeto."
+      commenter_html: "<font color=#003869><b>Comentarista</font></b> - Participa do projeto comentando os elementos existentes, também pode visualizar pastas e arquivos."
+      observer_html: "<font color=#003869><b>Observador</font></b> - Visualiza os conteúdos do projeto, incluindo pastas e arquivos."
+      participant_html: "<font color=#003869><b>Participante</font></b> - Acesso total a um projeto, exceto convidar usuários."
+      role: Papel
+    header: 
+      admin: Administrador
+      commenter: Comentarista
+      confirm_delete: "Tem certeza que deseja expulsar essa pessoa do projeto?"
+      leave_project: "Deixar o projeto"
+      observer: Observador
+      owner: "Proprietário do projeto"
+      participant: Participante
+      remove: Expulsar
+      transfer: "Transferir o projeto"
+    list:
+      admin: "Chefe de projeto"
+      project_manager: "Chefe de projeto"
+      commenter: "Comentaristas"
+      observer: Observadores
+      owner: "Proprietário do projeto"
+      participant: Participantes
+    link: 
+      edit: Editar
+    update: 
+      success: "Atualizou o papel de %{name}"
+
+  projects:
+    other:
+      to_project: "ao projeto"
+    edit: 
+      change_owner: "Alterar proprietário"
+      deleted: "Apagou o projeto"
+      error: "Não é possível alterar a configuração do projeto"
+      invalid_transferred: "Não foi possível transferir o projeto. Revise os erros e tente novamente."
+      submit: "Salvar alterações"
+      success: "Projeto atualizado"
+      title_advanced: "Opções avançadas do projeto %{project}"
+      title_deletion: "Apagar Projeto %{project}"
+      title_ownership: "Proprietário de %{project}"
+      title_picture: "Logomarca do projeto %{project} "
+      title_settings: "Dados básicos de %{project}"
+      transferred: "O projeto foi transferido ao novo proprietário."
+    errors: 
+      not_project_group: "Para criar um projeto, primeiro você debe criar ou pertencer a um Grupo de projetos."
+    fields: 
+      archived_html: "Arquivar este Projeto."
+      archiving: "Arquivar projeto"
+      confirm_delete: "Tem certeza que deseja apagar esse projeto definitivamente? Se tem dúvidas, use a opção Arquivar Projeto."
+      extra_options: "Mais opções"
+      forever: "Apagar projeto definitivamente"
+      name_example: "Nome do projeto"
+      name_html: "Nombre do Projeto"
+      new: 
+        choose_organization: 
+          choose_org_html: "Organização <em>A que organização pertence esse projeto?</em>"
+          new_org_name_html: "Nome da organização <em>Depois você poderá adicionar outros projetos à essa organização</em>"
+          or_create_a_new_org_html: "ou cria uma <a href='%{link}'>nueva organización</a>"
+        time_tracking_docs: "Aprenda mais."
+      organization: Organização
+      organizations: 
+        available_projects: "número de projetos disponíveis: %{number_of_projects}"
+        current_organization: "Organização atual"
+        organization_has_too_many_project_in: "Esta organização possui projetos demais."
+        upgrade: atualização
+        upgrade_organization: "Agora deverá atualizar essa organização."
+      owner: Proprietário
+      owner_description: "O proprietário é o maior responsável de um projeto. Somente poderá ser expulso se outro usuário for nomeado como proprietário."
+      permalink_description: "Isso formará o endereço eletrônico do seu projeto. Seja breve. Espaços não são permitidos."
+      permalink_html: "Link ao projeto"
+      personalization_html: "Personalização. <em>Ative características personalizadas para determinados tipos de projetos.</em>"
+      project_group_html: "Atribuir ao seguinte grupo de projetos"
+      public_project_html: "Projeto público. <em>Qualquer um poderá participar a partir da seção <a href=\"/public\">proyectos públicos</a>.</em>"
+      select_an_organization: "Selecione uma organização"
+      settings: 
+        manage_organizations: "Gerencie organizações."
+        you_cant_transfer_this_project_html: "Este projeto pertence à organização <b>%{organization}</b>. Não possui privilégios para transferí-la."
+      tracks_time_html: "Ativar cronograma."
+    index: 
+      archived: "Mostrar %{count} projetos arquivados..."
+      new_project: "Novo projeto"
+      projects: "Meus projetos"
+      rss: 
+        description: "Atividade em todos os seus projetos"
+        title: Kinubi
+    invite_people: 
+      explain_invitations: "Selecione quem terá acesso ao projeto. Você poderá modificar e adicionar membros mais tarde"
+      invite_by_email: "Convide usuários adicionando seu endereço e-mail"
+      invite_from_this_organization: "Convidar usuários que já estão na organziação %{organization}"
+      sending: "Enviando convites..."
+      submit: "Enviar convites e começar a colaborar"
+      title: "Convidar pessoas ao projeto %{project}"
+    join: 
+      welcome: "Agora você faz parte desse projeto"
+    list:
+      archived: Arquivado
+      archived_at: "arquivado em %{date}"
+      show_archived: 
+        one: "Mostrar o projeto arquivado"
+        other: "Mostrar os %{count} projetos arquivados"
+    new: 
+      active_projects: 
+        one: "Somente possui um projeto ativo."
+        other: "Você possui %{count} projetos ativos."
+        zero: "Não possui projetos ativos."
+      explain1_html: "Um projeto é criado para compartilhar assuntos relacionados ao trabalho. Permitindo trabalhar de forma organizada, com a informação centralizada em um memso lugar.."
+      explain2_html: "O conceito de projeto é muito amplo, podendo ser aplicado sempre que precisar colaborar com outras pessoas, comunicar ideias e compartir arquivos. Por exemplo: crie um curso e convide seus alunos, lance um produto e convide os pontos de venda a dar um feedback, ..."
+      invalid_project: "O projeto não é válido, corrija os erros e tente novamente."
+      new_project: "Novo projeto..."
+      not_allowed: "Não poderá criar projetos com a sua conta atual."
+      select_an_organization: "Vocè precisa seleccionar uma organização para seu projeto"
+      sending: "Criando projeto..."
+      submit: "Aceitar"
+      title: "Criar Projeto"
+      upgrade: 
+        to_2_html: "<a href='%{link}'>Compre uma conta com maior capacidade</a> para criar <b>hasta %{projects} projetos</b>, armazenar até <b>%{storage} Gb</b> de arquivos e usar a <b>barra de busca em projetos</b>."
+      you_can_create_more: 
+        one: "Com sua conta você pode criar um projeto mais."
+        other: "Com sua conta você pode criar %{count} projetos."
+        zero_html: "Você não pode criar mais projetos.<br/>Somente pode ter %{max} projetos com sua conta."
+    not_in_project: 
+      explain_admin_html: "Para ver este projeto, deverá unir-se à ele. Assim terá acesso às conversações, tarefas, páginas e arquivos. Você poderá fazê-lo porque é o administrador da organização <b>%{organization}</b>."
+      explain_public_html: "Para ver este projeto, deverá unir-se à ele. Assim terá acesso às conversações, tarefas, páginas e arquivos. Você poderá fazê-lo porque é um <b>projeto público</b>."
+      join: "Fazer parte deste projeto"
+      not_allowed: "Esse é um projeto privado, você não está autorizado a acessá-lo."
+      title: "Vocè quer unir-se ao projeto '%{project}'?"
+    pages: 
+      new: "Criar Página"
+      title: Páginas
+    people_list: 
+      invite_people: "Convidar pessoas..."
+      pending_invitations: 
+        one: "Um convite pendente"
+        other: "%{count} convites pendentes"
+      people_in_project: "Pessoas nesse projeto"
+    personalization:
+      none: "Nenhuma. Projeto standard."
+      educational: "Formação. Projeto educativo."
+    primer: 
+      create_first: "Crie seu primeiro projeto"
+      define1_html: "<b>Colabore</b> com as pessoas da sua equipe para um projeto: prepare uma aula, organzie um evento..."
+      define2_html: "Pode criar <b>tantos proyectos que quiser</b> e acessá-los on-line."
+      empty: "Ainda não pertence a nenhum projeto."
+      footer: "Os projetos são uma forma centralizada de colaborar."
+      item1_html: "<b>Crie um projeto</b>, dê um nome e <b>convide seus contatos</b> à ele."
+      item2_html: "<b>Comente</b> sobre o que é feito em cada conversação dentro do projeto."
+      item3_html: "<b>Converse</b> sobre assuntos importantes do projeto."
+      item4_html: "<b>Organize</b> as tarefas a realizar."
+      item5_html: "<b>Compartilhe informação</b> nas Páginas dentro de cada projeto."
+      cant_create_first: "Você ainda não está em nenhum projeto!"
+      cant_define1_html: "Espere até ser convidado a algum projeto ativo de sua organização, ou solicite aos administradores que lhe indiquem como chefe do projeto para que assim possa criar projetos."
+      cant_define2_html: "Você poderá pertencer a quantos projetos quiser e acessá-los online."
+      welcome_title_html: "<b>Bem-vindo/a a Kinubi</b>"
+      welcome_message: "A partir de agora poderás trabalhar em nossa plataforma, colaborando e comunicando-se em tempo real com as pessoas de sua equipe."
+      first_message: "Comece a trabalhar em alguns minutos. Escolha um tema de trabalho, pode ser tão variado como um projeto, um curso de formação ou um evento."
+      item1: "Crie um projeto com o tema selecionado"
+      item2: "Convide as pessoas que quiser, com diferentes perfis de acesso"
+      item3: "Comece a trabalhar!"
+    recent_conversations:
+      first: "+Cria a primeira conversação"
+      new: "Nova Conversação"
+      title: "Conversações recentes"
+      view_all: "Ver todas as conversações"
+    show: 
+      new_task_list_link: "Criar lista de tarefas"
+      public_project: "página pública para este projeto"
+      rss: 
+        description: "Atividade recente para %{name}"
+        title: "%{name}"
+      subscribe: "Inscreva-se nesse projeto"
+      text_styling: "Estilos de texto"
+      tip: "Se mencionar o @nome de alguém, receberá um e-mail com a sua mensagem"
+      title: "Atividade recente em %{project}"
+      update_your_status: "O que você está fazendo?"
+    videoconference:
+      creation_failed: "Não foi possível criar a videoconferência"
+      deleted: "Apagou a videoconferência"
+      deleted_failed: "Não foi possível eliminar a videoconferência"
+      error_msg_html: "Não foi possível ingressar da videoconferência. Entre em contato com o suporte técnico para obter uma solução."
+      http_error: "Ocorreu um erro HTTP ao tentar ingressar no servidor"
+      title_error: "Erro ao ingressar na videoconferência"
+
+  project_groups:
+    observer: observador
+    commenter: comentarista
+    participant: participante
+    admin: "Chefe do projeto"
+    other:
+      to_project_group: "ao grupo de projetos"
+    new: 
+      invalid_project: "Grupo de projetos inválido, corrija os erros e tente novamente."
+      explain1_html: "Um Grupo de Projetos permite agregar projetos, assim se pode organizar melhorar o trabalho."
+      title: "Crie Grupo de Projetos"
+      submit: "Aceitar"
+    edit: 
+      change_owner: "Alterar proprietário"
+      deleted: "Apagou o Grupo"
+      error: "Não foi possível alterar a configuração do projeto"
+      submit: "Salvar alterações"
+      success: "Grupo de projetos atualizado"
+      title_advanced: "Opções avançadas"
+      title_deletion: "Eliminar o Grupo de projetos"
+      title_ownership: "Alterar Proprietário"
+      title_settings: "Preferências do Grupo de Projetos"
+    errors: 
+      max_length: "O nome não pode ter mais de 30 caracteres"
+      no_length: "O nome deve ter pelo menos 5 caracteres"
+    fields: 
+      confirm_delete: "Você tem certeza que quer apagar esse grupo definitivamente?"
+      forever: "Eliminar o Grupo de Projetos definitivamente"
+      name_example_html: "Nome do Grupo de Projetos"
+      name_html: "Nome do Grupo de Projetos"
+      new: 
+        choose_organization: 
+          choose_org_html: "Organização <em>A que organização pertence esse projeto?</em>"
+          new_org_name_html: "Nome da organização <em>Mais projetos poderão ser adicionados à essa organização depois</em>"
+          or_create_a_new_org_html: "ou cria uma <a href='%{link}'>nueva organización</a>"
+          invite_people:
+      owner: "Proprietário"
+      owner_description: "O proprietário é o maior responsável de um projeto. Somente poderá ser expulso se outro usuário for nomeado como proprietário."
+      permalink_html: Link do Grupo de projetos
+      permalink: "Link ao Grupo de projetos"
+      preferences_title: "Preferências do Grupo de projetos"
+      update: "Atualizar"
+    invite_people: 
+      explain_invitations: "Selecione quem terá acesso ao projeto. Você poderá modificar e adicionar membros mais tarde"
+      invite_by_email: "Convide usuários adicionando seu endereço e-mail"
+      invite_from_this_organization: "Convidar usuários que já estão na organziação %{organization}"
+      sending: Enviando convites...
+      submit: "Enviar convites e começar a colaborar"
+      title: "Convidar pessoas ao Grupo de Projeto %{project_group}"
+    settings:
+      missing_name_error: "Você debe indicar um nome para o Grupo de Projetos"
+      not_owner_error: "Para realizar esta ação, vocè precisa ser o proprietário do Grupo de Projetos selecionado"
+      success_update_name: "Nome modificado"
+    show_all:
+      dont_show_archived: "Não mostrar projetos arquivados"
+      new_project: "Criar projeto"
+      new_project_group: "Criar Grupo de Projeto"
+      project_group: "Grupo de Projetos"
+      project_group_proprietary: "Proprietário"
+      project_name: "Projeto"
+      show_archived: "Mostrar projetos arquivados"
+      title: "Projetos"
+      user_role: "Papel"
+
+  project_group_roles:
+    header: 
+      admin: Chefe do projeto
+      commenter: Comentarista
+      confirm_delete: "Tem certeza que quer expulsar essa pessoa do Grupo de projetos?"
+      leave_project: "Deixar o Grupo"
+      observer: Observador
+      owner: "Proprietário do grupo"
+      participant: Participante
+      remove: Expulsar
+
+  reports:  # Módulo admin???
+    index: 
+      title: "Informações de Kinubi"
+      user_reports: "Informações de usuários"
+    show: 
+      user_reports: "Usuários no sistema"
+
+  reset_passwords:
+    create: 
+      invalid_html: "A URL de alterar senha que foi adicionada não é válida. Tente utilizar novamente a página de início He Olvidado mi Contraseña.<br/>Se não funcionar, entre em contato conosco em %{support}"
+      not_found_html: "Não foi encontrado nenhum usuário com o e-mail: %{email}<br/>Confirme se o que foi escrito está correto e tente novamente. Se continua sem funcionar, escreva-nos: %{support}"
+      password_not_updated: "A nova senha não é válida. Tente novamente."
+      password_updated: "Você alterou sua senha. Já poderá entrar em Kinubi."
+    new: 
+      back: "Voltar à tela de login"
+      email: "Com qual e-mail você se registrou em Kinubi?"
+      send_your_email: "Enviar e-mail para reestabelecer minha senha"
+      submit: Enviar
+      title: "Lembrar senha"
+    reset: 
+      reset_your_password: "Por favor, coloque uma nova senha e sua confirmação"
+      submit: "Alterar minha senha"
+      title: "Agora você pode alterar sua senha"
+    sent: 
+      follow_the_link_html: "Acesse o link do e-mail para entrar em Kinubi! Se não encontrar, verifique se não está na pasta de e-mails indesejados ou spam. "
+      login_link_sent: "Enviamos um e-mail a %{email} para que você possa alterar a sua senha."
+      title: "Reestabelecer senha"
+
+  roles: #eliminar
+    admin: administrador
+    commenter: comentarista
+    observer: observador
+    participant: participante
+
+  sessions: 
+    fields: 
+      forgot: "Recordar senha"
+      password: Senha
+      signup: "Criar uma conta"
+      username_or_email: "E-mail ou nome de usuário"
+    new: 
+      login_failed: "Os dados de acesso não estão corretos"
+      submit: Entrar
+      title: Entrar
+      video: "Introdução a Kinubi"
+
+  shared:
+    footer:
+      footer_msg: "Software de Colaboração Online por"
+    global_navigation: 
+      help: Ajuda
+      home: Casa
+      login: Login
+      logout: Sair
+      project_invitations: "Convites (%{count})"
+      settings: Opções
+    instructions: 
+      send_email: "Publicar comentário por e-mail"
+      send_email_conversations: "Publique uma nova conversação por e-mail..."
+      send_email_help_conversation_html: "Para publicar um comentário nesta conversação envie um e-mail a <a href=\"mailto:%{email}\">%{email}</a>. Somente os membros deste projeto podem publicar nesta conversação."
+      send_email_help_conversations_html: "Para criar uma nova conversação envie um e-mail a <a href=\"mailto:%{email}\">%{email}</a> com um assunto para o título e corpo do cmentário. Somente os membros do projeto podem criar uma nova conversação."
+      send_email_help_project_html: "Para publicar um novo comentário no muro de atividade do projeto, envie um e-mail a<a href=\"mailto:%{email}\">%{email}</a>. Somente os membros do projeto podem publicar no muro."
+      send_email_help_task_html: "Para publicar um novo comentário nesta tarefa envie um e-mail a <a href=\"mailto:%{email}\">%{email}</a>. Somente os membros do projeto podem comentar na tarefa."
+      subscribe_to_calendars: "Inscrever-me nos calendários..."
+    navigation: 
+      affiliate: "Área de Afiliação"
+      all_projects: Projetos
+      conversations: Conversações
+      files: Arquivos
+      new_project: "Projeto"
+      new_project_group: "Grupo de projetos"
+      organizations: Organizações
+      pages: 
+      people: "Pessoas da equipe"
+      projects: Projetos
+      recent_activity: "Atividade recente"
+      roles: "Permissões"
+      settings: configuração
+      show_all_organizations: "Gerenciar organizações..."
+      show_all_projects: "Mostrar todos os projetos..."
+      show_less: "Mostrar menos"
+      show_more: "Mostrar mais"
+      tasks: Tarefas
+      time: "Cronograma"
+      title: "Ambiente colaborativo"
+      videoconference: "Videoconferência"
+      without_group: "Sem grupo"
+    project_actions:
+      calendar: "Calendário"
+      configuration: "Configuração"
+      conversations: Conversações
+      files: "Arquivos"
+      forms: "Formulários"
+      general_configuration: "Conf. geral"
+      new_project: "Criar projeto"
+      new_project_group: "Criar Grupo de projeto"
+      pages: "Páginas"
+      people: "Pessoas da equipe"
+      privileges: "Permissões"
+      recent_activity: "Atividade recente"
+      tasks: Tarefas
+    project_navigation: 
+      affiliate_area: "Área de Afiliados"
+      all_conversations: "Mais conversações"
+      all_pages: "Minhas páginas"
+      all_task_lists: "Todas as tarefas"
+      conversations: Conversações
+      files: Arquivos
+      gantt: "Calendário e gráficos"
+      invitations: Convites
+      login: Login
+      organization: Organização
+      organizations: Organizações
+      overview: Resumo
+      pages: Páginas
+      people: "Pessoas da equipe"
+      project_settings: Projeto
+      signup: "Criar conta"
+      task_lists: Tarefas
+      time_tracking: "Calendário"
+    project_group_settings_navigation:
+      advanced: "Opções avançadas"
+      deletion: "Apagar grupo"
+      general: "Dados básicos"
+      ownership: Proprietário
+      picture: "Imagem do grupo"
+    project_settings_navigation:
+      advanced: "Opções avançadas"
+      deletion: "Apagar projeto"
+      general: "Dados básicos"
+      ownership: Proprietário
+      picture: "Imagem de projeto"
+    public_navigation: 
+      community: Comunidade
+      help: Ajuda
+      home: Kinubi
+      privacy: Privacidade
+      services: Serviços
+      terms: "Condições de uso"
+      tour: Tour
+      users: Testemunhos
+    strip:
+      archived_html: "Esse projeto está arquivado. Ir à opção: Configuração do projeto para ativá-lo."
+    task_navigation: 
+      all_tasks: Todas
+      everybodys_tasks: "Todas as tarefas"
+      hide_archived_tasks: "Ocultar tarefas arquivadas"
+      my_assigned_tasks: "somente minhas tarefas"
+      my_tasks: 
+        one: "Minha Tarefa"
+        other: "Minhas (%{count}) Tarefas"
+      unarchived_tasks: "Tarefas sem arquivar"
+    upcoming_events_primer: 
+      title: "Não há tarefas a mostrar"
+    upgrade_browser: 
+      chrome: "Chrome,"
+      firefox: Firefox
+      ie: "Atualize Internet Explorer"
+      or_install: "ou instale"
+      safari: Safari
+      upgrade: "Você está usando uma versão antiga do Internet Explorer. Pode ser que Kinubi não funcione corretamente."
+    top_navigation:
+      private_message: "Mensagens privadas"
+      account_settings: "Dados do usuário"
+      invoices: Faturas
+      mailbox: "Caixa de entrada"
+      my_calendar: "Calendário"
+      my_tasks: "Tarefas"
+      notifications: Notificações
+      open_my_tasks: "Abrir todas as minhas tarefas"
+      payments: "Painel de usuário"
+      profile_picture: "Imagem do perfil"
+      mailbox: "Caixa de entrada"
+      sent: "Enviados"
+      settings: "Configuração de usuário"
+      show_all_tasks: "Ver todas as tarefas em meus projetos..."
+      title: "Ambiente pessoal"
+      user_files: "Arquivos"
+    user_navigation:
+      account_settings: "Conta e preferências"
+      delete_account: "Apagar conta..."
+      linked_accounts: "Contas relacionadas"
+      notifications: Notificações
+      plans_and_billing: "Planos e fatura"
+      profile_information: "Informação de Contato"
+      profile_picture: "Imagem "
+      your_data: Importar/Exportar
+    watchers:
+      nobody_watching: "Nada corresponde às alterações deste elemento"
+      people_watching: "Seguindo este elemento: "
+      started_watching: "Agora receberás e-mails com as atualizações deste elemento."
+      stopped_watching: "Não receberás mais notificações deste elemento."
+      unwatch: "Abandonar"
+      watch: Seguir
+
+  sites: 
+    fields: 
+      password: Senha
+      username_or_email: "Escreva o e-mail ou nome de usuário da pessoa que deseja convidar"
+    show: 
+      signup: "Criar uma conta em Kinubi"
+      submit: Entrar
+
+  shopping_carts:
+    buy:
+      buying_myself: "Está em processo de pagamento para adquirir uma licença de Kinubi."
+      company: "Empresa"
+      choose_mode: "Escolha a modalidade de pagamento"
+      error_max_subscriptions: "O número máximo de inscrições que podem ser adquiridas em cada compra é 10."
+      error_min_subscriptions: "Você precisa comprar pelo menos uma inscrição para continuar."
+      error_videoconference: "Já possui uma licença para videoconferência."
+      iva_html: "Se é residente da União Européia, <b>debe adicionar o imposto sobre valor adicionado (IVA) ao menos que você disponha de um número
+      de IVA válido para seu país de fatura.</b> Si não dispões de um número de IVA ou número que facilitou não se pode validar, 
+      carregaremos a porcentagem de IVA aplicável.<br>"
+      next: "Seguinte"
+      no_iva_html: "Não disponho de um número de IVA e aceito o cargo de IVA.<br>A porcentagem de IVA aplicável será adicionada ao valor total."
+      iva: "Tenho um número de IVA"
+      iva_number: "Número IVA"
+      license: "Licença "
+      max_participants_number: "* Número máximo de assistentes: %{max_participants}"
+      particular: "Particular"
+      price: "Preço"
+      product: "Lista de produtos"
+      promotional_code: "Código promocional"
+      quantity: "Quantidade"
+      step1: "Dados de compra"
+      step2: "Compra"
+      step3: "Confirmação de compra"
+      submit: "Selecionar"
+      total: "Total"
+      total_doesnt_include: "** O total não inclui impostos ou descontos derivados de promoções. Serão visualizados posteriormente."
+      title:
+        additional_data: "Capacidade adicional"
+        collaborative_platform: "Plataforma colaborativa"
+        invoice: "Informação de fatura"
+        iva: "IVA"
+        promotional_code: "Código promocional"
+        title: "Pedido de compra"
+        videoconference: "Videoconferência *"
+      zero: "0,00 €"
+    errors: 
+      country: "Por favor, especifique um país"
+      email: "Por favor, introduza um e-mail válido."
+      obligatory: "O campo é obrigatório"
+    show_details:
+      buying_also_for_myself: "Uma dessas licenças será atribuída automaticamente à sua conta."
+      buying_my_licence: "Dados da licença que irá comprar."
+      cancel: "Cancelar"
+      free_trial_html: "Os primeros 15 dias são gratuitos."
+      iva: "IVA"
+      licence_type: "Modalidade de pagamento"
+      number_of_licences: "Número de licenças a comprar:"
+      quantity: "%{amount}€"
+      submit: "Comprar"
+      title: "Comprove os detalhes da sua inscrição"
+      total:
+      total_ammount: "Total a pagar"
+      total_base: "Total base tributável"
+      total_without_iva: "Pagamento a realizar sem IVA: %{amount}€/mês"
+      title:
+        additional_data: "Capacidade adicional"
+        collaborative_platform: "Plataforma colaborativa"
+        title: "Confirmação do pedido"
+        videoconference: "Videoconferência"
+    thanks:
+      title: "Completou o pagamento"
+      thank_sponsor_text: "Obrigado por comprar pagamentos patrocinados em Kinubi. Agora poderá convidar novos usuários com pagamentos patrocinados."
+      thank_text: "Obrigado por unir-se à Kinubi. Agora você pode começar a utilizar a plataforma."
+      status: Estado
+
+  subscriptions:
+    assign_sponsor:
+      annual_sponsors_html: "<strong>Atribuir licenças anuais</strong>"
+      halfyear_sponsors_html: "<strong>Atribuir licenças semestrais</strong>"
+      monthly_sponsors_html: "<strong>Atribuir licenças mensais</strong>"
+      special_sponsors_html: "<strong>Atribuir licenças especiais</strong>"
+      search: "Convidar"
+      success_one: "Licença atribuida"
+      success_many: "Licenças atribuidas"
+      username_or_email: "Escreva o e-mail ou nome de usuário da pessoa que deseja convidar"
+    buy:
+      buying_sponsors: "Escolha a modalidade para os %{number} pagamentos patrocinados."
+      buying_myself: "Está em processo de pagamento para adquirir uma licença de Kinubi."
+      choose_mode: "Escolha a modalidade de pagamento"
+      promotional_code: "Código promocional"
+      quantity: "Selecione a quantidade de licenças a comprar:"
+      submit: "Selecionar"
+      title: "Escolha a modalidade de pagamento"
+    delete:
+      confirm_delete: "Tem certeza que deseja cancelar o pagamento?"
+      forever: "Cancelar"
+    descriptions:
+      monthly: "Inscrição mensal em Kinubi"
+      biannual: "Inscrição semestral em Kinubi"
+      annual: "Inscrição anual em Kinubi"
+      videoconference: "1 sala de videoconferência"
+    edit: 
+      cancel_failed: "Ocorreu um erro interno ao tentar excluir o pagamento"
+      cancel_ok: "Pagamento cancelado"
+      reactivate_ok: "A inscrição foi reativada"
+      reactivate_failed: "Não foi possível reativar a inscrição"
+      suspend_failed: "Ocorreu um erro interno ao tentar cancelar o pagamento"
+      suspend_ok: "Pagamento suspenso"
+    error:
+      activate: "Ativar"
+      first_message: "Nesse momento sua licença para uso da plataforma colaborativa não está ativa."
+      promotional_code: "Código promocional"
+      purchase: "Contratar"
+      purchase_products: "Contratar produtos"
+      second_message: "Introduza o código promocional ou entre para contratar nosso serviços"
+    fields: 
+      additional_data: "Capacidade adicional"
+      annual: "Anual - 150€/ano"
+      biannual: "Semestral - 75€/6 meses"
+      monthly: "Mensual - 15€/mês"
+      special: "Especial - Gratuita"
+      trial: "Período de prova"
+      videoconference: "Sala de Videoconferência"
+      cost:
+        additional_data: "5€/mês"
+        annual: "150€/ano"
+        biannual: "75€/6 meses"
+        monthly: "15€/mês"
+        videoconference: "50€/mês"
+      duration:
+        additional_data: "1 mês"
+        annual: "12 meses"
+        biannual: "6 meses"
+        monthly: "1 mês"
+        videoconference: "1 mês"
+      total:
+        annual: "Anual - %{amount}€/ano"
+        biannual: "Semestral - %{amount}€/6 meses"
+        monthly: "Mensal - %{amount}€/mês"
+    fields_without_price:
+      annual: "Anual"
+      biannual: "Semestral"
+      monthly: "Mensal"
+      special: "Especial - Gratuita"
+      trial: "Período de prova"
+    index: 
+      assigned: "Atribuídos"
+      buy: "Comprar"
+      buy_now: "Comprar Já"
+      buy_again: "Voltar a comprar"
+      cancel: "Cancelar inscrição em Kinubi"
+      cancel_error: "Ocorreu um erro interno ao tentar cancelar a inscrição"
+      cancelled: "A inscrição foi cancelada com sucesso"
+      confirm_cancel: "Tem certeza que deseja cancelar a inscrição em Kinubi? Se continuar, você não poderá seguir utilizando a plataforma."
+      destroyed: "Inscrição excluída"
+      destroy_error: "Ocorreu um erro ao tentar excluir o pagamento"
+      expiration_date: "Expira"
+      licence_expiration_on: "A licença expira dia"
+      licence_expired: "Sua licença está cancelada e expirada. Volte a comprar para poder seguir utilizando a plataforma."
+      licence_type: "Tipo de inscrição atual"
+      not_enough_sponsors: "Não possui uma licença para o usuário %{user}."
+      product_list: "Produto"
+      purchase: "Contratar"
+      purchased_products_message_html: "<font size = '3'>Informação sobre os produtos contratados </font><font size='3' color='black'>para o usuário %{user}</font>"
+      quantity: "Quantidade"
+      subscription_message: "Clique no botão Contratar para ver todos os produtos disponíveis"
+      subscription_status: "Status da inscrição"
+      reactivate: "Reativar sua inscrição em Kinubi"
+      renewal: "Renovação"
+      sponsorized_by: "Patrocinada por %{user}"
+      sponsor_products_message_html: "<font size = '3'>Informação sobre os produtos contratados </font><font size='3' color='black'>para usuários patrocinados</font>"
+      sponsor_title: "Pagamentos patrocinados"
+      submit: Alterar inscrição
+      suspend: "Suspender inscrição em Kinubi"
+      title: "Painel de usuário"
+      trial_expired: "O período de prova terminou. Compre uma licença para continuar utilizando a plataforma."
+      trial_finish_on: "O período de prova termina dia: "
+      type: "Tipo"
+      unassigned: "Sem atribuir"
+      user_already_has_a_subscription: "O usuário %{user} já tem pagamento ativo."
+      user_does_not_exist: "O usuário %{user} não existe."
+      user_name_html: "Usuário"
+    paypal:
+      description: Descrição
+      full_description: "inscrição de %{user}"
+    pending: 
+      processing_payment: "Aguarde enquanto seu pagamento é processado"
+      title: "Completando a ativação da conta"
+    show_details:
+      buying_also_for_myself: "Uma dessas licenças será atribuída automaticamente à sua conta."
+      buying_my_licence: "Dados da licença que irá comprar."
+      cancel: "Cancelar"
+      free_trial_html: "Os primeiros quinze dias são gratuitos."
+      number_of_licences: "Número de licenças a comprar:"
+      licence_type: "Forma de pagamento"
+      submit: "Comprar"
+      title: "Comprove os detalhes da inscrição"
+      total:
+    sponsor:
+      actions: "Ações"
+      assigned: "Licenças patrocinadas atribuídas"
+      expiration: "Data de renovação"
+      licence: "Tipo de licença"
+      number: "Número de licenças"
+      status: Estado
+      title: "Pagamentos patrocinados"
+      unassigned: "Licenças patrocinadas sem atribuir"
+      username: "Nome de usuário"
+    status:
+      Active: "Ativa"
+      Cancelled: "Cancelada"
+      Expired: "Expirada"
+      Failed: "Falha"
+      Incomplete: "Incompleta"
+      Pending: "Pendente"
+      Suspended: "Suspensa"
+      trial: "Período de prova"
+      unassigned: "Sem atribuir"
+    subscription:
+      assign: "Atribuir a"
+      assigned: "Atribuído a"
+      assigned_invitation: "Atribuído ao convite de"
+      cancelled_html: "<u>Cancelada</u>"
+      delete: "Apague esta organização"
+      invitation: "Convite"
+      licence: "Licença"
+      paid: "Pagamento"
+      promotion: "Promoção"
+      unassign: "Retirar pagamento patrocinado"
+      unassigned: "Sem atribuir"
+      sponsorized: "Patrocinado"
+      submit: "Comprar"
+      trial: "Prova"
+    thanks:
+      title: "Completou o pagamento"
+      thank_sponsor_text: "Obrigado por comprar pagamentos patrocinados em Kinubi. Agora poderá convidar novos usuários com pagamentos patrocinados."
+      thank_text: "Obrigado por unir-se à Kinubi. Agora você pode começar a utilizar a plataforma."
+      status: Estado
+    types:
+      annual: "Pagamento"
+      biannual: "Pagamento"
+      monthly: "Pagamento"
+      special: "Promoção"
+      trial: "Prova"
+    update: 
+      error: "Ocorreu um erro ao atualizar o pagamento"
+      update: "Escolha sua nova inscrição"
+      updated: "Atualizado corretamente"
+
+  support: 
+    array: 
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+    select: 
+      prompt: "Selecione uma opção"
+
+  task_lists: 
+    actions: 
+      archive: "arquivar esta lista de tarefas"
+      confirm_resolve_and_archive: "Tem certeza que deseja resolver e arquivar esta lista de tarefas?"
+      rename: "Renomear lista de tarefas"
+      resolve_and_archive: "Completar todas as tarefas e arquivar"
+      set_dates: "Fixar datas de início e fim"
+      show_archived: 
+        one: "Mostrar 1 tarefa arquivada"
+        other: "Mostrar %{count} comentários anteriores"
+    archive_box: 
+      unarchive_list: "Esta tarefa está arquivada"
+    archived: 
+      description: "Essas são as tarefas arquivadas, completadas ou rejeitadas."
+      title: "Todas as tarefas arquivadas"
+    column: 
+      cant_create: "Sem permissões para criar tarefas neste projeto."
+      new_task_list: "Criar Lista de Tarefas"
+      other_views: "Outras opiniões"
+      subscribe: "Inscreva as tarefas"
+    destroy_message: 
+      deleted_html: "A lista <b>%{name}</b> foi apagada!"
+    edit: 
+      submit: Converter
+    errors: 
+      dates:
+        wrong_start_and_end: "A data final não pode ser inferiro à data de início"
+      name: 
+        cant_be_blank: "O nome não pode estar vazio"
+        too_long: "O nome não pode superar os 255 caracteres"
+      participants:
+        participants_without_responsible: "Primeiro você debe indicar um responsável"
+        participants_not_in_project: "Os participantes adicionados devem fazer parte do projeto."
+    fields: 
+      finish_on_html: "Data final"
+      name_html: "Nome da Lista de Tarefas"
+      start_on_html: "Data início"
+      task_list: "Uma lista de tarefas em um agrupamento de tarefas. Você poderá adicionar tarefas à diferente pessoas da equipe."
+      title: "Criar Lista de Tarefas"
+    filter: 
+      2weeks: "Próximas 2 semanas"
+      3weeks: "Próximas 3 semanas"
+      anybody: Qualquer
+      anytime: "Para qualquer data"
+      by_name: "Por nome..."
+      date: "Data"
+      filter_tasks: "Filtrar tarefas"
+      hide: Ocultar
+      late_tasks: "Tarefas em atraso"
+      month: "Antes de 1 mês"
+      my_tasks: "Minhas tarefas"
+      no_date_assigned: "Sem data atribuída"
+      responsible: "Responsável"
+      today: Hoje
+      tomorrow: Amanhã
+      unassigned: "Sem atribuir"
+      week: "Esta semana"
+    index: 
+      add_link: "Nova lista de tarefas"
+      empty: "Não há tarefas nesta categoria"
+      ends_on: "Termina em %{date}"
+      no_dates_assigned: "Sem data atribuída"
+      other_views: "Outras opiniões"
+      rss: 
+        description: "Tarefas para o projeto %{name}"
+        title: "Tarefas de %{name}"
+      starts_on: "Começa em %{date}"
+      tasks_for_all_projects: "Tarefas para todos os projetos"
+      tasks_for_all_projects_explain: "Mostrando todas as tarefas. Para administrar as listas de tarefas ou ordená-las, abra as tarefas de cada projeto."
+      tasks_for_project: "Tarefas para %{project}"
+    link: 
+      edit: "Editar"
+      new: "Criar Lista de Tarefas"
+      reorder: Reordenar Listas
+      reorder_done: Listas reordenadas
+      unarchive: Desarquivar
+    my_tasks: 
+      title: "Minhas Tarefas"
+    new: 
+      submit: Criar
+      title: "Criar Lista de Tarefas"
+    primer: 
+      create_first: "Crie a primeira conversa deste projeto!"
+      define_html: "<b>Converse sobre as decisões</b> y <b>Mantenha sua equipe atualizada</b> de uma forma centralizada.<br/>Cada conversa é uma lista de mensagens, que substituem os confusos e-mails."
+      empty: "Ainda não há nenhuma conversa neste projeto."
+      footer1_html: "As conversas são perfeitas para <b>compartilhar um desenho</b>, <b>definir uma data</b> para compreender ou <b>informar</b> sobre as notícias do projeto."
+      footer2_html: "Sendo ordenadas por tópicos, è fácil voltar atrás no tempo e ver quais arquivos foram enviados e o que foi dito por cada membro da equipe. Em Kinubi, com a <b>colaboração</b> é possível <b>observar</b> tudo o que foi feito."
+      item1_html: "<b>Compartilhe arquivos</b>. Pode-se anexar arquivos a cada mensagem."
+      item2_html: "<b>Inscreva-se</b> em uma conversação para receber notificações de respostas por e-mail e RSS."
+      item3_html: "<b>Expresse-se</b>. Pode utilizar negrito, itálico e estilos de texto."
+      item4_html: "<b>Integrado com o seu e-mail</b>. Pode responder as publicações através do seu e-mail."
+    show: 
+      title: "Lista de tarefas: %{name}"
+
+  tasks: 
+    archive_box: 
+      archive: "arquivar tarefa"
+      reopen: "Reabrir esta tarefa"
+      you_are_done: "Parece que esta tarefa foi cumprida."
+    archive_message: 
+      archived_html: "A tarefa <b>%{name}</b> foi arquivada"
+    assigned: 
+      assigned_to: "Responsável: %{user}"
+      myself: "Atribuída a mim mesmo (%{user})"
+      unassigned: "Sem usuário atribuído"
+    create: "Adicionar tarefa"
+    destroy_message: 
+      deleted_html: "A lista <b>%{name}</b> foi apagada!"
+    due_on: 
+      due_on: "Data limite: %{date}"
+      today: Hoje
+      tomorrow: Amanhã
+      undefined: "Não há datas atribuídas"
+    edit: 
+      sending: Atualizando...
+      submit: "Atualizar tarefa"
+    end_date: "Data final"
+    errors: 
+      name: 
+        cant_be_blank: "O nome não pode estar vazio"
+        too_long: "O nome não pode superar os 255 caracteres"
+      description:
+        cant_be_blank: "A descrição não pode estar vazia"
+
+    fields: 
+      assigned_to: "Quem é o responsável?"
+      assigned_to_nobody: Ninguém
+      body_html: "Descrição"
+      due_on_html: "Data final: "
+      name_html: "Nome da Tarefa"
+      optional: "Dar detalhes sobre a tarefa."
+      participants_html: "<b>Participantes</b> "
+      participants_example: "Ex: alejandroperez, mjordan"
+      participants_list: "Lista de participantes"
+      private_html: "<b>Tarefa privada</b>"
+      task: "Escolha um título para participar. Quanto mais simples, melhor."
+      title: "Criar Tarefa"
+    index: 
+      hide_closed_tasks: "Ocultar tarefas arquivadas"
+    link: 
+      edit: Editar
+      hide_archived_tasks: 
+        one: "Ocultar 1 tarefa arquivada"
+        other: "Ocultar %{count} tarefas arquivadas"
+      new: "Criar Tarefa"
+    my_tasks: 
+      my_tasks: "Minhas tarefas"
+    new: 
+      date_error: "A data de início não pode ser posterior à data final"
+      sending: Criando...
+      submit: Criar
+      title: "Criar Tarefa"
+    overdue: "%{days} dias de atraso"
+    overview_box: 
+      status: Estado
+      title: "Esta Tarefa"
+    priority:
+      low: "Baixa"
+      medium: "Média"
+      high: "Alta"
+    show: 
+      title: "Tarefa: %{name}"
+    start_date: "Data início"
+    status:
+      hold: a espera
+      new: 
+      open: aberta
+      rejected: rejeitada
+      resolved: completa
+    task:
+      full_view: "Ver completo"
+      hide_comments: "Minimizar"
+    unarchive_box: 
+      reopen: "Reabrir esta tarefa"
+      task_is_closed: "Esta tarefa está encerrada e arquivada"
+      unarchive: Desarquivar
+
+  time: 
+    AM: Armênia
+    formats: 
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    PM: "San Pedro e Miquelón"
+
+  uploads: 
+    changeDirectory:
+      notAllowedToMove: "Não tem permissão para mover o arquivo selecionado"
+      projectDirectories: "Diretórios do Projeto"
+      rootDirectory: "Pasta principal"
+      submit: "Mover Arquivo"
+      title: "Mover Arquivo"
+    changeName:
+      notAllowedToRename: "Não possui permissão para renomear o arquivo selecionado"
+    comment_upload_link: Anexo
+    create:
+      maximumStorageExceeded: "O arquivo que você tentou enviar ocupa mais do que o espaço disponível na conta do chefe do projeto"
+      notAllowedToCreate: "Você não possui permissão para enviar o arquivo à pasta selecionada"
+    delete:
+      notAllowedToDelete: "Você não possui permissão para eliminar o arquivo selecioando"
+    errors: 
+      exceeded_storage_plan_limit: "Você excedeu sua cota de armazenamento para %{organization_name}. Para aumentar sua capacidade de armazenamento, <a href='%{url}'>atualize seu plano agora</a>."
+      general: "Dados básicos"
+    file:
+      fileDeleted: "Arquivo eliminado"
+    form: 
+      description_html: "Descrição <i>(opcional)</i>"
+      max_size: "O tamanho máximo do arquivo é %{mb}"
+      max_upload_size: "O tamanho máximo de download é %{mb} Mb"
+      presence: "Não poderá enviar um arquivo vazio"
+      select_file: "Por favor, escolha um arquivo que contenha seus dados."
+      upload: "Enviar arquivo"
+    index: 
+      asc: "asc"
+      cant_create: "Sem permissões para criar conversações neste projeto."
+      confirmFileDelete: "Tem ceretza que deseja excluir o arquivo?"
+      current_storage_size: "Você poderá enviar %{bytes} mais na organização %{organization_name}.<br/><br/><a href='%{url}'>Atualize</a> seu plano para armazenar mais documentos."
+      delete: "Apague esta organização"
+      desc: "desc"
+      download: "Download"
+      max_upload_size: "O tamanho máximo de download é %{mb} Mb"
+      move: "Mover"
+      new_dir: "Criar Pasta"
+      new_file: "Enviar um arquivo"
+      no_storage_left: "Você atingiu a capacidade máxima para sua organização. <br/><br/><a href='%{url}'>Atualize</a> seu plano agora."
+      notAllowedToShow: "Você não tem permissão para visualizar os arquivos do projeto selecionado"
+      rename: "Renomear lista de tarefas"
+      search: "Buscar"
+      title: "Arquivos em %{project}"
+      title_delete: apagar
+      title_download: Download
+      title_name: Nome
+      title_size: Tamanho
+      title_time: Data
+      title_user: Usuário
+    moveFile:
+      notAllowedToMove: "Você não tem permissão para mover o arquivo selecionado"
+    new: 
+      availableStorage_html: "<i><font size='2' color='red'>O chefe do projeto tem %{availableStorage} disponíveis, não poderá enviar arquivos que ocupem mais</font></i>"
+      noFileSelected: "Não selecionou nenhum arquivo"
+      selectFile: "Seleccionar archivo"
+      select_a_file: "Enviar archivo"
+      submit: "Enviar arquivo"
+      title: "enviar arquivo"
+      uploading: Enviando
+    primer: 
+      create_first: "Envie o primeiro arquivo"
+      define1_html: "alguma vez você teve algum problema ao compartilhar arquivos ? Com Kinubi é fácil."
+      define2_html: "Vocè pode enviar arquivos aquí anexando a conversações, tarefas ou páginas."
+      empty: "Ainda não há nenhum arquivo neste projeto."
+      item1_html: "<b>Mais capacidade</b>."
+      item2_html: "<b>Versões</b>. Carregue arquivos e acesse ao histórico em qualquer momento."
+      item3_html: "<b>Sempre disponíveis</b>. Os arquivos permanecem em Kinubi para que você possa consultá-los no futuro."
+    rename:
+      name: "Nome do Arquivo"
+      submit: "Renomear Arquivo"
+      title: "Renomear Arquivo"
+    search:
+      author: "Autor (nom. usuario)"
+      exactSearch: "Busca aproximada"
+      extension: "Extensão"
+      maxSize: "Tamanho máximo (MB)"
+      minSize: "Tamanho mínimo (MB)"
+      name: "Nome"
+      notAllowedToSearch: "Não tem permissão para realizar buscas nas pastas selecionadas"
+      startDate: "Enviados a partir de"
+      submit: Buscar
+      title: "Busca de arquivos"
+    searchResults:
+      author: "Autor"
+      confirmFileDelete: "Tem certeza que quer apagar o arquivo?"
+      delete: "Eliminar"
+      download: "Download"
+      move: "Mover"
+      name: "Nome"
+      rename: "Renomear"
+      size: "Tamnho"
+      time: "Data"
+      title: "Resultados da busca"
+    tooltip: "Enviar arquivo"
+    upload: 
+      download: Download
+      move: "Mover"
+      on_: em
+      remove: Eliminar
+      rename: "Renomear"
+      uploaded_by: "Enviado por"
+
+  users: 
+    activation: 
+      activated: "Ativamos sua conta! Bem-vindo a Kinubi :)"
+      already_done: "Você foi confirmado como usuário de Kinubi!"
+      invalid_html: "A URL de alterar senha que foi adicionada não é válida. Tente utilizar novamente a página de início He Olvidado mi Contraseña.<br/>Se não funcionar, entre em contato conosco em %{support}"
+      invalid_user: "Usuário inválido"
+      resent: "Enviamos o convite a %{recipient}. Se não foi possível encontrar o e-mail, verifique se não foi classificado como spam."
+    calendars: 
+      clients: 
+        body_html: "Leias as <a href='%{link}'>instruções</a> para configurar Google Calendar, Apple iCal, Outlook, Blackberry e outros."
+        title: "conversas de %{name}"
+      how_to: 
+        body_html: "Leias as <a href='%{link}'>instruções</a> para configurar Google Calendar, Apple iCal, Outlook, Blackberry e outros."
+        title: "conversas de %{name}"
+      possible_clients: "Você pode sincronizar Google Calendar, Apple iCal, Outlook, Blackberry e outros."
+      subscribe_to_all: "Todos os projetos: "
+      subscribe_to_project: "Projeto %{project}: "
+      tasks_can_be_synced: "As tarefas de Kinubi podem ser cincronizadas com seus calendários habituais para que não esqueça suas reuniões."
+      title: "%{user} comentou em %{target}"
+      your_calendars: "Seus calendários"
+    create:
+      error: "Não foi possível alterar a configuração do projeto"
+      thanks: "Obrigado por registrar-se!"
+    daily_task_reminder_email: 
+      daily_task_reminder: "Lembrete de tarefas diárias"
+      daily_task_reminder_from_colcentric: "Este é o seu lembrete de tarefas em Kinubi"
+      late_tasks: "Tarefas em atraso"
+      settings_page: "sua página de usuário"
+      tasks_for_next_two_weeks: "Próximas semanas"
+      tasks_for_today: "Tarefas de hoje"
+      tasks_for_tomorrow: "Tarefas para amanhã"
+      tasks_without_a_due_date: "sem data fixa"
+      you_receive_this_message_html: "Você poderá desativar estas notificações em %{link}"
+    edit: 
+      submit: Converter
+      title_delete: "Apagar conta"
+      title_deletion: "Arquivar ou apagar projeto %{project}"
+      title_linked_accounts: "Contas de aplicações relacionadas"
+      title_notifications: Notificações
+      title_picture: "Logomarca do projeto %{project} "
+      title_profile: "Información de perfil"
+      title_settings: "Dados básicos de %{project}"
+    form: 
+      address: 
+      agreement_html: "Registrando-se, aceite nossos %{terms} e condições de %{privacy}"
+      betatester: "Utilizar as funções beta (menos estables) antes que sejam liberadas para a comunidade."
+      biography: Perfil
+      change_password: "Alterar senha"
+      city: "Cidade"
+      company_name: "Organização"
+      company_name_explanation: "Organização, empresa, associação..."
+      confirm_password: "Confirmar senha"
+      country: "País"
+      delete:
+        account_deleted: "Sua conta foi apagada"
+        couldnt_delete_account: "Não podemos apagar sua conta porque existem projetos ativos ou arquivados."
+        delete_my_account: "Apagar minha conta agora"
+        steps_before_1: "Para apagar sua conta em Kinubi, é necessário primeiramente apagar todos os seus projetos."
+        steps_before_2: "Isto vai assegurar que outros usuários não percam dados quando sua conta for apagada."
+        steps_before_3: "Abandone ou apague seus projetos e volte a esta página para apagar sua conta."
+        what_will_happen: "Depois de apagar sua conta, seu perfil em Kinubi não estará mais acessível."
+      email: "Com qual e-mail você se inscreveu em Kinubi?"
+      first_day_of_week: "Semana começa"
+      first_name: Nome
+      invalid_login: "use somente letras, números e _"
+      language: Idioma
+      last_name: Sobrenomes
+      login: Login
+      monday: Segunda
+      new: 
+        accept: "Li e aceito as"
+        commercial_code: "Código comercial"
+        commercial_code_text_html: "Introduza o <u>código do comercial</u> que lhe atendeu"
+        account: 
+          choose_username: "Escolha um nome de usuário para que as pessoas lhe encontrem."
+          title: "Usuário e chave de acesso"
+          validations: "Devem ser todas maiúsculas e sem espaços. Você pode utilizar underline"
+        use_this_email: "Você foi convidado a Kinubi com este endereço de e-mail. Se quiser acessar aos projetos de quem lhe convidou, não altere o endereço de e-mail. Você poderá alterar seu e-mail depois que os dados forem confirmados."
+        signup_title: "Dados de contato"
+        terms_of_use: "Condições de uso"
+      new_password: "Crie uma nova senha"
+      newsletter: "Notificar-me sobre novas características e dicas."
+      notifications: 
+        clarification: "você receberá notificações por e-mail quando alguém mencioná-lo (como '@%{login}' o '@all') em uma conversação ou uma tarefa."
+        notify_conversations: "Receber os comentários das conversações que participo"
+        notify_tasks: "Receber comentários das tarefas que participo"
+        wants_task_reminder: "Receber um e-mail diário com minhas tarefas"
+      old_password: "Senha antiga"
+      password: Senha
+      password_confirmation: "Confirmar nova senha"
+      password_confirmation2: "Confirmar senha"
+      phone: "Número de Telefone"
+      phone_for_integration: "Opcional. Para integração futura com SMS"
+      picture: 
+        destroy: "Apagar ícone"
+        field: "Selecionar imagem"
+        gravatar_in_use_html: "Não temos nenhuma foto de perfil sua, por isso estamos usando um %{gravatar}:"
+        max_size: "O arquivo pode ser maior que %{mb}"
+        presence: "Não é possível enviar um arquivo vazio"
+        upload_here_or_at_gravatar_html: "Você poderá enviar uma nova imagem, ou criar um %{gravatar}."
+        upload_avatar: "Você poderá enviar uma nova imagem de perfil."
+        we_have_this_avatar_html: "Esta é a imagem que temos sua:"
+      postal_code: "Cep"
+      privacy: Privacidade
+      settings:
+        contact_details: "Dados de contato"
+        more_details: "Dados adicionais"
+        signup_title: "Dados de contato"
+      subscription:
+        card_expiration: "Expira em"
+        card_number: "Número do cartão"
+        coupon: "Código de desconto"
+        coupon_question: "Possui um código de desconto?"
+        info_price: "Cada mês será cobrado %{price}."
+        info_unsubscribe: "você poderá cancelar sua inscrição a qualquer momento."
+        new_org_name: "Nome da organização"
+      sunday: Domingo
+      terms: "Condições de uso"
+      time_zone: "Fuso horário"
+    new: 
+      colcentric_description_html: "<b>Kinubi</b> é uma ferramenta de colaboração e comunicação para ambientes profissionais e empresas. De modo simples, você poderá trabalhar com todas as pessoas relacionadas a um tema da empresa onde haja interação, mobilidade, distância geográfica e troca de arquivos."
+      existing_user_html: "Se já possui uma conta, <a href='%{login_url}'>identifique-se</a> ou <a href='%{forgot_url}'>coloque novamente sua senha</a>."
+      no_public_signup: "Não é permitido criar contas sem convite"
+      submit: Criar conta
+      subscription:
+          begin_in_just_minutes: "Começa em alguns minutos"
+          collaborate: "Colabore"
+          free_days: "Experimente grátis durante 15 dias"
+          unlimited_projects: "Projetos ilimitados"
+          share_files: "Compartilhe arquivos"
+      title: "Registre-se grátis e entre em Kinubi"
+      you_already_have_an_account_html: "Já possui uma conta em Kinubi com %{email}. <a href='%{login_link}'>Acesse sua conta</a> ou <a href='%{reset_password_link}'>coloque novamente sua senha</a> se tiver esquecido."
+      you_are_logged_in: "Já possui uma conta em Kinubi. Se quiser com outro usuário, encerre a sessão e tente novamente."
+    payment_needed:
+      follow_the_link_html: "Acesse o link do e-mail para entrar em Kinubi! Se não encontrar, verifique se não está na pasta de e-mails indesejados ou spam. "
+      problems_html: "Se tiver problemas, entre em contato conosco em %{support}"
+      problems_title: Problemas?
+      problem1: Problema 1
+      problem2: Problema 2
+      renew_subscription: "Renove sua assinatura para continuar utilizando Kinubi."
+      title_pay: "Sua assinatura foi finalizada."
+      title_trial: "O período de experiëncia terminou."
+    show: 
+      pending_invite: "%{name} tem um convite pendente ao seu projeto. Não poderá acessar m ais informações até que seu convite seja aceito."
+      profile: Perfil
+      projects: Projetos
+      projects_in_common_with: "Projetos que compartilha com %{user_name}"
+      recent_activity_for: "Atividade recente de %{user_name}"
+    text_styles: 
+      block_of_code: "Obtenha seu código indentado ( 4 espacios o tabulaciones) para colarpegarlo como código de bloque."
+      enter_this: 
+        bold_text: "texto en **negrito**"
+        header: |
+            Cabecera
+            ======
+        image: "![texto alternativo](http://w3.org/img.jpg)"
+        italic_text: "texto en *cursiva*"
+        link: "[Enlaza algo](http://kinubi.com)"
+        ordered_list: |-
+            1. lista ordenada
+            2. ¡deja líneas en blanco!
+        smaller_header: "Cabeçalho pequeno ---------"
+        title: "conversas de %{name}"
+        unordered_list: "* lista no numerada\n\
+            * deja una línea antes y después\n"
+      to_see_this: 
+        bold_text_html: "texto <strong style=\"font-weight: bold\">negrita</strong>"
+        header_html: "<h3 style=\"font-size:18px\">Cabecera</h3>"
+        image_html: "<img src=\"http://www.w3.org/Icons/valid-html401\">"
+        italic_text_html: "texto en <i>cursiva</i>"
+        link_html: "<a href=\"http://www.kinubi.com\">Enlaza algo</a>"
+        ordered_list_html: "<li>lista ordenada</li>\n\
+            <li>¡deja líneas en blanco!</li>\n"
+        smaller_header_html: "<h4 style=\"font-size:14px\">Cabecera pequeña</h4>"
+        title_html: "Para ver isto"
+        unordered_list_html: "<li>lista ordenada</li>\n\
+            <li>deja una línea antes y después</li>\n"
+    unconfirmed_email: 
+      follow_the_link_html: "Acesse o link do e-mail para entrar em Kinubi! Se não encontrar, verifique se não está na pasta de e-mails indesejados ou spam. "
+      invitation_sent_to_html: "Enviamos um convite a <i>%{email}</i>, para verificar sua direção de e-mail."
+      problems_html: "Se tiver problemas, entre em contato conosco em %{support}"
+      problems_title: Problemas?
+      resend_html: "Não encontrou o e-mail? Pressiona <a href='%{link}'> aqui</a> para reenviar o e-mail de ativação. "
+      spam: "Verifique se o e-mail não está classificado como e-mail indesejado ou spam."
+      title: "%{user} comentou em %{target}"
+      wrong_address_html: "Endereço incorreto? Se o endereço não foi escrito corretamente, <a href='%{link}'>cancele</a> e volte a criar sua conta com um e-mail válido."
+    update: 
+      error: "Não foi possível alterar a configuração do projeto"
+      updated: "Atualizado corretamente"
+    user:
+      formatted_address: "%{street}, %{city} (%{country})"
+      remove_from_project: "Apagar do projeto"
+
+  videoconferences:
+    error:
+      activate: "Ativar"
+      first_message: "Comece a trabalhar em alguns minutos. Escolha um tema de trabalho, pode ser tão variado como um projeto, um curso de formação ou um evento."
+      promotional_code: "Código promocional"
+      purchase: "Contratar"
+      purchase_products: "Contratar produtos"
+      second_message: "Introduza o código promocional ou entre para contratar nossos serviços."
+    errors: 
+      delete_participant: "Não foi possível eliminar %{name} da videoconferência"
+      max_participants: "Você alcançou o número máximo de participantes (%{max_participants})"
+      max_videoconferences: "Você alcançou o número máximo de videoconferências no horário selecionado"
+      not_allowed: "Você não tem permissão para acessar essa página."
+      not_available: "Nesse momento não há nenhuma sala disponível para o hrário solicitado"
+      password: "As senhas devem ser iguais"
+      participant_in_video: "O usuário %{name} já está na videoconferência"
+      session_url: "Erro ao entrar na sala. Tente novamente mais tarde"
+      schedule: "Não há nenhuma sala livre no horário indicado. Por favor, escolha outra"
+      time: "Não pode entrar na sala até 15 minutos antes do início da videoconferência"
+    edit: 
+      delete_participant: "A videoconferència foi eliminada por %{name}"
+      participants:
+      success: "Foi editado corretamente."
+      title: "Editar"
+    feedback:
+      confirm_delete: "Tem certeza que quer eliminar %{name} da videoconferência?"
+      destroyed: "Eliminou a videoconferência"
+      new_room: "Videoconferência criada. Pode seguir adicionando participantes à esta página"
+      sure: "Tem certeza?"
+    index: 
+      create: "Crear Videoconferência"
+      duration: "Duração"
+      next_videoconferences_html: "Próximas videoconferências de <font size='3' color='black'>%{user}</font>"
+      old_videoconferences_html: "Histórico de videconferências"
+      password: Senha
+      repeat_password: "Confirma senha"
+      start_time: "Data de início"
+      timezone: "Fuso horário"
+      title: "Videoconferências"
+      topic: "Tema"
+      videoconference_message: "Criae uma videoconferência clicando no seguinte link"
+    new: 
+      moderator: "Moderador"
+      observer: "Observador"
+      participant: "Participante"
+      participants: "Convidar usuários a participar da videoconferência."
+      title: "Criar nova videoconferência"
+    show: 
+      back: "Voltar à tela de login"
+      duration: "%{duration} minutos"
+      duration_title: "Duração: "
+      edit: "Editar"
+      moderators: "Moderadores"
+      observers: "Observadores"
+      participants: "Participantes"
+      start_time: "Data de início: "
+      title: "Dados da videoconferência"
+      topic_title: "Tema: "
+    videoconference:
+      delete: "Eliminar"
+      duration: "%{duration} min."
+      init: "Iniciar"
+      edit: "Editar"
+      show: "Ver detalhes"
+
+  weakling: 
+    average: normal
+    default: "Deve ter pelo menos 5 caracteres"
+    error: "Curto demais"
+    strong: Forte
+    weak: Fraco
+
+  user_files:
+    create:
+      maximumStorageExceeded: "O arquivo que você tentou enviar ocupa mais espaço do que o que vocè tem disponível para sua conta"
+      notAllowedToCreate: "Vocè não tem permissão para enviar arquivo na pasta selecionada"
+      noFileSelected: "Não foi selecionado em nenhum arquivo"
+    changeDirectory:
+      rootDirectory: "Carpeta principal"
+      submit: "Mover Arquivo"
+      title: "Mover Arquivo"
+      userDirectories_html: "Selecionar Pasta"
+    delete:
+      notAllowedToDelete: "Vocè não tem permissão para eliminar o arquivo selecionado"
+    download:
+      notAllowedToDownload: "Você não tem permissão para fazzer o download do arquivo selecionado"
+    index: 
+      asc: "Ordenar ascendentemente"
+      confirmDirDelete: "Tem certeza que deseja apagar a pasta?"
+      confirmFileDelete: "Tem certeza que quer apagar o arquivo?"
+      delete: "Eliminar"
+      desc: "Ordenar descendentemente"
+      directories_view: "Ver pastas"
+      download: "Download"
+      file: "Fichero %{file}"
+      file_upload: "Enviar um arquivo"
+      move: "Mover"
+      new_dir: "Criar Pasta"
+      rename: "Renomear"
+      search: "Busca"
+      simple_view: "Ver simples"
+      title: "Archivos de %{user} "
+      title_description: "Descrição"
+      title_name: "Nome"
+      title_size: "Tamanho"
+      title_time: "Data"
+      title_type: "Tipo"
+    moveFile:
+      notAllowedToMove: "Você não tem permissão para mover o arquivo à pasta selecionada"
+    new: 
+      availableStorage_html: "<i><font size='2' color='red'>Restam %{availableStorage} de espaço disponível em sua conta</font></i>"
+      description: Descrição
+      noFileSelected: "Não selecionou nenhum arquivo"
+      optional: "opcional"
+      selectFile: "Selecionar arquivo"
+      submit: "Enviar arquivo"
+      title: "Enviar arquivo"
+      uploading: "Enviando arquivo..."
+    rename:
+      name: "Nome do Arquivo"
+      submit: "Renomear Arquivo"
+      title: "Renomear Arquivo"
+    search:
+      date: "Data"
+      exactSearch: "Busca aprox."
+      extension: "Extensão"
+      maxSize: "Tamanho máximo (MB)"
+      minSize: "Tamanho mínimo (MB)"
+      name: "Nome"
+      size: "Tamanho"
+      startDate: "Enviados a partir de"
+      submit: "Buscar"
+      title: "Buscar Arquivos"
+    searchResults:
+      name: "Nome"
+      size: "Tamanho"
+      time: "Data"
+      title: "Resultados da busca"
+
+  user_directories:
+    changeDirectory:
+      rootDirectory: "Pasta principal"
+      title: "Mover Pasta"
+      submit: "Mover Pasta"
+      userDirectories_html: "Selecionar Pasta"
+    create:
+      notAllowedToCreate: "Você não possui permissão para criar a pasta na localização selecionada"
+    delete:
+      notAllowedToDelete: "Você não tem permissão para eliminar a pasta selecionada"
+    moveDirectory:
+      errorMovingToInnerDirectory: "Você não pode mover uma pasta que contém"
+      notAllowedToMove: "Você não tem permissão para mover a pasta para o destino selecionado"
+    new: 
+      name_html: "Nome da Pasta"
+      submit: Criar Pasta
+      title: "Criar Pasta"
+    rename:
+      name: "Nome da Pasta"
+      notAllowedToRename: "Não tem permissão para renomear a pasta selecionada"
+      submit: "Renomear Pasta"
+      title: "Renomear Pasta"
+    show_content:
+      file_upload: "Enviar um arquivo"
+      new_dir: "Criar Pasta"
+      notAllowedToRename: "Você não tem permissão para renomear a pasta selecionada"
+      notAllowedToSee: "Você não tem permissão para visualizar o conteúdo da pasta selecionada"
+      parent_directory: "Ir ao nível superior"
+      rootDirectory: "Pasta principal"
+      search: "Busca"
+      title_html: "Conteúdo da pasta <font size='3' color='black'>%{dirName}</font>"
+
+  upload_directories:
+    changeDirectory:
+      notAllowedToMove: "Você não tem permissão para mover a pasta selecionada"
+      rootDirectory: "Carpeta principal"
+      submit: "Mover Pasta"
+      title: "Mover Pasta"
+      userDirectories: "Selecionar Pasta"
+    changeName:
+      notAllowedToRename: "Você não tem permissão para renomear a pasta selecionada"
+    create:
+      notAllowedToCreate: "Vocè não tem permissão para criar a pasta"
+    delete:
+      notAllowedToDelete: "Você não tem permissão para eliminar a pasta selecionada"
+    moveDirectory:
+      errorMovingToInnerDirectory: "No se puede mover una carpeta a una de las carpetas que contiene"
+      notAllowedToMove: "Você não tem permissão para mover a pasta selecionada"
+    new: 
+      name: "Nome da Pasta"
+      submit: "Criar pasta"
+      title: "Criar Pasta"
+    rename:
+      name: "Nome da Pasta"
+      notAllowedToCreate: "Não possui permissão para criar a pasta"
+      submit: "Renomear Pasta"
+      title: "Renomear Pasta"
+    show_content:
+      asc: "asc"
+      confirmFileDelete: "Tem certeza que deseja eliminar o arquivo?"
+      delete: "Eliminar"
+      desc: "desc"
+      download: "Download"
+      file_upload: "Enviar um arquivo"
+      move: "Mover"
+      new_dir: "Criar Pasta"
+      notAllowedToSee: "Você não tem permissão para visualizar a pasta selecionada"
+      parentDirectory: "Ir ao nível superior"
+      rename: "Renomear"
+      rootDirectory: "Pasta principal"
+      search: "Busca"
+      title_html: "Conteúdo da pasta <font size='3' color='black'>%{uploadDirName}</font>"
+      title_name: "Nome"
+      title_size: "Tamanho"
+      title_time: "Data"
+      title_user: "Usuário"
+

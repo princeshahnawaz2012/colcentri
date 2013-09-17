@@ -1,0 +1,63 @@
+- if @current_project
+  .task_header
+    - if can? :make_task_lists, @current_project
+      =# task_list_link(@current_project)
+      = link_to_function image_tag(t('buttons.create_task_list')), 'Element.show("new_task_list")'
+      =# link_to '', list_link, {:class => "create_task_list_button", :style => "margin-right: 10px", :id => js_id("#{action}_link",project, task_list)}.merge(show_task_list(project, task_list))
+
+
+    - if can? :reorder_objects, @current_project
+      = link_to t('task_lists.link.reorder'), "#", :id => :reorder_task_lists_link, :class => 'text_button', :style => 'margin-left: 10px'
+      = link_to t('task_lists.link.reorder_done'), "#", :id => :done_reordering_task_lists_link, :style => 'display:none', :class => 'text_button'
+
+
+    .clear
+    - @task_list = @current_project.task_lists.new
+    = form_for [@current_project,@task_list], :html => {:class => 'app_form', :style => 'display: none; margin-top: 20px'} do |f|
+      = task_list_fields(f,@current_project,@task_list)
+      =# f.submit t('.submit')
+      .clear
+      = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+
+      %br
+      %br
+      = link_to_function 'Cancelar', 'Element.hide("new_task_list");', :class => 'text_button', :style => 'float: left; margin-top: -28px; margin-left: 333px'
+
+    %br
+    %br
+
+    %p.text_actions
+
+    -#
+      %h2= t('.tasks_for_project', :project => @current_project)
+
+  = filter_task_lists
+
+  - if can? :make_task_lists, @current_project
+    = task_list_form(@current_project,TaskList.new)
+
+  #task_lists{:class => 'task_lists'}
+    = render_task_lists(@current_project,@task_lists)
+
+  -# show create your first task list
+  -#= task_list_primer(@current_project, @task_lists.any?)
+
+  -# content_for :column do
+    = task_list_column(@current_project,@task_list)
+
+- else
+  %h2= t('.tasks_for_all_projects')
+  %p= t('.tasks_for_all_projects_explain')
+
+  = filter_task_lists
+
+  #tasks_for_all_projects
+    = tasks_for_all_projects(@tasks)
+
+  -# content_for :column do
+    %h2= t('.other_views')
+    = gantt_view_link
+    = instructions_for_calendars
+    = print_task_lists_link
+
+    = javascript_tag "$('filter_assigned').value = '#{escape_javascript(value_for_assigned_to_select)}'"

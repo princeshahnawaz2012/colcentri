@@ -1,0 +1,181 @@
+html, body
+  margin: 0px
+  padding: 0px
+  background-color: white
+  font-family: Verdana, Geneva, sans-serif
+
+// For autoloading of scroll
+body.index_projects, body.show_projects, body.show_users
+  padding-bottom: 300px
+
+
+div.wrapper  // bloque div del login y del contenido interior se comparten cagoento
+  clear: both
+  background: white
+  +clearing
+  //background: url(/images/FdoLogin.gif)
+  //width: 902px
+  //height: 386px
+  //overflow: hidden
+
+div.content_wrap
+  float: left
+  width: 630px
+  margin-top: 20px
+  //padding: 10px
+    right: 0px
+
+div.content_help
+  float: left
+  width: 730px
+  margin-top: 20px
+  //padding: 10px
+    right: 0px
+
+div.column_help
+  float: right
+  width: 300px
+  font-size: 12px
+  paddin-left: 40px
+
+  div.column  // margen columna derecha menu
+    background: rgb(255, 255, 255)
+    padding: 10px
+      left: 0
+      top: 20px
+    select
+      max-width: 280px
+    .view_sidebar
+      margin-left: 15px
+      //background-color: #f4f4f4
+      //border: solid 2px #d3d3d3
+
+
+div.column_wrap
+  float: right
+  width: 300px
+  font-size: 12px
+  paddin-left: 40px
+
+  div.column  // margen columna derecha menu
+    background: rgb(255, 255, 255)
+    padding: 10px
+      left: 0
+      top: 20px
+    select
+      max-width: 280px
+    .view_sidebar
+      margin-left: 15px
+      //background-color: #f4f4f4
+      //border: solid 2px #d3d3d3
+
+div.container
+  width: 960px
+  margin: 0px auto
+
+div.container_help
+  width: 1060px
+  margin: 0px auto
+
+
+// TODO: remove extra element and use +clearing
+div.clear
+  clear: both
+
+@import header
+@import navigation
+
+$error: lighten(desaturate(red, 50%), 15)
+$success: lighten(desaturate(green, 80%), 30%)
+
+p.flash
+  font-family: Trebuchet, Verdana, sans-serif
+  font:
+    size: 16px
+    weight: bold
+  margin: .3em 0
+  padding: .3em 1em
+  +rounded(4px)
+  background: #aaa
+  text-shadow: rgba(black, .3) 1px 1px 1px
+  width: 920px
+p.flash-error
+  background: #c83805
+  color: white
+  text-align: center
+p.flash-success
+  background: #518310
+  color: white
+  text-align: center
+p.flash-notice
+  background: $highlight
+  color: darken($highlight, 65%)
+  border-color: $highlight - 20
+  text-shadow: none
+
+#footer
+  clear: both
+  font-size: 11px
+  border-top: 1px solid #ccc
+  padding: .5em 0 2em 0
+  color: #777
+  margin-top: 15px
+  .support
+    list-style: none
+    float: right
+    margin: 0
+    padding: 0
+    text-align: right
+    li
+      display: inline
+      margin-left: 1em
+
+#splash
+  position: absolute
+  top: 10px
+  width: 100%
+  text-align: center
+  background-color: white
+
+.copyright //prueba pie para ver si funciona porque en el otro
+  font-size: 12px
+  color: #656565
+  padding-bottom: 15px
+
+
+
+.payments, .sponsor_payments
+  font-size: 12px
+  margin-bottom: 25px
+
+  form
+    margin-top: 10px
+  .status, form, .sponsor_payment
+    color: #656565
+    font-size: 12px
+    margin-bottom: 15px
+    .delete
+      margin-top: 10px
+      margin-bottom: 0px
+  .mode
+    color: #656565
+    font-size: 12px
+    margin-bottom: 15px
+  .actions
+    color: #656565
+    font-size: 12px
+    margin-bottom: 15px
+    a
+      //color: #656565
+      //text-decoration: underline
+      margin-right: 15px
+
+
+.trial_finish
+  font-size: 12px
+  color: #656565
+  div
+    padding-bottom: 5px
+
+
+

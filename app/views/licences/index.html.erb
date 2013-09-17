@@ -1,0 +1,21 @@
+<h1>Listing licences</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @licences.each do |licence| %>
+  <tr>
+    <td><%= link_to 'Show', licence %></td>
+    <td><%= link_to 'Edit', edit_licence_path(licence) %></td>
+    <td><%= link_to 'Destroy', licence, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Licence', new_licence_path %>

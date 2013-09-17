@@ -1,0 +1,34 @@
+.first_bar
+  -if params[:action] == 'index'
+    = t('admin.index.title')
+  -elsif params[:action] == 'usersManagement'
+    = link_to(t('admin.index.title'), admin_path)
+    = " >> "
+    = t('admin.index.usersManagement')
+  -elsif params[:action] == 'showUser'
+    = link_to(t('admin.index.title'), admin_path)
+    = " >> "
+    = link_to(t('admin.index.usersManagement'), usersManagement_admin_path)
+  -elsif params[:action]  == 'invoicesManagement'
+    = link_to(t('admin.index.title'), admin_path)
+    =  ">> "
+    = t('admin.index.invoicesManagement')
+  -elsif params[:action]  == 'showInvoice'
+    = link_to(t('admin.index.title'), admin_path)
+    =  ">> "
+    = link_to(t('admin.index.invoicesManagement'), invoicesManagement_admin_path)
+  -elsif params[:action]  == 'subscriptionsManagement'
+    = link_to(t('admin.index.title'), admin_path)
+    =  ">> "
+    = t('admin.index.subscriptionsManagement')
+  -elsif params[:action]  == 'statistics'
+    = link_to(t('admin.index.title'), admin_path)
+    =  ">> "
+    = link_to(t('admin.index.statistics'), statistics_admin_path)
+  -elsif params[:action]  == 'licencesManagement'
+    = link_to(t('admin.index.title'), admin_path)
+    =  ">> "
+    = link_to(t('admin.index.licences'), licencesManagement_admin_path)
+
+
+

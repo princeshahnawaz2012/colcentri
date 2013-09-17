@@ -1,0 +1,106 @@
+.email{ :style =>  "#{email_global } #{inline_organization_text_colour}"}
+  .header
+    %h1
+      =# link_to logo_image, projects_path(@project)
+      = image_tag('/images/LogoColcentric1.png', :alt => 'Kinubi', :style => 'color: #003869')
+
+
+  = answer_instructions
+
+  .box{ :style => email_box }
+
+    %p{ :style => email_text(:medium)  }
+      = t('emailer.notify.path')
+      -if @project.project_group
+        = @project.project_group.name
+        = " > "
+      = @project.name
+      = " > Conversaciones"
+    %p{ :style => email_text(:medium) }
+      = link_to h(@conversation.name), project_conversation_url(@project, @conversation), :style => inline_organization_link_colour
+
+
+
+
+    -#if @project.project_group
+      %p{ :style => email_text(:big) }
+        = t('emailer.notify.project_group')
+        = link_to h(@project.project_group.name), project_group_url(@project.project_group), :style => inline_organization_link_colour
+
+    -#
+      %p{ :style => email_text(:big) }
+        = t('emailer.notify.project')
+        = link_to h(@project.name), project_url(@project), :style => inline_organization_link_colour
+
+    -#%h2{ :style => email_text(:big) }
+      %p{ :style => email_text(:big) }
+        - if @conversation.name.blank?
+          = link_to t('emailer.notify.conversation'), project_conversation_url(@project, @conversation), :style => inline_organization_link_colour
+        - else
+          = t('emailer.notify.conversation')
+          = link_to h(@conversation.name), project_conversation_url(@project, @conversation), :style => inline_organization_link_colour
+
+
+
+    -# FROM HERE
+
+    - comment = @conversation.comments.first
+    =# comment.body
+
+    .comment{ :style => email_text(:big) }
+      .body
+        %p{ :style => 'font-size: 12px' }
+          %strong{ :style => 'color: rgb(50,50,50);' }
+            = h(comment.user.name) + ', '
+          %span{ :style => 'color: rgb(150,150,150);' }
+            = I18n.l(comment.created_at.in_time_zone(@recipient.time_zone), :format => "%b %d &mdash; %I:%M %p").html_safe
+          - if comment.task_comment?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              = comment_task_status(comment)
+          - if comment.task_comment? and comment.assigned_transition?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              - if comment.assigned_id?
+                = t('tasks.assigned.assigned_to', :user => comment.assigned.user.name)
+              - else
+                = t('tasks.assigned.unassigned')
+
+          -#~raw comment.body_html
+          .body_comment{ :style => email_text(:big) }
+            = comment.body
+
+        - if comment.uploads.any?
+          %ul
+            = render :partial => 'emailer/upload', :collection => comment.uploads
+
+
+      =# emailer_list_comments(@conversation.comments)
+      -# TIL HERE
+
+
+    -#
+      .actions{ :style => email_text(:big) +  'color: rgb(100,100,100); padding: 15px' }
+        %p= t('emailer.notify.view_this_conversation_online_html', :conversation => link_to(t('emailer.notify.conversation'), project_conversation_url(@project, @conversation), :style => inline_organization_link_colour))
+        = emailer_answer_to_this_email
+        .notify_link= link_to t('emailer.notify.go_to_conversation'), project_conversation_url(@project, @conversation)
+
+  %p{ :style => email_text(:small) }
+    = t('emailer.confirm.plaintext_link')
+    %br
+    = link_to project_conversation_url(@project, @conversation), project_conversation_url(@project, @conversation), :style => inline_organization_link_colour
+
+
+
+  .footer{ :style => email_text(:small) }
+    -#%p
+      = @conversation.watchers.collect {|u| h(u) }.to_sentence
+      = t('emailer.notify.are_watching', :count => @conversation.watchers.size)
+
+    %p
+      =# t('emailer.confirm.problems_html', :support => Colcentric.config.support)
+      = t('emailer.reset_password.problems')
+      = mail_to Colcentric.config.support, Colcentric.config.support, :style => 'color: #008ac0'
+
+
+    -#%p
+      = t('emailer.notify.stop_watching_link_html', :stop_watch => link_to(t('emailer.notify.stop_watch'), project_conversation_url(@project, @conversation), :style => inline_organization_link_colour) )
+      = t('emailer.notify.notification_settings_link_html', :settings_link => link_to(t('emailer.notify.settings_link'), account_notifications_url, :style => inline_organization_link_colour) )

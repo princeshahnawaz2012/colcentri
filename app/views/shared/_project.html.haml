@@ -1,0 +1,19 @@
+.el= link_to project, project, :class => 'project'
+.contained
+  - if can?(:update, project)
+    .el= link_to t('shared.navigation.settings'), project_settings_path(project), :class => 'settings'
+    .contained
+      .el= link_to t('shared.project_settings_navigation.general'), project_settings_path(project.permalink), :class => 'general_settings ajax'
+      .el= link_to t('shared.navigation.roles'), project_people_path(project), :class => 'roles ajax'
+      .el= link_to t('shared.project_settings_navigation.advanced'), project_advanced_path(project.permalink, :sub_action => 'advanced'), :class => 'advanced_settings ajax'
+      -#.el= link_to t('shared.project_settings_navigation.deletion'), project_deletion_path(project.permalink, :sub_action => 'deletion'), :class => 'deletion ajax'
+      -# if project.owner?(current_user)
+        .el= link_to t('shared.project_settings_navigation.ownership'), project_ownership_path(project.permalink, :sub_action => 'ownership'), :class => 'ownership ajax'
+  .el= link_to t('shared.navigation.recent_activity'), project_path(project), :class => 'recent_activity ajax'
+  .el= link_to t('shared.navigation.conversations'), project_conversations_path(project), :class => 'conversations ajax'
+  .el= link_to t('shared.navigation.tasks'), project_task_lists_path(project), :class => 'tasks'
+  -# - if time_tracking_enabled? and project.tracks_time
+  .el= link_to t('shared.navigation.time'), project_calendar_path(:project_permalink => project.permalink), :class => 'time ajax'
+  .el= link_to t('shared.navigation.pages'), project_pages_path(project), :class => 'pages ajax'
+  .el= link_to t('shared.navigation.files'), project_uploads_path(project), :class => 'files ajax'
+  .el= link_to t('shared.navigation.people'), list_project_people_path(project), :class => 'people ajax'

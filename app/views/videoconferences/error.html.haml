@@ -1,0 +1,23 @@
+.first_message
+  =t('.first_message')
+
+.second_message
+  =t('.second_message')
+
+.options
+
+  .formular
+    .promotional_code
+      =t('.promotional_code')
+    = form_for :subscription, :url => subscriptions_path(:subscription) do |f|
+      =# f.label :promotional_code, t('users.form.first_name')
+      .code
+        = f.text_field :promotional_code, :size => 15
+      .submit
+        = f.submit t('.activate'), :class => 'form_button'
+
+  .formular
+    .texto1
+      = t('.purchase_products')
+    .submit
+      = link_to t('.purchase'), buy_shopping_cart_path, :class => 'button'

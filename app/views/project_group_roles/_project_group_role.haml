@@ -1,0 +1,12 @@
+#person_1.person
+  = thumb_avatar(project_group_role.user)
+  = render 'header', :project_group_role => project_group_role, :project_group => project_group
+  
+  - unless project_group_role.user == current_user
+    = form_for project_group_role, :url => [project_group, project_group_role], :html => { 'data-remote' => true } do |f|
+      %h2=h project_group_role.user.name
+      - if can?(:update, project_group_role)
+        .actions
+          = submit_tag t('people.edit.submit')
+          = t('common.or')
+          = link_to t('common.cancel'), '#cancel'

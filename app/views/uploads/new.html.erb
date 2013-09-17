@@ -1,0 +1,62 @@
+<h2><%= t('uploads.new.title') %></h2>
+
+<%= javascript_tag "
+    function validate_file_upload(form) {
+        if(form.file.value.length == 0) {
+            alert(\"" + t('uploads.new.noFileSelected') + "\"); return false;
+        }
+        else {
+            form.submitButton.disabled = true;
+            form.submitButton.value = \"" + t('uploads.new.uploading')+ "\";
+            Element.show('loadingIcon');
+            return true;
+        }
+    }"
+%>
+<div class='uploadForm2'>
+<% action = []
+   if (ENV['S3_BUCKET'].nil?)
+    action = "https://colcentric-dev2.s3.amazonaws.com/"
+   else
+    action = "https://" + ENV['S3_BUCKET'] + ".s3.amazonaws.com/"
+   end
+%>
+<form name = "form" action="<%= action %>" method="post"
+      enctype="multipart/form-data" onsubmit="return validate_file_upload(form)">
+    <input type="hidden" name="key" value="<%= @directory %>">
+    <input type="hidden" name="AWSAccessKeyId" value="<%= @access_key_id %>">
+    <input type="hidden" name="acl" value="private">
+    <% urlPrefix = '' %>
+    <%
+      if (ENV['S3_BUCKET'].nil?)
+        urlPrefix = 'http://localhost:3000'
+      elsif (ENV['S3_BUCKET'] == 'filesprocolcentric')
+        urlPrefix = 'http://pro.kinubi.com'
+      elsif (ENV['S3_BUCKET'] == 'filespro-test.colcentric.com')
+        urlPrefix = 'http://pro-test.kinubi.com'
+      end
+    %>
+    <% if (!params[:uploadedInDir].nil?) %>
+        <input type="hidden" name="success_action_redirect" value='<%= urlPrefix +
+            "/create_upload?uploadedInDir=" + params[:uploadedInDir] +
+            "&currentProjectId=" + params[:currentProjectId] %>'>
+    <% else %>
+        <input type="hidden" name="success_action_redirect"
+            value='<%= urlPrefix + "/create_upload?currentProjectId=" + params[:currentProjectId] %>'>
+    <% end %>
+    <input type="hidden" name="Content-disposition" value=${filename}>
+    <input type="hidden" name="Content-type" value="binary/octet-stream" >
+    <input type="hidden" name="policy" value="<%= @policy %>">
+    <input type="hidden" name="signature" value=<%= @signature %>>
+    <input name="file" type="file" class="file">
+    <div class="submit_button">
+        <%= image_submit_tag t('buttons.upload_file'), :class => 'user_file_submit_button' %>
+    </div>
+    <div class="cancel_button">
+        <%= link_to_function 'Cancelar', "history.go(-1)", :class => 'text_button' %>
+    </div>
+</form>
+</div>
+<div class="loadingImg">
+    <img id='loadingIcon' src="images/loading_icon.gif" style="display: none">
+</div>

@@ -1,0 +1,11 @@
+<%= dont_answer %>
+
+<%= t('emailer.colcentricdata.hey', :user_name => h(@user.name)) %>
+
+<% if @error %>
+<%= t('emailer.colcentricdata.data_export_failed') %>
+<%= colcentric_data_url(@data) %>
+<% else %>
+<%= t('emailer.colcentricdata.data_exported') %>
+<%= Colcentric.config.amazon_s3 ? @data.processed_data.url : "http://#{Colcentric.config.app_domain}#{@data.processed_data.url}" %>
+<% end %>

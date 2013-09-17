@@ -1,0 +1,87 @@
+=sprite_16px($x_pos, $y_pos, $x_size: 0, $y_size: 0)
+  +sprite("/images/_sprites_16px.png", $x_pos, $y_pos, $x_size, $y_size)
+
+=hoverable_sprite_16px($x_pos, $y_pos, $x_size: 0, $y_size: 0)
+  +sprite("/images/_sprites_16px.png", $x_pos, $y_pos, $x_size, $y_size)
+  &:hover
+    +sprite("/images/_sprites_16px.png", $x_pos, $y_pos+16px, $x_size, $y_size)
+
+=calendar_icon
+  +sprite_16px(16px*15, 16px*0)
+=feed_icon
+  +sprite_16px(16px*15, 16px*1)
+=mail_icon
+  +sprite_16px(16px*15, 16px*2)
+=gantt_icon
+  +sprite_16px(16px*15, 16px*3)
+=print_icon
+  +sprite_16px(16px*15, 16px*4)
+=public_icon
+  +sprite_16px(16px*15, 16px*5)
+//=leave_icon
+//  +sprite_16px(16px*15, 16px*6)
+=csv_icon
+  +sprite_16px(16px*15, 16px*7)
+
+//.trash_icon
+//  +hoverable_sprite_16px(16px*0, 0px, 16px, 16px)
+//.edit_icon
+//  +hoverable_sprite_16px(16px*1, 0px, 16px, 16px)
+//.attach_icon
+//  +hoverable_sprite_16px(16px*8, 0px, 16px, 16px)
+.add_hours_icon
+  +hoverable_sprite_16px(16px*7, 0px, 16px, 16px)
+.comment_icon
+  +hoverable_sprite_16px(16px*3, 0px, 16px, 16px)
+.task_icon
+  +hoverable_sprite_16px(16px*4, 0px, 16px, 16px)
+.page_icon
+  +hoverable_sprite_16px(16px*6, 0px, 16px, 16px)
+.style_icon
+  +hoverable_sprite_16px(16px*10, 0px, 16px, 16px)
+.static_tick_icon
+  display: inline-block
+  +sprite_16px(16px*4, 16px, 16px, 16px)
+.static_cross_icon
+  display: inline-block
+  +sprite_16px(16px*0, 16px, 16px, 16px)
+.left_arrow_icon
+  +hoverable_sprite_16px(16px*11, -3px, 16px, 16px)
+.loading_icon
+  +sprite("/images/loading.gif", 0, 0, 16px, 16px)
+.add_watchers
+  +sprite("/iconos/user_go.png", 0, 0, 18px, 18px)
+.webcam_icon
+  +sprite("/iconos/webcam.gif", 0, 0, 16px, 16px)
+.edit_video_icon
+  +sprite("/iconos/user_edit.gif", 0, 0, 16px, 16px)
+.trash_video_icon
+  +sprite("/iconos/trash.gif", 0, 0, 16px, 16px)
+.show_video_details_icon
+  +sprite("/iconos/theme.gif", 0, 0, 16px, 16px)
+.move_icon
+  +sprite("/iconos/mover.png", 0, 0, 16px, 16px)
+.download_icon
+  +sprite("/iconos/descargar.png", 0, 0, 16px, 16px)
+.rename_icon
+  +sprite("/iconos/renombrar.png", 0, 0, 16px, 16px)
+.asc_icon
+  +sprite("/iconos/flecha_arriba.gif", 0, 0, 9px, 6px)
+.desc_icon
+  +sprite("/iconos/flecha_abajo.gif", 0, 0, 9px, 6px)
+.trash_icon
+  +sprite("/iconos/borrar.png", 0, 0, 16px, 16px)
+.edit_icon
+  +sprite("/iconos/editar22x22.png", 0, 0, 22px, 22px)
+.big_trash_icon
+  +sprite("/iconos/borrar22x22.png", 0, 0, 22px, 22px)
+.search_icon
+  +sprite("/iconos/buscar22x22.png", 0, 0, 22px, 22px)
+.upload_icon
+  +sprite("/iconos/adjuntar22x22.png", 0, 0, 22px, 22px)
+.invoice_icon
+  +sprite("/iconos/show_details.png", 0, 0, 22px, 22px)
+.attach_icon
+  +sprite("/iconos/attach.png", 0, 0, 16px, 16px)
+.mail_icon
+  +sprite("/iconos/mail.png", 0, 0, 16px, 16px)

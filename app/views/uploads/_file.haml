@@ -1,0 +1,9 @@
+.upload_file{:id => "upload_#{upload.id}"}
+  = file_icon_image(upload,'16px')
+  %span.filename
+    = link_to_upload(upload, upload.file_name)
+  %span.size
+    = '(' + number_to_human_size(upload.size).to_s + ')'
+  %span.deleted
+    - if upload.deleted
+      = t('uploads.file.fileDeleted')

@@ -1,0 +1,138 @@
+%h2= t('admin.editSubscription.title', :subscriptionId => @subscription.id)
+
+.goBackLink
+  = link_to t('admin.editSubscription.goBackSubscriptionsManagement'), subscriptionsManagement_admin_path
+
+.editSubscriptionForm
+  = form_tag(updateSubscription_admin_path, :method=>'post', :multipart => true) do
+    .id
+      = hidden_field_tag "subscriptionId", @subscription.id
+    .status
+      = label_tag t('admin.editSubscription.status')
+      - if (@subscription.status == 0)
+        - status = t('admin.editSubscription.active')
+      - elsif (@subscription.status == 1)
+        - status = t('admin.editSubscription.incomplete')
+      - elsif (@subscription.status == 2)
+        - status = t('admin.editSubscription.pending')
+      - elsif (@subscription.status == 3)
+        - status = t('admin.editSubscription.cancelled')
+      - elsif (@subscription.status == 4)
+        - status = t('admin.editSubscription.failed')
+      - elsif (@subscription.status == 6)
+        - status = t('admin.editSubscription.suspended')
+      - elsif (@subscription.status == 7)
+        - status = t('admin.editSubscription.inactive')
+      = select_tag(:status, options_for_select([t('admin.editSubscription.active'),
+        t('admin.editSubscription.incomplete'), t('admin.editSubscription.pending'),
+        t('admin.editSubscription.cancelled'), t('admin.editSubscription.failed'),
+        t('admin.editSubscription.suspended'), t('admin.editSubscription.inactive')], status))
+    .licence_type
+      = label_tag t('admin.editSubscription.licence_type')
+      - if (@subscription.licence_type == 0)
+        - licence_type = t('admin.editSubscription.special')
+      - elsif (@subscription.licence_type == 1)
+        - licence_type = t('admin.editSubscription.trial')
+      - elsif (@subscription.licence_type == 5)
+        - licence_type = t('admin.editSubscription.monthly')
+      - elsif (@subscription.licence_type == 10)
+        - licence_type = t('admin.editSubscription.biannual')
+      - elsif (@subscription.licence_type == 15)
+        - licence_type = t('admin.editSubscription.annual')
+      - elsif (@subscription.licence_type == 20)
+        - licence_type = t('admin.editSubscription.videoconference')
+      - elsif (@subscription.licence_type == 25)
+        - licence_type = t('admin.editSubscription.additional_data')
+      = select_tag(:licence_type, options_for_select([t('admin.editSubscription.special'),
+        t('admin.editSubscription.trial'), t('admin.editSubscription.monthly'),
+        t('admin.editSubscription.biannual'), t('admin.editSubscription.annual'), t('admin.editSubscription.videoconference'),
+        t('admin.editSubscription.additional_data')], licence_type))
+    .user_id
+      = label_tag t('admin.editSubscription.user_id')
+      = text_field_tag "user_id", @subscription.user_id
+    .sponsor_user_id
+      = label_tag t('admin.editSubscription.sponsor_user_id')
+      = text_field_tag "sponsor_user_id", @subscription.sponsor_user_id
+    .paypal_profile_id
+      = label_tag t('admin.editSubscription.paypal_profileid')
+      = text_field_tag "paypal_profileid", @subscription.paypal_profileid, :disabled => true
+    .paypal_profile_status
+      = label_tag t('admin.editSubscription.paypal_profilestatus')
+      = text_field_tag "paypal_profilestatus", @subscription.paypal_profilestatus, :disabled => true
+    .paypal_correlationid
+      = label_tag t('admin.editSubscription.paypal_correlationid')
+      = text_field_tag "paypal_correlationid", @subscription.paypal_correlationid, :disabled => true
+    .last_payment_date
+      = label_tag t('admin.editSubscription.last_payment_date')
+      - if (!@subscription.last_payment_date.nil?)
+        = select_date "last_payment_date",
+          @subscription.last_payment_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M"),
+          :disabled => true
+      - else
+        = text_field_tag "last_payment_date", "", :disabled => true
+    .expiration_date
+      = label_tag t('admin.editSubscription.expiration_date')
+      - if (@subscription.expiration_date.nil?)
+        = text_field_tag "expiration_date", "", :disabled => true
+      - else
+        = text_field_tag "expiration_date",
+          @subscription.expiration_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M"),
+          :disabled => true
+    .ask_new_expiration_date
+      = label_tag t('admin.editSubscription.ask_new_expiration_date')
+      = check_box_tag "askNewExpirationDate", false
+    .new_expiration_date
+      = label_tag t('admin.editSubscription.new_expiration_date')
+      - days= (1..31).entries
+      = select_tag :expiration_date_day, options_for_select(days.collect {|c| [c,c]})
+      - months= (1..12).entries
+      = select_tag :expiration_date_month, options_for_select(months.collect {|c| [c,c]})
+      - years= (2011..2016).entries
+      = select_tag :expiration_date_year, options_for_select(years.collect {|c| [c,c]})
+      - hours= (0..23).entries
+      = select_tag :expiration_date_hour, options_for_select(hours.collect {|c| [c,c]})
+      - quarters= [0, 15, 30, 45].entries
+      = select_tag :expiration_date_minute, options_for_select(quarters.collect {|c| [c,c]})
+    .deleted
+      = label_tag t('admin.editSubscription.deleted')
+      - if (!@subscription.deleted.nil? and @subscription.deleted?)
+        = check_box_tag "deleted", true
+      - else
+        = check_box_tag "deleted", false
+    .created_at
+      = label_tag t('admin.editSubscription.created_at')
+      = text_field_tag "created_at",
+        @subscription.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M"), :disabled => true
+    .updated_at
+      = label_tag t('admin.editSubscription.updated_at')
+      = text_field_tag "updated_at",
+        @subscription.updated_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M"), :disabled => true
+    .trial_expiration_date
+      = label_tag t('admin.editSubscription.trial_expiration_date')
+      - if (@subscription.trial_expiration_date.nil?)
+        = text_field_tag "trial_expiration_date", "", :disabled => true
+      - else
+        = text_field_tag "trial_expiration_date",
+          @subscription.trial_expiration_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M"),
+          :disabled => true
+    .ask_new_trial_expiration_date
+      = label_tag t('admin.editSubscription.ask_new_trial_expiration_date')
+      = check_box_tag "askNewTrialExpirationDate", false
+    .new_trial_expiration_date
+      = label_tag t('admin.editSubscription.new_trial_expiration_date')
+      - days= (1..31).entries
+      = select_tag :trial_expiration_date_day, options_for_select(days.collect {|c| [c,c]})
+      - months= (1..12).entries
+      = select_tag :trial_expiration_date_month, options_for_select(months.collect {|c| [c,c]})
+      - years= (2011..2016).entries
+      = select_tag :trial_expiration_date_year, options_for_select(years.collect {|c| [c,c]})
+      - hours= (0..23).entries
+      = select_tag :trial_expiration_date_hour, options_for_select(hours.collect {|c| [c,c]})
+      - quarters= [0, 15, 30, 45].entries
+      = select_tag :trial_expiration_date_minute, options_for_select(quarters.collect {|c| [c,c]})
+    .shopping_cart_id
+      = label_tag t('admin.editSubscription.shopping_cart_id')
+      = text_field_tag "shopping_cart_id", @subscription.shopping_cart_id, :disabled => true
+    .submit
+      =# submit_tag t('admin.editSubscription.submit'), :class => 'form_button'
+      = image_submit_tag t('buttons.save')

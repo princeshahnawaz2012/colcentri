@@ -1,0 +1,85 @@
+
+<script type="text/javascript">
+function toggle_visibility(id) {
+var e = document.getElementById(id);
+if(e.style.display == 'block')
+e.style.display = 'none';
+else
+e.style.display = 'block';
+}
+</script>
+
+
+.collaborative_links{ :style => 'margin-top: 38px'}
+  .collaborative_navigation
+    .title_navigation= t('help.title')
+
+  .collaborative_info
+    .help_el
+      - if I18n.locale.to_s == "es"
+        = link_to t('help.index.first.title'), first_section_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - first_section = 'first_section'
+      - elsif I18n.locale.to_s == "pt-BR"
+        = link_to t('help.index.first.title'), first_section_pt_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - first_section = 'first_section_pt'
+      - else
+        = link_to t('help.index.first.title'), first_section_en_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - first_section = 'first_section_en'
+    .contained
+      .help_subsection= link_to t('help.index.first.personal_area'),  :controller => 'help', :action => first_section, :anchor => 'personal'
+      .help_subsection= link_to t('help.index.first.collaborative_area'),  :controller => 'help', :action => first_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative'
+      .help_subsection= link_to t('help.index.first.menu'), :controller => 'help', :action => first_section, :id => 'colab_recent_activity_link', :anchor => 'menu'
+
+    .divider
+
+    .help_el
+      - if I18n.locale.to_s == "es"
+        = link_to t('help.index.second.title'), second_section_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - second_section = 'second_section'
+      - elsif I18n.locale.to_s == "pt-BR"
+        = link_to t('help.index.second.title'), second_section_pt_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - second_section = 'second_section_pt'
+      - else
+        = link_to t('help.index.second.title'), second_section_en_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - second_section = 'second_section_en'
+    .contained
+      .help_subsection= link_to t('help.index.second.project_groups'), :controller => 'help', :action => second_section, :id => 'colab_recent_activity_link', :anchor => 'project_group'
+      .help_subsection= link_to t('help.index.second.project'), :controller => 'help', :action => second_section, :id => 'colab_recent_activity_link', :anchor => 'project'
+      .help_subsection= link_to t('help.index.second.invite'), :controller => 'help', :action => second_section, :id => 'colab_recent_activity_link', :anchor => 'invite'
+      .help_subsection= link_to t('help.index.second.start_working'), :controller => 'help', :action => second_section, :id => 'colab_recent_activity_link', :anchor => 'start_working'
+
+    .divider
+
+    .help_el
+      - if I18n.locale.to_s == "es"
+        = link_to t('help.index.third.title'), third_section_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - third_section = 'third_section'
+      - elsif I18n.locale.to_s == "pt-BR"
+        = link_to t('help.index.third.title'), third_section_pt_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - third_section = 'third_section_pt'
+      - else
+        = link_to t('help.index.third.title'), third_section_en_help_path, :class => 'text_button', :style => 'margin-right: 10px'
+        - third_section = 'third_section_en'
+    .contained
+      .help_subsection= link_to_function t('help.index.third.personal_area.title'), 'toggle_visibility("personal_area");'
+      .contained#personal_area{ :style => 'display: none'}
+        .help_subsubsection= link_to t('help.index.third.personal_area.recent_activity'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'personal_area_ar'
+        .help_subsubsection= link_to t('help.index.third.personal_area.calendar'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'personal_area_calendar'
+        .help_subsubsection= link_to t('help.index.third.personal_area.tasks'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'personal_area_tasks'
+        .help_subsubsection= link_to t('help.index.third.personal_area.files'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'personal_area_files'
+        .help_subsubsection= link_to t('help.index.third.personal_area.user_settings'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'personal_area_user_settings'
+      .help_subsection= link_to_function t('help.index.third.collaborative_area.title'), 'toggle_visibility("collaborative_area");'
+      .contained#collaborative_area{ :style => 'display: none'}
+        .help_subsubsection= link_to t('help.index.third.collaborative_area.recent_activity'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_ar'
+        .help_subsubsection= link_to t('help.index.third.collaborative_area.calendar'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_calendar'
+        .help_subsubsection= link_to_function t('help.index.third.collaborative_area.projects.title'), 'toggle_visibility("projects");'
+        .contained#projects{ :style => 'display: none'}
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.recent_activity'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_ar'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.calendar'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_calendar'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.conversations'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_conversations'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.pages'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_pages'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.tasks'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_tasks'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.files'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_files'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.people'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_people'
+          .help_subsubsubsection=link_to t('help.index.third.collaborative_area.projects.configuration'), :controller => 'help', :action => third_section, :id => 'colab_recent_activity_link', :anchor => 'collaborative_area_projects_settings'
+    .divider

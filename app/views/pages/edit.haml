@@ -1,0 +1,35 @@
+= form_for [@current_project,@page] do |f|
+
+  %h3
+    .text= t('.title')
+    .clear
+
+  =# page_fields(f)
+
+  .page_title= f.label :name, t('pages.fields.name')
+  -#.description= t('.name_description')
+  .clear
+  = f.text_field :name, :class => 'page_text_field'
+  .clear
+
+  .page_title= f.label :description, t('pages.fields.description')
+  -#.description= t('.description_description')
+  .clear
+  = f.text_field :description, :class => 'page_text_field_big'
+  .clear
+
+
+  =# f.submit t('.submit'), :class => 'form_button'
+  = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+  .page_cancel_button= link_to t('common.cancel'), project_page_path(@current_project, @page), :class => 'text_button'
+  
+-# content_for :column do
+  %p= t 'pages.new.define1_html'
+  %p= t 'pages.new.define2_html'
+  %ul
+    %li= t 'pages.new.feature1_html'
+    %li= t 'pages.new.feature2_html'
+    %li= t 'pages.new.feature3_html'
+    %li= t 'pages.new.feature4_html'
+  %p= t 'pages.new.footer1_html'
+  %p= t 'pages.new.footer2_html'

@@ -1,0 +1,93 @@
+<script src="/javascripts/tablekit.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" language="JavaScript">
+  TableKit.Editable.addCellEditor(
+	new TableKit.Editable.CellEditor('licence_type', {
+		element : 'select',
+		attributes : {name : 'favourite_food', title : 'Please select your favourite food from the list'},
+		selectOptions : [['Cheese','Cheese'],['Llama','Llama'],['Staot','Staot'],['Halibut','Halibut']]
+	},
+    'status', {
+		element : 'select',
+		attributes : {name : 'favourite_food', title : 'Please select your favourite food from the list'},
+		selectOptions : [['Cheese','Cheese'],['Llama','Llama'],['Staot','Staot'],['Halibut','Halibut']]
+	}
+));
+</script>
+<link href="/css/tablesorter.css" rel="stylesheet" type="text/css" />
+
+<h2><%=t('admin.subscriptionsManagement.title')%> </h2>
+  <div style="overflow: auto; height: auto; width: 630px;">
+    <table class="sortable resizable editable">
+        <thead class="">
+            <tr>
+                <th class="sortfirstasc"><%= t('admin.subscriptionsManagement.id')%></th>
+                <th id="user_fullname"><%= t('admin.subscriptionsManagement.full_name')%></th>
+                <th id="user_login"><%= t('admin.subscriptionsManagement.users')%></th>
+                <th class="noSortClass" id="sponsor_user_id"><%= t('admin.subscriptionsManagement.sponsor_users')%></th>
+                <th id="status"><%= t('admin.subscriptionsManagement.status')%></th>
+                <th id="licence_type"><%= t('admin.subscriptionsManagement.licence_type')%></th>
+                <th id="created_at"><%= t('admin.subscriptionsManagement.created_at')%></th>
+                <th id="expire_at"><%= t('admin.subscriptionsManagement.expire_at')%></th>
+                <th class="nosort" id="view"><%= t('admin.subscriptionsManagement.view')%></th>
+                <th class="nosort" id="author"><%= t('admin.subscriptionsManagement.delete')%></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for subscription in @subscriptions do %>
+            <div class='subscriptions'>
+              <tr>
+                 <td class="noedit"><%= subscription.id %></td>
+                 <td class="noedit"><%= subscription.full_name %></td>
+                 <td><%= subscription.user_name %></td>
+                 <td><%= subscription.sponsor_user %></td>
+                 <td><%- if subscription.status == 0 %>
+                        <%= t('admin.showSubscription.active')%>
+                     <%- elsif subscription.status == 1%>
+                        <%= t('admin.showSubscription.incomplete')%>
+                     <%- elsif subscription.status == 2%>
+                        <%= t('admin.showSubscription.pending')%>
+                     <%- elsif subscription.status == 3 %>
+                        <%= t('admin.showSubscription.cancelled') %>
+                     <%- elsif subscription.status == 4 %>
+                        <%= t('admin.showSubscription.failed') %>
+                     <%- elsif subscription.status == 5  %>
+                        <%= t('admin.showSubscription.trial') %>
+                     <%- elsif subscription.status == 6 %>
+                        <%= t('admin.showSubscription.suspended') %>
+                     <%- elsif subscription.status == 7 %>
+                        <%= t('admin.showSubscription.inactive') %>
+                     <% end %>
+                 </td>
+                 <td><%- if (subscription.licence_type == 0)%>
+                        <%= t('admin.subscriptionsManagement.special')%>
+                      <%- elsif (subscription.licence_type == 1)%>
+                       <%= t('admin.subscriptionsManagement.trial')%>
+                      <%- elsif (subscription.licence_type == 5)%>
+                        <%= t('admin.subscriptionsManagement.monthly')%>
+                      <%- elsif (subscription.licence_type == 10)%>
+                        <%= t('admin.subscriptionsManagement.biannual')%>
+                      <%- elsif (subscription.licence_type == 15)%>
+                        <%= t('admin.subscriptionsManagement.annual')%>
+                      <%- elsif (subscription.licence_type == 20)%>
+                        <%= t('admin.subscriptionsManagement.videoconference')%>
+                      <%- elsif (subscription.licence_type == 25)%>
+                        <%= t('admin.subscriptionsManagement.additional_data')%>
+                      <% end %>
+                 </td>
+                 <td class="noedit"><%= subscription.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y") %></td>
+                 <td class="date-eu"><%- if subscription.trial_expiration_date %>
+                        <%= subscription.trial_expiration_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y") %>
+
+                       <% end %>
+                    <%- if subscription.expiration_date %>
+                        <%= subscription.expiration_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y") %>
+                       <% end %>
+                    </td>
+                 <td class="noedit"><%= link_to t('admin.subscriptionsManagement.show'), showSubscription_admin_path(:subscriptionId => subscription.id) %></td>
+                 <td class="noedit"><%= link_to t('admin.subscriptionsManagement.delete'), deleteSubscription_admin_path(:subscriptionId => subscription.id), {:confirm => t('admin.subscriptionsManagement.confirmDelete')} %></td>
+              </tr>
+            </div>
+        <% end %>
+        </tbody>
+    </table>
+  </div>

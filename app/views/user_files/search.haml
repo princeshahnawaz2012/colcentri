@@ -1,0 +1,49 @@
+.title
+  %h2= t('user_files.search.title')
+
+= jsSearchFormValidation
+
+.searchForm
+  = form_tag(searchResults_user_files_path, :name => 'form', :method => 'post', :multipart => true, :onsubmit => "return validate(form)") do
+    .name
+
+      .nombre= label_tag t('user_files.search.name')
+      .campo= text_field_tag "name"
+
+      .checkBox
+        = check_box_tag "aproxSearch", false
+        .aprox_search= label_tag t('user_files.search.exactSearch')
+    .clear
+
+    .nombre= label_tag t('user_files.search.extension')
+    .campo= text_field_tag "extension"
+
+    .clear
+
+    .nombre= label_tag t('user_files.search.minSize')
+    .campo= text_field_tag "minSize"
+    .clear
+    .errors_for
+      #minSize_NaN{:style => "display: none"}=t('activerecord.errors.models.user_directories.search.size.nan')
+
+    .clear
+
+    .nombre= label_tag t('user_files.search.maxSize')
+    .campo= text_field_tag "maxSize"
+    .clear
+    .errors_for
+      #maxSize_NaN{:style => "display: none"}=t('activerecord.errors.models.user_directories.search.size.nan')
+    .clear
+    .errors_for
+      #min_sup_max{:style => "display: none"}=t('activerecord.errors.models.user_directories.search.size.min_sup_max')
+    .clear
+
+    .nombre= label_tag t('user_files.search.startDate')
+    .campo3= select_datetime @userRegistrationDate, :order => [ :day, :month, :year ]
+
+    .clear
+
+    .submit
+      = image_submit_tag t('buttons.search'), :name => 'commit'
+    .cancel
+      = link_to_function 'Cancelar', "history.go(-1)", :class => 'text_button'

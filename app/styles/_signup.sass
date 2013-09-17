@@ -1,0 +1,238 @@
+$label_indent: 150px
+.new_users, .create_users
+  form
+    width: 500px
+    margin: 0px
+    font-size: 12px
+
+    div
+      display: inline-block
+
+    p
+      margin: 10px 0
+      font-size: 12px
+
+    .text_field
+      input
+        font-size: 13px
+        width: 452px
+        color: #6a6a6a
+        padding: 5px
+        border:
+          top: solid 1px rgb(196, 196, 196)
+          left: solid 1px rgb(233, 233, 233)
+          bottom: solid 1px rgb(233, 233, 233)
+          right: solid 1px rgb(196, 196, 196)
+
+    .text_field, .select, .check_box
+      margin-bottom: 10px
+      label
+        display: inline-block
+        font-size: 12px
+        padding-bottom: 5px
+        text-align: left
+        display: inline-block
+        width: $label_indent
+        margin-right: 20px
+        font-weight: bold
+
+    .result_icon
+      margin-left: 10px
+
+    .field_with_errors
+      display: inline-block
+      input
+        background: rgb(255, 230, 230)
+        border: 1px rgb(200, 100, 100) solid
+
+    .text_field, .select
+      .field_note, .errors_for
+        font-size: 10px
+        padding-left: $label_indent + 30px
+      .field_note
+        color: #555
+      .errors_for
+        display: block
+
+    .check_box
+      padding-left: $label_indent - 5px
+      label
+        display: inline
+        margin-left: 15px
+
+    .errors_for
+      display: block
+      color: rgb(160,160,160)
+      padding-left: $label_indent + 30px
+      &.weak
+        color: rgb(100,100,0)
+      &.average
+        color: rgb(50,50,50)
+      &.strong
+        color: rgb(0,150,0)
+    .field_with_errors .errors_for
+      color: rgb(160,160,160)
+
+    fieldset
+      border: none
+      //border-top: 1px solid #ccc
+      padding: 0px
+      margin-top: 25px
+      //padding-top: 15px
+      legend
+        //margin-left: 30px
+        //padding: 0 15px
+        //font-weight: bold
+
+    fieldset.account
+      p
+        color: #555
+        font-size: 12px
+        margin: 5px 0 15px 0px
+
+    .submit
+      display: block
+      margin: 20px 0
+      padding-left: $label_indent + 30px
+      p
+        color: #555
+        margin-top: 10px
+
+
+.remember_password_image, .new_user_signup
+  h2
+    border-bottom: 2px solid #E3E6EB
+    color: #003869
+    font-size: 18px
+    font-weight: bold
+    margin-bottom: 1em
+    margin-top: 10px
+    padding: 10px
+  h3
+    color: #003869
+    font-size: 14px
+  p
+    font-size: 12px
+    color: #656565
+  ul
+    li
+      font-size: 12px
+      padding-bottom: 7px
+      color: #656565
+    a
+      color: #054D9F
+      text-decoration: underline
+
+
+.MargenBloqueA1
+  margin-top: 90px
+
+  .ContentBloqueA2
+    background-image: url(/images/FdoBloqueAzul2.gif)
+  .ContentBloqueA2Eng
+    background-image: url(/images/FdoBloqueAzul2Eng.gif)
+  .ContentBloqueA2Por
+    background-image: url(/images/FdoBloqueAzul2Por.gif)
+
+
+  .ContentBloqueA2, .ContentBloqueA2Eng, .ContentBloqueA2Por
+
+    background-repeat: repeat-y
+    background-position: left top
+    width: 242px
+    height: 214px
+    padding-top: 3px
+
+    .TitleBA2
+      background-image: url(/images/FdoTitleBA2.gif)
+      background-repeat: no-repeat
+      background-position: left top
+      width: 208px
+      height: 34px
+      color: #FFFFFF
+      font-family: Verdana, Geneva, sans-serif
+      font-size: 22px
+      padding-left: 15px
+      padding-top: 7px
+      margin-left: 14px
+
+    .Lista
+      margin-bottom: 0px
+      margin-top: 20px
+      margin-left: 15px
+
+      .OpBA1
+        font-family: Verdana, Geneva, sans-serif
+        font-size: 13px
+        color: #656565
+        background-image: url(/images/IconoListaBA2.gif)
+        background-repeat: no-repeat
+        background-position: left 5px
+        padding-left: 15px
+        padding-bottom: 15px
+        padding-right: 35px
+
+.TitlePaso1R
+  font-family: Verdana, Geneva, sans-serif
+  font-size: 14px
+  font-weight: bold
+  color: #1D4976
+  background-image: url(/images/ImgPaso1.gif)
+  background-repeat: no-repeat
+  background-position: left top
+  padding-top: 8px
+  padding-left: 50px
+  padding-bottom: 35px
+  margin-top: 20px
+
+.TitlePaso2R
+  font-family: Verdana, Geneva, sans-serif
+  font-size: 14px
+  font-weight: bold
+  color: #1D4976
+  background-image: url(/images/ImgPaso2.gif)
+  background-repeat: no-repeat
+  background-position: left top
+  padding-top: 8px
+  padding-left: 50px
+  padding-bottom: 10px
+  margin-bottom: -15px
+  margin-top: 20px
+
+.TitlePaso3R
+  font-family: Verdana, Geneva, sans-serif
+  font-size: 14px
+  font-weight: bold
+  color: #1D4976
+  background-image: url(/images/ImgPaso3.gif)
+  background-repeat: no-repeat
+  background-position: left top
+  padding-top: 8px
+  padding-left: 50px
+  padding-bottom: 10px
+  margin-bottom: -15px
+  margin-top: 20px
+
+.TxtCampoExp
+  color: #6b6a7d
+  font-size: 10px
+
+.new_user_signup
+
+  h2
+    border-bottom: 2px solid #E3E6EB
+    color: #003869
+    font-size: 20px
+    font-weight: bold
+    margin-bottom: 1em
+    margin-top: 10px
+    padding: 10px
+    margin-right: 30px
+
+.description
+  font-size: 12px
+  color: #656565
+  padding-right: 30px
+  padding-bottom: 20px
+
+

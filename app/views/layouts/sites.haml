@@ -1,0 +1,30 @@
+!!! Strict
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang'=>"en", :lang=>"en" }
+  %head
+    %meta{ 'http-equiv' => "content-type", :content => "text/html;charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{ :rel => "apple-touch-icon", :href => "/images/apple-touch-icon.png"}
+    %link{ :rel => "apple-touch-icon", :sizes => "72x72", :href => "/images/touch-icon-ipad.png"}
+    %link{ :rel => "apple-touch-icon", :sizes => "114x114", :href => "/images/touch-icon-iphone4.png"}
+    //%title=h @organization
+    %title= "Kinubi"
+    = include_stylesheets :sites
+    = sprockets_include_tag :public
+
+  %body{ :class => "#{location_name} #{I18n.locale} #{Rails.env}"}
+    .container
+      .wrapper
+        .content
+          - show_flash
+          = yield
+        .column
+          #sidebar
+            = yield :column
+      .footer
+        %p.copyright
+          = t('shared.footer.footer_msg')
+          = link_to 'Colcentric', 'http://colcentric.com'
+          -#Colcentric
+          -#= link_to random_keyword, "http://colcentric.com"
+
+

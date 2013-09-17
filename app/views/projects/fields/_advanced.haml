@@ -1,0 +1,25 @@
+-# show in the same page deletion and ownership
+
+-# show ownership if user is admin
+- if can? :transfer, @current_project
+  - @sub_action = 'ownership'
+
+  - sub_params = transfer_project_path(@current_project)
+
+  = form_for @current_project, :url => sub_params do |f|
+    %h2= t("projects.edit.title_#{@sub_action}", :project => @current_project)
+    = project_fields(f,@current_project,@sub_action)
+    =# f.submit '', :class => 'save_button'
+    = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+    .clear
+
+.clear
+
+
+- if can? :destroy, @current_project
+  - @sub_action = 'deletion'
+
+  = form_for @current_project do |f|
+    %h2= t("projects.edit.title_#{@sub_action}", :project => @current_project)
+    = project_fields(f,@current_project,@sub_action)
+    %br

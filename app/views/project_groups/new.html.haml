@@ -1,0 +1,15 @@
+%h2
+  .image= image_tag('/iconos/grupo22x22.png')
+  .text= t('.title')
+  .clear
+
+%p=t '.explain1_html'
+
+= jsProjectGroupFormValidation
+
+= form_for @project_group, :html => {  :name => 'form', :onsubmit => 'return validate_project_group_name(form);' } do |f|
+  = project_group_fields(f,@project_group)
+  .submit
+    =# f.submit t('.submit'), :class => 'form_button'
+    = image_submit_tag t('buttons.save'), :class => 'save_button_without_image'
+

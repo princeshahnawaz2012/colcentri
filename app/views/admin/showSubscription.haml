@@ -1,0 +1,94 @@
+.goBackLink
+  = link_to t('admin.showSubscription.goBackSubscriptionsManagement'), subscriptionsManagement_admin_path
+
+.subscriptionInfo
+  .id
+    = t('admin.showSubscription.id') + ": " + @subscription.id.to_s
+  .status
+    = t('admin.showSubscription.status') + ": "
+    - unless @subscription.status.nil?
+      - if @subscription.status == 0
+        = t('admin.showSubscription.active')
+      - elsif @subscription.status == 1
+        = t('admin.showSubscription.incomplete')
+      - elsif @subscription.status == 2
+        = t('admin.showSubscription.pending')
+      - elsif @subscription.status == 3
+        = t('admin.showSubscription.cancelled')
+      - elsif @subscription.status == 4
+        = t('admin.showSubscription.failed')
+      - elsif @subscription.status == 5
+        = t('admin.showSubscription.trial')
+      - elsif @subscription.status == 6
+        = t('admin.showSubscription.suspended')
+      - elsif @subscription.status == 7
+        = t('admin.showSubscription.inactive')
+  .license_type
+    = t('admin.showSubscription.licence_type') + ": "
+    - unless @subscription.licence_type.nil?
+      - if @subscription.licence_type == 0
+        = t('admin.showSubscription.special')
+      - if @subscription.licence_type == 1
+        = t('admin.showSubscription.trial')
+      - if @subscription.licence_type == 5
+        = t('admin.showSubscription.monthly')
+      - if @subscription.licence_type == 10
+        = t('admin.showSubscription.biannual')
+      - if @subscription.licence_type == 15
+        = t('admin.showSubscription.annual')
+      - if @subscription.licence_type == 20
+        = t('admin.showSubscription.videoconference')
+      - if @subscription.licence_type == 25
+        = t('admin.showSubscription.additional_data')
+  .user_id
+    = t('admin.showSubscription.user_id') + ": "
+    - unless @subscription.user_id.nil?
+      = @subscription.user_id
+  .sponsor_user_id
+    = t('admin.showSubscription.sponsor_user_id') + ": "
+    - unless @subscription.sponsor_user_id.nil?
+      = @subscription.sponsor_user_id
+  .paypal_profileid
+    = t('admin.showSubscription.paypal_profileid') + ": "
+    - unless @subscription.paypal_profileid.nil?
+      = @subscription.paypal_profileid
+  .paypal_profilestatus
+    = t('admin.showSubscription.paypal_profilestatus') + ": "
+    - unless @subscription.paypal_profilestatus.nil?
+      = @subscription.paypal_profilestatus
+  .paypal_correlationid
+    = t('admin.showSubscription.paypal_correlationid') + ": "
+    - unless @subscription.paypal_correlationid.nil?
+      = @subscription.paypal_correlationid
+  .last_payment_date
+    = t('admin.showSubscription.last_payment_date') + ": "
+    - unless @subscription.last_payment_date.nil?
+      = @subscription.last_payment_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .expiration_date
+    = t('admin.showSubscription.expiration_date') + ": "
+    - unless @subscription.expiration_date.nil?
+      = @subscription.expiration_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .deleted
+    - if !@subscription.deleted.nil?
+      - if (@subscription.deleted?)
+        = t('admin.showSubscription.subscriptionDeleted')
+      - else
+        = t('admin.showSubscription.subscriptionNotDeleted')
+    -else
+      = t('admin.showSubscription.deleted') + ": "
+  .created_at
+    = t('admin.showSubscription.created_at') + ": "
+    - unless @subscription.created_at.nil?
+      = @subscription.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .updated_at
+    = t('admin.showSubscription.updated_at') + ": "
+    - unless @subscription.updated_at.nil?
+      = @subscription.updated_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .trial_expiration_date
+    = t('admin.showSubscription.trial_expiration_date') + ": "
+    - unless @subscription.trial_expiration_date.nil?
+      = @subscription.trial_expiration_date.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .shopping_cart_id
+    = t('admin.showSubscription.shopping_cart_id') + ": "
+    - unless @subscription.shopping_cart_id
+      = @subscription.shopping_cart_id

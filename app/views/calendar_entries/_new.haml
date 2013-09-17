@@ -1,0 +1,44 @@
+= jsNewEntryFormValidation
+= jsActivateStartDate
+
+.calendar_entry_form#calendar_entry_form{ :style => 'display: none'}
+  %h3
+    .image= image_tag('/iconos/entrada22x22.png')
+    .text= t('calendar_entries.new.title')
+    .clear
+
+  = form_tag(create_calendar_entry_path, :name => 'CreateCalendarEntry', :method=>'post', :multipart => true, :onsubmit => "return validate(CreateCalendarEntry)") do
+
+    -# Name
+    .calendar_entry_title= t('calendar_entries.new.name_html')
+    .clear
+    .name_text_field
+      = text_field_tag "title", nil, :class => 'calendar_entry_text_field'
+    .clear
+    .errors_for#no_name_error{:style => "display: none"}=t('calendar_entries.new.no_title_error')
+
+    -# Description
+    .calendar_entry_title= label_tag t('calendar_entries.new.description')
+    = text_area_tag "description", nil, :class => 'calendar_entry_text_field_big'
+
+    -# Checkbox start date
+    .calendar_entry_title_big= label_tag t('calendar_entries.new.introduce_start_date')
+    .campo= check_box_tag 'valid_start_date', 'yes', true, :onchange => "activateStartDate(form)"
+
+    %br
+
+    -# Start date
+    .calendar_entry_title_small= label_tag t('calendar_entries.new.start_date')
+    .campo= select_date Date.today, :order => [:day, :month, :year], :prefix => :start_date
+
+    -# End date
+    .calendar_entry_title_small= label_tag t('calendar_entries.new.end_date')
+    .campo= select_date Date.today, :order => [:day, :month, :year], :prefix => :end_date
+
+    -# Error message for dates
+    .errors_for#date_error{:style => "display: none"}=t('calendar_entries.new.date_error')
+
+    .save_button= image_submit_tag t('buttons.save')
+    .calendar_entry_cancel_button_position= link_to_function 'Cancelar', 'Element.hide("calendar_entry_form");', :class => 'calendar_entry_cancel_button_style'
+
+    .clear

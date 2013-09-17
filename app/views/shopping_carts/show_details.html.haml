@@ -1,0 +1,100 @@
+.PasosCompra
+  .BloquePasoCompra1
+    = t('shopping_carts.buy.step1')
+  .BloquePasoCompra2
+    = t('shopping_carts.buy.step2')
+  .BloquePasoCompra3_Selecc
+    = t('shopping_carts.buy.step3')
+
+
+%h2= t('.title.title')
+
+
+.details
+
+  - if @shopping.licences.any?  or @shopping.incomplete_videoconference_subscription
+    .purchased_products
+      .products_titles
+        .product= t('shopping_carts.buy.product')
+        .price= t('shopping_carts.buy.price')
+        .quantity= t('shopping_carts.buy.quantity')
+        .total= t('shopping_carts.buy.total')
+      .sponsor_subscription
+        - if @shopping.licences.any?
+          .licence3
+            .product3
+              = t('.title.collaborative_platform')
+          .licence
+            - if @shopping.incomplete_monthly_licences.any?
+              .Sub_licence
+                .Sub_product= licence_duration_name(Subscription::LICENCE_TYPE[:monthly])
+                .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:monthly])
+                .Sub_quantity= @shopping.incomplete_monthly_licences.count
+                .Sub_total= license_amount_to_pay(Subscription::LICENCE_TYPE[:monthly], @shopping.incomplete_monthly_licences.count)
+
+            - if @shopping.incomplete_biannual_licences.any?
+              .Sub_licence
+                .Sub_product= licence_duration_name(Subscription::LICENCE_TYPE[:biannual])
+                .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:biannual])
+                .Sub_quantity= @shopping.incomplete_biannual_licences.count
+                .Sub_total= license_amount_to_pay(Subscription::LICENCE_TYPE[:biannual], @shopping.incomplete_biannual_licences.count)
+
+            - if @shopping.incomplete_annual_licences.any?
+              .Sub_licence
+                .Sub_product= licence_duration_name(Subscription::LICENCE_TYPE[:annual])
+                .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:annual])
+                .Sub_quantity= @shopping.incomplete_annual_licences.count
+                .Sub_total= license_amount_to_pay(Subscription::LICENCE_TYPE[:annual], @shopping.incomplete_annual_licences.count)
+
+        - if not @shopping.incomplete_videoconference_subscription.nil?
+          .licence3
+            .product3
+              = t('.title.videoconference')
+          .licence
+            .Sub_licence
+              .Sub_product= licence_type_name(Subscription::LICENCE_TYPE[:videoconference])
+              .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:videoconference])
+              -#
+                .Sub_quantity= @shopping.incomplete_videoconference_subscriptions.count
+              .Sub_quantity=1
+              -#
+                .Sub_total= license_amount_to_pay(Subscription::LICENCE_TYPE[:videoconference], @shopping.incomplete_videoconference_subscriptions.count)
+              .Sub_total= license_amount_to_pay(Subscription::LICENCE_TYPE[:videoconference], 1)
+              -#
+                .Sub_total= t("subscriptions.fields.total.monthly", :amount => VideoconferenceSubscription::AMMOUNT) if @shopping.videoconference_subscription
+
+
+
+        - if @shopping.additional_datas.incomplete.any?
+          .licence3
+            .product3
+              = t('.title.additional_data')
+          .licence
+            .Sub_licence
+              .Sub_product= licence_type_name(Subscription::LICENCE_TYPE[:additional_data])
+              .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:additional_data])
+              .Sub_quantity= @shopping.additional_datas.count
+              .Sub_total= self.license_amount_to_pay(Subscription::LICENCE_TYPE[:additional_data], @shopping.additional_datas.count)
+
+
+  .total_general
+    .total_2
+      .text= t('.total')
+      .number= t('.quantity', :amount => @shopping.total_ammount_without_iva)
+    .total_base
+      .text= t('.total_base')
+      .number= t('.quantity', :amount => @shopping.total_ammount_without_iva)
+    .iva
+      .text= t('.iva')
+      .number= t('.quantity', :amount => @shopping.get_iva(@shopping.total_ammount_without_iva))
+    .total_ammount
+      .text= t('.total_ammount')
+      .number= t('.quantity', :amount => @shopping.total_ammount)
+
+  .botones
+    .submit
+    = link_to t('.submit'), create_recurring_shopping_cart_path(@shopping), :method=>'post', :class => 'form_button'
+
+    .cancel
+      %br
+      = link_to t('.cancel'), subscriptions_path, :class => :button

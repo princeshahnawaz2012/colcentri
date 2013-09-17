@@ -1,0 +1,59 @@
+- if f.object.new_record?
+  %h3
+    .image= image_tag('/iconos/task22x22.png')
+    .text=t('.title')
+    .clear
+
+  -#
+    %p= t('.task')
+
+.task_title= f.label :name, t('.name_html')
+.clear
+.task_text_field= f.text_field :name, :autofocus => %w[new edit].include?(action_name) || nil
+#name_blank.errors_for{:style => 'display: none'}= t('tasks.errors.name.cant_be_blank')
+- if f.object.new_record?
+  -#
+    %p.optional= t('.optional')
+
+  - f.object.comments.build unless f.object.comments.any?
+  = f.fields_for :comments do |comment_fields|
+    .body
+      .task_title= comment_fields.label :body, t('.body_html')
+      .tast_text_field= comment_fields.text_area :body, :rows => 3, :class => 'task_text_field_big'
+      #description_blank.errors_for{:style => 'display: none'}= t('tasks.errors.description.cant_be_blank')
+
+    .extra
+      .upload_area
+        %p= t('uploads.new.select_a_file')
+        - comment_fields.object.uploads.build unless comment_fields.object.uploads.any?
+        = comment_fields.fields_for :uploads do |uploads|
+          = uploads.file_field :asset, :id => 'upload_file'
+      .actions{ :style => 'margin-left: 20px'}
+        .attach
+          -#
+            %span= t('comments.fields.attach') + ": "
+          = link_to t('uploads.comment_upload_link'), '#uploads', :class => 'attach_icon hoverable', :title => "Attach a file", :style => 'margin-bottom: 6px'
+          = render 'google_docs/form', :f => comment_fields
+
+
+        .task_actions
+          .task_status_priority_private
+            .task_title_small= f.label :priority, t('comments.new.priority_html')
+            .task_select= f.select :priority, task_priorities_for_select, {:selected => 1}
+            .clear
+          .task_responsible_participants
+            .task_title_small= f.label :assigned_id, t('comments.new.assigned_to')
+            .task_select= f.select :assigned_id, [], :class => 'task_select'
+            .task_title_small= f.label :task_participants, t('tasks.fields.participants_html')
+            = f.text_field :task_participants, :placeholder => t('tasks.fields.participants_example'), :size => '20'
+            .clear
+          .task_dates
+            .task_title_small= t('comments.new.start_date_html')
+            = date_picker(f, :start_date)
+            .task_title_small= t('comments.new.due_on_html')
+            = date_picker(f, :due_on)
+
+-#Lo comentamos de momento hasta que este bien definido y funcionando
+  .private_field
+    = f.label :private, t('.private')
+    = f.check_box :private

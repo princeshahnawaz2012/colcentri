@@ -1,0 +1,161 @@
+.nav_links_user
+  = render 'shared/top_navigation'
+
+.collaborative_links
+  .collaborative_navigation
+    .title_navigation= t('.title')
+
+
+  -# Recent Activity
+
+  .collaborative_info
+    .el= link_to t('.recent_activity'), root_path, :class => 'recent_activity', :id => 'colab_recent_activity_link'
+    .divider
+
+    -# Time tracking
+    .el.extra= link_to t('.time'), collaboration_calendar_path, :class => 'ajax time', :id => 'colab_calendar_link'
+    .divider
+
+  -# All Projects
+  - show_only_recent = current_user.people.size > 3
+  - active_projects = current_user.projects.select{|p| !p.archived} #we select them in ruby because the query is done in the header already
+  - projects_to_show = show_only_recent ? current_user.recent_projects : active_projects
+  - groups_to_show = (current_user.projects.collect{|p| p.project_group} | current_user.project_groups).compact
+  - projects_not_in_groups_to_show = current_user.projects.select{|p| !p.archived}  - groups_to_show.collect{|g| g.projects if g}.flatten
+  - projects_archived = current_user.people.size - projects_to_show.size
+
+
+  -#.el#my_projects
+    = link_to t('.all_projects'), projects_path, :class => 'home'
+    -#%span= active_projects.size
+
+
+  .projects
+    .el= link_to t('.projects'), show_all_project_groups_path(:archived_projects => false), :class => 'project_navigation', :id => 'projects_link'
+
+
+  -#
+    .project_groups#project_groups
+      - for group in groups_to_show
+        .el= link_to group, group, :class => 'project_group'
+        - projects_to_show = group.projects & current_user.projects
+        .contained
+          - if can?(:update, group)
+            .el= link_to t('.settings'), settings_project_group_path(:project_group_id => group.id), :class => 'settings'
+            now the content of the two pages appear in the same one
+              .contained
+                .el= link_to t('shared.project_group_settings_navigation.general'), project_group_settings_path(group.permalink), :class => 'general_settings ajax'
+                -#.el= link_to t('shared.project_group_settings_navigation.deletion'), project_group_deletion_path(group.permalink, :sub_action => 'deletion'), :class => 'deletion ajax'
+                .el= link_to t('shared.project_group_settings_navigation.advanced'), project_group_advanced_path(group.permalink, :sub_action => 'advanced'), :class => 'advanced_settings ajax'
+                -# if group.owner?(current_user)
+                  .el= link_to t('shared.project_group_settings_navigation.ownership'), project_group_ownership_path(group.permalink, :sub_action => 'ownership'), :class => 'ownership ajax'
+                -#.el= link_to t('.roles'), project_group_project_group_roles_path(group), :class => 'people_group ajax'
+            - for project in projects_to_show
+              - next if project.new_record?
+              = project_menu(project)
+    -#
+      -if projects_not_in_groups_to_show.length > 0
+        .el= link_to t('shared.navigation.without_group'), project_groups_path, :class => 'project_group'
+        .contained
+          - for project in projects_not_in_groups_to_show
+            - next if project.new_record?
+            = project_menu(project)
+
+    -#
+      - if projects_archived > 0
+        .el= link_to t('.show_all_projects'), all_projects_path, :class => 'more ajax'
+
+
+  -# Organizations
+  - if can? :see, :organizations
+    .el#my_organizations= link_to t('.organizations'), organizations_path, :class => 'people', :id => 'organization_link'
+    .contained
+      - for organization in current_user.organizations
+        - next if organization.new_record?
+        .el= link_to organization, organization_path(organization)
+        .contained
+          .el= link_to t('organizations.column.general_settings'), edit_organization_path(organization), :class => 'ajax', :id => 'edit_organization_link'
+          .el= link_to t('organizations.column.admin_projects'), projects_organization_path(organization), :class => 'ajax', :id => 'projects_organization_link'
+          - if can?(:admin, organization)
+            .el= link_to t('organizations.column.admin_users'), organization_memberships_path(organization), :class => 'ajax', :id => 'organization_memberships_link'
+            .el= link_to t('organizations.column.appearance'), appearance_organization_path(organization), :class => '', :id => 'appearance_organization_link'
+            .el= link_to t('organizations.column.delete'), delete_organization_path(organization), :class => 'ajax', :id => 'delete_organization_link'
+      - unless Colcentric.config.community
+        .el= link_to t('.show_all_organizations'), organizations_path, :class => 'more ajax'
+
+    -# More options
+    -#.el#show_more= link_to t('.show_more'), "#", :class => 'show_more'
+    -#.el.extra{ :style => 'display: none' }= link_to t('.time'), time_path, :class => 'ajax time'
+    -#.el.extra= link_to t('.time'), time_path, :class => 'ajax time'
+
+-#Mark the current section with bold font
+= javascript_tag "document.getElementById(\"my_recent_activity_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"my_calendar_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"my_tasks_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"mmy files_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"videoconference_link\").style.fontWeight=\"normal\";"
+
+= javascript_tag "document.getElementById(\"configuration_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"user_settings_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"user_picture_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"user_notifications_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"user_payments_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"user_invoices_link\").style.fontWeight=\"normal\";"
+
+= javascript_tag "document.getElementById(\"colab_recent_activity_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"colab_calendar_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"projects_link\").style.fontWeight=\"normal\";"
+
+= javascript_tag "document.getElementById(\"organization_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"edit_organization_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"projects_organization_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"organization_memberships_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"appearance_organization_link\").style.fontWeight=\"normal\";"
+= javascript_tag "document.getElementById(\"delete_organization_link\").style.fontWeight=\"normal\";"
+
+-if (params[:controller] == 'users' and params[:action] == 'show')
+  = javascript_tag "document.getElementById(\"my_recent_activity_link\").style.fontWeight=\"bold\";"
+-elsif ((params[:controller] == 'calendar' and params[:action] == 'index') or params[:controller] == 'calendar_entries')
+  = javascript_tag "document.getElementById(\"my_calendar_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'task_lists' and params[:action] == 'my_tasks')
+  = javascript_tag "document.getElementById(\"my_tasks_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'user_files' || params[:controller] == "user_directories")
+  = javascript_tag "document.getElementById(\"my_files_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'videoconferences' and params[:action] == 'index')
+  = javascript_tag "document.getElementById(\"videoconference_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'users' and params[:action] == 'edit' and params[:sub_action] == 'settings')
+  = javascript_tag "document.getElementById(\"configuration_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"user_settings_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'users' and params[:action] == 'edit' and params[:sub_action] == 'picture')
+  = javascript_tag "document.getElementById(\"configuration_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"user_picture_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'users' and params[:action] == 'edit' and params[:sub_action] == 'notifications')
+  = javascript_tag "document.getElementById(\"configuration_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"user_notifications_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'subscriptions' and params[:action] == 'index')
+  = javascript_tag "document.getElementById(\"configuration_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"user_payments_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'invoices' and params[:action] == 'index')
+  = javascript_tag "document.getElementById(\"configuration_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"user_invoices_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'projects' and params[:action] == 'index')
+  = javascript_tag "document.getElementById(\"colab_recent_activity_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'calendar' and params[:action] == 'collaboration_calendar')
+  = javascript_tag "document.getElementById(\"colab_calendar_link\").style.fontWeight=\"bold\";"
+-elsif ((params[:controller] == 'project_groups' and (params[:action] == 'show_all' or params[:action] == 'new')) or (params[:controller] == 'projects' and (params[:action] == 'show' or params[:action] == 'edit' or params[:action] == 'new')) or (params[:controller] == 'calendar' and params[:action] == 'project_calendar') or (params[:controller] == 'conversations' and params[:action] == 'index') or params[:controller] == 'pages' or (params[:controller] == 'task_lists' and (params[:action] == 'index' or params[:action] == 'show')) or params[:controller] == 'uploads' or params[:controller] == 'upload_directories' or params[:controller] == 'people' or (params[:controller] == 'tasks' and params[:action] == "show"))
+  = javascript_tag "document.getElementById(\"projects_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'organizations' and params[:action] == 'edit')
+  = javascript_tag "document.getElementById(\"organization_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"edit_organization_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'organizations' and params[:action] == 'projects')
+  = javascript_tag "document.getElementById(\"organization_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"projects_organization_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'memberships' and params[:action] == 'index')
+  = javascript_tag "document.getElementById(\"organization_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"organization_memberships_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'organizations' and params[:action] == 'appearance')
+  = javascript_tag "document.getElementById(\"organization_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"appearance_organization_link\").style.fontWeight=\"bold\";"
+-elsif (params[:controller] == 'organizations' and params[:action] == 'delete')
+  = javascript_tag "document.getElementById(\"organization_link\").style.fontWeight=\"bold\";"
+  = javascript_tag "document.getElementById(\"delete_organization_link\").style.fontWeight=\"bold\";"

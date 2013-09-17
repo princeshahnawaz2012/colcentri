@@ -1,0 +1,36 @@
+.email{ :style => email_global }
+
+  .header
+    %h1
+      = image_tag('/images/LogoColcentric1.png', :alt => 'Kinubi')
+
+  = dont_answer
+
+
+  -#%p= t('emailer.invitation.plan_share_and_collaborate')
+
+  .box{ :style => email_box }
+    %p{ :style => email_text(:big) }= t('emailer.invitation.colcentric_is_a_pm_platform')
+    -#%p= t('emailer.invitation.collaborate_with', :name => h(@referral.name))
+    %p{ :style => email_text(:big) }
+      =raw t("emailer.invitation.you_have_been_invited_to_#{@target.class_name}", :user => h(@referral.name), :target => content_tag(:b, h(@target.name)))
+    %h2{ :style => email_text(:big) }
+      = link_to t('emailer.invitation.accept_the_invitation'), new_user_url(:invitation => @invitation.token), :style => 'color: #008ac0'
+    
+    -# if @invitation.project
+      %p
+        %strong
+          = t('emailer.invitation.current_users')
+        = @target.people.collect { |p| h(p.name) }.to_sentence
+
+  %p{ :style => email_text(:small) }
+    = t('emailer.invitation.plaintext_link')
+    %br
+    = link_to new_user_url(:invitation => @invitation.token), new_user_url(:invitation => @invitation.token), :style => 'color: #008ac0'
+
+  .footer{ :style => email_text(:small) }
+    %p
+      -#= t('emailer.invitation.report_abuse')
+      =# t('emailer.reset_password.problems_html', :support => Colcentric.config.support)
+      = t('emailer.reset_password.problems')
+      = mail_to Colcentric.config.support, Colcentric.config.support, :style => 'color: #008ac0'

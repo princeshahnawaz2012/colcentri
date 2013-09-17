@@ -1,0 +1,17 @@
+-# content_for :column do
+  = conversations_primer(@current_project)
+  = instructions_for_email(@current_project)
+
+%h3
+  .image= image_tag("/iconos/conversacion22x22.png")
+  .text= t('.title')
+  .clear
+
+= form_for [@current_project, @conversation], :html => { 'data-project-id' => @current_project.id, :name => 'form_new_conversation', :multipart => true, :onsubmit => 'return validate_conversation(form_new_conversation);' } do |f|
+  = render 'fields', :f => f, :project => @current_project
+  = render 'watcher_fields', :f => f, :project => @current_project
+  .submit
+    -#%span.help= formatting_documentation_link
+    -#= preview_button
+    =# f.submit '', :class => 'create_conversation_button'
+    = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'

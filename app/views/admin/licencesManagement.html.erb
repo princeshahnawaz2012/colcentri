@@ -1,0 +1,42 @@
+<%= javascript_include_tag "tablekit" %>
+<%= javascript_include_tag "fastinit" %>
+<%= javascript_include_tag "date-en-GB" %>
+<script>
+   TableKit.options.editAjaxURI = '/admin/updateLicence';
+    TableKit.Editable.textInput('Licence', {}, undefined, "");
+</script>
+<link href="/css/tablesorter.css" rel="stylesheet" type="text/css" />
+<h2><%=t('admin.licencesManagement.title')%> </h2>
+  <div class="newlicences">
+        <%= link_to t('admin.licencesManagement.new'), newLicence_admin_path %>
+      </div>
+  <div style="overflow: auto; height: 300px; width: 630px;">
+    <table class="sortable resizable editable">
+        <thead>
+            <tr>
+                <th id="name"><%= t('admin.licencesManagement.licence')%></th>
+                <th id="period"><%= t('admin.licencesManagement.period')%></th>
+                <th id="amount"><%= t('admin.licencesManagement.amount')%></th>
+                <th class="status" id="status"><%= t('admin.licencesManagement.status')%></th>
+                <th class="created_at" id="title"><%= t('admin.licencesManagement.created_at')%></th>
+                <th class="noSortClass" id="show"><%= t('admin.licencesManagement.show')%></th>
+                <th class="noSortClass" id="author"><%= t('admin.licencesManagement.delete')%></th>
+            </tr>
+    </thead>
+    <tbody>
+        <% @licences.each do |licences| %>
+        <tr id="<%= licences.id  %>">
+            <td><%= licences.name if licences.name %></td>
+            <td><%= licences.period if licences.period %></td>
+            <td><%= licences.amount %></td>
+            <td><%= licences.status %></td>
+            <td><%= licences.created_at %></td>
+            <td><%= link_to t('admin.licencesManagement.show'), showLicence_admin_path(:licenceId => licences.id) %></td>
+            <td><%= link_to t('admin.licencesManagement.delete'), deleteLicence_admin_path(:licenceId => licences.id), {:confirm => t('admin.licencesManagement.confirmDelete')} %></td>
+        </tr>
+        <% end %>
+
+
+    </tbody>
+    </table>
+  </div>

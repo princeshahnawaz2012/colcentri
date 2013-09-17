@@ -1,0 +1,25 @@
+%h2= t('calendar_entries.show.title', :entry_title => @entry.title)
+
+.show_entry_info
+  .title
+    .nombre= t('calendar_entries.show.entry_title') + ': '
+    .campo=  @entry.title
+  .clear
+  .description
+    .nombre= t('calendar_entries.show.description') + ': '
+    - if @entry.description != ''
+      .campo=  @entry.description
+    - else
+      .campo= '-'
+    %br
+  .start_date
+    .nombre= t('calendar_entries.show.start_date') + ': '
+    .campo= @entry.start_date.strftime("%d/%m/%Y")
+    %br
+  .end_date
+    .nombre= t('calendar_entries.show.end_date') + ': '
+    .campo= @entry.end_date.strftime("%d/%m/%Y")
+    %br
+  .buttons
+    = link_to '', edit_calendar_entry_path(:entry_id => @entry.id), :class => 'edit_icon', :title => t('calendar_entries.show.edit')
+    = link_to '', delete_calendar_entry_path(:entry_id => @entry.id), :class => 'big_trash_icon', :title => t('calendar_entries.show.delete')

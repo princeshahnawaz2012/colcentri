@@ -1,0 +1,10 @@
+%div[divider]
+  - if current_user && can?(:update, divider.page)
+    = render :partial => 'dividers/actions', :locals => {:divider => divider}
+  %h4
+    - if divider.name.length > 50 and divider.name.count(" ") <= 1
+      %ul
+        %li= divider.name[0..50]
+    - else
+      %ul
+        %li= divider.name.empty?? '&nbsp;' : h(divider.name)

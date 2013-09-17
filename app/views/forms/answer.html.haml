@@ -1,0 +1,47 @@
+%h2= @form.title
+%p=h @form.description
+%br
+%br
+
+
+- form_tag(get_answers_forms_path, :method => :post) do
+  = hidden_field_tag :user_id, current_user.id
+  = hidden_field_tag :form_id, @form.id
+  = hidden_field_tag :project_permalink, @current_project.permalink
+  = hidden_field_tag :result, @result
+  - @fields.each do |field|
+    - case field.field_type
+    - when 0
+      .form_title_answer= label_tag field.name
+      .form_text_field_user= text_field_tag "field_" + field.id.to_s, {}, :style => 'width: 185px'
+      %br
+      %br
+    - when 1
+      - @options = field.form_options
+      .form_title_answer= label_tag field.name
+      - names = Array.new
+      - @options.each do |o|
+        - names << o.name
+      = select_tag "field_" + field.id.to_s, options_for_select(names.each { |n| [n,n] } )
+      %br
+      %br
+    - when 2
+      .form_title_answer= label_tag field.name
+      = check_box_tag "field_" + field.id.to_s
+      %br
+      %br
+    - when 3
+      - day = Time.now.day
+      - month = Time.now.month
+      - year = Time.now.year
+
+      .form_title_answer= label_tag field.name
+
+      =# select_datetime Time.now, :order => [ :day, :month, :year ], :html => { :name => "field_" + field.id.to_s }
+      = select_tag "field_" + field.id.to_s + "_day", options_for_select((1..31).each { |num| [num,num]}, day )
+      = select_tag "field_" + field.id.to_s + "_month", options_for_select((1..12).each { |num| [num,num]}, month )
+      = select_tag "field_" + field.id.to_s + "_year", options_for_select((1900..2100).each { |num| [num,num]}, year )
+      %br
+      %br
+
+  = image_submit_tag t('buttons.save'), :class => 'save_button_without_image'

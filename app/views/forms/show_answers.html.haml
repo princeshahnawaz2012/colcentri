@@ -1,0 +1,50 @@
+%h2= t('forms.show_answers.title_html', :form => @form.title)
+
+.form_show_answers_header
+  .form_type_header
+    = t('forms.show_answers.type')
+  .form_show_answer_name_header
+    = t('forms.show_answers.name')
+  .form_answer_header
+    = t('forms.show_answers.answer')
+  .form_user_header
+    = t('forms.show_answers.username')
+  .form_date_header
+    = t('forms.show_answers.date')
+
+  .clear
+
+%br
+
+- num = 0
+- num_results = @form.get_total_results
+- num_pixels = 'height: ' + (num_results*22).to_s + 'px'
+
+- @fields.each do |field|
+  - if num % 2 == 0
+    - row_class = 'form_show_answer_row1'
+    - num += 1
+  - else
+    - row_class = 'form_show_answer_row2'
+    - num += 1
+  %div{ :class => row_class, :style => num_pixels}
+
+    .form_field_row
+    -#%h3= field.name
+    - field.results.each do |result|
+      .form_show_answers_row
+        .form_type_row
+          = Field::FIELD_TYPE_TEXT[field.field_type]
+        .form_name_row
+          = field.name
+        .form_answer_row
+          = result.value
+        .form_user_row
+          - begin
+            - user = User.find(result.user_id)
+            = user.login
+          -rescue
+            = " "
+        .form_date_row
+          = result.updated_at.strftime("%d/%m/%Y")
+  .clear

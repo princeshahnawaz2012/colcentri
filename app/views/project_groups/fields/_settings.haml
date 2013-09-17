@@ -1,0 +1,16 @@
+.name.text_field
+  = f.label :name, t('project_groups.fields.name_html')
+  = errors_for project_group, :name
+  = f.text_field :name
+
+.permalink.text_field
+  .permalink_title= t('project_groups.fields.permalink_html')
+  .permalink_name
+    = permalink_example(project_group.permalink)
+    -#= watch_permalink_example
+-#
+  = f.label :permalink, t('project_groups.fields.permalink_html')
+  = errors_for project_group, :permalink
+  = f.text_field :permalink
+  = permalink_example(project_group.permalink)
+  = watch_permalink_example

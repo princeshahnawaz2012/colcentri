@@ -1,0 +1,7 @@
+%div
+  = user_calendar_nav(@year,@month)
+  .calendar#calendar
+    = build_calendar(@year,@month)
+  .weektable
+    = build_weektable(@year, @month)
+  = user_hours_js(@year,@month,@tasks)

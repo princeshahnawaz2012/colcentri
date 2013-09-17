@@ -1,0 +1,24 @@
+-# show in the same page deletion and ownership
+
+-# show ownership if user is admin
+- if can? :transfer, @project_group
+  - @sub_action = 'ownership'
+  %h2= t("project_groups.edit.title_#{@sub_action}", :project_group => @project_group)
+
+  - sub_params = transfer_project_group_path(@project_group)
+
+  = form_for @project_group, :url => sub_params do |f|
+    = project_group_fields(f,@project_group,@sub_action)
+    =# f.submit t('project_groups.edit.change_owner'), :class => 'form_button'
+    = image_submit_tag t('buttons.save')
+
+
+-# Deletion
+- @sub_action = 'deletion'
+%h2= t("project_groups.edit.title_#{@sub_action}", :project_group => @project_group)
+= form_for @project_group do |f|
+  = project_group_fields(f,@project_group,@sub_action)
+
+
+
+

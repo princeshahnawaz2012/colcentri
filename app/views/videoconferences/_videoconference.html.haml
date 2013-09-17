@@ -1,0 +1,26 @@
+.videoconference
+  / Show current videoconference
+  .video_topic
+    = videoconference.topic
+  .video_start_time
+    = (videoconference.start_time + videoconference.timezone.to_i).strftime("%d-%m-%Y %H:%M")
+  .video_duration
+    = t('.duration', :duration => videoconference.duration)
+  .video_timezone
+    =# videoconference.timezone
+  - if not videoconference.old?
+    .init
+      = link_to '', start_videoconference_path(:id => videoconference.id, :login => current_user.login), :class => 'webcam_icon', :title => t('.init')
+      =# link_to '', videoconference.get_personal_session_link(@email), :class => 'webcam_icon', :title => t('.init')
+    .edit
+      = link_to '', edit_videoconference_path(:id => videoconference.id), :class => 'edit_video_icon', :title => t('.edit')
+  - else
+    .blank_init
+      = "-"
+    .records
+      = link_to '', show_records_videoconference_path(:id => videoconference.id), :class => 'show_video_details_icon', :title => 'Records'
+
+  .show
+    = link_to '', show_videoconference_path(:id => videoconference.id), :class => 'show_video_details_icon', :title => t('.show')
+  .delete
+    = link_to '', delete_videoconference_path(:id => videoconference.id), :class => 'trash_icon', :title => t('.delete'), :confirm => t('videoconferences.feedback.sure')

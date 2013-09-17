@@ -1,0 +1,72 @@
+-# Name
+
+.project_title= f.label :name, t('projects.fields.name_html')
+.clear
+= f.text_field :name, :class => 'project_text_field'
+#project_edit_error_max_length{ :style => 'display: none' }
+  .formular_error_with_margin= t('project_groups.errors.max_length')
+#project_edit_error_no_length{ :style => 'display: none' }
+  .formular_error_with_margin= t('project_groups.errors.no_length')
+.clear
+= errors_for project, :name
+
+-# Permalink
+-#= f.label :permalink, t('projects.fields.permalink_html')
+.project_title_big= t('projects.fields.permalink_html')
+-#= errors_for project, :permalink
+-#= f.text_field :permalink
+.clear
+.project_permalink= permalink_example(project.permalink)
+= watch_permalink_example
+.clear
+
+
+-# Project Group
+.project_title_big= f.label :project_group_id, t('projects.fields.project_group_html')
+.clear
+-project_groups = [] #project groups where the current user is the owner or where he participates
+-#ProjectGroup.all.each do |pg|
+  -project_groups.push(pg) if pg.user_participates(current_user.id)
+.project_select= f.select :project_group_id, options_for_new_project(current_user.id)
+= errors_for project, :project_group_id
+.clear
+
+
+
+-#- if @current_project.organization.is_admin?(current_user)
+-#  .text_field
+-#    = f.label :organization_id, t('projects.fields.organization')
+-#    = errors_for project, :organization_id
+-#    = f.select :organization_id, options_for_organizations(current_user.admin_organizations)
+-#    %p.inline= link_to t('.manage_organizations'), organizations_path
+-#- else
+-#  .text_field
+-#    = f.label :organization_id, t('projects.fields.organization')
+-#    = errors_for project, :organization_id
+-#    %p
+-#      = t('.you_cant_transfer_this_project_html', :organization => @current_project.organization)
+-#      = link_to t('.manage_organizations'), organizations_path
+
+
+.project_title_very_big
+
+  = f.label :archived, t('projects.fields.archived_html')
+  = f.check_box :archived
+.clear
+
+
+-#Time tracking is not used anymore
+  - if time_tracking_enabled?
+    .check_box.archived
+      = f.check_box :tracks_time
+      = f.label :tracks_time, t('projects.fields.tracks_time_html')
+
+-# if Colcentric.config.community
+  .check_box.archived
+    = f.check_box :public
+    = f.label :public, t('projects.fields.public_project_html')
+
+
+  - if @current_project.try(:public)
+    %div{ :style => 'margin: 10px 0 15px 22px; display: block' }
+      = link_to t('projects.show.public_project'), public_project_path(@current_project), :class => :public_link

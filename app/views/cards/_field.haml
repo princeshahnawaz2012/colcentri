@@ -1,0 +1,6 @@
+.many_fields
+  .nombre= f.label field, t("cards.card.#{field}")
+  .fields{ :id => "#{field}" }
+    = f.fields_for field do |sf|
+      = card_field(sf,field)
+  .campo= add_crm_link(field)

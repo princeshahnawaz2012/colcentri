@@ -1,0 +1,110 @@
+- if comment = conversation.comments.first(:order => 'id asc')
+
+  .short_conversation{ :style => 'margin-bottom: 60px'}
+    %h3
+      .comments_count= conversation.comments_count
+      .title
+      -unless conversation.simple?
+        = conversation
+      -else
+        = t('conversations.index.simple.title') + ' ' + conversation.id.to_s
+
+    .buttons{ :style => 'margin-top: -45px; margin-left: 560px'}
+      = link_to(image_tag('/iconos/editar22x22.png'), [conversation.project, conversation])
+      = link_to image_tag('/iconos/borrar22x22.png'), [conversation.project, conversation], :'data-method' => 'delete', :'data-confirm' => t('conversations.actions.confirm_delete'), :title => t('common.delete')
+
+
+    .last_message_v2{ :style => 'background-color: #F2F2F2; margin-top: 5px'}
+      - threaded = false unless local_assigns[:threaded]
+      - simpleconv = false unless local_assigns[:simpleconv]
+
+
+      - cache_comment(comment, threaded, simpleconv) do
+        %div[comment]{ comment_data(comment) }
+          .info
+            - if threaded
+              = micro_avatar(comment.user)
+            - else
+              = thumb_avatar(comment.user)
+          .block
+            - unless rss?
+              .actions_menu
+                %span.actiondate= posted_date comment.created_at
+                = image_tag('triangle.png', :class => 'triangle')
+                .extra
+                  - case comment.target
+                  - when Conversation
+                    = link_to t('comments.actions.conversation_url'), project_conversation_path(comment.project, comment.target)
+                  - # There are legacy comments targeting projects and task lists, so we need an if here:
+                  - if comment.target.is_a?(Conversation) or comment.target.is_a?(Task)
+                    = link_to t('comments.actions.edit'), [:edit, comment.project, comment.target, comment],
+                        :rel => 'facebox', :'data-uneditable-message' => t('.cannot_edit'), :class => :edit
+                    = link_to t('common.delete'), [comment.project, comment.target, comment], :'data-method' => 'delete',
+                        :'data-confirm' => t('.confirm_delete'), :'data-remote' => true, :class => :delete
+            .body.textilized
+              .before
+                = link_to(h(comment.user.name), comment.user, :class => :user) + " "
+                - if comment.task_comment?
+                  = comment_task_status(comment)
+                  = comment_task_priority(comment)
+                  = comment_task_start_date(comment)
+                  = comment_task_due_on(comment)
+                  = comment_task_participants(comment)
+                - if comment.hours?
+                  = content_tag(:span, human_hours(comment.hours), :class => :hours)
+                - if simpleconv
+                  %span.in_project
+                    = t('.commented_in_project', :user => '', :project => '')
+                    = link_to(comment.project, comment.project, :class => :project) + ": "
+
+              - if comment.task_comment? and comment.assigned_transition?
+                %p.assigned_transition
+                  - if comment.assigned_id?
+                    = t('tasks.assigned.assigned_to', :user => comment.assigned.user.name)
+                  - else
+                    = t('tasks.assigned.unassigned')
+
+              ~raw comment.body_html
+
+            - if comment.uploads.any?
+              - u = Upload.where(:comment_id => comment.id)
+              - if u.all? { |upload| upload.image? }
+                .upload_images
+                  = list_uploads_inline_with_thumbnails(u)
+              - else
+                .upload_list
+                  = list_uploads_inline(u)
+
+
+            - if comment.google_docs.any?
+              %ul.google_docs_list
+                = render :partial => 'google_docs/file', :collection => comment.google_docs, :as => :google_doc
+
+          .clear
+
+  -# if conversation.to_s.present?
+    %p.thread_title= t("activities.thread.conversation_with_title_html", :conversation => link_to(conversation, [conversation.project, conversation]), :project => link_to(conversation.project, conversation.project))
+  -# else
+    %p= t("activities.thread.conversation_without_title_html", :conversation_url => project_conversation_path(conversation.project, conversation), :project => link_to(conversation.project, conversation.project))
+
+  -#
+    .conversation
+      .comment
+        .info= thumb_avatar(comment.user)
+        .block
+          .body
+            %h5
+              = link_to h(conversation), [@current_project, conversation]
+              %span= t('common.comment', :count => conversation.comments_count)
+            .textilized
+              ~raw comment.body_html
+          - if comment.uploads.any?
+            - if comment.uploads.all? { |upload| upload.image? }
+              .upload_images
+                = list_uploads_inline_with_thumbnails(comment.uploads)
+            - else
+              .upload_list
+                = list_uploads_inline(comment.uploads)
+          %p.go_to_thread
+            = link_to t('conversations.index.view_single'), [@current_project, conversation], :style => 'color: green; font-size: 12px'
+        .clear

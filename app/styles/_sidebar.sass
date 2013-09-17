@@ -1,0 +1,274 @@
+.collaborative_links
+  margin-top: 30px
+
+  .collaborative_info
+    margin-top: 8px
+
+    .divider
+      background-image: url(/images/linea-puntos.gif)
+      background-repeat: no-repeat
+      height: 1px
+      padding-left: 25px
+
+
+.nav_links, .collaborative_links
+  -moz-border-radius: 10px
+  -webkit-border-radius: 10px
+  border-radius: 12px
+
+  background-color: #fff
+  border: solid 1px #d2cfcf
+
+  .personal_navigation, .collaborative_navigation
+    background-image:  url(/images/cab_azul.png)
+    background-repeat: no-repeat
+    height: 39px
+
+    .title_navigation
+      color: #fff
+      font-size: 20px
+      text-align: center
+      padding-top: 8px
+
+  .user_info
+    background-color: #f5f5f5
+    height: 65px
+
+    .user_avatar
+      float: left
+      margin: 8px
+
+    .user_name, .user_name a
+      font-size: 16px
+      color: #3f3f3f
+      margin-top: 2px
+      float: left
+      width: 205px
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+
+    .user_login, .user_login a
+      font-size: 18px
+      color: #0786bb
+      width: 205px
+      float: left
+      margin-top: -4px
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+
+  .links
+    margin-top: 8px
+
+    .divider
+      background-image: url(/images/linea-puntos.gif)
+      background-repeat: no-repeat
+      height: 1px
+      padding-left: 25px
+
+  .el
+    display: inline-block
+    width: 258px
+    position: relative
+    padding-left: 40px
+    margin:
+      bottom: 3px
+
+
+    span
+      //position: absolute
+      right: 5px
+      top: 4px
+      padding: 2px 4px
+      font-size: 11px
+      +rounded(3px)
+      &.clickable
+        padding: 0
+        margin: 0
+        &:hover
+          //background-color: #333
+          a
+            color: white
+        a
+          padding: 2px 4px
+    &.selected, &.children-selected, &.selected:hover, &.children-selected:hover
+      font-weight: bold
+    &:hover
+      font-weight: bold
+    &.expanded
+      a
+        font-weight: bold
+
+  .contained, .contained2
+    background-color: #fff
+    margin-bottom: 3px
+    overflow: hidden
+    .el
+      width: 230px
+      font-size: 12px
+      margin:
+        left: 33px
+        top: 1px
+      padding-left: 30px
+
+    .small_divider
+      background-image: url(/images/linea_puntos_02.gif)
+      background-repeat: no-repeat
+      height: 1px
+      margin-left: 55px
+
+
+
+  .new_buttons
+    .new_pg_button
+      float: left
+      .el
+        background-color: #0789bb
+        margin-left: 8px
+        background-image:  url(/images/bot_azul_gp.png)
+        background-repeat: no-repeat
+        border: solid 1px #0789bb
+        -moz-border-radius: 10px
+        -webkit-border-radius: 10px
+        color: #fff
+        font-weight: bold
+        padding: 0px
+        width: 163px
+        text-align: center
+        height: 33px
+
+    .new_p_button
+      float: left
+      .el
+        background-color: #0789bb
+        background-image:  url(/images/bot_azul_p.png)
+        background-repeat: no-repeat
+        border: solid 1px #0789bb
+        -moz-border-radius: 10px
+        -webkit-border-radius: 10px
+        color: #fff
+        font-weight: bold
+        padding: 0px
+        width: 105px
+        text-align: center
+        margin-left: 4px
+        height: 33px
+
+  .new_buttons
+    .new_pg_button
+      .el a
+        color: #fff
+    .new_p_button
+      .el a
+        color: #fff
+
+
+
+  .space
+    height: 20px
+
+  a
+    padding: 5px
+    display: block
+    color: #333
+    //padding-left: 28px
+    background-position: 3px 4px
+    background-repeat: no-repeat
+    &:hover
+      text-decoration: none
+    &:active
+      font-weight: bold
+    &.more
+      color: #777
+    &.home
+      //background-image: url(/iconos/house.png)
+      //background-color: #e4e4e4
+      //background-image: url(/images/FdoOpMenu1.gif)
+    &.project
+      //background-image: url(/iconos/report.png)
+      //border-bottom: dotted 1px #cacaca
+    &.project_group
+      //background-image: url(/iconos/application_cascade.png)
+      //background-image: url(/images/FdoOpMenu2.gif)
+      //padding-left: 50px
+    &.add
+      background-image: url(/iconos/add.png)
+    &.recent_activity
+      background-image: url(/iconos/activity.png)
+      padding-left: 25px
+      //background-color: #e4e4e4
+    &.conversations
+      background-image: url(/iconos/comment.png)
+      padding-left: 25px
+    &.tasks
+      background-image: url(/iconos/task.png)
+      padding-left: 25px
+    &.time
+      background-image: url(/iconos/time.png)
+      padding-left: 25px
+    &.pages
+      background-image: url(/iconos/layout_content.png)
+      padding-left: 25px
+    &.files
+      background-image: url(/iconos/folder.png)
+      padding-left: 25px
+    &.people
+      background-image: url(/iconos/organizations.png)
+      padding-left: 25px
+    &.roles
+      background-image: url(/iconos/user_add.png)
+      padding-left: 25px
+    &.chat
+      background-image: url(/iconos/emoticon_smile.png)
+    &.contacts
+      background-image: url(/iconos/report_user.png)
+    &.recent_activities
+      background-image: url(/iconos/user_comment.png)
+    &.advanced
+      background-image: url(/iconos/pill.png)
+    &.feeds
+      background-image: url(/iconos/feed.png)
+    &.calendar
+      background-image: url(/iconos/date.png)
+    &.videoconf
+      background-image: url(/iconos/webcam.png)
+      padding-left: 25px
+    &.project_navigation
+      background-image: url(/iconos/proyectos.png)
+      padding-left: 25px
+    &.user_invoices
+      background-image: url(/iconos/icono-facturacion.png)
+      padding-left: 25px
+    &.settings
+      background-image: url(/iconos/cog.png)
+      padding-left: 25px
+    &.general_settings
+      background-image: url(/iconos/application_view_list.png)
+      padding-left: 25px
+    &.advanced_settings
+      background-image: url(/iconos/advanced_settings.png)
+      padding-left: 25px
+    &.user_conf
+      background-image: url(/iconos/user_conf.png)
+      padding-left: 25px
+    &.user_settings
+      background-image: url(/iconos/user_settings.png)
+      padding-left: 25px
+    &.user_picture
+      background-image: url(/iconos/user_picture.png)
+      padding-left: 25px
+    &.user_notifications
+      background-image: url(/iconos/user_notifications_2.png)
+      padding-left: 25px
+    &.user_payments
+      background-image: url(/iconos/user_payments.png)
+      padding-left: 25px
+    &.collapsed_mode, &.expanded_mode
+      background-image: url(/iconos/layers.png)
+    &.loading
+      background-image: url(/images/loading.gif)
+
+    &.show_more, &.show_less
+      font-size: 10px
+      color: #777
+
+.more_links
+  margin-left: -15px
+

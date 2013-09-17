@@ -1,0 +1,30 @@
+= form_for [target, invitation], :person do |f|
+  %h3{ :style => 'padding-left: -10px'}
+    = t('invitations.search.invite_people_html', :target => target)
+  -#.documentation{:style => 'float:right'}
+    = formatting_invitations_link
+  .text_field
+    = f.label :user_or_email, t('invitations.search.username_or_email')
+    = f.text_field :user_or_email, :placeholder => "mllorente, jperez@colcentric.com"
+
+  - if target.is_a? Project
+    .text_field
+      = f.label :role, t('invitations.search.role')
+      = f.select :role, options_from_person_roles
+  - if !Colcentric.config.community && !(target.is_a? Organization) && (can? :admin, target.organization)
+    .text_field
+      = f.label :membership, t('.also_invite_to_organization', :organization => target.organization)
+      = f.select :membership, options_from_organization_roles
+  - elsif (target.is_a? Organization) && target.is_admin?(current_user)
+    = f.select :membership, options_from_organization_roles
+
+  - if (num_sponsorized = current_user.count_free_sponsorized_subscriptions?) > 0
+    = label_tag :sponsor, t('.sponsor', :number => num_sponsorized)
+    = check_box_tag :sponsor
+  - else
+    = f.hidden_field :sponsor, :value => false
+  .submit
+    =# f.submit t('invitations.search.invite'), :class => 'form_button'
+    = image_submit_tag t('buttons.invite'), :class => 'save_button_without_image_small'
+  .clear
+

@@ -1,0 +1,38 @@
+.email{ :style => email_global }
+
+  .header
+    %h1
+      = image_tag('/images/LogoColcentric1.png', :alt => 'Kinubi')
+
+  = dont_answer
+
+  -#%p= t('emailer.confirm.hey', :user_name => h(@user.name))
+
+  .box{ :style => email_box }
+    - user_name = @user.first_name + ' ' + @user.last_name
+    %p{ :style => email_text(:big) }=raw user_name
+    /%p{ :style => email_text(:big) }=raw t('emailer.confirm.follow_this_link', :complete => content_tag(:b, t('emailer.confirm.complete')) )
+    %p{ :style => email_text(:big) }
+      = raw t('emailer.confirm.complete_registration')
+      = link_to "link", @login_link, :style => 'color: #008ac0'
+
+    -#
+      %p{ :style => email_text(:big) }
+        = link_to t('emailer.confirm.log_in'), @login_link
+    %p{ :style => email_text(:big) }=raw t('emailer.confirm.complete_registration2')
+
+
+  %p{ :style => email_text(:small) }
+    .message{ :style => 'color: #003869'}= t('emailer.confirm.plaintext_link')
+    %br
+    = link_to @login_link, @login_link, :style => 'color: #008ac0'
+
+  .footer{ :style => email_text(:small) }
+    -#%p= t('emailer.confirm.report_abuse', :email => @user.email)
+    %p
+      =# t('emailer.confirm.problems_html', :support => Colcentric.config.support)
+      = t('emailer.reset_password.problems')
+      = mail_to Colcentric.config.support, Colcentric.config.support, :style => 'color: #008ac0'
+
+    
+

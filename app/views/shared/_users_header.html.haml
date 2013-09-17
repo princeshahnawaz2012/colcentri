@@ -1,0 +1,15 @@
+- if params[:action] == 'show'
+
+  .first_bar
+    = t('navigation.header.first_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => params[:id].to_s)
+  .second_bar
+    = t('navigation.header.second_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+- elsif params[:action] == 'edit'
+  .first_bar
+    = t('navigation.header.first_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:sub_action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ep_user_settings', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:sub_action].to_s) )
+
+
+

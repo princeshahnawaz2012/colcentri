@@ -1,0 +1,18 @@
+-#not used anymore
+%h2= t('upload_directories.changeDirectory.title')
+
+.changeDirectory
+
+  .changeDirectoryForm
+    = form_tag(moveDirectory_upload_directory_path, :method=>'post', :multipart => true) do
+      .userDirectories
+        .rename_colab
+          = t('upload_directories.changeDirectory.userDirectories')
+        = select_tag "directory", options_from_collection_for_select(@uploadDirectories, "id", "name")
+      .fileId
+        = hidden_field_tag "uploadDirId", params[:uploadDirId]
+      .currentProjectId
+        = hidden_field_tag "currentProjectId", @currentProjectId
+      .submit
+        =# submit_tag t('upload_directories.changeDirectory.submit'), :class => 'form_button'
+        = image_submit_tag t('buttons.save')

@@ -1,0 +1,15 @@
+.email{ :style => email_global }
+
+  = dont_answer
+
+  %p{ :style => email_box }
+    = @message
+
+  .footer{ :style => email_text(:small) }
+    -#%p= t('emailer.confirm.report_abuse', :email => @user.email)
+    %p
+      =# t('emailer.confirm.problems_html', :support => Colcentric.config.support)
+      = t('emailer.reset_password.problems')
+      = mail_to Colcentric.config.support, Colcentric.config.support, :style => 'color: #008ac0'
+
+

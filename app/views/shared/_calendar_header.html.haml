@@ -1,0 +1,36 @@
+- if params[:action].to_s == "collaboration_calendar"
+  .first_bar
+    = t('navigation.header.first_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+- elsif params[:action].to_s == "index"
+  .first_bar
+    = t('navigation.header.first_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+- elsif params[:action].to_s == "project_calendar"
+  - if not params[:project].nil?
+    - @project = Project.find_by_id_or_permalink(params[:project].to_s)
+  - else
+    - @project = Project.find_by_id_or_permalink(params[:project_permalink].to_s)
+
+  - project_name = @project.name
+  - begin
+    - project_group_name = ProjectGroup.find_by_id_or_permalink(@project.project_group_id).name
+  - rescue
+    - project_group_name = "Sin grupo"
+
+  .first_bar
+    = t('navigation.header.first_bar.ec_project', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :p_name => project_name)
+  .second_bar
+    = t('navigation.header.second_bar.ec_project', :pg_name => project_group_name, :p_name => project_name, :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+  .third_bar
+    = render 'shared/project_actions'
+
+  .fourth_bar
+    = render 'project_groups/new'
+    = render 'projects/new'
+
+

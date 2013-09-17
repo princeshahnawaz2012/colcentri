@@ -1,0 +1,18 @@
+%h2= t(".title_#{@sub_action}", :project_group => @project_group)
+
+-if @sub_action == 'advanced'
+  =render 'project_groups/fields/advanced'
+
+-else
+  - sub_params = @sub_action == 'ownership' ? transfer_project_group_path(@project_group) : nil
+
+  = form_for @project_group, :url => sub_params do |f|
+    = project_group_fields(f,@project_group,@sub_action)
+    - unless @sub_action == 'deletion'
+      - if @sub_action == 'ownership'
+        =# f.submit t('.change_owner')
+        = image_submit_tag t('buttons.save')
+      - else
+        .submit
+          =# f.submit t('.submit'), :class => 'form_button'
+          = image_submit_tag t('buttons.save')

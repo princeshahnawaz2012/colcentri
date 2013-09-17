@@ -1,0 +1,12 @@
+- content_for :column do
+  = render 'shared/user_navigation'
+
+%h2= t('.title')
+
+= form_for @data do |f|
+  = hidden_field_tag 'colcentric_data[type_name]', 'export'
+  = fields_for_colcentric_export(f, @data)
+  .submit
+    = f.submit t('.submit'), :class => 'form_button'
+    = t('common.or')
+    = link_to t('common.cancel'), colcentric_datas_path

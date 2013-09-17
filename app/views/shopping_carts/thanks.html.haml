@@ -1,0 +1,9 @@
+%h2= t('.title')
+
+.shopping_cart
+  = t('.thank_text')
+
+  .continue
+    %br
+    = link_to t("common.continue"), subscriptions_path, :class => :button
+  .home= link_to t('common.home'), projects_path, :class => :button

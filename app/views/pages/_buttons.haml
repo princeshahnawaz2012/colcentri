@@ -1,0 +1,35 @@
+= javascript_tag "function hide_or_show_upload_form() { document.getElementById('upload_form').toggle(); }"
+= javascript_tag "function validate_file_upload() { if (document.getElementById('upload_form_file').value == null || document.getElementById('upload_form_file').value == '') { alert('\"" + t('user_files.new.noFileSelected') + "\"'); return false; } else { return true; }"
+
+.buttons#buttons
+  = link_to image_tag(t('buttons.create_divider')), new_project_page_divider_path(project, page), :class => 'divider_button', :style => 'margin-left: -3px'
+  =# new_page_note_link(project, page)
+  = link_to image_tag(t('buttons.create_note')), new_project_page_note_path(project, page), :class => 'note_button'
+  =# new_page_divider_link(project, page)
+
+  = link_to_function image_tag('/iconos/adjuntar22x22.png'), 'Element.hide("new_note"); Element.hide("new_divider"); Element.show("upload_form");'
+  -#
+    - unless request.format == :m
+      = link_to "<span>#{t('.new_upload')}</span>".html_safe, new_project_page_upload_path(project, page), :class => 'add_button upload_button'
+
+  -# = link_to 'Subir un fichero', '', :onclick => "hide_or_show_upload_form()"
+  .upload_form#upload_form{ :style => 'display: none; height: 100px' }
+    = form_tag(upload_file_page_path, :method => 'post', :multipart => true, :name => "form", :onsubmit => "return validate_file_upload()") do
+      %h3{ :style => 'margin-right: 8px; margin-left: 8px'}
+        .image= image_tag('/iconos/folder22x22.png')
+        .text= t('user_files.new.title')
+        .clear
+
+
+      .file
+        = file_field_tag "file", :id => "upload_form_file"
+      .page_id
+        = hidden_field_tag  "page_id", page.id
+      .project_id
+        = hidden_field_tag "project_id", project.id
+      =# submit_tag t('pages.buttons.upload_file'), :class => 'form_button', :style => 'margin-top: 12px; margin-left: 25px'
+      = image_submit_tag t('buttons.upload_file'), :style => 'margin-left: 30px; margin-top: 8px'
+      .page_cancel_button_show= link_to_function 'Cancelar', 'Element.hide("upload_form");', :class => 'text_button'
+    .clear
+
+  .clear

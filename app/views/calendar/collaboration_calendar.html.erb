@@ -1,0 +1,56 @@
+<link href="/css/event_calendar.css" rel="stylesheet" type="text/css" />
+
+<!--<h1><%= t('calendar.collaboration_calendar.title') %></h1>-->
+
+<div class="filters">
+    <form name = "form" action="<%= collaboration_calendar_path %>" method="post">
+        <div class="project_filter">
+            <div class="project">
+                <!--<%= t('calendar.index.project') %>-->
+                <%= select_tag "project", options_from_collection_for_select(@user_projects, "id", "name", @project) %>
+            </div>
+            <div class="user">
+                <!--<%= t('calendar.index.responsible') %>-->
+                <%= select_tag "responsible", options_for_select(@users, @responsible) %>
+            </div>
+            <div class="calendary_filter_button">
+                <%= image_submit_tag t('buttons.filter')  %>
+                <!--<input name="commit" type="submit" class="filter_button" />-->
+            </div>
+        </div>
+    </form>
+</div>
+
+<%= raw(event_calendar(@category, @project, @responsible)) %>
+
+<div class="tasks_list">
+    <div class="tasks_list_title">
+        <h2><%= t('calendar.index.task') %></h2>
+    </div>
+    <div class="tasks_list_headers">
+        <div class='end_date'><%= t('calendar.index.date_header') %></div>
+        <div class='title'><%= t('calendar.index.task_header') %></div>
+    </div>
+    <div class='clear'></div>
+    <div class="task_list">
+      <% num_files = 0 %>
+        <% @events_aux.each do |e| %>
+            <div class="task_info">
+                <% if e.calendar_entry_id.nil?
+                  if num_files % 2 == 0
+                        num_files += 1
+                        row_class = "calendar_row1"
+                      else
+                        num_files += 1
+                        row_class = "calendar_row2"
+                      end %>
+                        <div class="<%= row_class %>">
+                        <div class="end_date"><%= e.start_at.strftime("%d/%m/%Y") %></div>
+                        <div class='title'><%= link_to e.name, project_task_path(e.permalink_task_project, e.task_id) %></div>
+                <% end %>
+              </div>
+            </div>
+            <div class='clear'></div>
+        <% end %>
+    </div>
+</div>

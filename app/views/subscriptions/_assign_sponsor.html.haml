@@ -1,0 +1,67 @@
+
+#monthly_invitations_fields{ :style => 'display: none' }
+
+  = form_tag(:action => 'assign_sponsors') do |f|
+    .subscription_title_big= t('.monthly_sponsors_html')
+    .clear
+    .subscription_title= label_tag :user_or_email, t('.username_or_email')
+    %br
+    = text_field_tag :user_or_email, nil, :placeholder => 'mllorente, jperez@colcentric.com', :class => 'text', :id => 'monthly_invitation_field', :style => 'width: 230px'
+
+    = hidden_field_tag :licence_type, 5
+
+    .clear
+    .submit
+      = image_submit_tag t('buttons.invite'), :class => 'save_button_without_image'
+    .clear
+
+
+#halfyear_invitations_fields{ :style => 'display: none' }
+
+  = form_tag :action => 'assign_sponsors' do |f|
+    .subscription_title_big= t('.halfyear_sponsors_html')
+    .clear
+    .subscription_title= label_tag :user_or_email, t('.username_or_email')
+    %br
+    = text_field_tag :user_or_email, nil, :placeholder => 'mllorente, jperez@colcentric.com', :class => 'text', :id => 'halfyear_invitation_field', :style => 'width: 230px'
+
+    = hidden_field_tag :licence_type, 10
+
+    .clear
+    .submit
+      = image_submit_tag t('buttons.invite'), :class => 'save_button_without_image'
+    .clear
+
+
+#annual_invitations_fields{ :style => 'display: none' }
+
+  = form_tag :action => 'assign_sponsors' do |f|
+    .subscription_title_big= t('.annual_sponsors_html')
+    .clear
+    .subscription_title= label_tag :user_or_email, t('.username_or_email')
+    %br
+    = text_field_tag :user_or_email, nil, :placeholder => 'mllorente, jperez@colcentric.com', :class => 'text', :id => 'annual_invitation_field'
+
+    = hidden_field_tag :licence_type, 15
+
+    .clear
+    .submit
+      = image_submit_tag t('buttons.invite'), :class => 'save_button_without_image'
+    .clear
+
+
+#special_invitations_fields{ :style => 'display: none' }
+
+  = form_tag :action => 'assign_sponsors' do |f|
+    .subscription_title_big= t('.special_sponsors_html')
+    .clear
+    .subscription_title= label_tag :user_or_email, t('.username_or_email')
+    %br
+    = text_field_tag :user_or_email, nil, :placeholder => 'mllorente, jperez@colcentric.com', :class => 'text', :id => 'special_invitation_field'
+
+    = hidden_field_tag :licence_type, 0
+
+    .clear
+    .submit
+      = image_submit_tag t('buttons.invite'), :class => 'save_button_without_image'
+    .clear

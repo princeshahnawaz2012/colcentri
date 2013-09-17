@@ -1,0 +1,8 @@
+-#
+  %h2= t('.title')
+
+= form_for [@current_project,@task_list], :html => {:class => 'app_form'} do |f|
+  = task_list_fields(f,@current_project,@task_list)
+  =# f.submit t('.submit')
+  .clear
+  = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'

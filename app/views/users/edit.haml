@@ -1,0 +1,24 @@
+-# content_for :column do
+  = render 'shared/user_navigation'
+
+-#
+  %h2= t(".title_#{@sub_action}")
+=js_for_signup_form_validations
+- secure_post = @sub_action == 'settings' && Colcentric.config.secure_logins
+- secure_url = secure_post ? polymorphic_url(current_user, :protocol => 'https') : nil
+
+= form_for current_user, :url => secure_url, :html => { :multipart => true } do |form|
+  = render "users/form/#{@sub_action}", :f => form, :sub_action => @sub_action, :user => form.object
+  = hidden_field_tag 'sub_action', @sub_action
+  - unless @sub_action == 'delete'
+    - if @sub_action == 'picture'
+      = image_submit_tag t('buttons.upload_file'), :class => 'save_button_without_image'
+    - else
+      = image_submit_tag t('buttons.save'), :class => 'save_button_without_image'
+
+- if 'settings' == @sub_action
+  = form_for current_user do |form|
+    = form.fields_for :card do |card_form|
+      - content_for :js_templates do
+        - %w(phone_numbers email_addresses websites addresses ims social_networks).each do |field|
+          = "var #{field}='#{generate_template(card_form, field.to_sym)}'".html_safe

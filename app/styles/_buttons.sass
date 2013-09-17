@@ -1,0 +1,162 @@
+.save_button
+  background-image:  url(/buttons/guardar.png)
+  background-repeat: no-repeat
+  height: 28px
+  width: 88px
+  float: left
+  margin-top: 30px
+  margin-left: 275px
+
+.save_button_without_image
+  background-repeat: no-repeat
+  float: left
+  height: 28px
+  margin-bottom: 8px
+  margin-left: 235px
+  margin-top: 20px
+  width: 88px
+
+.save_button_without_image_small
+  background-repeat: no-repeat
+  float: left
+  height: 28px
+  margin-bottom: 8px
+  margin-left: 235px
+  margin-top: 5px
+  width: 88px
+
+.save_button_without_image_right
+  background-repeat: no-repeat
+  float: right
+  height: 28px
+  margin-bottom: 8px
+  margin-right: 15px
+  width: 88px
+
+
+.publish_button
+  background-image:  url(/buttons/publicar.png)
+  background-repeat: no-repeat
+  height: 28px
+  width: 88px
+  float: left
+
+.filter_button
+  background-image:  url(/buttons/filtar.png)
+  background-repeat: no-repeat
+  height: 28px
+  width: 88px
+  float: left
+
+.purchase_button
+  background-image:  url(/buttons/contratar.png)
+  background-repeat: no-repeat
+  height: 28px
+  width: 88px
+  float: left
+
+
+
+a.loading_button
+  background: url(/images/loading_button_bg.gif) no-repeat left
+  font-size: 12px
+  padding: 5px
+    left: 20px
+  span
+    color: rgb(0, 0, 40)
+    padding: 5px
+      right: 10px
+    font-weight: bold
+    background: url(/images/loading_button_wrap_bg.jpg) no-repeat right
+
+a.button, a.unarchive_task_list_link, a.reorder_task_list_link, a.add_button, a.new_task_list_link  //botones azules
+  display: inline-block
+  padding: 0.4em 0.7em
+  font-size: 12px
+  margin: 0 0.5em 1em 0
+  background-image:  url(/images/FdoBtnAzul.gif)
+  backgroudn-color: #4f83b3
+  border: solid 1px #054d8b
+  -moz-border-radius: 4px
+  -webkit-border-radius: 4px
+  color: #fff
+  font-weight: bold
+  padding:
+    left: 7px
+    rigth: 7px
+    top: 4px
+    bottom: 4px
+  text-align: center
+  
+  &:hover
+    text-decoration: none
+    color: #fff
+    //+gradient-bottom(#aaaaaa)
+  &:active
+    //background: #cccccc
+    //+gradient-top(#888888)
+  span
+    font-weight: bold
+    //text-transform: uppercase
+    font-family: Verdana, Arial, sans-serif
+    font-size: 13px
+  .cssgradients &
+    border: 1px solid #054d8b
+  .no-cssgradients &
+    background-image: url(/images/FdoBtnAzul.gif) repeat left
+    backgroudn-color: #4f83b3
+    padding: 5px 0 5px 5px
+    span
+      padding: 6px 10px 5px 5px
+      font-weight: bold
+      //background: url(/images/button_wrap_bg.jpg) no-repeat right
+
+a.add_button, a.new_task_list_link
+  .cssgradients &
+    &:before
+      content: "+ " // + del boton mas del boton azul
+      font: 900 12px Verdana, Arial, sans-serif
+      color: #fff
+      margin-right: 0.3em
+  .no-cssgradients &
+    background-image: url(/images/FdoBtnAzul.gif) repeat left
+    backgroudn-color: #4f83b3
+    padding-left: 20px
+    span
+      padding: 8px 7px 7px 7px
+      //background: url(/images/button_wrap_bg.jpg) no-repeat right
+
+=button
+  display: inline-block
+  +rounded(4px)
+  background-color: $navbar
+  +gradient-top(rgba(white, .2))
+  font-size: 12px
+  font-weight: bold
+  color: white
+  text-shadow: rgba(black, .2) 1px 1px 1px
+  text-decoration: none
+  text-align: center
+  padding: .15em .4em
+  &:hover, &:active, &:visited
+    color: white
+    text-decoration: none
+
+.form_button // boton formulario
+  color: #fff
+  font-size: 12px
+  font-weight: bold
+  text-align: center
+  border: solid 1px #dc6d03
+  background-color: transparente
+  background-image: url(/images/FdoBtnNaranja.gif)
+  -moz-border-radius: 4px
+  -webkit-border-radius: 4px
+  padding:
+    left: 7px
+    rigth: 7px
+    top: 2px
+    bottom: 4px
+  cursor: pointer
+  
+  

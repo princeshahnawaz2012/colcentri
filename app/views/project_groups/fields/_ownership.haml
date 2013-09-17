@@ -1,0 +1,6 @@
+.owner
+  .description{ :style => 'margin-left: 12px'}= t('project_groups.fields.owner_description')
+  .project_group_title{ :style => 'margin-top: 10px'}= f.label :user_id, t('project_groups.fields.owner')
+  =# f.select :user_id, options_for_owner_project_group(@project_group.project_group_roles)
+  .clear
+  .project_group_select{ :style => 'margin-top: 4px; margin-left: 12px'}= f.select :user_id, options_for_change_project_group_owner(@project_group.id)

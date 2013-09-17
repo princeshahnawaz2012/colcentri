@@ -1,0 +1,36 @@
+#primer
+  .box
+    - days_since_created = ((current_user.created_at - Time.now) / 1.day).round
+
+    - if days_since_created >= 0 and days_since_created < 1
+      %p
+        .title2{ :style => 'font-size: 16px'}
+          = t('.welcome_title_html')
+      %br
+      = t('.welcome_message')
+
+      %br
+      %br
+
+    = t('.first_message')
+
+
+    - if I18n.locale.to_s == "es"
+      .welcome_image= image_tag('/images/esquema.jpg')
+    - elsif I18n.locale.to_s == "pt"
+      .welcome_image= image_tag('/images/esquema_eng.jpg')
+    - else
+      .welcome_image= image_tag('/images/esquema_por.jpg')
+
+
+
+
+
+
+    -#
+      .Num1Prod
+        = t '.item1'
+      .Num2Prod
+        = t '.item2'
+      .Num3Prod
+        = t '.item3'

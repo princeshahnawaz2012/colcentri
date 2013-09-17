@@ -1,0 +1,351 @@
+GIT
+  remote: git://github.com/adamcooper/vestal_versions
+  revision: 6273df533f85014062e346cb1807b0531a809ee2
+  specs:
+    vestal_versions (1.2.2)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
+  remote: git://github.com/davidmm/immortal.git
+  revision: 9f6c35a976b2b1c027c90482ad24359be0746ab5
+  branch: postgresql_fix
+  specs:
+    immortal (0.1.6)
+      activerecord (~> 3.0.3)
+
+GIT
+  remote: git://github.com/mislav/will_paginate.git
+  revision: d56a8436f0445343d5c9498a04dff746f01cf46c
+  specs:
+    will_paginate (3.0.2)
+
+GIT
+  remote: git://github.com/teambox/activesupport-i18n-patch.git
+  revision: 2e835783c0ea7062ad280b71b04060bd9b89e1a4
+  specs:
+    activesupport-i18n-patch (0.0.1)
+
+GIT
+  remote: git://github.com/teambox/choices.git
+  revision: 93d0cfb4e5fd4ae03b421b379a69ee00721f337b
+  specs:
+    choices (0.2.4)
+      hashie (>= 0.4.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    SystemTimer (1.2.3)
+    abstract (1.0.0)
+    actionmailer (3.0.10)
+      actionpack (= 3.0.10)
+      mail (~> 2.2.19)
+    actionpack (3.0.10)
+      activemodel (= 3.0.10)
+      activesupport (= 3.0.10)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.5.0)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.14)
+      rack-test (~> 0.5.7)
+      tzinfo (~> 0.3.23)
+    activemodel (3.0.10)
+      activesupport (= 3.0.10)
+      builder (~> 2.1.2)
+      i18n (~> 0.5.0)
+    activerecord (3.0.10)
+      activemodel (= 3.0.10)
+      activesupport (= 3.0.10)
+      arel (~> 2.0.10)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.10)
+      activemodel (= 3.0.10)
+      activesupport (= 3.0.10)
+    activesupport (3.0.10)
+    addressable (2.2.6)
+    arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
+    barista (1.2.1)
+      coffee-script (~> 2.2)
+    builder (2.1.2)
+    cancan (1.4.1)
+    capybara (0.4.1.2)
+      celerity (>= 0.7.9)
+      culerity (>= 0.2.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (>= 0.0.27)
+      xpath (~> 0.1.3)
+    celerity (0.8.9)
+    cgi_multipart_eof_fix (2.5.0)
+    childprocess (0.2.1)
+      ffi (~> 1.0.6)
+    chronic (0.6.2)
+    closure-compiler (0.3.3)
+    cocaine (0.2.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.1.2)
+    columnize (0.3.4)
+    configuration (1.3.1)
+    cucumber (1.0.2)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.2)
+      gherkin (~> 2.4.5)
+      json (>= 1.4.6)
+      term-ansicolor (>= 1.0.5)
+    cucumber-rails (0.3.2)
+      cucumber (>= 0.8.0)
+    culerity (0.2.15)
+    daemons (1.1.4)
+    database_cleaner (0.5.2)
+    diff-lcs (1.1.2)
+    dynamic_form (1.1.4)
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
+    event-calendar (2.3.3)
+    eventmachine (0.12.10)
+    execjs (1.2.4)
+      multi_json (~> 1.0)
+    factory_girl (1.3.3)
+    faker (0.9.5)
+      i18n (~> 0.4)
+    faraday (0.6.1)
+      addressable (~> 2.2.4)
+      multipart-post (~> 1.1.0)
+      rack (< 2, >= 1.1.0)
+    fastthread (1.0.7)
+    ffi (1.0.9)
+    fuubar (0.0.6)
+      rspec (~> 2.0)
+      rspec-instafail (~> 0.1.8)
+      ruby-progressbar (~> 0.0.10)
+    gem_plugin (0.2.3)
+    gherkin (2.4.11)
+      json (>= 1.4.6)
+    haml (3.0.25)
+    hashie (1.1.0)
+    hpricot (0.8.4)
+    i18n (0.5.0)
+    icalendar (1.1.6)
+    jammit (0.5.4)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.1)
+    jquery-rails (1.0.16)
+      railties (~> 3.0)
+      thor (~> 0.14)
+    json (1.5.3)
+    json_pure (1.5.3)
+    launchy (0.3.7)
+      configuration (>= 0.0.5)
+      rake (>= 0.8.1)
+    libv8 (3.3.10.2)
+    libxml-ruby (1.1.3)
+    linecache (0.46)
+      rbx-require-relative (> 0.0.4)
+    mail (2.2.19)
+      activesupport (>= 2.3.6)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    memcache-client (1.8.5)
+    mime-types (1.16)
+    money (3.7.1)
+      i18n (~> 0.4)
+    mongrel (1.1.5)
+      cgi_multipart_eof_fix (>= 2.4)
+      daemons (>= 1.0.3)
+      fastthread (>= 1.0.1)
+      gem_plugin (>= 0.2.3)
+    multi_json (1.0.3)
+    multi_xml (0.2.2)
+    multipart-post (1.1.3)
+    mysql (2.8.1)
+    nokogiri (1.5.0)
+    oa-core (0.2.6)
+    oa-oauth (0.2.6)
+      faraday (~> 0.6.1)
+      multi_json (~> 1.0.0)
+      multi_xml (~> 0.2.2)
+      oa-core (= 0.2.6)
+      oauth (~> 0.4.0)
+      oauth2 (~> 0.4.1)
+    oauth (0.4.5)
+    oauth2 (0.4.1)
+      faraday (~> 0.6.1)
+      multi_json (>= 0.0.5)
+    paperclip (2.3.16)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
+    paypal (2.0.0)
+      money (> 0.0.0)
+    pg (0.9.0)
+    pickle (0.4.8)
+      cucumber (>= 0.8)
+      rake
+    polyglot (0.3.2)
+    rack (1.2.3)
+    rack-mount (0.6.14)
+      rack (>= 1.0.0)
+    rack-ssl-enforcer (0.2.3)
+    rack-test (0.5.7)
+      rack (>= 1.0)
+    rails (3.0.10)
+      actionmailer (= 3.0.10)
+      actionpack (= 3.0.10)
+      activerecord (= 3.0.10)
+      activeresource (= 3.0.10)
+      activesupport (= 3.0.10)
+      bundler (~> 1.0)
+      railties (= 3.0.10)
+    railties (3.0.10)
+      actionpack (= 3.0.10)
+      activesupport (= 3.0.10)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (~> 0.14.4)
+    rake (0.9.2)
+    rbx-require-relative (0.0.5)
+    rcov (0.9.10)
+    rdiscount (1.6.8)
+    rdoc (3.9.2)
+    riddle (1.4.0)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-core (2.3.1)
+    rspec-expectations (2.3.0)
+      diff-lcs (~> 1.1.2)
+    rspec-instafail (0.1.8)
+    rspec-mocks (2.3.0)
+    rspec-rails (2.3.1)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      railties (~> 3.0)
+      rspec (~> 2.3.0)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
+    ruby-progressbar (0.0.10)
+    rubyzip (0.9.4)
+    selenium-webdriver (2.4.0)
+      childprocess (>= 0.2.1)
+      ffi (>= 1.0.7)
+      json_pure
+      rubyzip
+    sprockets (1.0.2)
+    sprockets-rails (0.0.1)
+      sprockets (>= 1.0.2)
+    sqlite3-ruby (1.2.5)
+    teambox-permalink_fu (1.0.1)
+    term-ansicolor (1.0.6)
+    text-format (1.0.0)
+      text-hyphen (~> 1.0.0)
+    text-hyphen (1.0.2)
+    therubyracer (0.9.3)
+      libv8 (~> 3.3.10)
+    thin (1.2.11)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    thinking-sphinx (2.0.1)
+      activerecord (>= 3.0.3)
+      riddle (>= 1.2.1)
+    thor (0.14.6)
+    tilt (1.3.2)
+    timecop (0.3.5)
+    tmail (1.2.7.1)
+    treetop (1.4.10)
+      polyglot
+      polyglot (>= 0.3.1)
+    tzinfo (0.3.29)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+    whenever (0.4.2)
+      chronic (>= 0.2.3)
+    with_action (1.0.0)
+      actionpack
+    xml-simple (1.1.0)
+    xpath (0.1.4)
+      nokogiri (~> 1.3)
+    yui-compressor (0.9.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  SystemTimer (~> 1.2.0)
+  activesupport-i18n-patch!
+  aws-s3 (~> 0.6.2)
+  barista (~> 1.0)
+  builder (~> 2.1.2)
+  cancan (~> 1.4.1)
+  capybara (~> 0.4.0)
+  choices!
+  cucumber-rails (~> 0.3.2)
+  database_cleaner (~> 0.5.0)
+  dynamic_form
+  event-calendar
+  execjs
+  factory_girl (~> 1.3.2)
+  faker
+  fuubar
+  haml (~> 3.0.0.beta1)
+  hpricot (~> 0.8.2)
+  i18n (>= 0.1.3)
+  icalendar (~> 1.1.3)
+  immortal!
+  jammit (~> 0.5.4)
+  jquery-rails
+  json
+  launchy (~> 0.3.7)
+  libxml-ruby (= 1.1.3)
+  memcache-client (>= 1.7.4)
+  mongrel (~> 1.1.5)
+  mysql (~> 2.8.1)
+  nokogiri
+  oa-oauth
+  paperclip (~> 2.3.6)
+  paypal
+  pg (~> 0.9.0)
+  pickle (~> 0.4.4)
+  rack-ssl-enforcer
+  rails (~> 3.0.3)
+  rcov
+  rdiscount (~> 1.6.3)
+  rspec-core
+  rspec-expectations
+  rspec-rails (~> 2.3.1)
+  ruby-debug (~> 0.10.3)
+  sprockets-rails (~> 0.0.1)
+  sqlite3-ruby (~> 1.2.5)
+  teambox-permalink_fu
+  text-format (>= 0.6.3)
+  therubyracer
+  thin
+  thinking-sphinx (= 2.0.1)
+  tilt
+  timecop
+  tmail (~> 1.2.3)
+  tzinfo (~> 0.3.12)
+  vestal_versions (~> 1.2.2)!
+  webrat
+  whenever (~> 0.4.1)
+  will_paginate!
+  with_action
+  yui-compressor (= 0.9.1)

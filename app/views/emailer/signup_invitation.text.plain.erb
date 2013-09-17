@@ -1,0 +1,19 @@
+<%= dont_answer %>
+
+<%= t('emailer.invitation.colcentric_is_a_pm_platform') %>
+<%= t('emailer.invitation.plan_share_and_collaborate') %>
+
+<%= t('emailer.invitation.collaborate_with', :name => h(@referral.name)) %>
+
+<%= t("emailer.invitation.you_have_been_invited_to_#{@target.class_name}", :target => h(@target.name)) %>
+
+
+<%= t('emailer.invitation.accept_the_invitation') %>:
+
+<%= new_user_url(:invitation => @invitation.token) %>
+
+<% if @invitation.target.project %>
+<%= t('emailer.invitation.current_users') %>: <%= @target.people.collect { |p| h(p.name) }.to_sentence %>
+<% end %>
+
+<%= t('emailer.invitation.report_abuse') %>

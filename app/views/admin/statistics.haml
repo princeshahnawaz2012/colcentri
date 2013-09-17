@@ -1,0 +1,8 @@
+%h2= t('admin.statistics.title')
+
+.goBackLink
+  = link_to t('admin.statistics.goBackAdminPanel'), admin_path
+
+.statistics
+  .numberOfUsers
+    = t('admin.statistics.numberOfUsers') + ": " + @numberOfUsers.to_s

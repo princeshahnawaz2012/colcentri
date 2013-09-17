@@ -1,0 +1,19 @@
+%h3
+  .image= image_tag('/iconos/task_list22x22.png')
+  .text=t('.title')
+  .clear
+
+%p= t('.task_list')
+.task_list_title= f.label :name, t('.name_html')
+.task_list_text_field= f.text_field :name, :autofocus => true#, :style => 'margin-bottom: 15px'
+.clear
+=errors_for @task_list, :name if not @task_list.nil?
+-#%p.optional= t('.optional')
+
+.task_list_title_small{:style => 'float: left'}= f.label :start_on, t('.start_on_html')
+= date_picker(f, :start_on)
+
+
+.task_list_title_small{:style => 'float: left; margin-left: 40px; margin-bottom: 20px'}= f.label :finish_on, t('.finish_on_html')
+= date_picker(f, :finish_on)
+

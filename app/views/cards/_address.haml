@@ -1,0 +1,17 @@
+.address
+  = f.select :account_type, options_for_card_type(Address::TYPES)
+  .text_field.street
+    =f.label t('.street'), :style => 'color: #003869'
+    =f.text_field :street, :style => 'width: 230px'
+    =remove_link_unless_new_record(f)
+  .text_field.city
+    =f.label t('.city'), :style => 'color: #003869'
+    =f.text_field :city
+  .text_field.state
+    =f.label t('.state'), :style => 'color: #003869'
+    =f.text_field :state
+  .text_field.zip
+    =f.label t('.zip'), :style => 'color: #003869'
+    =f.text_field :zip
+  .country  
+    =f.localized_country_select :country, [], :include_blank => t('support.select.prompt')

@@ -1,0 +1,72 @@
+-# SHOULD BE IN THE CONTROLLER
+-# results = Array.new
+- num_fields = @fields.count
+
+- num_results = 0
+- @fields.each do |f|
+  - result = Result.where(:field_id => f.id, :user_id => current_user.id)
+  - result.each do |r|
+    - if r.result > num_results
+      - num_results = r.result
+
+
+- if num_results == 0 or @form.multiple
+  = link_to image_tag('/iconos/plus.png') + t('forms.list_answers.new'), answer_form_path(:id => @form.id, :project_permalink => @current_project.permalink, :result => num_results + 1), :class => 'text_button'
+
+%br
+%br
+
+- current_result = 1
+- (0..num_results).each do |result|
+  - results = Result.where(:user_id => current_user.id, :result => result)
+  %a{ :name => "result" + result.to_s }
+  - begin
+    - title = 0
+
+    - results.each do |r|
+      - field = Field.find(r.field_id)
+      - if field.form_id == @form.id
+        - if title == 0
+          %h3= t('forms.list_answers.item', :result => current_result, :date => results.last.updated_at.strftime("%d/%m/%Y").to_s)
+          - current_result += 1
+          .form_edit_icon= link_to image_tag('/iconos/editar22x22.png'), edit_fields_form_path(:id => @form.id, :project_permalink => @current_project.permalink, :result => result), :title => t('common.edit')
+          .form_delete_icon{ :style => 'margin-bottom: 10px' }= link_to image_tag('/iconos/borrar22x22.png'), delete_answers_form_path(:id => @form.id, :project_permalink => @current_project.permalink, :result => result), :title => t('common.delete'), :confirm => t('forms.destroy.confirm')
+          - title = 1
+        .resultaaaado{ :style => 'font-size: 12px'}
+          %b= field.name + " - "
+          = r.value
+          %br
+    - if title == 1
+      %br
+      %br
+  - rescue
+
+
+
+
+
+=# "RESULTATS: " + num_res.to_s
+
+-# @fields.each do |f|
+  - field = Result.where(:field_id => f.id, :user_id => current_user.id)
+  - num_results = field.count
+  - results.push(field)
+
+  - for i in 0..num_results-1
+    - begin
+      - result = Result.where(:field_id => f.id, :result => i ).first
+      - date = result.updated_at.strftime("%d/%m/%Y")
+    - rescue
+      - date = ""
+    - begin
+      %h3= t('forms.list_answers.item', :date => date.to_s)
+      .form_edit_icon= link_to image_tag('/iconos/editar22x22.png'), edit_fields_form_path(:id => @form.id, :project_permalink => @current_project.permalink, :result => result.result), :title => t('common.edit')
+      .form_delete_icon{ :style => 'margin-bottom: 10px' }= link_to image_tag('/iconos/borrar22x22.png'), delete_answers_form_path(:id => @form.id, :project_permalink => @current_project.permalink, :result => result.result), :title => t('common.delete'), :confirm => "Estás seguro?"
+
+      - for j in 0..num_fields-1
+        .field
+          %b= @fields[j].name + " - "
+          = results[j][i].value if not results[j][i].nil?
+      %br
+    - rescue
+      = "NO"

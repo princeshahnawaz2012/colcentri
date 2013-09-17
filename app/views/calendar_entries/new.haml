@@ -1,0 +1,38 @@
+= jsNewEntryFormValidation
+= jsActivateStartDate
+
+.calendar_entry_form{}
+  %h3
+    .image
+    .text= t('calendar_entries.new.title')
+    .clear
+
+  = form_tag(create_calendar_entry_path, :name => 'form', :method=>'post', :multipart => true, :onsubmit => "return validate(form)") do
+
+    -# Name
+    .calendar_entry_title= t('calendar_entries.new.name_html')
+    .clear
+    = text_field_tag "title", nil, :class => 'calendar_entry_text_field'
+    .clear
+
+    -# Description
+    .calendar_entry_title= label_tag t('calendar_entries.new.description')
+    = text_area_tag "description", nil, :class => 'calendar_entry_text_field_big'
+
+    -# Checkbox start date
+    .calendar_entry_title= label_tag t('calendar_entries.new.introduce_start_date')
+    .campo= check_box_tag 'valid_start_date', 'yes', true, :onchange => "activateStartDate(form)"
+
+    %br
+
+    -# Start date
+    .calendar_entry_title_small= label_tag t('calendar_entries.new.start_date')
+    .campo= select_date Date.today, :order => [:day, :month, :year], :prefix => :start_date
+
+    -# End date
+    .calendar_entry_title_small= label_tag t('calendar_entries.new.end_date')
+    .campo= select_date Date.today, :order => [:day, :month, :year], :prefix => :end_date
+
+    .save_button= image_submit_tag t('buttons.save')
+
+    .clear

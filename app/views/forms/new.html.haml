@@ -1,0 +1,56 @@
+%h3
+  .image= image_tag("/iconos/form22x22.png")
+  .text= t('.title')
+  .clear
+
+- form_for @form do |f|
+  = f.hidden_field :user_id, :value => @user_id
+  = f.hidden_field :project_id, :value => @current_project.id
+  = f.hidden_field :project_permalink, :value => @current_project.permalink
+
+
+  .form_title= f.label t('forms.new.formular_name')
+  .clear
+  .form_text_field= f.text_field :title
+  .clear
+
+  .form_title= f.label t('forms.new.description')
+  .clear
+  .form_text_field= f.text_area :description, :style => 'width: 545px; height: 100px'
+  .clear{ :style => 'margin-bottom: 20px'}
+
+  .form_title_big= f.label t('forms.new.multiple')
+  = f.check_box :multiple
+  .clear
+
+  .form_title_big= f.label t('forms.new.publish')
+  = f.check_box :publish
+
+  .clear{ :style => 'margin-bottom: 25px'}
+
+  .form_links
+
+    -# TEXT_FIELD
+    .form_link= add_text_field_link("text_field")
+
+    -# SELECT
+    .form_link= add_select_link("select")
+
+    -# CHECKBOX
+    .form_link= add_checkbox_link("checkbox")
+
+    -# DATE
+    .form_link= add_date_link("date")
+    .clear
+
+
+  .fields{ :style => 'margin-bottom: 30px'}
+
+
+  .fields{ :id => 'text_field'}
+
+  .fields{ :id => 'select'}
+  .fields{ :id => 'checkbox'}
+  .fields{ :id => 'date'}
+
+  = image_submit_tag t('buttons.save'), :class => 'save_button_without_image', :confirm => t('forms.new.confirm')

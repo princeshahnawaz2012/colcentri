@@ -1,0 +1,107 @@
+%h2= @form.title
+
+- form_for @form do |f|
+  = f.hidden_field :user_id, :value => current_user.id
+  = f.hidden_field :project_id, :value => @current_project.id
+  = f.hidden_field :project_permalink, :value => @current_project.permalink
+
+  .form_title= f.label t('forms.new.formular_name')
+  .clear
+  .form_text_field= f.text_field :title
+  .clear
+
+  .form_title= f.label t('forms.new.description')
+  .clear
+  .form_text_field= f.text_area :description, :style => 'width: 545px; height: 100px'
+  .clear{ :style => 'margin-bottom: 20px' }
+
+  .form_title_big= f.label t('forms.new.multiple')
+  = f.check_box :multiple
+  .clear
+
+  .form_title_big= f.label t('forms.new.publish')
+  = f.check_box :publish
+  .clear
+
+  %br
+  %br
+  %br
+
+  .form_links{ :style => 'margin-bottom: 50px'}
+    .form_link= add_text_field_link("text_field")
+    .form_link= add_select_link("select")
+    .form_link= add_checkbox_link("checkbox")
+    .form_link= add_date_link("date")
+
+
+  .field{ :id => 'destroyed_fields'}
+
+  .fields{ :id => 'text_field'}
+  .text_fields
+    - @text_fields.each do |tf|
+      = f.fields_for (:fields, tf) do |ff|
+        .form_text_fields
+          .form_title= ff.label t('forms.new.text_field')
+          .form_text_field_edit= ff.text_field :name
+          = ff.hidden_field :field_type, :value => 0
+          =# link_to '', delete_field_path(:id => tf.id, :form_id => @form.id, :project_permalink => @current_project.permalink), :class => 'trash_icon', :confirm => t('forms.destroy.confirm')
+          = link_to '', '#text_field', :class => 'remove_text_field_edit trash_icon', :rel => 'destroyed_fields', :name => 'field_' + tf.id.to_s
+
+  .clear
+  %br
+
+  .fields{ :id => 'select'}
+  .selectss
+    - @selects.each do |s|
+      = f.fields_for (:fields, s) do |ff|
+        .form_selects
+          .form_title= ff.label t('forms.new.select')
+          .form_text_field_edit= ff.text_field :name
+          = ff.hidden_field :field_type, :value => 1
+          =# link_to '', delete_field_path(:id => s.id, :form_id => @form.id, :project_permalink => @current_project.permalink), :class => 'trash_icon', :confirm => t('forms.destroy.confirm')
+          = link_to '', '#text_field', :class => 'remove_text_field_edit trash_icon', :rel => 'destroyed_fields', :name => 'field_' + s.id.to_s
+          .fields{ :id => 'option', :style => 'margin-left: 50px' }
+            - options = FormOption.where(:field_id => s.id)
+            - options.each do |o|
+              = ff.fields_for (:form_options, o) do |options|
+                .form_options{ :style => 'width: 500px' }
+                  .form_option= options.label t('forms.new.option')
+                  .form_text_field_edit= options.text_field :name, :style => 'width: 150px'
+                  = link_to '', '#option', :class => 'remove_option_edit trash_icon', :rel => 'destroyed_fields', :name => 'option_' + options.id.to_s
+              %br
+              .clear
+          .add_option_link{ :style => 'margin-left: 207px; margin-top: -35px'}= add_option_link("option")
+        .clear
+  .clear
+  %br
+
+  .fields{ :id => 'checkbox' }
+  .checboxes
+    - @checkboxes.each do |c|
+      = f.fields_for (:fields, c) do |ff|
+        .form_checkboxes
+          .form_title= ff.label t('forms.new.checkbox')
+          .form_text_field_edit= ff.text_field :name
+          = ff.hidden_field :field_type, :value => 2
+          =# link_to '', delete_field_path(:id => c.id, :form_id => @form.id, :project_permalink => @current_project.permalink), :class => 'trash_icon', :confirm => t('forms.destroy.confirm')
+          = link_to '', '#text_field', :class => 'remove_text_field_edit trash_icon', :rel => 'destroyed_fields', :name => 'field_' + c.id.to_s
+        .clear
+  .clear
+  %br
+
+  .fields{ :id => 'date' }
+  .dates
+    - @dates.each do |d|
+      = f.fields_for (:fields, d) do |ff|
+        .form_dates
+          .form_title= ff.label t('forms.new.date')
+          .form_text_field_edit= ff.text_field :name
+          = ff.hidden_field :field_type, :value => 3
+          =# link_to '', delete_field_path(:id => d.id, :form_id => @form.id, :project_permalink => @current_project.permalink), :class => 'trash_icon', :confirm => t('forms.destroy.confirm')
+          = link_to '', '#text_field', :class => 'remove_text_field_edit trash_icon', :rel => 'destroyed_fields', :name => 'field_' + d.id.to_s
+        .clear
+  .clear
+
+
+  = image_submit_tag t('buttons.save'), :class => 'save_button_without_image', :confirm => t('forms.new.confirm')
+  .clear

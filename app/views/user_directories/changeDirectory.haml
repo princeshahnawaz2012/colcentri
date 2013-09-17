@@ -1,0 +1,15 @@
+-#not needed anymore
+.changeDirectory
+  %h2= t('user_directories.changeDirectory.title')
+  .changeDirectoryForm
+    = form_tag(moveDirectory_user_directory_path, :method=>'post', :multipart => true) do
+      .userDirectories
+        .text_select_directory
+          = t('user_directories.changeDirectory.userDirectories_html')
+        = select_tag "directory", options_from_collection_for_select(@userDirectories, "id", "name")
+      .fileId
+        = hidden_field_tag "dirId", params[:dirId]
+      .currentDirectory
+        = hidden_field_tag "currentDirectory", @currentDirectory
+      .submit
+        = image_submit_tag t('buttons.save')

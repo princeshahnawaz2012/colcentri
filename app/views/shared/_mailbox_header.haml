@@ -1,0 +1,4 @@
+.first_bar
+  = t('navigation.header.first_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s), :user => current_user)
+.second_bar
+  = t('navigation.header.second_bar.ep', :action => t('navigation.sidebar.' + params[:controller].to_s) )

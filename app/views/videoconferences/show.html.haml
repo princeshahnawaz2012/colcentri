@@ -1,0 +1,60 @@
+%h2= t('.title')
+
+.videoconference
+  .nombre= t('.topic_title')
+  .texto= @videoconference.topic
+
+  .nombre= t('.start_time_title')
+  .texto= (@videoconference.start_time + @videoconference.timezone.to_i).strftime("%d-%m-%Y %H:%M")
+
+  .nombre= t('.duration_title')
+  .texto= t('.duration', :duration => @videoconference.duration)
+
+  .participants
+    .title
+      %h2= t('videoconferences.edit.participants')
+    .moderators
+      .titles=t('.moderators')
+      .names
+        - @moderators.each do |p|
+          = p.login_or_email
+          %br
+    .participants2
+      .titles=t('.participants')
+      .names
+        - @participants.each do |p|
+          = p.login_or_email
+          %br
+    .observers
+      .titles=t('.observers')
+      .names
+        - @observers.each do |p|
+          = p.login_or_email
+          %br
+
+  .clear
+
+  .buttons
+    .back
+      = link_to t('.back'), index_videoconference_path, :class => 'button'
+
+    .edit_button
+      = link_to t('.edit'), edit_videoconferences_path(:id => @videoconference.id), :class => 'button'
+
+
+
+.styles
+  - max_participants = [@participants.count, @moderators.count, @observers.count].max
+  - pixels = max_participants * 20
+  %style{:type => "text/css", :media => "screen"}
+    :plain
+      .names {
+        height: #{pixels}px;
+      }
+
+
+
+
+
+
+

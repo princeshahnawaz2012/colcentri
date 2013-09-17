@@ -1,0 +1,276 @@
+
+= javascript_tag "function moveFile(dirId, fileId, currentProjectId) { dirId = dirId.split('.')[1]; fileId = fileId.split('.')[1]; dir = \"/moveFile_uploads?currentProjectId=\" + currentProjectId + \"&uploadId=\" + fileId + \"&directory=\" + dirId; window.location = dir}"
+= javascript_tag "function moveDirectory(directory, dirId, currentProjectId) { uploadDirId = dirId.split('.')[1]; directory = directory.split('.')[1]; dir = \"/moveDirectory_upload_directory?currentProjectId=\" +  currentProjectId + \"&uploadDirId=\" + uploadDirId + \"&directory=\" + directory; window.location = dir}"
+= jsValidationDirectories #in user_files_helper
+.uploads_buttons
+
+  - if (@permission == 1)
+
+    .new_dir
+      =# link_to '', new_upload_directory_path(:currentProjectId => @current_project.id), :class => 'create_folder_button', :id => 'new_dir_button'
+      = link_to_function image_tag(t('buttons.create_folder')), 'Element.show("newDirectoryForm")', :id => 'new_dir_button'
+
+      %br
+      %br
+
+    .upload_button
+      = link_to '', new_upload_path(:currentProjectId => @current_project.id), :class => 'upload_icon', :title => t('user_files.index.file_upload'),
+          :id => 'upload_file_button'
+
+
+    .search_button
+      = link_to '', search_uploads_path(:currentProjectId => @current_project.id), :class => 'search_icon', :title => t('uploads.index.search'),
+        :id => 'search_button'
+
+.clear
+
+#newDirectoryForm{ :style => 'display: none'}
+  .newDirectoryForm
+
+    %h3
+      .image= image_tag('/iconos/folder22x22.png')
+      .text=t('upload_directories.new.title')
+      .clear
+
+
+    = form_tag(create_upload_directory_path, :method=>'post', :multipart => true, :name => "CreateDirectoryUploads", :onsubmit => "return validateLength(CreateDirectoryUploads)") do
+      .title2
+        = t('upload_directories.new.name')
+      .name_field
+        = text_field_tag "name"
+      .uploadDirId
+        = hidden_field_tag "uploadDirId", @uploadDirId
+      .currentProjectId
+        = hidden_field_tag "currentProjectId", @current_project.id
+      .submit
+        = image_submit_tag t('buttons.save'), :style => 'float: left; margin-top: -25px; margin-left: 425px'
+      .cancel
+        = link_to_function 'Cancelar', 'Element.hide("newDirectoryForm")', :class => 'text_button', :style => 'float: left; margin-top: -20px; margin-left: 525px'
+      .clear
+      .errors_for{:style => "display: none"}=t('activerecord.errors.models.user_directories.attributes.name.blank')
+    .clear
+
+.uploads
+
+  .title_uploads
+    .name
+      = t('.title_name')
+      = link_to '', project_uploads_path(@current_project, :order => 'nameasc'), :title => t('.asc'), :class => 'asc_icon', :style => 'margin-bottom: 7px'
+      = link_to '', project_uploads_path(@current_project, :order => 'namedesc'), :title => t('.desc'), :class => 'desc_icon', :style => 'margin-left: -14px; margin-top: -1px'
+    .size
+      = t('.title_size')
+      = link_to '', project_uploads_path(@current_project, :order => 'sizeasc'), :title => t('.asc'), :class => 'asc_icon', :style => 'margin-bottom: 7px'
+      = link_to '', project_uploads_path(@current_project, :order => 'sizedesc'), :title => t('.desc'), :class => 'desc_icon', :style => 'margin-left: -14px; margin-top: -1px'
+    .time
+      = t('.title_time')
+      = link_to '', project_uploads_path(@current_project, :order => 'timeasc'), :title => t('.asc'), :class => 'asc_icon', :style => 'margin-bottom: 7px'
+      = link_to '', project_uploads_path(@current_project, :order => 'timedesc'), :title => t('.desc'), :class => 'desc_icon', :style => 'margin-left: -14px; margin-top: -1px'
+    .author
+      = t('.title_user')
+      -#
+        .authorasc
+          = link_to t('.asc'), project_uploads_path(@current_project, :order => 'authorasc')
+        .authordesc
+          = link_to t('.desc'), project_uploads_path(@current_project, :order => 'authordesc')
+
+
+
+
+  - num_files = 0
+
+  - for i in 0...@directories.length
+
+    - if num_files % 2 == 0
+      - row_class = 'table_row1'
+      - num_files += 1
+    - else
+      - row_class = 'table_row2'
+      - num_files += 1
+
+    %div{ :class => row_class}
+
+      .dirInfo{:id => "directory#{'.' + @directories.at(i).id.to_s}"}
+        .dirImage
+          = image_tag "/iconos/folder.png"
+        .dirName
+          = link_to @directories.at(i).name, show_content_upload_directory_path(:uploadDirId => @directories.at(i).id,
+            :uploadDirId => @directories.at(i).id, :currentProjectId => @current_project.id)
+        .dirSize
+          - dirSize = @directories.at(i).size/1024
+          - if (dirSize >= 1024)
+            - dirSize = number_with_precision(dirSize/1024.0, :precision => 2)
+            = dirSize.to_s + "MB"
+          - else
+            - dirSize = number_with_precision(dirSize, :precision => 2)
+            = dirSize.to_s + "KB"
+        .dirDate
+          = "-"
+        .dirAuthor
+          = "-"
+        - if (@permission == 1)
+          .dirDownload
+            = '-'
+          .dirRename
+            - rename_directory_id = "renameDirectory#{'.' + @directories.at(i).id.to_s}"
+            = link_to_function '', "Element.show('#{rename_directory_id}')", :class => 'rename_icon', :title => t('.rename')
+          .dirMove
+            - move_directory_id = "changeDirectory#{'.' + @directories.at(i).id.to_s}"
+            = link_to_function '', "Element.show('#{move_directory_id}')", :class => 'move_icon', :title => t('.move')
+          .dirDelete
+            = link_to '', delete_upload_directory_path(:uploadDirId => @directories.at(i).id,
+              :currentProjectId => @current_project.id), :class => 'trash_icon', :title => t('.delete'), :confirm => t('user_files.index.confirmDirDelete')
+          = draggable_element("directory#{'.' + @directories.at(i).id.to_s}", :revert => true)
+          = drop_receiving_element("directory#{'.' + @directories.at(i).id.to_s}", :accept => "fileInfo", :onDrop => "function(dragged, dropped, event) { currentProjectId =" + @current_project.id.to_s + "; moveFile(dropped.id, dragged.id, currentProjectId) }")
+          = drop_receiving_element("directory#{'.' + @directories.at(i).id.to_s}", :accept => "dirInfo", :onDrop => "function(dragged, dropped, event) { currentProjectId =" + @current_project.id.to_s + "; moveDirectory(dropped.id, dragged.id, currentProjectId) }")
+        %br
+
+    .renameDirectory{:style => 'display: none', :id => "renameDirectory#{'.' + @directories.at(i).id.to_s}"}
+      %h3
+        .text=t('user_directories.rename.title')
+        .clear
+      .renameDirectoryForm
+        = form_tag(changeName_upload_directory_path, :method=>'post', :multipart => true, :name => "RenameDirectoryUploads#{'_' + @directories.at(i).id.to_s}", :onsubmit => "return validateLength(RenameDirectoryUploads#{'_' + @directories.at(i).id.to_s});") do
+          .rename
+            = t('user_directories.rename.name')
+          .rename_text
+            = text_field_tag "name", @directories.at(i).name
+          .id
+            = hidden_field_tag "uploadDirId", @directories.at(i).id
+          .currentProjectId
+            = hidden_field_tag "currentProjectId", @current_project.id
+          .submit
+            = image_submit_tag t('buttons.save')
+          .cancel
+            - rename_directory_id = "renameDirectory#{'.' + @directories.at(i).id.to_s}"
+            = link_to_function 'Cancelar', "Element.hide('#{rename_directory_id}')", :class => 'text_button'
+          .clear
+          .errors_for{:style => "display:none"}=t('activerecord.errors.models.user_directories.attributes.name.blank')
+
+      .clear
+
+    .changeDirectory{:style => 'display:none', :id => "changeDirectory#{'.' + @directories.at(i).id.to_s}"}
+      %h3
+        .text=t('user_directories.changeDirectory.title')
+        .clear
+      .changeDirectoryForm
+        = form_tag(moveDirectory_upload_directory_path, :method=>'post', :multipart => true) do
+          .text_select_directory
+            = t('user_directories.changeDirectory.userDirectories_html')
+          .select_directory
+            = select_tag "directory", options_from_collection_for_select(@uploadDirectories, "id", "name")
+          .fileId
+            = hidden_field_tag "uploadDirId", @directories.at(i).id
+          .currentProjectId
+            = hidden_field_tag "currentProjectId", @current_project.id
+          .submit
+            = image_submit_tag t('buttons.save')
+          .cancel
+            - move_directory_id = "changeDirectory#{'.' + @directories.at(i).id.to_s}"
+            = link_to_function 'Cancelar', "Element.hide('#{move_directory_id}')", :class => 'text_button'
+
+      .clear
+
+  - for i in 0...@uploads.length
+
+    - if num_files % 2 == 0
+      - row_class = 'table_row1'
+      - num_files += 1
+    - else
+      - row_class = 'table_row2'
+      - num_files += 1
+
+    %div{ :class => row_class}
+
+      .fileInfo{:id => "file#{'.' + @uploads.at(i).id.to_s}"}
+        .fileImage
+          - icon_name = Upload::ICONS.include?(@uploads.at(i).file_type) ? @uploads.at(i).file_type : '_blank'
+          - icon_path = "file_icons/16px/#{icon_name}.png"
+          = image_tag icon_path
+        .fileName
+          - if @uploads.at(i).asset_file_name.length < 20
+            = @uploads.at(i).asset_file_name
+          - else
+            = @uploads.at(i).short_name
+        .fileSize
+          - fileSize = @uploads.at(i).asset_file_size/1024
+          - if (fileSize >= 1024)
+            - fileSize = number_with_precision(fileSize/1024.0, :precision => 2)
+            = fileSize.to_s + "MB"
+          - else
+            - fileSize = number_with_precision(fileSize, :precision => 2)
+            = fileSize.to_s + "KB"
+        .fileDate
+          = @uploads.at(i).created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+        .fileAuthor
+          = @uploads.at(i).user
+        .fileDownload
+          = link_to '', @uploads.at(i).url, :class => 'download_icon', :title => t('.download')
+        - if (@permission == 1)
+          .fileRename
+            - rename_file_id = "renameFile#{'.' + @uploads.at(i).id.to_s}"
+            = link_to_function '', "Element.show('#{rename_file_id}')", :class => 'rename_icon', :title => t('.rename')
+          .fileMove
+            - move_file_id = "moveFile#{'.' + @uploads.at(i).id.to_s}"
+            = link_to_function '', "Element.show('#{move_file_id}')", :class => 'move_icon', :title => t('.move')
+          .fileDelete
+            = link_to '', delete_uploads_path(:uploadId => @uploads.at(i).id, :currentProjectId => @current_project.id), :class => 'trash_icon', :title => t('.delete'), :confirm => t('.confirmFileDelete')
+          = draggable_element("file#{'.' + @uploads.at(i).id.to_s}", :revert => true)
+        .clear
+
+    .renameFile{:style => 'display: none', :id => "renameFile#{'.' + @uploads.at(i).id.to_s}"}
+      %h3
+        .text=t('user_files.rename.title')
+        .clear
+
+      .renameFileForm
+        = form_tag(change_name_uploads_path, :method=>'post', :multipart => true, :name => "RenameFileUploads#{'_' + @uploads.at(i).id.to_s}", :onsubmit => "return validateLength(RenameFileUploads#{'_' + @uploads.at(i).id.to_s});") do
+
+          .rename
+            = t('user_files.rename.name')
+          .rename_text
+            = text_field_tag "name", @uploads.at(i).asset_file_name
+          .id
+            = hidden_field_tag "uploadId", @uploads.at(i).id
+          .simpleView
+            - if @simpleView == true
+              = hidden_field_tag "simpleView", false
+          .currentProjectId
+            = hidden_field_tag "currentProjectId", @current_project.id
+          .submit_file_rename
+            = image_submit_tag t('buttons.save')
+          .cancel
+            - rename_file_id = "renameFile#{'.' + @uploads.at(i).id.to_s}"
+            = link_to_function 'Cancelar', "Element.hide('#{rename_file_id}')", :class => 'text_button'
+          .clear
+          .errors_for{:style => "display:none"}=t('activerecord.errors.models.user_directories.attributes.name.blank')
+
+          %br
+          .clear
+      .clear
+
+    .changeFileDirectory{:style => 'display: none', :id => "moveFile#{'.' + @uploads.at(i).id.to_s}"}
+      %h3
+        .text=t('user_files.changeDirectory.title')
+        .clear
+
+      .changeFileDirectoryForm
+        = form_tag(moveFile_uploads_path, :method=>'post', :multipart => true) do
+
+          .text_select_directory
+            = t('user_files.changeDirectory.userDirectories_html')
+          .select_directory
+            = select_tag "directory", options_from_collection_for_select(@uploadDirectories, "id", "name")
+          .fileId
+            = hidden_field_tag "uploadId", @uploads.at(i).id
+          .currentDirectory
+            = hidden_field_tag "currentProjectId", @current_project.id
+          .submit_change_file_directory
+            = image_submit_tag t('buttons.save')
+          .cancel
+            - move_file_id = "moveFile#{'.' + @uploads.at(i).id.to_s}"
+            = link_to_function 'Cancelar', "Element.hide('#{move_file_id}')", :class => 'text_button'
+            %br
+          .clear
+      .clear
+
+

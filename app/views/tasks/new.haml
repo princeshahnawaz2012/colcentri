@@ -1,0 +1,4 @@
+= form_for [@current_project,@task_list,@task], :html => {:name => 'form', :method => 'post', :class => 'app_form new_task', :multipart => true} do |f|
+  = render 'tasks/fields', :f => f, :project => @current_project, :task_list => @task_list, :task => @task
+  = f.submit t('.submit'), :'data-disable-with' => t('.sending'), :class => 'form_button'
+  =# image_tag ('/buttons/guardar.png'), :class => 'save_button_without_image'

@@ -1,0 +1,68 @@
+%h2= t('.title')
+
+.create_room
+
+  = form_tag(new_room_videoconference_path, :method=>'post') do
+
+    .topic.text_field
+      =# f.label :topic, t('videoconferences.index.topic')
+      = #f.text_field :topic
+
+      .nombre= label_tag t('videoconferences.index.topic')
+      = text_field_tag :topic
+
+    .start_time.text_field
+      =# f.label :start_time, t('videoconferences.index.start_time')
+      =# f.text_field :start_time
+
+      .nombre= label_tag t('videoconferences.index.start_time')
+      = select_datetime Time.now, :order => [ :day, :month, :year ]
+
+    .duration.text_field
+      =# f.label :duration, t('videoconferences.index.duration')
+      =# f.text_field :duration
+
+      .nombre= label_tag t('videoconferences.index.duration')
+      - duration= [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240 ].entries
+      = select_tag :duration, options_for_select(duration.collect {|c| [c.to_s + " min.",c]})
+      =# text_field_tag :duration
+
+    .timezone.text_field
+      =# f.label :timezone, t('videoconferences.index.timezone')
+      =# f.text_field :timezone
+
+      .nombre= label_tag t('videoconferences.index.timezone')
+      = select_tag :timezone, options_for_select(Videoconference::TIMEZONE2, (2*60*60))
+
+    .password.text_field
+      =# f.label :password, t('videoconferences.index.password')
+      =# f.text_field :password
+
+      .nombre= label_tag t('videoconferences.index.password')
+      = password_field_tag :password
+
+    .repeat_password.text_field
+      =# f.fields_for :confirm_password do |f2|
+      =# f2.label :password2, t('videoconferences.index.repeat_password')
+      =# f2.text_field :password2
+
+      .nombre= label_tag t('videoconferences.index.repeat_password')
+      = password_field_tag :repeat_password
+
+
+    %br
+    %br
+    %h2= t('.participants', :target => current_user)
+    .text_field
+
+      = label_tag t('invitations.search.username_or_email')
+      = text_field_tag :user_or_email
+
+      = select_tag :role, options_for_select( Participant::ROLE.map { |role, value| [ t(".#{role}"), value]}, Participant::ROLE[:participant] )
+
+    .submit
+      = image_submit_tag t('buttons.save')
+
+
+    .back
+      = link_to t('videoconferences.show.back'), index_videoconference_path, :style => 'color: green; font-size: 12px'

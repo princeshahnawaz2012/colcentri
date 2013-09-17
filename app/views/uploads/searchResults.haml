@@ -1,0 +1,42 @@
+.title
+  %h2= t('uploads.searchResults.title')
+
+.uploads
+  .title_uploads
+    .name
+      = t('uploads.searchResults.name')
+    .size
+      = t('uploads.searchResults.size')
+    .time
+      = t('uploads.searchResults.time')
+    .author
+      = t('uploads.searchResults.author')
+
+  - for i in 0...@files.length
+    .fileInfo{:id => "file#{'.' + @files.at(i).id.to_s}"}
+      .fileImage
+        - icon_path = "/images/file_icons/16px/" + fileType(@files.at(i).asset_file_name) + ".png"
+        = image_tag icon_path
+      .fileName
+        = @files.at(i).asset_file_name
+      .fileSize
+        - fileSize = @files.at(i).asset_file_size/1024
+        - if (fileSize >= 1024)
+          - fileSize = number_with_precision(fileSize/1024.0, :precision => 2)
+          = fileSize.to_s + "MB"
+        - else
+          - fileSize = number_with_precision(fileSize, :precision => 2)
+          = fileSize.to_s + "KB"
+      .fileDate
+        = @files.at(i).created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+      .fileAuthor
+        = @files.at(i).user.login
+      .fileDownload
+        = link_to '', @files.at(i).url, :class => 'download_icon', :title => t('uploads.searchResults.download')
+      - if (@permission == 1)
+        .fileRename
+          = link_to '', rename_uploads_path(:fileId => @files.at(i).id), :class => 'rename_icon', :title => t('uploads.searchResults.rename')
+        .fileMove
+          = link_to '', changeDirectory_uploads_path(:fileId => @files.at(i).id), :class => 'move_icon', :title => t('uploads.searchResults.move')
+        .fileDelete
+          = link_to '', delete_uploads_path(:fileId => @files.at(i).id, :simpleView => false), :class => 'trash_icon', :title =>  t('uploads.searchResults.delete'), :confirm => t('uploads.searchResults.confirmFileDelete')

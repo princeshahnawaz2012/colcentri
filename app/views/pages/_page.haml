@@ -1,0 +1,38 @@
+
+%h2= page
+.page_edit_icon= link_to image_tag('/iconos/editar22x22.png'), project_page_path(@current_project, page)
+.page_delete_icon= link_to image_tag('/iconos/borrar22x22.png'), project_page_path(@current_project,page), :method => :delete, :title => t('common.delete'), :confirm => t('confirm.delete_page')
+.clear
+%p= page.description
+
+- if page.slots.any?
+  - groups = page.divided_slots
+  - groups.each do |group|
+    - if group[0] # It is a divider
+      %ul#page_dividers
+        %li
+          = h(group[0].rel_object.name[0..75])
+    %ul#page_notes
+      - group[1].each do |item| # It is a collection of notes
+        - if item.rel_object.class == Note
+          %li{ :style => 'list-style: image url(/images/puntos_listas.gif)' }= h(item.rel_object.name[0..75])
+        -# elsif item.rel_object.class == Upload
+          .page_slot_upload= item.rel_object.asset_file_name[0..75]
+
+
+
+
+
+-#
+  .page
+    %h3= link_to page, project_page_path(@current_project, page)
+    %p= page.description
+    - if page.slots.any?
+      - groups = page.divided_slots
+      - groups.each do |group|
+        - if group[0]
+          %h4= h(group[0].rel_object.name[0..75])
+        %ul
+          - group[1].each do |item|
+            - if item.rel_object.class == Note
+              %li= h(item.rel_object.name[0..75])

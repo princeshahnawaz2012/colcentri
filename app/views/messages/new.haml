@@ -1,0 +1,26 @@
+=jsForNewMessage
+
+%h2= t('mail.new_message.write')
+
+.form_new_message
+  =form_for @message, :url => {:controller => "sent", :action => "create"}, :html=> {:name => "new_message", :onsubmit => "return validate_new_message(new_message);"}  do |f|
+    .recipients_label
+      = f.label t('mail.new_message.to')
+    .mail_text_field= f.text_field :to
+    .clear
+    .errors_for#no_recipients_error{:style => "display:none"}
+      =t('activerecord.errors.models.private_messages.empty_recipients')
+    .clear
+    .subject_label
+      = f.label t('mail.new_message.subject')
+    .mail_text_field= f.text_field :subject
+    .clear
+    .body_label
+      = f.label t('mail.new_message.body')
+    .mail_text_field_big= f.text_area :body
+    .clear
+    .send
+      = image_submit_tag(t('buttons.send'), :name => 'do_send')
+    .save
+      = image_submit_tag(t('buttons.save'), :name => 'save_draft')
+

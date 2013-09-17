@@ -1,0 +1,61 @@
+.nav_links
+  .personal_navigation
+    .title_navigation= t('.title')
+
+
+  .user_info
+    = image_tag avatar_or_gravatar(current_user, :thumb), :class => 'user_avatar'
+    - if current_user.name.length >= 25
+      - name = current_user.first_name.at(0).to_s + '. ' + current_user.last_name.to_s
+      .user_name= link_to name, current_user
+    - else
+      .user_name= link_to current_user.name, current_user
+    .user_login= link_to current_user.login, current_user
+
+  .links
+
+    -# Recent Activity
+    .el= link_to t('shared.navigation.recent_activity'),  current_user, :class => 'recent_activity', :id => "my_recent_activity_link"
+    .divider
+
+    -# My Calendar
+    - pending_tasks = current_user.pending_tasks
+    .el= link_to t('.my_calendar'), calendar_path, :class => 'time', :id => "my_calendar_link"
+    .divider
+
+    -# My Tasks
+    .el#my_tasks
+      -#= link_to t('.my_tasks'), task_lists_path, :class => 'tasks'
+      = link_to t('.my_tasks'), my_tasks_path, :class => 'tasks', :id => "my_tasks_link"
+      -#%span.clickable= link_to pending_tasks.length, task_lists_path(:filter_assigned => 'mine'), :class => 'hoverable', :'data-hoverable-class' => 'left', :id => 'open_my_tasks', :title => t('.open_my_tasks')
+    -#
+      .contained
+        - for task in pending_tasks
+          .el.task{ :id => "my_task_#{task.id}"}
+            = link_to task, [task.project, task], :class => ''
+            = render_due_on(task,current_user)
+        .el= link_to t('.show_all_tasks'), task_lists_path, :class => 'more'
+        .el= link_to t('.gantt_and_calendars'), gantt_view_task_lists_path, :class => 'more'
+    .divider
+
+
+    -# My Files
+    .el= link_to t('.user_files'), user_files_path, :class => 'files', :id => "my_files_link"
+    .divider
+
+    -# Videoconference
+      .el= link_to t('navigation.sidebar.videoconferences'), index_videoconference_path(current_user), :class => 'videoconf', :id => "videoconference_link"
+      .divider
+
+    -# User Settings
+    .el= link_to t('.settings'), account_settings_path, :class => "user_conf", :id => "configuration_link"
+    .contained
+      .el= link_to t('.account_settings'), account_settings_path, :class => 'user_settings', :id => "user_settings_link"
+      .small_divider
+      .el= link_to t('.profile_picture'), account_picture_path, :class => 'user_picture', :id => "user_picture_link"
+      .small_divider
+      .el= link_to t('.notifications'), account_notifications_path, :class => 'user_notifications', :id => "user_notifications_link"
+      .small_divider
+      .el= link_to t('.payments'), subscriptions_path, :class => 'user_payments', :id => "user_payments_link"
+      .small_divider
+      .el= link_to t('.invoices'), index_invoice_path(current_user), :class => 'user_invoices', :id => "user_invoices_link"

@@ -1,0 +1,16 @@
+- can_update = !mobile? and can?(:update, task)
+
+.task_header
+  - if can_update
+    - if can? :edit, task
+      .text_actions
+        = link_to '', [:edit, project, task_list, task], :class => 'edit_icon'
+        - if can? :destroy, task
+          =# t('common.or')
+          = link_to t('common.delete'), [project, task_list, task], :'data-method' => 'delete',
+            :'data-confirm' => t('confirm.delete_task'), :class => 'text_button'
+  
+  %h2=h task.name
+
+- if can_update
+  = render 'form', :project => project, :task_list => task_list, :task => task

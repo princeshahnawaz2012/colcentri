@@ -1,0 +1,17 @@
+<%= form_for(@licence) do |f| %>
+  <% if @licence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@licence.errors.count, "error") %> prohibited this licence from being saved:</h2>
+
+      <ul>
+      <% @licence.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

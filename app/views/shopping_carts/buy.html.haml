@@ -1,0 +1,212 @@
+.PasosCompra
+  .BloquePasoCompra1_Selecc
+    = t('.step1')
+  .BloquePasoCompra2
+    = t('.step2')
+  .BloquePasoCompra3
+    = t('.step3')
+
+
+%h2= t('.title.title')
+
+= jsBuyFormValidation
+= jsBuyFormUpdateTotal
+
+.subscriptions
+  = form_for @shopping, :url => set_checkout_shopping_cart_path(@shopping), :html => {:method=>'post', :multipart => true, :name => 'form', :onsubmit => "return validate(form)" } do |f|
+    .purchased_products
+      .products_titles
+        .product= t('.product')
+        .price= t('.price')
+        .quantity= t('.quantity')
+        .total= t('.total')
+      .sponsor_subscription3
+        .licence3
+          .product3
+            = t('.title.collaborative_platform')
+        .licence
+          .Sub_licence
+            .Sub_product= t('.license') + licence_duration_name(Subscription::LICENCE_TYPE[:monthly])
+            .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:monthly])
+            = f.fields_for :monthly_licences do |monthly|
+              .Sub_quantity
+                = monthly.select :quantity, options_for_select((0..9).each { |num| [num, num]})
+            .Sub_total
+              #Sub_total_monthly
+                = t('.zero')
+
+          .Sub_licence
+            .Sub_product= t('.license') + licence_duration_name(Subscription::LICENCE_TYPE[:biannual])
+            .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:biannual])
+            = f.fields_for :biannual_licences do |biannual|
+              .Sub_quantity
+                = biannual.select :quantity, options_for_select((0..9).each { |num| [num, num]})
+            .Sub_total
+              #Sub_total_biannual
+                = t('.zero')
+
+          .Sub_licence
+            .Sub_product= t('.license') + licence_duration_name(Subscription::LICENCE_TYPE[:annual])
+            .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:annual])
+            = f.fields_for :annual_licences do |annual|
+              .Sub_quantity
+                = annual.select :quantity, options_for_select((0..9).each { |num| [num, num]})
+            .Sub_total
+              #Sub_total_annual
+                = t('.zero')
+      .clear
+      .sponsor_subscription2
+        .licence3
+          .product3
+            = t('.title.videoconference')
+        .licence
+          .Sub_licence
+            .Sub_product= licence_type_name(Subscription::LICENCE_TYPE[:videoconference])
+            .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:videoconference])
+            = f.fields_for :videoconference do |videoconference|
+              .Sub_quantity
+                = videoconference.select :quantity, options_for_select((0..9).each { |num| [num, num]})
+            #Sub_total_videoconference
+              = t('.zero')
+        = link_to_function 'Actualizar', "updateTotal(form);", :class => 'text_button'
+
+
+
+        .total
+          .text= "Total**"
+          .quantity
+            #total_amount
+              = "0.00 €"
+        .clear
+        .errors_for
+          #no_subscription_error{ :style => 'display: none' }
+            = t('shopping_carts.buy.error_min_subscriptions')
+          #too_many_subscriptions_error{ :style => 'display: none' }
+            = t('shopping_carts.buy.error_max_subscriptions')
+        =# button_to_remote "Refresh", ''
+        -# TO DO - Reload total and subtotal
+          = link_to_function 'Actualizar' do |page|
+            - page.replace_html :Sub_total_monthly, "HOLA"
+
+
+
+
+
+
+      -#
+        .licence3
+          .product3
+            = t('.title.additional_data')
+        .licence
+          .Sub_licence
+            .Sub_product= licence_type_name(Subscription::LICENCE_TYPE[:additional_data])
+            .Sub_price= licence_cost_name(Subscription::LICENCE_TYPE[:additional_data])
+            = f.fields_for :additional_data do |additional_data|
+              .Sub_quantity
+                =# additional_data.label :quantity, t('.quantity')
+                = additional_data.select :quantity, options_for_select((0..9).each { |num| [num, num]})
+
+    .clear
+    .txt_products
+      = t('.max_participants_number', :max_participants => Videoconference::MAX_PARTICIPANTS)
+      %br
+      = t('.total_doesnt_include')
+
+
+    .invoice
+      = f.fields_for :invoice do |invoice|
+        .promotional_code
+          %h2= t('.title.promotional_code')
+          .nombre= invoice.label :promotional_code, t('.title.promotional_code')
+          .campo= invoice.text_field :promotional_code
+
+        .invoice_data
+          %h2= t('.title.invoice')
+
+          .type
+            .campo2= invoice.select :invoice_type, options_for_select(Invoice::TYPE.collect { |name, value| [t('.' + name.to_s), value]})
+          .first_name
+            .nombre= invoice.label :first_name, t('users.form.first_name')
+            .campo= invoice.text_field :first_name
+            .nombre
+            .error
+              #first_name_error{ :style => 'display: none'}
+                = t('shopping_carts.errors.obligatory')
+          .last_name
+            .nombre= invoice.label :last_name, t('users.form.last_name')
+            .campo= invoice.text_field :last_name
+            .nombre
+            .error
+              #last_name_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.obligatory')
+
+          .company_name
+            .nombre= invoice.label :organization, t('users.form.company_name')
+            .campo= invoice.text_field :organization
+            .nombre
+            .error
+              #company_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.obligatory')
+          .phone
+            .nombre= invoice.label :phone, t('users.form.phone')
+            .campo= invoice.text_field :phone
+
+          .email
+            .nombre= invoice.label :email, t('users.form.email')
+            .campo= invoice.text_field :email
+            .nombre
+            .error
+              #email_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.email')
+
+          .country
+            .nombre= invoice.label :country, t('users.form.country')
+            .selectPaisReg= invoice.localized_country_select :country, [], :include_blank => t('support.select.prompt')
+            .nombre
+            .error
+              #country_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.country')
+          .address
+            .nombre= invoice.label :address, t('users.form.address')
+            .campo= invoice.text_field :address
+            .nombre
+            .error
+              #address_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.obligatory')
+          .city
+            .nombre= invoice.label :city, t('users.form.city')
+            .campo= invoice.text_field :city
+            .nombre
+            .error
+              #city_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.obligatory')
+          .postal_code
+            .nombre= invoice.label :postal_code, t('users.form.postal_code')
+            .campo= invoice.text_field :postal_code
+            .nombre
+            .error
+              #postal_code_error{ :style => 'display: none' }
+                = t('shopping_carts.errors.obligatory')
+          .clear
+            %h2= t('.title.iva')
+          .texto_iva
+            = t('.iva_html')
+            = invoice.check_box :iva, :as => :boolean
+            = t('.iva')
+            %br
+            %br
+            .nombre= invoice.label :iva_number, t('.iva_number')
+            .selectEUCountry= invoice.select :iva_country, options_for_select(Invoice::EUROPEAN_UNION_COUNTRIES_CODES.collect { |name, value| [name, value]}), :size => 20
+            .vat_number= invoice.text_field :iva_number
+
+
+    .clear
+    .submit
+      %br
+      = f.submit t('.next'), :class => 'text_button'
+
+  =# js_for_buy_form_validations
+%br
+= link_to t("common.return"), subscriptions_path, :class => 'text_button'
+
+

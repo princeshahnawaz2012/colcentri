@@ -1,0 +1,73 @@
+%h2= t('admin.showUser.title', :user => @user.login)
+
+.userInfo
+  .id
+    = t('admin.showUser.id') + ": " + @user.id.to_s
+  .login
+    = t('admin.showUser.login') + ": "
+    - unless @user.login.nil?
+      = @user.login
+  .firstName
+    = t('admin.showUser.name') + ": "
+    - unless @user.first_name.nil?
+      = @user.first_name
+  .lastName
+    = t('admin.showUser.lastName') + ": "
+    - unless @user.last_name.nil?
+      = @user.last_name
+  .email
+    = t('admin.showUser.email') + ": "
+    - unless @user.email.nil?
+      = @user.email
+  .locale
+    = t('admin.showUser.locale') + ": "
+    - unless @user.locale.nil?
+      = @user.locale
+  .confirmed
+    -if !@user.confirmed_user.nil? and @user.confirmed_user?
+      = t('admin.showUser.confirmedUser')
+    -elsif !@user.confirmed_user.nil? and !@user.confirmed_user?
+      = t('admin.showUser.notConfirmedUser')
+    -else
+      = t('admin.showUser.confirmed')
+  .invitedById
+    = t('admin.showUser.invitedBy') + ": "
+    - unless @user.invited_by_id.nil?
+      = @user.invited_by_id
+  .created
+    = t('admin.showUser.created') + ": "
+    - unless @user.created_at.nil?
+      = @user.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .updated
+    = t('admin.showUser.updated') + ": "
+    - unless @user.updated_at.nil?
+      = @user.updated_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+  .deleted
+    -if @user.deleted?
+      = t('admin.showUser.deletedUser')
+    -else
+      = t('admin.showUser.notDeletedUser')
+  .company
+    = t('admin.showUser.company') + ": "
+    - unless @user.company_name.nil?
+      = @user.company_name
+  .country
+    = t('admin.showUser.country') + ": "
+    - unless @user.country.nil?
+      = @user.country
+  .phone
+    = t('admin.showUser.phone') + ": "
+    - unless @user.phone.nil?
+      = @user.phone
+  .comercialCode
+    = t('admin.showUser.comercialCode') + ": "
+    - unless @user.comercial_code.nil?
+      = @user.comercial_code
+
+.deleteUser
+  = link_to t('admin.showUser.deleteUser'), deleteUser_admin_path(:userId => @user.id),
+    {:confirm => t('admin.usersManagement.confirmDelete')}
+
+
+.goBackLink
+  = link_to t('admin.showUser.goBackUsersManagement'), usersManagement_admin_path

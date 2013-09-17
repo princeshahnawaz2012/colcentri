@@ -1,0 +1,74 @@
+- if (request.user_agent =~ /Mobile|Blackberry|Android|WebOS|iPhone|iPad/).to_s != ''
+  = render '/shared/project_actions_m'
+- else
+  = javascript_tag "function hide_or_show_configuration_options() { document.getElementById('hidden_buttons').toggle(); } "
+
+  .project_actions
+    = link_to_function image_tag(t('buttons.create_group')), 'Element.show("project_group_new_form"); Element.hide("project_new_form");', :id => 'new_project_group_button'
+    = link_to_function image_tag(t('buttons.create_project')), 'Element.show("project_new_form"); Element.hide("project_group_new_form");', :id => 'new_project_button'
+
+    .project_buttons
+
+      = link_to image_tag('/iconos/bot_arecent_b.png'), project_path(@project), :class => 'recent_activity', :id => 'bot_arecent', :title => t('shared.project_actions.recent_activity'), :onmouseover => 'Element.hide("bot_arecent"); Element.show("bot_arecent2");', :onmouseout => 'Element.show("bot_arecent"); Element.hide("bot_arecent2");'
+      = link_to image_tag('/iconos/bot_arecent_roll.png'), project_path(@project), :class => 'recent_activity', :id => 'bot_arecent2', :title => t('shared.project_actions.recent_activity'), :onmouseover => 'Element.hide("bot_arecent"); Element.show("bot_arecent2");', :onmouseout => 'Element.show("bot_arecent"); Element.hide("bot_arecent2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_arecent_b.png'), project_path(@project), :class => 'recent_activity', :id => 'bot_arecent', :title => t('shared.project_actions.recent_activity')
+
+      = link_to image_tag('/iconos/bot_calendar_b.png'), project_calendar_path(:project_permalink => @project.permalink), :class => 'calendar', :id => 'bot_calendar', :title => t('shared.project_actions.calendar'), :onmouseover => 'Element.hide("bot_calendar"); Element.show("bot_calendar2");', :onmouseout => 'Element.show("bot_calendar"); Element.hide("bot_calendar2");'
+      = link_to image_tag('/iconos/bot_calendar_roll.png'), project_calendar_path(:project_permalink => @project.permalink), :class => 'calendar', :id => 'bot_calendar2', :title => t('shared.project_actions.calendar'), :onmouseover => 'Element.hide("bot_calendar"); Element.show("bot_calendar2");', :onmouseout => 'Element.show("bot_calendar"); Element.hide("bot_calendar2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_calendar_b.png'), project_calendar_path(:project_permalink => @project.permalink), :class => 'calendar', :id => 'bot_calendar', :title => t('shared.project_actions.calendar')
+
+
+      = link_to image_tag('/iconos/bot_conversacion_b.png'), project_conversations_path(@project), :class => 'conversations', :id => 'bot_conversacion', :title => t('shared.project_actions.conversations'),  :onmouseover => 'Element.hide("bot_conversacion"); Element.show("bot_conversacion2");', :onmouseout => 'Element.show("bot_conversacion"); Element.hide("bot_conversacion2");'
+      = link_to image_tag('/iconos/bot_conversacion_roll.png'), project_conversations_path(@project), :class => 'conversations', :id => 'bot_conversacion2', :title => t('shared.project_actions.conversations'),  :onmouseover => 'Element.hide("bot_conversacion"); Element.show("bot_conversacion2");', :onmouseout => 'Element.show("bot_conversacion"); Element.hide("bot_conversacion2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_conversacion_b.png'), project_conversations_path(@project), :class => 'conversations', :id => 'bot_conversacion', :title => t('shared.project_actions.conversations')
+
+
+      = link_to image_tag('/iconos/bot_page_b.png'), project_pages_path(@project), :class => 'pages', :id => 'bot_page' , :title => t('shared.project_actions.pages'),  :onmouseover => 'Element.hide("bot_page"); Element.show("bot_page2");', :onmouseout => 'Element.show("bot_page"); Element.hide("bot_page2");'
+      = link_to image_tag('/iconos/bot_page_roll.png'), project_pages_path(@project), :class => 'pages', :id => 'bot_page2' , :title => t('shared.project_actions.pages'),  :onmouseover => 'Element.hide("bot_page"); Element.show("bot_page2");', :onmouseout => 'Element.show("bot_page"); Element.hide("bot_page2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_page_b.png'), project_pages_path(@project), :class => 'pages', :id => 'bot_page' , :title => t('shared.project_actions.pages')
+
+
+      = link_to image_tag('/iconos/bot_task_b.png'), project_task_lists_path(@project), :class => 'tasks', :id => 'bot_task' , :title => t('shared.project_actions.tasks'),  :onmouseover => 'Element.hide("bot_task"); Element.show("bot_task2");', :onmouseout => 'Element.show("bot_task"); Element.hide("bot_task2");'
+      = link_to image_tag('/iconos/bot_task_roll.png'), project_task_lists_path(@project), :class => 'tasks', :id => 'bot_task2' , :title => t('shared.project_actions.tasks'),  :onmouseover => 'Element.hide("bot_task"); Element.show("bot_task2");', :onmouseout => 'Element.show("bot_task"); Element.hide("bot_task2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_task_b.png'), project_task_lists_path(@project), :class => 'tasks', :id => 'bot_task' , :title => t('shared.project_actions.tasks')
+
+
+      = link_to image_tag('/iconos/bot_folder_b.png'), project_uploads_path(@project), :class => 'files', :id => 'bot_folder' , :title => t('shared.project_actions.files'),  :onmouseover => 'Element.hide("bot_folder"); Element.show("bot_folder2");', :onmouseout => 'Element.show("bot_folder"); Element.hide("bot_folder2");'
+      = link_to image_tag('/iconos/bot_folder_roll.png'), project_uploads_path(@project), :class => 'files', :id => 'bot_folder2' , :title => t('shared.project_actions.files'),  :onmouseover => 'Element.hide("bot_folder"); Element.show("bot_folder2");', :onmouseout => 'Element.show("bot_folder"); Element.hide("bot_folder2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_folder_b.png'), project_uploads_path(@project), :class => 'files', :id => 'bot_folder' , :title => t('shared.project_actions.files')
+
+      = link_to image_tag('/iconos/bot_form_b.png'), index_forms_path(:project_permalink => @project.permalink), :class => 'forms', :id => 'bot_form', :title => t('shared.project_actions.forms'), :onmouseover => 'Element.hide("bot_form"); Element.show("bot_form2");', :onmouseout => 'Element.show("bot_form"); Element.hide("bot_form2");'
+      = link_to image_tag('/iconos/bot_form_roll.png'), index_forms_path(:project_permalink => @project.permalink), :class => 'forms', :id => 'bot_form2', :title => t('shared.project_actions.forms'), :onmouseover => 'Element.hide("bot_form"); Element.show("bot_form2");', :onmouseout => 'Element.show("bot_form"); Element.hide("bot_form2");', :style => 'display: none'
+
+
+      = link_to image_tag('/iconos/bot_equipo_b.png'), list_project_people_path(@project), :class => 'people', :id => 'bot_equipo', :title => t('shared.project_actions.people'),  :onmouseover => 'Element.hide("bot_equipo"); Element.show("bot_equipo2");', :onmouseout => 'Element.show("bot_equipo"); Element.hide("bot_equipo2");'
+      = link_to image_tag('/iconos/bot_equipo_roll.png'), list_project_people_path(@project), :class => 'people', :id => 'bot_equipo2', :title => t('shared.project_actions.people'),  :onmouseover => 'Element.hide("bot_equipo"); Element.show("bot_equipo2");', :onmouseout => 'Element.show("bot_equipo"); Element.hide("bot_equipo2");', :style => 'display: none'
+      =# link_to image_tag('/iconos/bot_equipo_b.png'), list_project_people_path(@project), :class => 'people', :id => 'bot_equipo', :title => t('shared.project_actions.people')
+
+
+      - if can?(:update, @project)
+
+        =# image_tag '/iconos/bot_conf_b.png', :class => 'configuration', :id => 'bot_conf', :title => t('shared.project_actions.configuration'), :onclick => "hide_or_show_configuration_options()",  :onmouseover => 'Element.hide("bot_conf"); Element.show("bot_conf2");', :onmouseout => 'Element.show("bot_conf"); Element.hide("bot_conf2");'
+        =# image_tag '/iconos/bot_conf_roll.png', :class => 'configuration', :id => 'bot_conf2', :title => t('shared.project_actions.configuration'), :onclick => "hide_or_show_configuration_options()",  :onmouseover => 'Element.hide("bot_conf"); Element.show("bot_conf2");', :onmouseout => 'Element.show("bot_conf"); Element.hide("bot_conf2");', :style => 'display: none'
+        =# image_tag '/iconos/bot_conf_b.png', :class => 'configuration', :id => 'bot_conf', :title => t('shared.project_actions.configuration'), :onclick => "hide_or_show_configuration_options()"
+        = link_to image_tag('/iconos/bot_conf_b.png'), project_settings_path(@project.permalink), :class => 'configuration', :id => 'bot_conf', :title => t('shared.project_actions.configuration'), :onmouseover => 'Element.hide("bot_conf"); Element.show("bot_conf2");', :onmouseout => 'Element.show("bot_conf"); Element.hide("bot_conf2");'
+        = link_to image_tag('/iconos/bot_conf_roll.png'), project_settings_path(@project.permalink), :class => 'configuration', :id => 'bot_conf2', :title => t('shared.project_actions.configuration'), :onmouseover => 'Element.hide("bot_conf"); Element.show("bot_conf2");', :onmouseout => 'Element.show("bot_conf"); Element.hide("bot_conf2");', :style => 'display: none'
+
+
+      - else
+        = image_tag('/iconos/bot_conf_b.png', :class => 'configuration', :title => t('shared.project_actions.configuration'))
+        -#
+          .hidden_buttons#hidden_buttons{ :style => 'display: none' }
+            .general_settings_button
+              = link_to t('shared.project_actions.general_configuration'), project_settings_path(@project.permalink), :class => 'general_settings', :title => t('shared.project_settings_navigation.general')
+            .roles_button{ :style => 'float: right'}
+              = link_to t('shared.project_actions.privileges'), project_people_path(@project), :class => 'roles', :title => t('shared.navigation.roles')
+
+    .clear
+  -#
+    #configuration_options{:style => 'display:none'}
+
+
+
+
+

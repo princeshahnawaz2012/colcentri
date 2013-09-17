@@ -1,0 +1,12 @@
+%h2=h @task.name
+
+-# not view file for creating task?
+-# Be careful about format :js and errors_for!!!
+= form_for [@current_project,@task_list,@task], :format => :js, :html => {:class => 'app_form'} do |f|
+  =# render 'tasks/fields', :f => f, :project => @current_project, :task_list => @task_list, :task => @task
+
+  .task_title{ :style => 'margin-top: 5px'}= f.label :name, t('tasks.fields.name_html')
+  .task_text_field{ :style => 'float: left; margin-right: 20px'}= f.text_field :name, :autofocus => %w[new edit].include?(action_name), :style => 'width: 200px' || nil
+  =# f.submit t('.submit'), :class => 'form_button'
+  =# errors_for f.object, :name	
+  = image_submit_tag t('buttons.save')

@@ -1,0 +1,55 @@
+=jsPreferencesFormValidation
+
+.preferences_title
+  %h2= t('project_groups.fields.preferences_title')
+
+
+
+.edit_project_group_name_form
+  = form_tag(update_name_project_group_path, :name => 'form', :method=>'post', :multipart => true, :onsubmit => "return validate_project_group_edit(form);") do
+    .project_group_title= label_tag t('project_groups.fields.name_html')
+    .clear
+    .project_group_text_field= text_field_tag "project_group_name_edit", @project_group.name
+    .clear
+    .error
+    #project_group_error_max_length_edit{ :style => 'display: none'}
+      .formular_error= t('project_groups.errors.max_length')
+    #project_group_missing_name_error{ :style => 'display: none'}
+      .formular_error= t('project_groups.settings.missing_name_error')
+    .clear
+    .id
+      = hidden_field_tag "project_group_id", @project_group.id
+
+    .clear
+
+    .project_group_title= t('project_groups.fields.permalink')
+    .clear
+    .permalink{ :style => 'font-size: 12px; margin-top: 4px; margin-left: 12px'}= permalink_example(@project_group.permalink)
+
+    .submit
+      =# submit_tag t('project_groups.fields.update'), :class => 'form_button'
+      = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+
+.clear{ :style => 'margin-bottom: 25px' }
+
+
+-# show ownership if user is admin
+- if can? :transfer, @project_group
+  - @sub_action = 'ownership'
+  %h2= t("project_groups.edit.title_#{@sub_action}", :project_group => @project_group)
+
+  - sub_params = transfer_project_group_path(@project_group)
+
+  = form_for @project_group, :url => sub_params do |f|
+    = project_group_fields(f,@project_group,@sub_action)
+    =# f.submit t('project_groups.edit.change_owner'), :class => 'form_button'
+    = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+
+.clear{ :style => 'margin-bottom: 25px' }
+
+-# Deletion
+- @sub_action = 'deletion'
+%h2= t("project_groups.edit.title_#{@sub_action}", :project_group => @project_group)
+= form_for @project_group do |f|
+  =# project_group_fields(f,@project_group,@sub_action)
+  .project_group_delete_icon{ :style => 'margin-left: 600px; margin-top: -45px'}= link_to image_tag('/iconos/borrar22x22.png'), project_group_path(@project_group), :method => :delete, :confirm => t('project_groups.fields.confirm_delete'),:title => t('project_groups.fields.forever')

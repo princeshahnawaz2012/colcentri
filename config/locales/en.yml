@@ -1,0 +1,3355 @@
+en:
+  activerecord:
+    attributes:
+      address:
+        city: City
+        country: Country
+        state: State
+        street: Street
+        zip: ZIP
+      card:
+        city: City
+        country: Country
+        state: State
+        street: Street
+        zip: ZIP code
+      comment:
+        body: Body
+        hours: Hours
+        status: Status
+      conversation:
+        name: Name
+      divider:
+        name: Name
+      email_address:
+        account_type: Type
+        name: Address
+      im:
+        account_im_type: Service
+        account_type: Type
+        name: Address
+      invitation:
+        email: E-mail
+      note:
+        body: Body
+        name: Name
+      pages:
+        description: Description
+        name: Page
+      phone_number:
+        account_type: Type
+        name: Telephone
+      project:
+        name: Name
+        permalink: Address
+      project_group:
+        name: Name
+        permalink: Address
+      social_network:
+        account_network_type: Service
+        account_type: Type
+        name: Address
+      task:
+        due_on: Due date
+        name: Name
+        status: Status
+      task_list:
+        finish_on: Finish date
+        name: Name
+        start_on: Start date
+      upload:
+        description: Description
+      user:
+        biography: Biography
+        company_name: Organization
+        country: Country
+        email: E-mail
+        first_day_of_week: First day of week
+        first_name: Name
+        language: Language
+        last_name: Last name
+        login: Username
+        time_zone: Time zone
+      website:
+        name: Address
+    errors:
+      messages:
+        accepted: "it must be accepted"
+        blank: "it can not be left blank"
+        confirmation: "the confirmation does not match"
+        empty: "it can not be empty"
+        equal_to: "it must be equal to %{count}"
+        even: "it must be even"
+        exclusion: "it is reserved"
+        greater_than: "it must be greater than %{count}"
+        greater_than_or_equal_to: "it must be greater than or equal to %{count}"
+        inclusion: "it is not included in the list"
+        invalid: "it is invalid"
+        less_than: "it must be less than %{count}"
+        less_than_or_equal_to: "it must be less than or equal to %{count}"
+        not_a_number: "it is not a number"
+        odd: "it must be odd"
+        record_invalid: "the validation failed: %{errors}"
+        taken: "it has already been taken"
+        terms_of_use: "You must accept the terms of use"
+        too_long: "it is too long ( %{count} maximum number of characters)"
+        too_short: "it is too short (%{count} minimum number of characters)"
+        wrong_length: "check the length (should be %{count} exact number of characters)"
+      models:
+        comment:
+          attributes:
+            body:
+              blank: "include a comment before saving"
+              duplicate: "Duplicated comment"
+        conversation:
+          attributes:
+            comments:
+              must_have_one: "Start a conversation with a comment"
+            name:
+              no_title: "Write a title"
+        task:
+          attributes:
+            assigned:
+              doesnt_belong: "Assigned users do not belong to the project"
+        user_directories:
+          attributes:
+            name:
+              blank: "Include a name before saving"
+          search:
+            size:
+              nan: "The length must a number"
+              min_sup_max: 'the minimum size of the field must be less than the maximum field size '
+        private_messages:
+          empty_message: "Are you sure you want to send this empty message?" #new
+          empty_subject: "Are you sure you want to send this message without a subject?" #new
+          empty_recipients: "You must specify at least one recipient" #new
+          recipients_not_found: "Couldn't find %{users}. Please check the users login" #new
+
+
+    models:
+      address: Address
+      card: Card
+      comment: Comment
+      conversation: Conversation
+      divider: Divider
+      email_address: E-mail
+      im: "Instant messaging"
+      invitation: Invitation
+      note: Text
+      organization: Organization
+      page: Page
+      phone_number: Telephone
+      project: Project
+      social_network: "Social network"
+      task: Task
+      task_list: "Tasks list"
+      upload: Upload
+      website: Web
+
+  activities:
+    create_comment:
+      create_comment: You created a comment
+      title: "%{user} has commented on %{target}"
+    create_comment_conversation:
+      title: "%{user} has replied to conversation %{target}"
+    create_comment_project:
+      title: "%{user} has updated his/her status in %{target}"
+    create_comment_task:
+      title: "%{user} has updated the task %{target}"
+    create_conversation:
+      create_conversation: A conversation has been started
+      title:
+    create_note:
+      create_note: A note has been added
+      title: "%{user} has created a note %{note} on %{page}"
+    create_page:
+      create_page: A page has been created
+      title: "%{user} has created the page %{page}"
+    create_person:
+      by: by
+      create_person: Someone has joined the project
+      title: "%{person} has been invited to join the project %{project}"
+    create_project:
+      left: A project has been created
+      title: "%{person} has created the project %{project}"
+    create_task:
+      create_task: A task has been created
+      title: "%{user} has created the task %{task} in %{task_list}"
+    create_task_list:
+      create_task_list: A task list has been created
+      title: "%{user} has created the task list %{task_list}"
+    create_colcentric_data:
+      title: "%{person} imported into the project %{project}"
+    create_upload:
+      title: "%{user} has uploaded the file: %{file}"
+      title_with_page: "%{user} has uploaded a file to %{page}:"
+    delete_person:
+      by: by
+      delete_person: "Has quit the project"
+      left: "Has left the project"
+      title: "%{person} has left the project %{project}"
+    edit_note:
+      edit_note: A note has been edited
+      title: "%{user} has edited the note \"%{note}\" in %{page}"
+    edit_page:
+      edit_page: A page has been edited
+      title: "%{user} has edited the page %{page}"
+    thread:
+      conversation_with_title_html: "%{conversation} on %{project} project"
+      conversation_without_title_html: "Conversation on %{project} project"
+      created:
+        conversation: "A conversation has been created"
+        task: "A task has been created"
+      more_comments:
+        one:   "Display a previous comment"
+        other: "Display %{count} previous comments"
+      task_on_task_list_html: "%{task} in the tasks list %{task_list}"
+
+  admin:
+    editSubscription:
+      Active: "Active"
+      additional_data: "Additional capacity"
+      annual: "Annual"
+      ask_new_expiration_date: "I want to set a new expiration date"
+      ask_new_trial_expiration_date: "I want to set a new expiration date of the trial period"
+      biannual: "Biannual"
+      Cancelled: "Cancelled"
+      confirmDelete: "Are you sure you want to delete the subscription?"
+      created_at: "Created in"
+      delete: "Delete this subscription"
+      deleted: "Deleted"
+      expiration_date: "Expiration date"
+      Failed: "Failed"
+      goBackSubscriptionsManagement: "Go back to the subscriptions control panel"
+      id: "ID"
+      inactive: "Inactive"
+      Incomplete: "Incomplete"
+      last_payment_date: "Date of the last payment"
+      licence_type: "Type of license"
+      monthly: "Monthly"
+      new_expiration_date: "New expiration date (UTC)"
+      new_trial_expiration_date: "New expiration date of the trial period (UTC)"
+      paypal_correlationid: "Paypal CorrelationId"
+      paypal_profileid: "Paypal ProfileId"
+      paypal_profilestatus: "Paypal ProfileStatus"
+      pending: "Pending"
+      shopping_cart_id: "Shopping cart ID"
+      special: "Special"
+      sponsor_user_id: "Sponsored user ID"
+      status: "Status"
+      submit: "Update subscription"
+      subscriptionDeleted: "Yes"
+      subscriptionNotDeleted: "No"
+      Suspended: "Suspended"
+      title: "Editing the subscription with ID = %{subscriptionId}"
+      trial: "Trial"
+      trial_expiration_date: "Expiration date of the trial period"
+      updated_at: "Updated on"
+      user_id: "Owner user's ID"
+      videoconference: "Videoconference"
+    index:
+      title: "Adminstration Area" #new
+      usersManagement: "User Manager"  #new
+      invoicesManagement: "Invoice Manager"   #new
+      subscriptionsManagement: "Subscription Manager"   #new
+      licencesManagement: "Licence Manager"   #new
+      statistics: "Stats Manager" #new
+    invoicesManagement:  #new
+      amount: "Amount"    #new
+      confirmDelete: "Are you sure want to delete this Invoice?"     #new
+      created_at: "Created at" #new
+      delete: "Delete"  #new
+      first_name: "Name"  #new
+      goBackAdminPanel: "Go back to Administration Panel"      #new
+      invoice_number: "Invoice Number"     #new
+      invoiceNumber: "Invoice Number" #new
+      last_name: "Surname" #new
+      show: "View"  #new
+      title: "List of Invoices" #new  
+    licencesManagement: #new
+      title: "List of Licences"  #new
+      number: "Number"   #new
+      licence: "Licence"   #new
+      amount: "Amount"  #new
+      period: "Period"   #new
+      created_at: "Created At" #new
+      confirmDelete: "Are you sure want to delete this following licence" #new
+      new: "Create a new licence"
+    showInvoice:
+      address: "Address"
+      amount: "Amount to pay"
+      city: "City"
+      completed: "Finished"
+      country: "Country"
+      created_at: "Created on"
+      email: "E-mail"
+      Failed: "Failed"
+      first_name: "Name"
+      goBackInvoicesManagement: "Go back to the invoicing screen"
+      id: "ID"
+      incompleted: "Incomplete"
+      invoice_number: "Invoice number"
+      iva: "VAT number"
+      last_name: "Last name"
+      n_annual_licenses: "Number of purchased annual licenses"
+      n_biannual_licenses: "Number of purchased biannual licenses"
+      n_monthly_licenses: "Number of purchased monthly licenses"
+      n_storage: "Contracted storage"
+      n_videoconferences: "Number of contracted videoconference rooms" 
+      organization: "Organization"
+      phone: "Telephone"
+      postal_code: "ZIP code"
+      promotional_code: "Promotional code"
+      shopping_cart_id: "ID of the associated shopping cart purchased"
+      status: "Status"
+      title: "Information of the invoice number"
+      updated_at: "Updated on"
+      user_id: "User's ID"
+    showSubscription:
+      Active: "Active"
+      additional_data: "Additional capacity"
+      annual: "Annual"
+      biannual: "Biannual"
+      Cancelled: "Cancelled"
+      created_at: "Created on"
+      deleted: "Deleted"
+      expiration_date: "Expiration date"
+      Failed: "Failed"
+      goBackSubscriptionsManagement: "Go back to the user's panel screen"
+      id: "ID"
+      inactive: "Inactive"
+      Incomplete: "Incomplete"
+      last_payment_date: "Date of the last payment"
+      licence_type: "Type of license"
+      monthly: "Monthly"
+      paypal_correlationid: "Paypal CorrelationId"
+      paypal_profileid: "Paypal ProfileID"
+      paypal_profilestatus: "Paypal ProfileStatus"
+      pending: "Pending"
+      shopping_cart_id: "ID of the associated shopping cart"
+      special: "Special"
+      sponsor_user_id: "ID of the sponsored user"
+      status: "Status"
+      subscriptionDeleted: "Deleted: Yes"
+      subscriptionNotDeleted: "Deleted: No"
+      Suspended: "Suspended"
+      title: "Information of the subscription with ID %{subscriptionId}"
+      trial: "Trial"
+      trial_expiration_date: "Expiration date of the trial license"
+      updated_at: "Updated on"
+      user_id: "ID of the owner user"
+      videoconference: "Videoconference"
+    showUser:
+      comercialCode: "Commercial code"
+      company: "Company"
+      confirmed: "Confirmed user"
+      confirmedUser: "Confirmed user: Yes"
+      country: "Country"
+      created: "Registration date"
+      deletedUser: "Deleted user: Yes"
+      deleteUser: "Delete user"
+      editUser: "Edit user"
+      email: "E-mail"
+      goBackUsersManagement: "Go back to the user's management screen"
+      id: "ID"
+      invitedBy: "Invited by user with ID"
+      lastName: "Last name"
+      locale: "Language"
+      login: "User"
+      name: "Name"
+      notConfirmedUser: "Confirmed user: No"
+      notDeletedUser: "Deleted user: No"
+      phone: "Telephone"
+      title: "Information of user %{user}"
+      updated: "Data updated last on"
+    statistics:
+      title: "Statistics"
+      goBackAdminPanel: "Go back to the user panel"
+      numberOfUsers: "Total number of users in the system"
+    subscriptionsManagement:
+      title: "List of Subscribers" #new
+      confirmDelete: "Are you sure want to delete this Subcriber"   #new
+      name: "Full Name"    #new
+      created_at: "Created"  #new
+      expire_at: "Expiry"
+      Active: "Active"
+      additional_data: "Additional data"
+      annual: "Annual"
+      biannual: "Biannual"
+      Cancelled: "Cancelled"
+      confirmDelete: "Are you sure you want to delete the subscription?"
+      created_at: "Created on"
+      delete: "Delete"
+      edit: "Edit"
+      Failed: "Failed"
+      goBackAdminPanel: "Go back to the user's panel screen"
+      id: "ID"
+      inactive: "Inactive"
+      Incomplete: "Incomplete"
+      licence_type: "Type of license"
+      monthly: "Monthly"
+      pending: "Pending"
+      show: "Show details"
+      special: "Special"
+      sponsor_user_id: "ID of the sponsored user"
+      status: "Status"
+      Suspended: "Suspended"
+      title: "Subscriptions management"
+      trial: "Trial"
+      user_id: "ID of the owner"
+      videoconference: "Videoconference"
+    updateSubscription:
+      errorLicences: "The type of licenses which are monthly, biannual, annual, videoconference or additional storage must have expiration date but the trial period does not have an expiration date"
+      errorSpecialLicence: "An especial license can not have expiration date not even for the trial period"
+      errorTrialLicence: "A trial license can not have an expiration date but it can have an expiration date of the trial period"
+      ownerUserNotFound: "There is no user with the provided owner ID"
+      sponsorUserNotFound: "There is no user with the provided sponsored ID"
+    usersManagement:
+      confirmDelete: "Are you sure to delete this User?"
+      created_at: "Created At"
+      delete: "Delete"
+      first_name: "Name"
+      goBackAdminPanel: "Go Back to Admin Panel"
+      last_name: "Surname"
+      login: "Username"
+      show: "view"
+      title: "User Manager"
+
+  avatars: #delete
+    edit:
+      upload: "Upload this image"
+      upload_new_image: "Upload a new image to your profile"
+    new:
+      title:
+      upload: "Upload this image"
+    show:
+      save: "Save changes"
+
+  buttons:
+    contract: "/buttons/en/contract_en.png"
+    create_conversation: "/buttons/en/create_conversation_en.png"
+    create_divider: "/buttons/en/create_divider_en.png"
+    create_folder: "/buttons/en/create_folder_en.png"
+    create_form: "/buttons/en/create_form_en.png"
+    create_group: "/buttons/en/create_group_en.png"
+    create_input: "/buttons/en/create_input_en.png"
+    create_note: "/buttons/en/create_note_en.png"
+    create_organization: "/buttons/en/create_organization_en.png"
+    create_page: "/buttons/en/create_page_en.png"
+    create_project: "/buttons/en/create_project_en.png"
+    create_task: "/buttons/en/create_task_en.png"
+    create_task_list: "/buttons/en/create_task_list_en.png"
+    create_videoconference: "/buttons/en/create_videoconference_en.png"
+    filter: "/buttons/en/filter_en.png"
+    invite: "/buttons/en/invite_en.png"
+    publish: "/buttons/en/publish_en.png"
+    save: "/buttons/en/save_en.png"
+    search: "/buttons/en/search_en.png"
+    send: "/buttons/en/send_en.png"
+    upload_file: "/buttons/en/upload_file_en.png"
+
+
+  calendar:
+    abbr_weekdays: 
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    collaboration_calendar:
+      title: "Collaboration calendar"
+    clear: Clear
+    index:
+      all: "Any"
+      category: "Category"
+      date_header: "Date"
+      end_date_header: "End date"
+      entry: "Entries"
+      filter: "Filter"
+      filter_by: "Filter by:"
+      new_entry: "Create a new entry"
+      project:
+      responsible: "Responsible"
+      start_date_header: "Start date"
+      task:
+      task_header: "Title"
+      title: "My calendar"
+    now: Now
+    project_calendar:
+      title: "Project's calendar"
+    ok: OK
+    today: Today
+
+  calendar_entries:
+    edit:
+      submit: "Edit entry"
+      title: "Edit entry of the calendar %{entry_title}"
+    new:
+      date_error: "The start date can not be later than the end date"
+      description: "Description"
+      end_date: "End date"
+      introduce_start_date: "I want to set a start date"
+      name_html: "Name of the entry"
+      no_title_error: "You must fill in the Name field"
+      optional: "Optional"
+      start_date: "Start date"
+      submit: "Create entry"
+      title: "Create entry"
+    show:
+      delete: "Delete"
+      delete_error: "You do not have permission to delete the entry of the selected calendar"
+      description: "Description"
+      edit: "Edit"
+      edit_error: "You do not have permission to edit the entry of the selected calendar"
+      end_date: "End date"
+      entry_title: "Name of the entry"
+      not_owner_error: "You do not have permission to visualize the entry of the selected calendar"
+      start_date: "Start date"
+      title: "%{entry_title}"
+
+  cards:
+    address:
+      city: "City"
+      state: "State"
+      street: "Street"
+      Zip: "Zip code"
+    card:
+      address:
+        Work: "Work"
+        Home: "Home"
+        other: " Other"
+      addresses: Addresses
+      email_address:
+        Work: "Work"
+        Home: "Home"
+        other: " Other"
+      email_addresses: "E-mail Addresses"
+      im:
+        Work: "Work"
+        Personal: "Personal"
+        other: " Other"
+      ims: Instant messaging
+      phone_number:
+        Work: "Work"
+        Mobile: "Mobile"
+        Fax: "Fax"
+        Home: "Home"
+        Skype: "Skype"
+        other: "Other"
+      phone_numbers: Phone Numbers
+      social_network:
+        Business: "Business"
+        Personal: "Personal"
+        other: " Other"
+      social_networks: "Social Networks"
+      vcard: Download vCard
+      website:
+        Work: "Work"
+        Personal: "Personal"
+        other: " Other"
+      websites: "Websites"
+    card_types:
+      business: Business
+      fax: Fax
+      home: Home
+      mobile: Mobile
+      other: Other
+      personal: Personal
+      work: Work
+    field:
+      add_addresses: "Add Address"
+      add_email_addresses: "Add E-mail"
+      add_ims: "Add instant messaging"
+      add_phone_numbers: "Add phone number"
+      add_social_networks: Add profile"
+      add_websites: "Add website"
+
+  colcentric_datas:
+    column:
+      description: "Here you can move in and out Kinubi data"
+    data:
+      confirm_delete: "Are you sure you want to delete these data?"
+      Incomplete: "Additional information is required"
+      processed_at: "Processed at %{processed_at}"
+      processing: "Currently processing..."
+      remove: Remove
+    export_fields:
+      description: "Please select the projects you want to export"
+    import_fields:
+      in_organization: "Put all projects of this organization"
+      please_supply_user_map: We detected the following users in your import. Please confirm which of them are Kinubi users"
+      select_file: "Please choose a file containing your data"
+      service: "From which service have you exported data?"
+      colcentric_user: "Kinubi user"
+      user:
+    index:
+      exports: "Export your projects"
+      imports: "Import data from a file"
+      imports_explain: "You may import Kinubi backup files"
+      no_exports: "There are no recent exports"
+      no_imports: "There are no recent imports"
+      title: "Import or export your data"
+    new_export:
+      submit: "Export data"
+      title: "Export data"
+    new_import:
+      submit: "Import data"
+      title: "Imported data"
+    show_export:
+      download: "Export downloaded data"
+      projects: "Exported projects"
+      title: "Import/Export"
+    show_import:
+      import_error: "There was an error while loading your import. Please try again"
+      projects: "Imported projects"
+      submit: "Import"
+      title: "Import data"
+
+  comments:
+    actions:
+      confirm_delete: "Are you sure you want to delete this comment?"
+      conversation_url: "Conversation page"
+      convert_task: "Convert into a task"
+      edit: "Edit a comment"
+    attach:
+      tooltip: Attach
+    comment:
+      cannot_edit: "This comment can not be edited after 15 minutes of being published"
+      commented_in_project: "%{user} in %{project}"
+      commented_on: "-"
+      commented_on_a_task_list: "-"
+      confirm_delete: "Are you sure you want to delete this comment?"
+      hours: "%{hours}h"
+      hours_with_minutes: "%{hours}h %{minutes}m"
+      loading: "Loading..."
+    conversations:
+      convert_to_task: "Convert into a task"
+      task_name: "e.g. send logo briefing"
+    convert_form:
+      destination: "Select a destination task list"
+      name: "Write the name of this task"
+      submit: "Convert"
+    edit:
+      submit: "Save"
+    errors:
+      cannot_update: "You do not have permission to edit this comment"
+    fields:
+      attach: Attach
+      attach_file: Attach a file
+      log_hours: "Notify hours"
+      notify_people: "Notify"
+    hours:
+      add_hours: Hours
+      hours: "How many hours have your worked on this task"
+      time_tracking_docs: "Learn how to use the time-tracking"
+      tooltip: "Add hours to this task"
+    new:
+      assigned_to: "Responsible"
+      assigned_to_nobody: "Not assigned"
+      comment_on_project: "Comment on"
+      conversation: "Send a message to the rest of the team"
+      due_on_html: "<b>End date</b> "
+      due_on: "End date"
+      participants: "Participants"
+      priority_html: "<b>Priority</b> "
+      project: "What are you doing? Share ideas, links, files and conversations"
+      responsible_html: "<b>Responsible</b> "
+      sending: "Sending..."
+      start_date2_html: "<b>Start date</b> "
+      start_date_html: "Start date"
+      status_html: "<b>Status</b> "
+      submit: "Publish"
+      task: "Define what must be done in a comment"
+      task_list: "Share ideas for this task list"
+    preview:
+      close: Close 
+      preview: Preview
+    watchers:
+      explain: "Choose the participants to whom you want to send a notification by e-mail "
+      popup_note_html: "Select <b>Notify people</b> to send notifications about this conversation."
+
+  common:
+    accept: Accept
+    and: "And"
+    calendar: Calendar
+    cancel: Cancel
+    close: Close
+    comment:
+      one: "%{count} comment"
+      other: "%{count} comments"
+    continue: Continue
+    decline: Decline
+    delete: Delete
+    edit: Edit
+    format_name: "%{first_name} %{last_name}"
+    format_name_short: "%{first_name_first_character}. %{last_name}"
+    home: "Home"
+    in_project: in
+    logged_out: You logged out
+    next: Next
+    not_allowed: You are not authorized to do this action
+    optional: Optional
+    prev: Previous
+    print: Print this page
+    rename: Rename
+    return: Return
+    save: "Save"
+    show_more: Show more
+    signup: Sign up
+
+  confirm:
+    delete_group: Are you sure you want to delete this group?
+    delete_page: Are you sure you want to delete this page?
+    delete_task: Are you sure you want to delete this task?
+    delete_task_list: Are you sure you want to delete this task list?
+    delete_upload: Are you sure you want to delete this file?
+
+  conversations:
+    actions:
+      confirm_delete: "Are you sure you want to delete this conversation?"
+    column:
+      cant_create: "You are not authorized to create a conversations in this project"
+      new_conversation: "New Conversation"
+    conversation_with_extract:
+      posted_by: Posted by
+    convert_form:
+      name: "Name this task"
+      status: "Status"
+      task_list: "Create a task in"
+    edit:
+      submit: "Modify conversation"
+    fields:
+      body: "First message"
+      name: "Name of the conversation"
+    index:
+      cant_create: "You are not authorized to create a conversation in this project"
+      new_conversation: "New Conversation"
+      rss:
+        description: "Conversations within project %{name}"
+        title: "Conversations of %{name}"
+      title:
+      view_single: Read more
+    link:
+      edit: "Edit"
+    new:
+      description: "Description"
+      submit: "Create a conversation"
+      title: "Create a conversation"
+    primer:
+      create_first: Create the first conversation in this project
+      define_html: "Discuss about decisions <b>and<b> keep your team updated</b> in a centralized manner </b><br/>each conversation is a list of messages that replace confusing e-mails"
+      empty: "There are not conversations in this project yet"
+      footer1_html: "Conversations are perfect to <b>share a design</b>, <b>decide a date</b> for a meeting or <b>report</b> get news about the project"
+      footer2_html: "As it sorted by threads, it is easy to go back in time and see what files were sent and what each Kinubi member has said. In Kinubi <b>sharing</b> generates <b>tracking</b> of what was done"
+      item1_html: "<b>Share files</b>. You can attach files to each message"
+      item2_html: "<b>Subscribe</b> to a conversation to recieve notifications of replies by e-mail"
+      item3_html: "<b>Express yourself</b>. You can reply from your e-mail to publish a reply"
+      item4_html: "<b>Integrated with your e-mail</b>. You can reply from your e-mail to publish a reply"
+    short_conversation:
+      comment: Reply
+      comments: "Replies"
+    show:
+      edit: "Edit title"
+      message: Message
+      messages: Messages
+      started_by: "Started by"
+    watcher_fields:
+      add_suscribers: "Who will participate in this conversation?"
+      cant_notify: "This is a public project"
+      invite_users: "You are the only user in this project"
+      no_users_yet_html: "Conversations are more useful when shared. <a href='%{invite_link}'>Invite some users</a> to this project now so they can read, comment and receive updates about the project"
+      people_all: "All people in the project"
+      subscribe_note_html: "These people will be notified via e-mail of this message and any following comments.<br/>They can unsubscribe at any time."
+
+  countries:
+    AD: Andorra
+    AE: "United Arab Emirates"
+    AF: Afganistan
+    AL: Albany
+    AM: Armenia
+    AO: Angola
+    AR: Argentina
+    AT: Austria
+    AU: Australia
+    AW: Aruba
+    AZ: Azerbaijan
+    BA: Bosnia-Herzegovina
+    BB: Barbados
+    BD: Bangladesh
+    BE: Belgium
+    BG: Bulgaria
+    BI: Burundi
+    BM: Bermudas
+    BO: Bolivia
+    BR: Brasil
+    BS: Bahamas
+    BT: Butan
+    BW: Botwana
+    BY: Bielorrusia
+    CA: Canada
+    CH: Switzerland
+    CI: Ivory Coast
+    CK: Cook Islands
+    CL: Chile
+    CM: Cameroon
+    CN: China
+    CO: Colombia
+    CR: "Costa Rica"
+    CU: Cuba
+    CX: "Easter Island"
+    CY: Ciprus
+    CZ: "Czech Republic"
+    DE: Germany
+    DJ: Djibouti 
+    DK: Dinmarc
+    DO: "Dominican Republic"
+    DZ: Algeria
+    EC: Ecuador
+    EE: Estonia
+    EG: Egipt
+    ER: Eritrea
+    ES: Spain
+    ET: Etiopia
+    FI: Finnland
+    FJ: Fiji
+    FR: France
+    GA: Gabon
+    GB: "United Kingdom"
+    GD: Granada
+    GE: Georgia
+    GF: "French Guiana"
+    GH: Ghana
+    GI: Gibraltar
+    GL: Greenland
+    GM: Gambia
+    GN: Guinea
+    GP: Guadalupe
+    GQ: "Equatorial Guinea"
+    GR: Greece
+    GT: Guatemala
+    GW: Guinea-Bissau
+    HK: "Hong Kong"
+    HN: Honduras
+    HR: Croatia
+    HT: Haiti
+    HU: Hungary
+    ID: Indonesia
+    IE: Ireland
+    IL: Israel
+    IN: India
+    IQ: Iraq
+    IR: Iran
+    IS: Iceland
+    IT: Italy
+    JM: Jamaica
+    JO: Jordan
+    JP: Japan
+    KE: Kenia
+    KG: Kirguistan
+    KH: Cambodia
+    KP: "North Korea"
+    KR: "South Korea"
+    KW: Kuwait
+    KY: "Cayman Islands"
+    KZ: Kazajistan
+    LA: Laos
+    LB: Lebanon
+    LI: Liechtenstein
+    LK: "Sri Lanka"
+    LR: Liberia
+    LS: Lesoto
+    LT: Lituania
+    LU: Luxemburg
+    LV: Letonia
+    LY: Libia
+    MA: Morocco
+    MC: Monaco
+    MD: Moldavia
+    ME: Montenegro
+    MG: Madagascar
+    ML: Mali
+    MN: Mongolia
+    MO: Macao
+    MQ: Martinica
+    MR: Mauritania
+    MS: Montserrat
+    MT: Malta
+    MU: Mauricio
+    MV: Maldives
+    MW: Malawi
+    MX: Mexico
+    MY: Malasia
+    MZ: Mozambique
+    NA: Namibia
+    NE: Niger
+    NG: Nigeria
+    NI: Nicaragua
+    NL: "Netherlands"
+    NO: Norwey
+    NP: Nepal
+    NR: Nauru
+    NZ: "New Zealand"
+    OM: Omam
+    PA: Panama
+    PE: Peru
+    PF: "French Polynesia"
+    PG: "New Papua Guinea"
+    PH: Filipinnes
+    PK: Pakistan
+    PL: Polonia
+    PR: "Puerto Rico"
+    PT: Portugal
+    PY: Paraguay
+    QA: Qatar
+    RE: Reunion
+    RO: Romania
+    RS: Serbia
+    RU: Russia
+    RW: Ruwand
+    SA: "Saudi Arabia"
+    SD: Sudan
+    SE: Sweden
+    SG: Singapore
+    SI: Slovenia
+    SK: Slovakia
+    SN: Senegal
+    SO: Somalia
+    SR: Suriname
+    SV: "El Salvador"
+    SY: Syria
+    TG: Togo
+    TH: Thailand
+    TJ: Tajikistan
+    TK: Tokelau
+    TM: Turkmenistan
+    TN: Tunez
+    TO: Tonga
+    TR: Turkey
+    TV: Tuvalu
+    TW: Taiwan
+    TZ: Tanzania
+    UA: Ucrania
+    UG: Uganda
+    US: "United States of America"
+    UY: Uruguay
+    UZ: Uzbekistan
+    VE: Venezuela
+    VN: Vietnam
+    YE: Yemen
+    ZA: South Africa
+    ZM: Zambia
+    ZW: Zimbawe
+    ZZ: "Unknown region or not valid"
+
+
+  date: 
+    abbr_day_names: 
+      - Sund
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    abbr_month_names: 
+      - ~
+      - Jan
+      - Feb 
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    day_names: 
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    formats: 
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names: 
+      - ~
+      - Jan
+      - Feb 
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    order: 
+      - !ruby/symbol year
+      - !ruby/symbol month
+      - !ruby/symbol day
+    yesterday: Yesterday
+
+  date_picker:
+    no_date_assigned: "Data not assigned"
+
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one:   "Approximately one hour"
+        other: "Approximately %{count} hours"
+      about_x_months:
+        one:   "Approximately one month"
+        other: "Approximately %{count} months"
+      about_x_years:
+        one:   "Approximately one year"
+        other: "Approximately %{count} years"
+      almost_x_years:
+        one:   "Almost one year"
+        other: "Almost %{count} years"
+      half_a_minute: "half a minute"
+      less_than_x_minutes:
+        one:   "Less than 1 minute"
+        other: "Less than %{count} minutes"
+      less_than_x_seconds:
+        one:   "Now"
+        other: " Now"
+      over_x_years:
+        one:   "More than one year"
+        other: "More than %{count} years"
+      x_days: 
+        one: "1 día"
+        other: "%{count} days"
+      x_minutes: 
+        one: "1 minute"
+        other: "%{count} minutes"
+      x_months: 
+        one: "1 month"
+        other: "%{count} months"
+      x_seconds: 
+        one: Now
+        other: Now
+    prompts: 
+      day:    "Day"
+      hour:   "Hour"
+      minute: "Minute"
+      month:  "Month"
+      second: "Seconds"
+      year:   "Year"
+    time_ago: "%{time_ago_in_words} ago"
+
+  deleted:
+    conversation: "The conversation %{name} has been deleted"
+    left_project: "You have quit this project"
+    page: "The page %{name} has been deleted"
+    person: "%{name} is no longer in the project"
+    task: "The %{name} has been deleted"
+    task_list: "The task list %{name} has been deleted"
+    upload: "The file %{name} has been deleted"
+
+  dividers:
+    actions:
+      delete_confirm: Are you sure you want to delete this divider?
+    edit:
+      submit: "Update"
+    fields:
+      title: "Name of the divider"
+    new:
+      new_divider: "Create a divider"
+      submit: "Add"
+
+  emailer:
+    bounce:
+      not_delivered: "Kinubi could not process your e-mail"
+      not_project_member_error: "The sender of this message is not a member of the specified project."
+      project_not_found_error: "The specified project was not found"
+      subject: "Your e-mail was not created correctly"
+      target_not_found_error: "No element was found to be added"
+      user_not_found_error: "This e-mail address is not associated with any Kinubi account."
+    colcentricdata:
+      data_export_failed: "It was not possible to export your data from Kinubi. To try again, please click on the following link:"
+      data_exported: "Your data were exported from Kinubi, and it can be downloaded from the following link:"
+      data_import_failed: "Your data were not imported from Kinubi correctly. Please, check if your data are valid. To try again click on the following link:"
+      data_imported: "Your data were imported from Kinubi correctly. To see the details, please click on the following link:"
+      export_failed: "Export of your data was not possible"
+      exported: "Your data is ready to be downloaded"
+      hey: "Hello %{user_name}"
+      import_failed: "Import of your data was not possible"
+      imported: "Your data has been imported"
+    common:
+      answer_above_this_line: "To reply write above of this line"
+      do_not_answer: "Do not reply to this e-mail."
+    confirm:
+      complete: "Complete your registration"
+      complete_registration: "To finish registration on Kinubi, click on the following "
+      complete_registration2: "Once registered, you will be able to work on our platform, collaborating and communicating with your teammates in real time."
+      follow_this_link: "To finish your registration click on this link"
+      hey: "Hello %{user_name}"
+      log_in: "Log in on Kinubi"
+      plaintext_link: "If the above link doesn't work, copy and paste the following code into your browser bar: "
+      problems_html: "If you have any problems, please contact us at %{support}"
+      report_abuse: "This e-mail was sent to you at your contact's request. Please report any abuse."
+      subject: "%{user} shared [%{project}] with you"
+    forgot_password:
+      subject: "Recover Kinubi's password"
+    invitation:
+      accept_the_invitation: "Accept invitation"
+      collaborate_with: "%{name} wants to collaborate with you on Kinubi:"
+      current_users: "Users in this project:"
+      plaintext_link: "If the link does not work, copy and paste the following in your browser bar: "
+      plan_share_and_collaborate: "Plan, share and stay informed of what is been done"
+      report_abuse: "A contact of yours wanted you to recieve this e-mail. Please, inform us of any spam"
+      subject: "%{user} has invited you to [%{target}]"
+      subject_without_project: "%{name} invited you to join Kinubi"
+      colcentric_is_a_pm_platform: "Kinubi is an on-line collaboration software. Communicate and work with your professional network in private"
+      you_have_been_invited_to_project: "%{user} has invited you to participate in the project %{target}."
+      you_have_been_invited_to_organization: "%{user} has invited you to participate in the organization %{target}"
+      you_have_been_invited_to_project_group: "%{user} has invited you to participate in the project group %{target}"
+    license:
+      expiration_subject: "Expiration of the Kinubi license"
+      item1: "Your Kinubi license will expire in 5 days"
+      item2: "To purchase any of our products, go to the user's panel section in the settings section or click the following link:"
+      item3: "Your Kinubi license has expired"
+      reminder_subject: "Your Kinubi license will expire soon"
+      user_panel: "User panel"
+    membership_notification:
+      target_link: "Click on the following link to start collaborating in %{target}"
+      subject: "%{user} shared [%{project}] with you"
+      you_have_been_added_to_organization: "Now you are a member of the organization %{target}"
+      you_have_been_added_to_project: "Now you are a member of the project %{target}"
+      you_have_been_added_to_project_group: "Now you are a member of the project group %{target}"
+    notify:
+      are_watching:
+        one:   "You have been added to the conversation and will be notified of replies"
+        other: " These have been added to the conversation, and will be notified of future replies."
+      are_watching_task:
+        one:   "You have been added to this task and will be notified of future comments"
+        other: "These have been added to this task and will be notified of future comments"
+      assigned_to_html: "Assigned to <b>%{user}</b>"
+      assigned_to_task: "%{user} has been assigned to the following task: %{task}"
+      comment:
+      comments: "%{number} comments"
+      conversation:
+      due_on: "Due on %{date}"
+      go_to_conversation: "Join the conversation"
+      go_to_task: "Go to the task"
+      my_tasks: "Other tasks of you in %{project}"
+      notification_settings_link_html: "You can change your %{settings_link} for future e-mails."
+      path: "Ec > Projects > "
+      project: "Project"
+      project_group: "Group of projects"
+      reply: "You can also reply to this e-mail to post a comment in the conversation."
+      settings_link: "Notification settings"
+      start_date: "Start date: %{start_date}"
+      status: "Status:%{status}"
+      stop_watch: "Stop visualizing"
+      stop_watching_link_html: "%{stop_watch} this thread to stop receiving e-mail notifications."
+      task:
+      task_commands: "Write #resolve, #reject or #hold on the top of your reply to change the task status. Write #%{username} to assign it to @%{username}, etc."
+      task_link: "Visualize this task on-line"
+      task_list: "List of tasks"
+      view_this_conversation_online_html: "You can access to the conversation %{conversation} by clicking on the following link:"
+      view_this_task_online_html: "You can access the task %{link}by clicking on the following link:"
+    membership_notification:
+      target_link: "Click on the follwoing link to start collaborating on %{target}"
+      subject: "%{user} shared [%{project}] with you"
+      you_have_been_added_to_organization: "Now you are a member of the organization %{target}"
+      you_have_been_added_to_project: "Now you are a member of the project %{target}"
+      you_have_been_added_to_project_group: "Now you are a member of the project group %{target}"
+    reset_password:
+      access_platform: "You can access to the platform by clicking on the following link:"
+      follow_this_link_html: "Click on <a href= %{url}><font color= #008ac0>link</font></a> to reset your Kinubi's password"
+      follow_this_link1: "Click on the following "
+      follow_this_link2: "to reset your Kinubi's password."
+      hey: "Dear %{user_name},"
+      log_in: "Log in on Kinubi now"
+      new_password: "Get a new password"
+      plaintext_link: "If the above link does not work, copy and paste the following code in your browser bar: "
+      problems: "If you have problems contact us through "
+      problems_html: "If you have any problems, please contact us though %{support}"
+      report_abuse: "This e-mail was sent to you becuase your registered on Kinubi using this e-mail %{email}"
+      subject: "Your password has been restored"
+      successfully_reset: "Your Kinubi log in password has been restored"
+    colcentricdata:
+      data_export_failed: "Your data were not exported from Kinubi. To try again please click on the following link:"
+      data_exported: "Your data were exported from Kinubi and can be downloaded from the following link:"
+      data_import_failed: "Your data were not imported to Kinubi. Please check if the data are valid. To try again click on the following link:"
+      data_imported: "Your data were imported to Kinubi correctly. To see the details click on the following link:"
+      export_failed: "Your data were not exported"
+      exported: "Your data are ready to be downloaded"
+      hey: "Hello %{user_name},"
+      import_failed: "It was not possible to import your data"
+      imported: "Your data were imported"
+    license:
+      expiration_subject: "Trial license has expired"
+      item1: "Your Kinubi license will expire in 5 days"
+      item2: "To purchase any of our products, go to the User Panel section in the settings section, or click the following link:"
+      item3: "Start working!"
+      reminder_subject: "Your Kinubi license will expire soon"
+      user_panel: "User panel"
+    trial:
+      expiration_subject: "Trial period has expired"
+      item1: "Your trial license will expire in 5 days"
+      item2: "To purchase any of our products, go to the User Panel section, in settings section, or click the following link:"
+      item3: "Your free trial period has expired"
+      reminder_subject: "Reminder — free trial period will expire soon"
+      user_panel: "User panel"
+    upload:
+      file: "File"
+    videoconference:
+      destruction:
+        subject: "Videoconference cancelled"
+        hello: "Hello %{user_name}"
+        item1: "We inform you that the user %{owner} has cancelled the videoconference expected for %{day}."
+      invitation:
+        duration: "Duration: %{duration} minutes"
+        hello: "Hello %{user_name}"
+        hello2: "Hello"
+        item1: "%{invited_by_name} has invited you to an on-line videoconference."
+        item2: "Make sure that your microphone and webcam are connected. You can access to the videoconference session a few minutes before the time scheduled, through the following link: "
+        item3: "IMPORTANT: Do not share this link with someone else. The link identifies the participants during the videoconference session."
+        item4: "If you have any difficulty, please contact the person or organization who invited you to the videoconference. You can send an e-mail to the organized of the videoconference: %{user_email}"
+        item5_html: "By accesing to the session you accepted the <a href='http://pro.kinubi.com/terms_of_use_en.html' target='_blank'>Terms of Use</a>"
+        link: "Link to the videoconference"
+        link2: "Kinubi"
+        start: "Start: %{start_time}"
+        subject: "Invitation to the videoconference: "
+
+
+  errors: 
+    format: "%{attribute} %{message} "
+    messages: 
+      accepted: "it must be accepted"
+      blank: "It can not be left empty"
+      confirmation: "the confirmation it does not match"
+      empty: "it can not be empty"
+      equal_to: "it must be equal to %{count}"
+      even: "it must be an even number"
+      exclusion: "it is taken"
+      greater_than: "it must be greater than %{count}"
+      greater_than_or_equal_to: "it must be greater than or equal to %{count}"
+      inclusion: "it is not included in the list"
+      invalid: "it is invalid"
+      less_than: "it must be less than %{count}"
+      less_than_or_equal_to: "It must be less than or equal to %{count}"
+      not_a_number: "it is not a number"
+      not_an_integer: "it must be integer"
+      odd: "it must be an odd number"
+      too_long: "the number of characters is too long (maximum %{count} characters)"
+      too_short: "the number of characters is too short (minimum %{count} characters)"
+      wrong_length: "The length is incorrect (it must have %{count} characters)"
+    projects:
+      archived: "You can not have access to a stored file"
+    template: 
+      body: "There were problems with the following links:"
+      header: 
+        one:   "An error prevented this %{model} from being saved"
+        other: "%{count} errors prevented this %{model} from being saved"
+
+  forms:
+    answers:
+      list: "List of answers"
+    close:
+      error: "A form cannot be closed"
+      success: "A form has been successfully closed"
+    destroy:
+      confirm: "Are you sure?"
+      success: "A form has been successfully removed"
+    edit_fields:
+      back: "Back"
+      error: "Changes cannot be changed"
+      success: "The answers have been updated"
+    get_answers:
+      no: "No"
+      yes: "Yes"
+    index:
+      close: "Close"
+      edit: "Edit"
+      destroy: "Remove"
+      name: "Name"
+      new_formular: "Create a form by clicking on the following link"
+      other_forms: "Pending forms"
+      own_forms: "Published forms"
+      publish: "Publish"
+    list_answers:
+      item: "Answers added on %{date}"
+      new: "Add a new answer"
+    new:
+      add_text_field: "Add a string field"
+      add_checkbox: "Add a checkbox"
+      add_date: "Add date"
+      add_option: "Add options"
+      add_select: "Add a scroll down menu"
+      confirm: "Once the form has been created you can not edit it. Do you want to continue?"
+      description: "Description"
+      error: "A form cannot be created"
+      formular_name: "Form name"
+      multiple: "Allow to users for multiple answers?"
+      name: "Name"
+      option: "Option"
+      success: "A form has been successfully created"
+      title: "Create a new form"
+    publish:
+      error: "A form cannot be published"
+      success: "A form has been successfully published"
+    show_answers:
+      title_html: "Replies from the form <strong>%{form}</strong>"
+    update:
+      success: "A form has been successfully updated"
+      error: "Changes cannot be saved"
+
+  form:
+    cancel: Cancel
+
+  google_docs:
+    attach: "Attach a Google document"
+    authorization_required: In order to use Google Docs, first you authorize Kinubi to use your google account.
+    authorize_link: "Authorize Google Docs"
+    create:
+    create_new: "Create a New Document"
+    creating: Processing…
+    new_document_placeholder: "Title of the new document"
+    search_placeholder: Search for Google documents
+
+  help:
+    title: "User's manual"
+    index:
+      first:
+        collaborative_area: "+Collaborative environment"
+        menu: "+ Features menu"
+        personal_area: "+ Personal environment"
+        title: "1.- How Kinubi is structured"
+      second: 
+        invite: "+ Invite users"
+        project: "+ Create a project"
+        project_groups: "+ Create group projects"
+        start_working: "+ Start working"
+        title: "2.- Start working"
+      third:
+        collaborative_area:
+          calendar: "+ Calendario"
+          projects:
+            calendar: "+ Calendar"
+            configuration: "+ Conf."
+            conversations: "+ Conversations"
+            files: "+ Files"
+            pages: "+ Pages"
+            people: "+ Pers. team"
+            recent_activity: "+ AR"
+            tasks: "+ Tasks"
+            title: "+ Projects"
+          recent_activity: "+ AR"
+          title: "+ Collaborative environment"
+        personal_area:
+          calendar: "+ Calendar"
+          files: "+ Files"
+          recent_activity: "+ AR"
+          tasks: "+ Tasks"
+          title: "+ Personal environment"
+          user_settings: "+ User's settings"
+        title: "3.- Details of each section"
+
+
+  helpers:  #delete
+    select:
+      prompt: "Please select"
+    submit: 
+      create: "Create %{model}"
+      submit: "Save %{model}"
+      update: "Update %{model}"
+
+  hours:
+    all_tasks: All tasks
+    all_users: All users
+    comments: Entries
+    entry_hours: hrs
+    entry_total: Total
+    filter_assigned:
+      anybody: "Anyone"
+      my_tasks: "My tasks"
+    filter_by: "Filter by"
+    filter_organization:
+      all: "All organizations"
+    filter_project:
+      all: "All projects"
+    filters:
+      assigned_to: "Users"
+      organizations: Organizations
+      projects: Projects
+      tasks: Tasks
+    report: Report
+    reports:
+      project: Projects
+      task: Tasks
+      user: Users
+    week_num: Week %{num}
+    week_total: Total
+
+  invitations:
+    destroy:
+      discarded: "The invitation to %{user} has been rejected"
+    errors:
+      invalid: "Invalid invitation"
+      invalid_code: "Invalid invitation code"
+    fields:
+      user_or_email: "Enter your the e-mail or username of your teammate:"
+    index_user:
+      no_invitations: "You do not have pending project invitations."
+      title: "Pending invitations"
+    invitation:
+      discard: "Reject invitation"
+      invited_email_html: "%{inviter} invited to <b>%{email}</b> to the project."
+      invited_user_html: "%{inviter} invited to <b>%{invitee}</b> to the project."
+      just_now: "(just now)"
+      pending: "An e-mail was sent to this user, but it has not been confirmed yet"
+      sponsorized: "The invitation is sponsored"
+      resend: Forward the invitation e-mail
+      time_ago: "(%{time_ago_in_words} ago) ago"
+    invite_format:
+      enter_this:
+        title: Introduce
+      title: "In the text box you can insert a list of users or e-mail addresses. E.g.:"
+      to_invite:
+        not_example_html: '(Not <span class="mention">@fred</span> nor <span class="mention">@lisa</span>)'
+        title: "You will invite to"
+    new:
+      also_invite_to_organization: "Also invite to the organization '%{organization}'"
+      role_in_the_organization: "Choose the role the user will have in '%{organization}'"
+      sponsor: "Sponsor up to %{number} invitations"
+    pending:
+      invited_to_join: "%{by} has invited you to join the project %{project}."
+      to_access_or: to access the project or
+    recent:
+      invite: "Invite %{username}"
+    resend:
+      resent: "The invitation has been resent to %{recipient}. If the e-mail can not be found make sure it is not in the spam folder"
+      return: Go back
+    search:
+      help: Help
+      invite: "Invite"
+      invite_from_project: "Invite someone from other project"
+      invite_people: "Invite users to '%{target}"
+      invite_people_html: "Invite users to <b>%{target}</b>"
+      role: "Choose a role"
+      submit: "Send"
+      username_or_email: "Insert the usernames or e-mails of the people who you will invite, separated by commas"
+    sent:
+      email_sent: "<b>A notification e-mail about your invitation <b> was sent to the user. If the e-mail can not be found make sure it is not classified as spam."
+
+  invoices:
+    index:
+      ammount: "Amount"
+      date: "Date"
+      invoice_number: "Invoice number"
+      title: "Invoices of %{name}"
+    invoice:
+      show: "Show details"
+
+  locales:
+    ar: Arab
+    bs: Bosnian
+    bt: Bulgarian
+    ca: Catalan
+    cz: Czech
+    da: Dannish
+    de: German
+    el: Greek
+    en: English
+    es: Spanish
+    et: Estonian
+    fa: Persian
+    fi: Finnish
+    fr: French
+    he: Hebrew
+    hr: Croatian
+    hu: Hungarian
+    id: Indonesian
+    is: Icelander
+    it: Italian
+    ja: Japanese
+    ko: Korean
+    lo: Laotian
+    lt: Lituanian
+    lv: Letonian
+    mk: Macedonian
+    nl: Dutch
+    no: Norwegian
+    pl: Polish
+    pt-BR: "Portuguese (Brasil)"
+    pt-PT: "Portuguese (Portugal)"
+    ro: Romanian
+    ru: Russian
+    se: Swedish
+    sk: Slovak
+    sl: Slovenian
+    sr: Serbian
+    sw: Suajilian
+    th: Thai
+    tr: Turkish
+    uk: Ukranian
+    vi: Vietnamise
+    zh: Chinese
+
+  mail:
+    mailbox:
+      sent_messages: "Sent messages"
+      saved_messages: "Saved messages"
+      received_messages: "Inbox"
+      since: ""
+      ago: "ago"
+      to: "to"
+      no_subject: "(no subject)"
+      draft_saved: "Draft saved." #new
+      message_sent: "Message sent." #new
+      reply_sent: "Reply sent." #new
+      reply_saved: "Reply saved." #new
+      draft_sent: "Draft sent." #mew
+      confirm_delete: "Are you sure you want to delete this message?" #new
+    new_message:
+      write: "Write a new message"
+      subject: "Subject"
+      body: "Message"
+      to: "Receivers"
+    show_message:
+      edit_draft:
+        subject: "Subject"
+        body: "Message"
+        to: "Receivers"
+
+  memberships:  #delete roles
+    index:
+      add_as_admin: "Add as an admin"
+      add_to_the_org: Add to the organization as a participant
+      admins:
+        explain: "You can access to any project and administer the settings of the organization."
+        title: "Administrators"
+      in_projects_but_not_in_the_organization:
+        explain: "Only those who were invited can access to the project. They can not create projects in the organization."
+        title: "External people"
+      make_admin: "Obtain permission as administrator"
+      members:
+        explain: "You can have access to the organization's projects where you have been invited."
+        title: "Members"
+      no_users: "There are no users"
+      participants:
+        explain: "Projects can be created within the organization but access is restricted to the projects where one belongs."
+        title: "Participants"
+      remove: "Remove from this organization"
+      remove_admin: "Delete the admin rights"
+      title: "'%{name}' organization"
+    roles:
+      admin: "As Administrator. You can add new users and administer the organization."
+      external: "Without invitation. The user will not be able to create projects in this organization."
+      member: "User of the organization. It will be possible to join the organization's projects."
+      participant: "As participant you will be able to create your own projects"
+
+  navigation:
+    sidebar:
+      calendar:
+        index: "Calendar"
+        collaboration_calendar: "Calendar"
+        project_calendar: "Calendar"
+      calendar_entries: "Calendar"
+      conversations:
+        index: "Calendar"
+        new: "Conversations"
+        show: "Conversations"
+        create: "Conversations"
+      fields:
+        edit_fields: "Forms"
+      forms:
+        answer: "Forms"
+        edit: "Forms"
+        index: "Forms"
+        list_answers: "Forms"
+        new: "Forms"
+        show_answers: "Forms"
+      invoices: "Invoicing"
+      mailbox: "Inbox"
+      sent: "Sent messages"
+      drafts: "Saved messages"
+      messages: "Message"
+      memberships:
+        index: "Administer users"
+      organizations:
+        appearance: "Appearance"
+        delete: "Delete"
+        edit: "General Settings"
+        projects: "Manage projects"
+      pages:
+        edit: "Pages"
+        index: "Pages"
+        new: "Pages"
+        show: "Pages"
+      people:
+        list: "People of the team"
+        index: "Setting"
+      project_groups:
+        new: "Projects"
+        settings: "Projects"
+        show_all: "Projects"
+      projects:
+        edit: "Setting"
+        index: "Recent activity"
+        show: "Recent activity"
+        new: "Projects"
+        update: "Setting"
+      shopping_carts:
+        buy: "User panel"
+        set_checkout: "User panel"
+        show_details: "User panel"
+        thanks: "User panel"
+      subscriptions:
+        error: "Recent activity"
+        index: "User panel"
+      task_lists:
+        my_tasks: "Tasks"
+        index: "Tasks"
+        show: "Tasks"
+        show_filtered: "Tasks"
+      tasks:
+        show: "Tasks"
+        edit: "Tasks"
+      uploads:
+        index: "Files"
+        new: "Files"
+        search: "Files"
+      upload_directories:
+        changeDirectory: "Files"
+        new: "Files"
+        show_content: "Files"
+        rename: "Files"
+      user_directories: "Files"
+      user_files: "Files"
+      users:
+        notifications: "Notifications"
+        picture: "Profile picture"
+        settings: "User's data"
+        show: "Recent activity"
+      videoconferences: "Vídeoconferences"
+
+
+    header:
+      first_bar:
+       ec: "%{action} of Collaborative Environment"
+       ec_project: "%{action} of %{p_name}"
+       ec_organizations: "%{action} of %{o_name}"
+       ec_delete_organization: "%{action} %{o_name}"
+       ep: "%{action} of %{user}"
+      second_bar:
+        ec: "Ca > %{action}"
+        ec_project: "Ca > Projects > %{pg_name} > %{p_name} > %{action}"
+        ep: "Pa > %{action}"
+        ep_user_settings: "Pa > User settings > %{action}"
+        ec_project_groups: "Ca > Projects > %{action}"
+        ec_organizations: "Ce > Organizations > %{o_name} > %{action}"
+        ec_create: "Ca > Projects"
+
+  not_found:
+    conversation: "Conversation %{id} was not found in this project."
+    data: "There was a problem in finding your data"
+    page: "The page %{name} was not found in this project"
+    project: "The project %{id} doesn't exist."
+    project_group: "The project group %{id} doesn't exist."
+    task:
+    task_list: "The list of tasks %{name} was not found"
+    user: "the user does not exist"
+
+  notes:
+    actions:
+      delete_confirm: Are you sure you want to delete this note?
+    edit:
+      submit: "Update note"
+    fields:
+      body: Description
+      text_styling: "Text styles"
+      title: Name of the note
+    new:
+      new_note: Create note
+      submit: "Create note"
+
+  number:
+    currency: 
+      format: 
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: 0
+        strip_insignificant_zeros: 0
+        unit: $
+    format: 
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: 0
+      strip_insignificant_zeros: 0
+    human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: "Thousand of millions"
+          million: Million
+          quadrillion: "Thousand billions"
+          thousand: Mil
+          trillion: Billion
+      format: 
+        delimiter: "-"
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "byte"
+            other: "bytes"
+          gb: "GB"
+          kb: "KB"
+          mb: "MB"
+          tb: "TB"
+    percentage:
+      format:
+        delimiter: "_"
+    precision:
+      format:
+        delimiter: "_"
+
+  oauth: #elminar casi segur  -REVISAR AFILIADOS
+    account_linked: "Your account has been linked."
+    already_linked_to_your_account: "This service is already linked to your account. You can identify yourself using this service."
+    already_taken_by_other_account: "This service is already linked to another account on the system. Try logging out and logging in again. To link it to a different account, you'll need to unlink it from the current one."
+    app_unlinked: "Unlinked application"
+    auth_status: "Autenticación OAuth"
+    auth_status_link: Link with your account
+    auth_status_linked: Linked with the provider
+    link_account: Link account.
+    logged_in: Logged in successfully
+    not_linked: "This service is not linked to your Kinubi account."
+    signup_for_a_new_account: click here to sign up to a new account
+    this_account_will_be_linked_to: "This account will be linked to %{provider}"
+    unlink_account: Unlink account.
+    user_already_exists_by_email: "The username %{email} has already have an account on Kinubi.  <br/> start a session with this account and link it from the settings panel"
+    user_already_exists_by_login: "The username '%{login}' has already have an account on Kinubi. <br/>start a session with this account and link it from the settings panel"
+    user_exists: This %{provider} profile is not linked with any account yet.
+    user_exists_instruction: If you already have a Kinubi account, log in to automatically link it to your %{provider} profile.
+    user_exists_is_not_yours_html: If this account '%{account}' is not yours, %{signup_for_a_new_account}.
+    your_account_is_linked_html: "Your %{provider} account is linked to <strong>linked</strong> by Kinubi."
+    your_account_is_not_linked_html: "Your %{provider} <strong> account is not linked to <strong> by Kinubi."
+
+  organizations:
+    other:
+      to_organization: "to the organization"
+    active_projects:
+      dont_belong: You're not part of this project
+      no_active_projects: There are no active projects in this organization.
+      role_html: "You're an <strong>%{role}</strong>"
+      settings: Settings
+      storage: "%{now} of files"
+      title: "Active projects"
+    appearance:
+      submit: "Save changes"
+      title: "Apearance of %{organization} "
+    appearance_fields:
+      colours: Site colors
+      description_html: HTML to be displayed on the main page <a href="http://help.kinubi.com/faqs/more-ways-to-access-colcentric/customize-organizations">Learn how to use this</a>
+      header_bar_colour: Color of the header bar
+      highlight_colour: highlight color
+      link_hover_colour: default color of links of the hover
+      links_colour: default color of links
+      logo_html: Logo <em>Ideally should be 134x36 pixels</em>
+      text_colour: default text color
+    archived_projects:
+      last_activity: "last activity on %{date}"
+      title:
+    column:
+      admin_projects: Manage projects
+      admin_users: Manage users
+      appearance: Appearance
+      billing: Plans and invoicing
+      delete:
+      general_settings: General settings
+      invoices: "Invoices"
+    delete:
+      clarification: "If you delete this organization, all the information attached to it will be lost. The users that belong to this organization will still be able to login on Kinubi and continue working in other organizations."
+      confirm: I understand that deleting this organization is irreversible and I all the content related to this organization will be lost.
+      delete:
+      deleted: You deleted the organization
+      go_delete_some_projects_html: "You can't delete an organization when it still contains projects. Please transfer <a href='%{link}'>delete or transfer</a> all the projects from this organization before deleting it."
+      need_to_be_admin: You need to be an administrator to delete this organization
+      not_paid_plan: It is not possible to delete an organization with a payment plan.
+      not_with_projects: You can not delete this organization because it still contains projects.
+    edit:
+      invalid: "Invalid organization"
+      number_of_projects: "%{count} projects"
+      number_of_users: "%{count} users"
+      public_site: "The public site of your organization is %{link}"
+      saved: Changes have been saved
+      submit: "Save changes"
+      there_are: "Here they are"
+      title: "Settings for %{organization} "
+    external_view:
+      create_your_own_org_html: "However, you can <a href='%{link}'>create your own organization</a> for your projects."
+      request_permission: "To access this organization, you must request permission from the administrators:"
+      title: "%{name}"
+      you_cant_access: "Without permissions to edit this organization."
+    fields:
+      domain_html: "Domain <em>You can use your own domain for your organization, verigy it on <a href='http://help.kinubi.com/faqs/more-ways-to-access-colcentric/custom-domain' title='How to use your own domain for your organization on Kinubi'>documentation</a>.</em>"
+      name_html: "Name of the organization"
+      name_placeholder: Your organization
+      permalink_html: "Short code of the organization <em>. Spaces are not allowed. It will be used for the website address"
+    index:
+      about:
+        explain1: An organization that allows projects of the group and users under a brand name.
+        explain2: "You can include a link to your domain to customize your Kinubi space. Use your own logo and login page, and share it with your clients."
+        title: "About organizations"
+      new:
+        create: "Create a organization"
+        explain: "Mark it with your own logo and website, and create projects within it."
+      title: Organizations
+    new:
+      created: "Your organization has been created"
+      explain: "Organize teams and projects within your organization."
+      invalid_organization: Invalid organization, correct errors and try again.
+      submit: "Create organization"
+      title: "New organization"
+    not_admin: "You can't access the invoicing page because you are not an administrator."
+    not_in_community: "The community version is not compatible with multiple organizations"
+    organization:
+      admin: admin
+      external: "external worker"
+      member: "member"
+      more_users: "and %{count} more users"
+      number_of_projects: 
+        one: "A project"
+        other: "%{count} projects"
+      participant: participant
+      upgrade: "Change plan"
+      you_are_html: "You are an <strong>%{role}</strong> of this organization"
+      your_plan_is: "Your current plan is %{plan}"
+    projects:
+      instructions_html: "These are the projects of this organization. If you're an admin, you can transfer a project to <a href='%{organizations_link}'>other organizations</a>on the project's settings."
+      new_project: "New Project"
+      title: "Organization '%{organization}'"
+    usage:
+      active_projects:
+        explain: "Deleted and stored projects do not count for the storage capacity."
+        title: "%{now} / %{max} active projects"
+      storage:
+        explain: "Attach files to your organization"
+        title: "%{now} / %{max} "
+    you_are_not_admin: You are not an admin of this organization. Only admins can edit its settings and manage users.
+    you_are_not_superadmin: Only superadmins can create new organizations.
+
+  page_title: #ELIMINAR
+    archived_task_lists: Filed Tasks
+    create_uploads: Upload file
+    create_users: Create account
+    edit_projects: Edit Project
+    edit_users: Edit
+    index_conversations: My conversations
+    index_pages: My pages
+    index_people: People
+    index_projects: Projects
+    index_task_lists: "My tasks"
+    index_uploads: "My files"
+    new_conversations: New Conversation
+    new_pages: New Page
+    new_projects: New Project
+    new_users: Create account
+    results_search: Search
+    show_plans: Plans
+    show_projects: Overview
+    welcome_users: Welcome!
+
+  pages:
+    buttons:
+      new_divider: Divider
+      new_note: "Create a note"
+      new_task_list: New Task List
+      new_upload: File
+      upload_file: "Upload File"
+    column:
+      all_pages: All Pages
+      reorder: Rearrange lists
+      reorder_done: Rearranged lists
+    edit:
+      submit: Update
+      title: Edit page
+    fields:
+      description: "Description"
+      description_description: Optional. It does not allow text styles
+      name: Page name
+      name_description: Choose a short and descriptive title
+    index:
+      cant_create: "You do not have permission create a conversation in this project"
+      new_page: New Page
+      rss:
+        description: "Project's pages %{name}"
+        title: "Pages %{name}"
+      title: "Pages in %{project}"
+    new:
+      define1_html: "Here you can <b>share frequent used information</b> : procedures, imientos, templates,..."
+      define2_html: "You can edit a page in an easy way."
+      feature1_html: "<b>Share</b>. All members of the project can see and edit them."
+      feature2_html: "<b>Publish</b>. Instant on-line publication on the shared pages. Create a page in seconds."
+      feature3_html: "<b>Print</b>. The pages are ready for printing."
+      feature4_html: "<b>Wiki</b>. They work as a wiki, providing all the information of the project."
+      footer1_html: "It uses Kinubi as a <b>shared board</b> of information used frequently."
+      footer2_html: "You can also attach files to any page of the project."
+      sending: "Sending..."
+      submit: "Create page"
+      title: "Create page"
+    primer:
+      create_first: Create the first page
+      define1_html: "Here you can <b>share information of frequent use</b> with your team: instructions, templates,.."
+      define2_html: "You can edit a page in an easy way."
+      empty: "There are not pages in this project yet."
+      footer1_html: "Use Kinubi as a <b>shared board</b> of information of frequent use."
+      footer2_html: "You can also attach files to any page of the project."
+      item1_html: "<b>Share</b>. All members of the project can see and edit them."
+      item2_html: "<b>Publish</b>. Instant on-line publication on the shared pages."
+      item3_html: "<b>Imprime</b>. The pages are ready for printing."
+      item4_html: "<b>Wiki</b>. They work as a wiki providing all the information of your project."
+    slots:
+      insert_here: Insert Here
+
+  password_strength:
+    average: Average
+    strong: strong
+    too_long: Too long
+    too_short: Too short
+    weak: weak
+
+  people:
+    column:
+      confirm_delete: "Are you sure you want to quit this project?"
+      contact_admins: "In this project, only %{admins} can invite new members."
+      inviting: "Invite other users"
+      leave_project: "Leave this project"
+      leaving: "Leave the project"
+      no_contacts: There are no people available to invite.
+      only_admins_can_invite: "Only admins can invite people to this project."
+      select_project: Select a project
+      you_can_leave: "If you like you can leave this project by clicking on the button on the right."
+    edit:
+      submit: "Modify"
+    errors:
+      user_or_email: "The user was not found. Enter his/her e-mail or username"
+      users_or_emails: "Invalid usernames or e-mail addresses"
+    fields:
+      admin_html: "<font color=#003869><b>Chief of the project</font></b> - Full access for the management of a project."
+      commenter_html: "<font color=#003869><b>Commentator</font></b> - Participate in the project by commenting on the existing elements and visualize folders and files."
+      observer_html: "<font color=#003869><b>Observer</font></b> - Visualices the contents of the project including folders and files."
+      participant_html: "<font color=#003869><b>Participant</font></b> - Full access to a project except inviting users."
+      role: "Role"
+    header:
+      admin: Administrador
+      commenter: Comentator
+      confirm_delete: "¿Are you sure you want to remove this person from the project?"
+      leave_project: "Leave the project"
+      observer: Observer
+      owner: "Owner of the project"
+      participant: Participant
+      remove: Remove
+      transfer: "Transfer the project"
+    list:
+      admin: "Chief of the project"
+      project_manager: "Chief of the project"
+      commenter: "Commentators"
+      observer: Observers
+      owner: "Owner of the project"
+      participant: Participants
+    link:
+      edit: Edit
+    update: 
+      success: "You have updated the role of %{name}"
+
+  projects:
+    other:
+      to_project: "to project"
+    edit: 
+      change_owner: "Change owner"
+      deleted: "You have deleted the project"
+      error: "No can not change the settings of the project"
+      invalid_transferred: "The project was not transferred. Check the erros and try again."
+      submit: "Save changes"
+      success: "Project updated"
+      title_advanced: "Advanced project options %{project}"
+      title_deletion: "Delete project %{project}"
+      title_ownership: "Owner of the %{project}"
+      title_picture: "Logo of project %{project} "
+      title_settings: "Basic data of %{project}"
+      transferred: "The project has been transferred to the new owner"
+    errors:
+      not_project_group: "To create a project first you must create or be part of a Group of projects."
+    fields: 
+      archived_html: "File this project."
+      archiving: "File this project"
+      confirm_delete: "Are you sure you want to delete this project definitely? If you are not sure use the option File Project."
+      extra_options: "More options"
+      forever: "Delete project definitely"
+      name_example: "Name of the project"
+      name_html: "Name of the project"
+      new: 
+        choose_organization:
+          choose_org_html: "Organization <em>To which organization does this project belong to?</em>"
+          new_org_name_html: "Name of the organization <em>Later you can add more project to this organization</em>"
+          or_create_a_new_org_html: "or create a <a href='%{link}'>new organization</a>"
+        time_tracking_docs: "Learn more."
+      organization: Organization
+      organizations: 
+        available_projects: "Number of available projects: %{number_of_projects}"
+        current_organization: "Current organization"
+        organization_has_too_many_project_in: "This organization has too many projects."
+        upgrade: updating
+        upgrade_organization: "Now you must update this organization."
+      owner: "Owner"
+      owner_description: "The owner has the highest responsability of a project. He/she can only be removed from the project if other user is named owner."
+      permalink_description: "This will be part of your project's website."
+      permalink_html: "Link to the project"
+      personalization_html: "Personalization. <em>Activate personalized features for some types of projects.</em>"
+      project_group_html: "Asign to the following Group of Projects"
+      public_project_html: "Public project. <em>Anyone can have access to it from section  <a href=\"/public\">public projects</a>.</em>"
+      select_an_organization: "Select an organization"
+      settings: 
+        manage_organizations: "Manage organizations."
+        you_cant_transfer_this_project_html: "This project belongs to organization <b>%{organization}</b>. You do not have permission to transfer it."
+      tracks_time_html: "Activate the monitoring calendar."
+    index: 
+      archived: "Display %{count} filed projects..."
+      new_project: "New project"
+      projects: "My projects"
+      rss: 
+        description: "Activities in all your projects"
+        title: Kinubi
+    invite_people: 
+      explain_invitations: "Select who will have access to the project. You can modify and add members later."
+      invite_by_email: "Invite users by adding their e-mail address."
+      invite_from_this_organization: "Invite users who are already in the organization %{organization}"
+      sending: "Sending invitations..."
+      submit: "Send invitations and start collaborating"
+      title: "Invite people to the project %{project}"
+    join: 
+      welcome: "Now you are part of the project"
+    list: 
+      archived: Filed
+      archived_at: "filed on %{date}"
+      show_archived: 
+        one: "Show filed project"
+        other: "Show the %{count} filed projects"
+    new:
+      active_projects: 
+        one: "You only have one active project."
+        other: "You have %{count} active projects."
+        zero: "you do not have active projects."
+      explain1_html: "A project is any topic where there is communication or exchange of files between more than one person. It will allow you to work in an ordered manner by having your information centralized in the same place."
+      explain2_html: "The concept of project is broad, you can apply it whenever you need to collaborate with other people, communicate ideas and share files. For instance you can create a course and invite your students, launch a product or invite or invite to the sale outlets to get feedback, ..."
+      invalid_project: "Project not valid, correct errors and try again."
+      new_project: "New project..."
+      not_allowed: "With your current account you can not create projects."
+      select_an_organization: "You have to select an organization for your project"
+      sending: "Creating project..."
+      submit: "Accept"
+      title: "Create project"
+      upgrade: 
+        to_2_html: "<a href='%{link}'>Buy an account with larger capacity</a> to create <b>up to %{projects} projects</b>, store up to <b>%{storage} Gb</b> files and use <b>the search bar in projects</b>."
+      you_can_create_more: 
+        one: "With your account you can create one more project."
+        other: "With your account you can create %{count} projects."
+        zero_html: "No can not create more projects.<br/>you can only have %{max} projects in your account."
+    not_in_project: 
+      explain_admin_html: "To visualize this project you have to join it, then you can have access to the conversation, tasks, pages and files. You can do this because your are the admin of the organization <b>%{organization}</b>."
+      explain_public_html: "To visualize this project you have to join it then you can have access to the conversations, tasks, pages and files. You can do this because you are a <b>public project</b>."
+      join: "Be part of this project"
+      not_allowed: "This is a private project and you do not have permission to access it."
+      title: "Do you want to join the project '%{project}'?"
+    pages: 
+      new: "Create Page"
+      title: Pages
+    people_list: 
+      invite_people: "Invite people..."
+      pending_invitations: 
+        one: "A pending invitation"
+        other: "%{count} pending invitations"
+      people_in_project: "People in this project"
+    personalization:
+      none: "None. Standard project."
+      educational: "Education. Educational Project."
+    primer: 
+      create_first: "Create your first project"
+      define1_html: "<b>Share</b> with people from your team in a project: prepare a class, organize an event, ..."
+      define2_html: "You can create <b>as many projects as you want</b> and access them on-line."
+      empty: "You do not belong to any projects yet"
+      footer: "Projects are a centralized manner to collaborate."
+      item1_html: "<b>Create a project</b>, give it a name <b> and invite your contacts</b> to it."
+      item2_html: "<b>Comment</b> in each conversation about what you do within the project."
+      item3_html: "<b>Talk</b> about important issues of the project."
+      item4_html: "<b>Plan</b> the tasks to perform."
+      item5_html: "<b>Share information</b> in pages within each project."
+      cant_create_first: "You do not belong to any project yet"
+      cant_define1_html: "Wait to be invited to an active project of your organization, or ask to admin to assign you as chief of the project so you will be able to create projects."
+      cant_define2_html: "You will be able to belong to many projects as you want and have access to them on-line."
+      welcome_title_html: "<b>Welcome to Kinubi</b>"
+      welcome_message: "From now on you will be able to work in our platform, sharing and communicating in real time with people from your team."
+      first_message: "Start working within few minutes. Choose a working topic, it can be diverse such as a project, a training course or an event."
+      item1: "Create a project with the selected topic"
+      item2: "Invite people and asign them different levels of profile access"
+      item3: "Start working!"
+    recent_conversations:
+      first: "Create the first conversation"
+      new: "New conversation"
+      title: "Recent conversations"
+      view_all: "See all conversations"
+    show: 
+      new_task_list_link: "Create Tasks list"
+      public_project: "Public website for this project"
+      rss: 
+        description: "Recent activity for %{name}"
+        title: "%{name}"
+      subscribe: "Subscribe to this project"
+      text_styling: "Text styles"
+      tip: "If you write @nombredeusuario, they will recieve an e-mail with your message"
+      title: "Recent activity in %{project}"
+      update_your_status: "What are you doing?"
+    videoconference:
+      creation_failed: "Videoconference was not created"
+      deleted: "You have deleted the videoconference."
+      deleted_failed: "Videoconference was not deleted"
+      error_msg_html: "Access to videoconference was not possible. Contact the technical staff to get help."
+      http_error: "An HTTP error occurred while trying to access the server"
+      title_error: "Error al acceder a la videoconferencia"
+
+  project_groups:
+    observer: "Observer"
+    commenter: "Commentator"
+    participant: "Participant"
+    admin: "Chief of the project"
+    other:
+      to_project_group: "to the Group of Projects"
+    new:
+      invalid_project: "Group of Projects not valid, correct the errors and try again."
+      explain1_html: "A Group of Projects allows to include projects so a better organized working environmen is achieved."
+      title: "Create a Group of Projects"
+      submit: "Accept"
+    edit:
+      change_owner: "Change owner"
+      deleted: You have deleted the group
+      error: "You can not change the setting of the group of projects"
+      submit: "Save changes"
+      success: "Update Group of Projects"
+      title_advanced: "Advanced options"
+      title_deletion: "Delete group of projects"
+      title_ownership: "Change owner"
+      title_settings: "Preferences of the group of projects"
+    errors:
+      max_length: "The name can not contain more than 30 characters"
+      no_length: "The name must have at least 5 characters"
+    fields:
+      confirm_delete: "Are you sure you want to delete this group definitely?"
+      forever: "Delete the group of projects definitely"
+      name_example_html: "Name of the group of projects"
+      name_html: "Name of the group of projects"
+      new:
+        choose_organization:
+          choose_org_html: "Organization <em>To which organization does this project belong?</em>"
+          new_org_name_html: "Name of the organization <em>later you can add more projects to this organization</em>"
+          or_create_a_new_org_html: "or create a <a href='%{link}'>new organization</a>"
+          invite_people:
+      owner: "Owner"
+      owner_description: "The owner is the main responsible of a group of projects and he or she can not be removed before he or she has transferred it to another user."
+      permalink_html: "Project link"
+
+      preferences_title: "Preferences of the group of projects"
+      update: "Update"
+    invite_people:
+      explain_invitations: "Select who will have access to the group of projects. You can modify and add people anytime."
+      invite_by_email: "Invite users by adding their usernames or their e-mail addresses."
+      invite_from_this_organization: "Invite users who are already within the organization %{organization}"
+      sending: "Sending invitations..."
+      submit: "Send invitations and start collaborating"
+      title: "Invite people to the Group of Projects %{project_group}"
+    settings:
+      missing_name_error: "A name must be provided for the Group of Projects"
+      not_owner_error: "To perform this action you need to be the owner of the selected Group of Projects"
+      success_update_name: "Modified name"
+    show_all:
+      dont_show_archived: "Do not show filed projects"
+      new_project: "Create project"
+      new_project_group: "Create Group of Project"
+      project_group: "Group of Projects"
+      project_group_proprietary: "Owner"
+      project_name: "Project"
+      show_archived: "Show filed projects"
+      title: "Projects"
+      user_role: "Role"
+
+  project_group_roles:
+    header:
+      admin: Chief of a project
+      commenter: Commentator
+      confirm_delete: "Are you sure you want to remove this person from the group of projects?"
+      leave_project: "Leave the project"
+      observer: Observer
+      owner: "Owner of the group"
+      participant: Participant
+      remove: Remove
+
+  reports:  # Módulo admin???
+    index:
+      title: "Reports of Kinubi"
+      user_reports: "Reports of users"
+    show:
+      user_reports: "Users in the system"
+
+  reset_passwords:
+    create: 
+      invalid_html: "The URL you access in order to change your password is not valid or has expired. In the home page try on I forgot my Password.<br>if this does not work contact us on %{support}"
+      not_found_html: "No user was found with this e-mail: %{email}<br/>verify if it is correct and try again. If the problem persists contact us: %{support}"
+      password_not_updated: "The new password is not valid. Try again."
+      password_updated: "You have changed your password. Now you can log in on Kinubi."
+    new:
+      back: "Back to the Login screen"
+      email: "With what e-mail address have you register on Kinubi?"
+      send_your_email: "Send an e-mail to reset my password"
+      submit: "Send"
+      title: "Remember my password"
+    reset: 
+      reset_your_password: "Please type your new password and its confirmation code"
+      submit: "Change my password"
+      title: "Now you can change your password"
+    sent: 
+      follow_the_link_html: "Click on link provided in the e-mail to log in on Kinubi. If you can not find it make sure that it is not in the spam folder. "
+      login_link_sent: "An e-mail was sent to %{email} so you can change your password."
+      title: "Restore password"
+
+  roles: #eliminar
+    admin: administer
+    commenter: commentator
+    observer: observer
+    participant: participant
+
+  sessions: 
+    fields: 
+      forgot: "Remember password"
+      password: "Password"
+      signup: "Create an account"
+      username_or_email: "E-mail address or username"
+    new: 
+      login_failed: "The login data are not correct"
+      submit: Enter
+      title: Enter
+      video: "Introduction to Kinubi"
+
+  shared:
+    footer:
+      footer_msg: "On-line Collaboration Software by"
+    global_navigation: 
+      help: Help
+      home: Home
+      login: Login
+      logout: Logout
+      project_invitations: "Invitations (%{count})"
+      settings: Options
+    instructions: 
+      send_email: "Publish comment by e-mail"
+      send_email_conversations: "Publish a new conversation by e-mail"
+      send_email_help_conversation_html: "To publish a comment in this conversation send an e-mail to <a href=\"mailto:%{email}\">%{email}</a>. Only people from this project can publish in this conversation."
+      send_email_help_conversations_html: "To create a new conversation send an e-mail to <a href=\"mailto:%{email}\">%{email}</a> with the subject and body of the comment. Only people from this project can create a new conversation."
+      send_email_help_project_html: "To publish a new comment about a recent activity in the project send an e-mail to <a href=\"mailto:%{email}\">%{email}</to>."
+      send_email_help_task_html: "To publish a new comment in this task send an e-mail to <a href=\"mailto:%{email}\">%{email}</to>."
+      subscribe_to_calendars: "Subscribe me to calendars"
+    navigation: 
+      affiliate: "Affiliates area"
+      all_projects: Projects
+      conversations: Conversations
+      files: Files
+      new_project: "Project"
+      new_project_group: "Group of projects"
+      organizations: Organizations
+      pages: Pages
+      people: "Team members"
+      projects: "Projects"
+      recent_activity: "Recent activity"
+      roles: "Permissions"
+      settings: Settings
+      show_all_organizations: "Manage organizations"
+      show_all_projects: "Display all projects"
+      show_less: "Show less"
+      show_more: "Show more"
+      tasks: Tasks
+      time: "Calendar"
+      title: "Collaborative environment"
+      videoconference: "Videoconference"
+      without_group: "Without group"
+    project_actions:
+      calendar: "Calendar"
+      configuration: "Settings"
+      conversations: "Conversations"
+      files: "Files"
+      forms: "Forms"
+      general_configuration: "General setting"
+      new_project: "Create project"
+      new_project_group: "Create group of projects"
+      pages: "Pages"
+      people: "Team members"
+      privileges: "Permissions"
+      recent_activity: "Recent activity"
+      tasks: "Tasks"
+    project_navigation: 
+      affiliate_area: "Members area"
+      all_conversations: "My conversations"
+      all_pages: "My pages"
+      all_task_lists: "All tasks"
+      conversations: Conversations
+      files: Files
+      gantt: "Calendar and graphs"
+      invitations: Invitations
+      login: Login
+      organization: Organization
+      organizations: Organizations
+      overview: Overview
+      pages: Pages
+      people: People
+      project_settings: Project
+      signup: "Create account"
+      task_lists: Tasks
+      time_tracking: "Calendar"
+    project_group_settings_navigation:
+      advanced: "Advanced options"
+      deletion: "Delete group"
+      general: "Basic data"
+      ownership: Owner
+      picture: "Group's image"
+    project_settings_navigation:
+      advanced: "Advanced options"
+      deletion: "Delete project"
+      general: "Basic data"
+      ownership: Owner
+      picture: "Project's image"
+    public_navigation: 
+      community: Community
+      help: Help
+      home: Kinubi
+      privacy: Privacy
+      services: Services
+      terms: "Terms of use"
+      tour: Tour
+      users: Testimonials
+    strip: 
+      archived_html: "This project is filed. Go to the Settings section of the project to active it."
+    task_navigation: 
+      all_tasks: All
+      everybodys_tasks: "All tasks"
+      hide_archived_tasks: "Hide filed tasks"
+      my_assigned_tasks: "Only my tasks"
+      my_tasks: 
+        one: "My task"
+        other: "My (%{count}) Tasks"
+      unarchived_tasks: "Unfiled tasks"
+    upcoming_events_primer: 
+      title: "There are no tasks to show"
+    upgrade_browser: 
+      chrome: "Chrome,"
+      firefox: Firefox
+      ie: "Update Internet Explorer"
+      or_install: "or install"
+      safari: Safari
+      upgrade: "You are using an old version of Internet Explorer. It is possible that Kinubi may not work properly."
+    top_navigation:
+      account_settings: "User's data"
+      invoices: "Invoicing"
+      mailbox: "Inbox"
+      my_calendar: "Calendar"
+      my_tasks: "Tasks"
+      notifications: Notifications
+      open_my_tasks: "Open my tasks"
+      payments: "User's panel"
+      private_message: "Private messages"
+      profile_picture: "Profile image"
+      mailbox: "Inbox"
+      sent: "Sent"
+      settings: "User's settings"
+      show_all_tasks: "See all the tasks in my projects..."
+      title: "Personal environment"
+      user_files: "Files"
+    user_navigation:
+      account_settings: Account Settings
+      delete_account: Delete Account...
+      linked_accounts: Linked Accounts
+      notifications: Notifications
+      plans_and_billing: Plans and Invoicing
+      profile_information: Profile Information
+      profile_picture: Profile Picture
+      your_data: Import / Export
+    watchers:
+      nobody_watching: "No one follow the changes in this element"
+      people_watching: "Following this element"
+      started_watching: "Now you will be notified of the updates of this element by e-mail."
+      stopped_watching: "You will no longer receive notifications of this element."
+      unwatch: Leave
+      watch: Follow
+
+  sites: 
+    fields: 
+      password: Password
+      username_or_email: "E-mail or username"
+    show:
+      signup: Sign me up on Kinubi
+      submit: Enter
+
+  shopping_carts:
+    buy:
+      buying_myself: "You are in the payment process to purchase a license of Kinubi."
+      company: "Company"
+      choose_mode: "Choose payment method"
+      error_max_subscriptions: "The maximum number of subscriptions that can be purchased for each purchase is 10."
+      error_min_subscriptions: "To continue you must purchase at least one subscription."
+      error_videoconference: "You have gotten a license for a videoconference."
+      iva_html: "If you are a EU resident, <b>you must pay the Value Added Tax (VAT) unless you have a 
+      a VAT number valid for the country where you pay taxes.</b> if you do not have a VAT number or if the number you provided us can not be validated
+      we will charge the corresponding VAT percentage.<br>"
+      next: "Next"
+      no_iva_html: "I do not have a VAT number and I accept the charge of VAT.<br>the corresponding percentage of VAT will be added to the total bill."
+      iva: "I have a VAT number"
+      iva_number: "VAT number"
+      license: "License "
+      max_participants_number: "* Maximum number of participants: %{max_participants}"
+      particular: "Individual"
+      price: "Price"
+      product: "List of products"
+      promotional_code: "promotional code"
+      quantity: "quantity"
+      step1: "Purchase data"
+      step2: "Purchase"
+      step3: "Confirmation of purchase"
+      submit: "Select"
+      total: "Total"
+      total_doesnt_include: "** The total does not include taxes or discounts derived from promotions. These will be displayed later."
+      title:
+        additional_data: "Additional capacity"
+        collaborative_platform: "Collaborative platform"
+        invoice: "Invoice information"
+        iva: "VAT"
+        promotional_code: "Promotional code"
+        title: "Purchase order"
+        videoconference: "Videoconference*"
+      zero: "0,00 €"
+    errors:
+      country: "Please specify a country"
+      email: "Please enter an valid e-mail address."
+      obligatory: "The field is obligatory"
+    show_details:
+      buying_also_for_myself: "One of these licenses will be automatically assigned to your account."
+      buying_my_licence: "Data of the license that you will purchase."
+      cancel: "Cancel"
+      free_trial_html: "The first 15 days are free."
+      iva: "VAT"
+      licence_type: "Method of payment"
+      number_of_licences: "Number of licenses to purchase:"
+      quantity: "%{amount}€"
+      submit: "Buy"
+      title: "Verify the subscription details"
+      total: "Total"
+      total_ammount: "Total amount to pay"
+      total_base: "Taxable amount"
+      total_without_iva: "Total before VAT: %{amount}€/month"
+      title:
+        additional_data: "Additional capacity"
+        collaborative_platform: "Collaborative Plataform"
+        title: "Confirmation of order"
+        videoconference: "Videoconference"
+    thanks:
+      title: "The payment process has been completed"
+      thank_sponsor_text: "Thank you for purchasing sponsored payments on Kinubi. Now you can invite new users with sponsored payments."
+      thank_text: "Thank you for joining Kinubi. Now you can start using the platform."
+      status: "Subscription status"
+
+  subscriptions:
+    assign_sponsor:
+      annual_sponsors_html: "<strong>Assign annual licenses</strong>"
+      halfyear_sponsors_html: "<strong>Assign biannual licenses</strong>"
+      monthly_sponsors_html: "<strong>Assign montly licenses</strong>"
+      special_sponsors_html: "<strong>Assign special licenses</strong>"
+      search: "Invite"
+      success_one: "Assigned license"
+      success_many: "Assigned licenses"
+      username_or_email: "Enter the usernames or the e-mail addresses of the users you want to invite."
+    buy:
+      buying_sponsors: "Choose the method for %{number} sponsored payments."
+      buying_myself: "You are in the purchasing process of a Kinubi license."
+      choose_mode: "Choose the payment method"
+      promotional_code: "Promotional code"
+      quantity: "Select the number of licenses to purchase:"
+      submit: "Select"
+      title: "Choose the payment method"
+    delete:
+      confirm_delete: "Are you sure you want to cancel the payment?"
+      forever: "Cancel"
+    descriptions:
+      monthly: "Montly subscription to Kinubi"
+      biannual: "Biannual subscription to Kinubi"
+      annual: "Annual subscriptiion to Kinubi"
+      videoconference: "1 videoconference room"
+    edit:
+      cancel_failed: "An error occurred while trying to cancel the payment"
+      cancel_ok: "Payment cancelled"
+      reactivate_ok: "The subscription has been restored"
+      reactivate_failed: "The subscription has not been restored"
+      suspend_failed: "An error occured while trying to cancel the payment"
+      suspend_ok: "Payment stopped"
+    error:
+      activate: "Activate"
+      first_message: "Currently your license to use the collaborative platform is not activate."
+      promotional_code: "Promotional code"
+      purchase: "Purchase"
+      purchase_products: "Purchase product"
+      second_message: "Enter the promotional code or enter to purchase our services"
+    fields:
+      additional_data: "Additional capacity"
+      annual: "Annual - 150€/year"
+      biannual: "Biannual - 75€/6 months"
+      monthly: "Monthly - 12€/month"
+      special: "Special - Free"
+      trial: "Trial period"
+      videoconference: "Videoconference room"
+      cost:
+        additional_data: "5€/month"
+        annual: "150€/year"
+        biannual: "75€/6 months"
+        monthly: "15€/month"
+        videoconference: "50€/month"
+      duration:
+        additional_data: "1 month"
+        annual: "12 months"
+        biannual: "6 months"
+        monthly: "1 month"
+        videoconference: "1 month"
+      total:
+        annual: "%{amount}€/year"
+        biannual: "%{amount}€/6 months"
+        monthly: "%{amount}€/month"
+    fields_without_price:
+      annual: "Annual"
+      biannual: "Biannual"
+      monthly: "Monthly"
+      special: "Special-Free"
+      trial: "Trial period"
+    index:
+      assigned: "Assigned"
+      buy: "Purchase"
+      buy_now: "Purchase"
+      buy_again: "Return to purchase"
+      cancel: "Cancel subscription to Kinubi"
+      cancel_error: "An error occured while cancelling subscription"
+      cancelled: "The cancellation has been successful."
+      confirm_cancel: "Are you sure you want to cancel the subscription to Kinubi? If you cancel it you will not be able to continue using the platform."
+      destroyed: "Subscription deleted"
+      destroy_error: "An error occured while trying to cancel the payment"
+      expiration_date: "Expiration date"
+      licence_expiration_on: "The license will expire on"
+      licence_expired: "Your license has been cancelled and it has expired. You can purchase a license to continue using the platform."
+      licence_type: "Current type of subscription"
+      not_enough_sponsors: "You do not have a license for %{user}."
+      product_list: "Product"
+      purchase: "Purchase"
+      purchased_products_message_html: "<font size = '3'>Information about purchased products </font><font size='3' color='black'>for user %{user}</font>"
+      quantity: "Quantity"
+      subscription_message: "Click on the Purchase button to visualize all the available products"
+      subscription_status: "Status of the subscription"
+      reactivate: "Restore subscription to Kinubi"
+      renewal: "Renewal"
+      sponsorized_by: "Sponsored by %{user}"
+      sponsor_products_message_html: "<font size = '3'>Information about purchased products </font><font size='3' color='black'>for sponsored users</font>"
+      sponsor_title: "Sponsored payments"
+      submit: "Change subscription"
+      suspend: "Stop subscription to Kinubi"
+      title: "User's panel"
+      trial_expired: "The trial period has expired. Purchase a license to continue using the platform."
+      trial_finish_on: "The trial period expires on: "
+      type: "Type"
+      unassigned: "Without assigning"
+      user_already_has_a_subscription: "The user %{user} has already have an active payment."
+      user_does_not_exist: "The user %{user} does not exist"
+      user_name_html: "User"
+    paypal:
+      description: "Subscription to Kinubi"
+      full_description: "Subscription of %{user}"
+    pending:
+      processing_payment: "Wait while the payment is being processed"
+      title: "Processing the account activation"
+    show_details:
+      buying_also_for_myself: "One of these licenses will be automatically assigned to your account."
+      buying_my_licence: "Data of the license you will purchase."
+      cancel: "Cancel"
+      free_trial_html: "The first 15 days are free."
+      number_of_licences: "Number of licenses to purchase"
+      licence_type: "Method of payment"
+      submit: "Purchase"
+      title: "Verify the details of the subscription"
+      total: "Total amount to pay:"
+    sponsor:
+      actions: "Actions"
+      assigned: "Assigned sponsored licenses"
+      expiration: "Date of renewal"
+      licence: "Type of license"
+      number: "Number of licenses"
+      status: "Status"
+      title: "Sponsored payments"
+      unassigned: "Sponsored licenses without assignation"
+      username: "Name of the user"
+    status:
+      Active: "Active"
+      Cancelled: "Cancelled"
+      Expired: "Expired"
+      Failed: "Failed"
+      Incomplete: "Not completed"
+      Pending: "Pending"
+      Suspended: "Suspended"
+      Trial: "Trial period"
+      Unassigned: "Without assignation"
+    subscription:
+      assign: "Assign"
+      assigned: "Assigned to"
+      assigned_invitation: "Assigned by invitation from"
+      cancelled_html: "<u>Cancelled</u>"
+      delete: "Delete"
+      invitation: "Invitation"
+      licence: "License"
+      paid: "Paid"
+      promotion: "Promotion"
+      unassign: "Delete sponsored payment"
+      unassigned: "Not assigned"
+      sponsorized: "Sponsored"
+      submit: "Purchase"
+      trial: "trial"
+    thanks:
+      title: "Has finished the payment"
+      thank_sponsor_text: "Thank you for purchasing sponsored payments on Kinubi. Now you can invite new users with sponsored payments."
+      thank_text: "Thank you for joining to Kinubi. Now you can start using the platform."
+      status: "Status of the subscription"
+    types:
+      annual: "Paid"
+      biannual: "Paid"
+      monthly: "Paid"
+      special: "Promotion"
+      trial: "Trial"
+    update:
+      error: "An error occured while trying to update the payment"
+      update: "Choose your new subscription"
+      updated: "Updated correctly"
+
+  support:
+    array: 
+      last_word_connector: " and"
+      two_words_connector: " and"
+      words_connector: ", "
+    select: 
+      prompt: "Choose an option"
+
+  task_lists: 
+    actions: 
+      archive: "File this list of tasks"
+      confirm_resolve_and_archive: "Are you sure you want to file this list of tasks?"
+      rename: "Rename list of tasks"
+      resolve_and_archive: "Complete all tasks and file"
+      set_dates: "Set start and end dates"
+      show_archived: 
+        one: "Show 1 file task"
+        other: "Show %{count} filed tasks"
+    archive_box: 
+      unarchive_list: "This task is filed"
+    archived: 
+      description: "These are the filed tasks because they were finished or rejected."
+      title: "All filed tasks"
+    column: 
+      cant_create: "You do not have permission to create tasks in this project."
+      new_task_list: "Create a list of tasks"
+      other_views: "Other views"
+      subscribe: "Subscribe to tasks"
+    destroy_message: 
+      deleted_html: "The list <b>%{name}</b> has been deleted"
+    edit: 
+      submit: Update
+    errors:
+      dates:
+        wrong_start_and_end: "The end date can not before the start date"
+      name: 
+        cant_be_blank: "The name can not be emply"
+        too_long: "The name can not exceed 255 characters"
+      participants:
+        participants_without_responsible: "first you must indicate a responsible"
+        participants_not_in_project: "the particiipants you add must be part of the project."
+    fields: 
+      finish_on_html: "End date"
+      name_html: "Name of the tasks list"
+      start_on_html: "Start date"
+      task_list: "A task list is a set of tasks. You can assign tasks to the people of your team."
+      title: "Create tasks list"
+    filter: 
+      2weeks: "Next 2 weeks"
+      3weeks: "Next 3 weeks"
+      anybody: "Any"
+      anytime: "For any date"
+      by_name: "By name..."
+      date: "Date"
+      filter_tasks: "Filter by tasks"
+      hide: "Hide"
+      late_tasks: "Delayed tasks"
+      month: "less than 1 month"
+      my_tasks: "My tasks"
+      no_date_assigned: "Date not assigned"
+      responsible: "Responsible"
+      today: Today
+      tomorrow: Tomorrow
+      unassigned: "Not assigned"
+      week: "This week"
+    index: 
+      add_link: "Create tasks list"
+      empty: "There are no tasks in this category"
+      ends_on: "Ends on %{date}"
+      no_dates_assigned: "Date not assigned"
+      other_views: "Other views"
+      rss: 
+        description: "Tasks for the project %{name}"
+        title: "Tasks of %{name}"
+      starts_on: "Starts with %{date}"
+      tasks_for_all_projects: "Tasks for all projects"
+      tasks_for_all_projects_explain: "Show all tasks. To administer the list of tasks or sort the tasks open the tasks of each project."
+      tasks_for_project: "Tasks for %{project}"
+    link: 
+      edit: Edit
+      new: "Create list of tasks"
+      reorder: Reorganize lists
+      reorder_done: Reorganized lists
+      unarchive: unfile
+    my_tasks:
+      title: "My tasks"
+    new: 
+      submit: Create
+      title: "Create List of taks"
+    primer: 
+      create_first: "Create the first list of tasks"
+      define_html: "the tasks can have a status, a responsible and an end date."
+      empty: "There are not conversations in this project."
+      footer1_html: "It is easy and quick <b>to achieve what you want</b> and communicate it."
+      footer2_html: "it is time to forget about planning in Excel and the tedious diagrams!"
+      item1_html: "<b>Planifica</b>. Create tasks within each list and assign them to the people of your team."
+      item2_html: "<b>Inform</b>. Publish comments for each task along with its progress. Attach files. Ask for feedback."
+      item3_html: "<b>Mantente al día</b>. Recieve notifications for the tasks you have interest."
+      item4_html: "<b>Revisa</b>. A completed task is not deleted so later you can see what it was done."
+    show: 
+      title: "List of tasks: %{name}"
+
+  tasks: 
+    archive_box: 
+      archive: "Attach task"
+      reopen: "Reopen this task"
+      you_are_done: "It seems this tasks has been completed."
+    archive_message: 
+      archived_html: "The task <b>%{name}</b> has been filed"
+    assigned: 
+      assigned_to: "Responsible: %{user}"
+      myself: "Assigned to me (%{user})"
+      unassigned: "Not assigned to any user"
+    create: "Add task"
+    destroy_message: 
+      deleted_html: "The task <b>%{name}</b> has been deleted"
+    due_on:
+      due_on: Date
+      today: Today
+      tomorrow: Tomorrow
+      undefined: "There is not an assigned date"
+    edit: 
+      sending: Updating...
+      submit: "Update task"
+    end_date: "End date"
+    errors: 
+      name: 
+        cant_be_blank: "The name can not be empty"
+        too_long: "The name can not exceed 255 characters"
+      description:
+        cant_be_blank: "The description can not be empty"
+
+    fields:
+      assigned_to: "Who is the responsible?"
+      assigned_to_nobody: No one
+      body_html: "Description"
+      due_on_html: "End date: "
+      name_html: "Name of the task"
+      optional: "It provides details of the task."
+      participants_html: "<b>Participants</b> "
+      participants_example: "Ej: alejandroperez, mjordan"
+      participants_list: "List of participants"
+      private_html: "<b>private task</b>"
+      task: "choose an anime title to participate. The more specific the better."
+      title: "Create task"
+    index:
+      hide_closed_tasks: "Hide filed tasks"
+    link: 
+      edit: Edit
+      hide_archived_tasks: 
+        one: "Hide 1 filed task"
+        other: "Hide %{count} filed tasks"
+      new: "Create tasks"
+    my_tasks: 
+      my_tasks: "My tasks"
+    new:
+      date_error: "The start date can not be later than the end date"
+      sending: Creating...
+      submit: Create
+      title: "Create task"
+    overdue: "%{days} days late"
+    overview_box: 
+      status: Status
+      title: "this task"
+    priority:
+      low: "Low"
+      medium: "Medium"
+      high: "High"
+    show: 
+      title: "Tarea: %{name}"
+    start_date: "Start date"
+    status: 
+      hold: Wait
+      new: New
+      open: Opened
+      rejected: Rejected
+      resolved: Complete
+    task:
+      full_view: "Full screen view"
+      hide_comments: "Minimize"
+    unarchive_box: 
+      reopen: Reopen this task
+      task_is_closed: This task is closed and filed
+      unarchive: "Restore as an active task"
+
+  time: 
+    am: am
+    formats: 
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%I:%M %p"
+    pm: pm
+
+  uploads:
+    changeDirectory:
+      notAllowedToMove: "You do not have permission to move the selected file"
+      projectDirectories: "Directories of the project"
+      rootDirectory: "Main folder"
+      submit: "Move file"
+      title: "Move file"
+    changeName:
+      notAllowedToRename: "You do not have permission to rename the selected file"
+    comment_upload_link: Attached
+    create:
+      maximumStorageExceeded: "The file you are trying to upload is larger than the available space in the space of the Chief of the project"
+      notAllowedToCreate: "You do not have permission to upload the file to the selected folder"
+    delete:
+      notAllowedToDelete: "You do not have permission to delete the selected file"
+    errors: 
+      exceeded_storage_plan_limit: "You have exceeded the storage capacity for %{organization_name}. To increase your storage capacity, <a href='%{url}'>updated your plan now</a>."
+      general: "An error occured while trying to upload the file"
+    file:
+      fileDeleted: "File deleted"
+    form: 
+      description_html: "Description <i>(optional)</i>"
+      max_size: "The maximum size of the file is %{mb}"
+      max_upload_size: "The maximum size to upload is  %{mb} Mb"
+      presence: "You can not upload an empty file"
+      select_file: "Select file"
+      upload: "Upload file"
+    index:
+      asc: "asc"
+      cant_create: "You do not have permissiion to upload files to this project."
+      confirmFileDelete: "¿Are you sure you want to delete the file?"
+      current_storage_size: "You can upload additional %{bytes} to the organization %{organization_name}.<br/><br/><a href='%{url}'>update</to> your plan to store more documents."
+      delete: "Delete"
+      desc: "download"
+      download: "Download"
+      max_upload_size: "The maximum size of the file is %{mb} Mb"
+      move: "Move"
+      new_dir: "Create folder"
+      new_file: "Upload a file"
+      no_storage_left: "You have exceeded the storage capacity for your organization.<br/><br/><a href='%{url}'>update</a> your plan now."
+      notAllowedToShow: "You do not have permission to visualize the files of the selected project"
+      rename: "Rename"
+      search: "Search"
+      title: "Files in %{project}"
+      title_delete: Delete
+      title_download: Download
+      title_name: Name
+      title_size: Size
+      title_time: Date
+      title_user: User
+    moveFile:
+      notAllowedToMove: "You do not have permission to move the selected file"
+    new:
+      availableStorage_html: "<i><font size='2' color='red'>The chiefl of the project has %{availableStorage} available, you can not upload files more than the limit</font></i>"
+      noFileSelected: "You have not selected any files"
+      selectFile: "Selec file"
+      select_a_file: "Upload file"
+      submit: "Upload file"
+      title: "Upload file"
+      uploading: "Uploading file..."
+    primer: 
+      create_first: "Upload the first file"
+      define1_html: "Have you ever had problems when sharing files? Wtih Kinubi is easy."
+      define2_html: "You can not upload files here or attached them to conversations, tasks or pages."
+      empty: "There are not files in this project"
+      item1_html: "<b>More storage capacity</b>."
+      item2_html: "<b>Versiones</b>. Upload files and access them anytime."
+      item3_html: "<b>Always available</b>. The files remain on Kinubi so you can use them later."
+    rename:
+      name: "Name of the file"
+      submit: "Rename the file"
+      title: "Rename the file"
+    search:
+      author: "Author (name of the user)"
+      exactSearch: "Similar results"
+      extension: "Extension"
+      maxSize: "Maximum size (MB)"
+      minSize: "Minimum size (MB)"
+      name: "Name"
+      notAllowedToSearch: "You do not have permission to search in the selected file"
+      startDate: "Uploaded from"
+      submit: "Search"
+      title: "File search"
+    searchResults:
+      author: "Author"
+      confirmFileDelete: "Are you sure you want to delete the file?"
+      delete: "Delete"
+      download: "Download"
+      move: "Move"
+      name: "Name"
+      rename: "Rename"
+      size: "Size"
+      time: "Date"
+      title: "Results of the search"
+    tooltip: "Upload file"
+    upload: 
+      download: Download
+      move: "Move"
+      on_: in
+      remove: delete
+      rename: "Rename"
+      uploaded_by: "Uploaded by"
+
+  users:
+    activation:
+      activated: "Your account has been activated. Welcome to Kinubi."
+      already_done: "Your username has been confirmed."
+      invalid_html: "<p>You have used an invalid link to log in on Kinubi. Log in with your username and password from the main page.</p><p>If you do not remember your data, use the link provide in Remember Password.</p>"
+      invalid_user: "User not valid"
+      resent: "An e-mail was sent to you to restore your password. Check your inbox."
+    calendars: 
+      clients: 
+        body_html: "Read the <a href='%{link}'>instructions</a> to set up your Google Calendar, Apple iCal, Outlook, Blackberry  and others."
+        title: "Instrucciones específicas"
+      how_to: 
+        body_html: "Basically you can import the links given below in your client's calendar. Read our <a href='%{link}'>instructions</a> to learn about how to import them."
+        title: "How to sinchronize your calendars"
+      possible_clients: "You can sinchronize Google Calendar, Apple iCal, Outlook, Blackberry and others."
+      subscribe_to_all: "All projects "
+      subscribe_to_project: "Project %{project}: "
+      tasks_can_be_synced: "The tasks on Kinubi can be sinchronized with your calendars."
+      title: "Sinchronize your calendars"
+      your_calendars: "Your calendars"
+    create: 
+      error: "We could not register this account. Try again."
+      thanks: "Thank you for registering."
+    daily_task_reminder_email: 
+      daily_task_reminder: "Task reminder"
+      daily_task_reminder_from_colcentric: "This is the reminder of your tasks on Kinubi"
+      late_tasks: Delayed
+      settings_page: "Your user's page"
+      tasks_for_next_two_weeks: "Within the next 2 weeks"
+      tasks_for_today: "Tasks for today"
+      tasks_for_tomorrow: "Tasks for tomorrow"
+      tasks_without_a_due_date: "without specified date"
+      you_receive_this_message_html: "You can desactivate these notifications on %{link}"
+    edit: 
+      submit: Update
+      title_delete: "Delete list"
+      title_deletion: "delete or file project"
+      title_linked_accounts: "Accounts of linked applications"
+      title_notifications: Notifications
+      title_picture: "Profile image"
+      title_profile: "Profile information"
+      title_settings: "User's information"
+    form:
+      address: "Address"
+      agreement_html: "By registering you accept our %{terms} and conditions of %{privacy}"
+      betatester: "Use the beta function (less stable) before they are launch into the community"
+      biography: Profile
+      change_password: "Change password"
+      city: "Population"
+      company_name: "Organization"
+      company_name_explanation: "Organization, company, association..."
+      confirm_password: "Confirm password"
+      country: "Country"
+      delete: 
+        account_deleted: "Your account has expired. We hope you active it soon and you are back on Kinubi!"
+        couldnt_delete_account: "We can not delete your account because you still have active or filed projects."
+        delete_my_account: "Delete my account now"
+        steps_before_1: "Delete your account on Kinubi, first transfer or delete all your projects."
+        steps_before_2: "This will guarantee that other users will not lose data when you delete your account."
+        steps_before_3: "Leave or delete projects and come back to this page to delete your account."
+        what_will_happen: "Once you have deleted your account, your profile on Kinubi will not be accesible."
+      email: E-mail
+      first_day_of_week: "Week starts on"
+      first_name: Name
+      invalid_login: "use only letters, numbers and _"
+      language: Language
+      last_name: Last name
+      login: "Username"
+      monday: Monday
+      new:
+        accept: "I read and accept the"
+        commercial_code: "Commercial code"
+        commercial_code_text_html: "Enter the <u>the code of the salesperson</u> who has attended you"
+        account:
+          choose_username: "Choose an username for the platform. "
+          title: "Usuname and password"
+          validations: "it must be in lowercase and without spaces. You can use underscores"
+        use_this_email: "You have been invited to Kinubi through this e-mail address. If you want to access to the project of the sender do not change the e-mail address. You can change your e-mail once you have been signed up."
+        signup_title: "Contact information"
+        terms_of_use: "Terms of use"
+      new_password: "New password"
+      newsletter: "Notify me about new features and suggestions."
+      notifications: 
+        clarification: "You will recieve notifications in your e-mail when someone mentions you (as '@%{login}' or '@all') in a conversation or task."
+        notify_conversations: "Recieve comments of the conversations I follow"
+        notify_tasks: "Recieve comments of the tasks I follow"
+        wants_task_reminder: "Recieve an e-mail daily with my tasks"
+      old_password: "Old password"
+      password: "Password"
+      password_confirmation: "Confirm new password"
+      password_confirmation2: "Confirm password"
+      phone: "Telephone number"
+      phone_for_integration: "Optional. For future integration with SMS"
+      picture: 
+        destroy: "Delete icon"
+        field: "Select image"
+        gravatar_in_use_html: "We do not have any profile images of yours, so we are using a %{gravatar}:"
+        max_size: "The file can not be larger than %{mb}"
+        presence: "You can not upload an empty file"
+        upload_here_or_at_gravatar_html: "You can upload a new image or create a %{gravatar}."
+        upload_avatar: "You can upload a new image to your profile."
+        we_have_this_avatar_html: "This is the image we have of you:"
+      postal_code: "P.O. Box"
+      privacy: privacy
+      settings:
+        contact_details: "Contact details"
+        more_details: "Additional data"
+        signup_title: "Username and password"
+      subscription:
+        card_expiration: "Expires on"
+        card_number: "Card number"
+        coupon: "Discount code"
+        coupon_question: "Do you have a discount code?"
+        info_price: "Every month we will be charged %{price}."
+        info_unsubscribe: "You can cancel your subscription anytime."
+        new_org_name: "Name of the organization"
+      sunday: Sunday
+      terms: "terms of use"
+      time_zone: "Time zone"
+    new:
+      colcentric_description_html: "<b>Kinubi</b> is a collaboration and communication tool for professional environments. You can work with people involved in a topic which requires interaction, movility, geographical dispersion or where there is need to share files."
+      existing_user_html: "If you have an account, <a href='%{login_url}'>identify yourself</a> o <a href='%{forgot_url}'>restore your password</a>."
+      no_public_signup: "Creation of accounts without invitation is not permitted"
+      submit: "Create account"
+      subscription:
+          begin_in_just_minutes: "You can start in a few minutes"
+          collaborate: "Collaborate"
+          free_days: "Give it a try for free during 15 days"
+          unlimited_projects: "unlimmited projects"
+          share_files: "share files"
+      title: "Register for free and log in on Kinubi"
+      you_already_have_an_account_html: "You got an account on Kinubi by using %{email}. <a href='%{login_link}'>Access to your account</a> o <a href='%{reset_password_link}'>restore your password</a> if you forgot it."
+      you_are_logged_in: "You got an account on Kinubi. If you wish to enter as a different user log out from the session and try again."
+    payment_needed:
+      follow_the_link_html: "Subscription button."
+      problems_html: "If the problems continue contact us %{support}"
+      problems_title: Problems?
+      problem1: Problem 1
+      problem2: Problem 2
+      renew_subscription: "Renew your subscription to continue using Kinubi."
+      title_pay: "Your subscription has expired."
+      title_trial: "The trial period has expired."
+    show:
+      pending_invite: "%{name} you have a pending invitation to one of your projects. You can not access to additional information until that invitation has been accepted."
+      profile: Profile
+      projects: "Projects"
+      projects_in_common_with: "Projects you shere with %{user_name}"
+      recent_activity_for: "Recent activity of %{user_name}"
+    text_styles: 
+      block_of_code: "Paste your indented code ( 4 spaces or tabs) to paste as block code."
+      enter_this: 
+        bold_text: "text in **bold**"
+        header: |
+            Header
+            ======
+        image: "![alternative text](http://w3.org/img.jpg)"
+        italic_text: "text in *italics*"
+        link: "[link something](http://kinubi.com)"
+        ordered_list: |-
+            1. arranged list
+            2. leave lines in blank!
+        smaller_header: "Small header ---------"
+        title: "Write this"
+        unordered_list: "* list not numbered\n\
+            * leave a line before and after\n"
+      to_see_this: 
+        bold_text_html: "text <strong style=\"font-weight: bold\">bold</strong>"
+        header_html: "<h3 style=\"font-size:18px\">Header</h3>"
+        image_html: "<img src=\"http://www.w3.org/Icons/valid-html401\">"
+        italic_text_html: "text in <i>cursiva</i>"
+        link_html: "<a href=\"http://www.kinubi.com\">Link something</a>"
+        ordered_list_html: "<li>arranged list</li>\n\
+            <li>leave line in blank!</li>\n"
+        smaller_header_html: "<h4 style=\"font-size:14px\">small header</h4>"
+        title_html: "to visualize this"
+        unordered_list_html: "<li>arranged list</li>\n\
+            <li>leave a line before and after</li>\n"
+    unconfirmed_email: 
+      follow_the_link_html: "Please, <b>open the e-mail and follow the link it contains</b> to activate your account."
+      invitation_sent_to_html: "An invitation has been sent to <i>%{email}</i>, to verify your e-mail address."
+      problems_html: "If the problem continues contact us to  %{support}"
+      problems_title: Problems?
+      resend_html: "You can not find the e-mail? click <a href='%{link}'> here</a> to resend the activation e-mail. "
+      spam: "Make sure that the e-mail has not been classified as spam."
+      title: "Confirm your e-mail address"
+      wrong_address_html: "Incorrect e-mail address? If you wrote an incorrect e-mail, <a href='%{link}'>cancel</a> create your account using a valid e-mail address."
+    update: 
+      error: "The profile was not updated. Correct the error and try again."
+      updated: "Profile updated"
+    user: 
+      formatted_address: "%{street}, %{city} (%{country})"
+      remove_from_project: "Delete project"
+
+  videoconferences:
+    error:
+      activate: "Activate"
+      first_message: "Currently your license to use videconferences is not active."
+      promotional_code: "Promotional code"
+      purchase: "Purchase"
+      purchase_products: "Purchase products"
+      second_message: "Enter the promotional code or log in to purchase our services."
+    errors:
+      delete_participant: "%{name} was not removed from the videoconference"
+      max_participants: "You have reached the maximum number of participants (%{max_participants})"
+      max_videoconferences: "You have reached the maximum number of videoconferences in selected time slot"
+      not_allowed: "You do not have permission to access this page"
+      not_available: "Currently there are not available rooms in the selected time slot"
+      password: "Passwords must be the same"
+      participant_in_video: "The user %{name} is already in the videoconference"
+      session_url: "An error has occured while trying to access to the room. Try again later"
+      schedule: "There are no available rooms in the selected time slot. Please select another"
+      time: "The room can be accessed 15 minutes before the videoconference starts"
+    edit:
+      delete_participant: "%{name} has been removed from the videoconference"
+      participants: "Participants"
+      success: "it has been edited correctly."
+      title: "Edit"
+    feedback:
+      confirm_delete: "Are you sure you want to remove %{name} from the videoconference?"
+      destroyed: "The videoconference has been deleted"
+      new_room: "The videoconference has been created. You can continue adding participants to this page."
+      sure: "Are you sure?"
+    index:
+      create: "Create Videoconference"
+      duration: "Duration"
+      next_videoconferences_html: "Next videoconferences of <font size='3' color='black'>%{user}</font>"
+      old_videoconferences_html: "Historial de videoconferencias"
+      password: "Password"
+      repeat_password: "Confirm password"
+      start_time: "Start date"
+      timezone: "Time zone"
+      title: "Videoconferences"
+      topic: "Topic"
+      videoconference_message: "Create a videoconference by clicking on the following link"
+    new:
+      moderator: "Moderator"
+      observer: "Observer"
+      participant: "Participant"
+      participants: "Invite users to participate in the videoconference"
+      title:
+    show:
+      back: "Go back to main page"
+      duration: "%{duration} minutes"
+      duration_title: "Duration: "
+      edit: "Edit"
+      moderators: "Moderators"
+      observers: "Observers"
+      participants: "Participants"
+      start_time: "Start time"
+      title: "videoconference data"
+      topic_title: "Topic: "
+    videoconference:
+      delete: "delete"
+      duration: "%{duration} min."
+      init: "Start"
+      edit: "Edit"
+      show: "See details"
+
+  weakling:
+    average: average
+    default: It must have at least 5 characters
+    error: "too short"
+    strong: strong
+    weak: weak
+
+  user_files:
+    create:
+      maximumStorageExceeded: "The file you have tried to upload is larger than the available storage capacity of your account"
+      notAllowedToCreate: "You do not have permission to upload this file to the selected folder"
+      noFileSelected: "No file has been selected"
+    changeDirectory:
+      rootDirectory: "Main folder"
+      submit: "Move file"
+      title: "Move file"
+      userDirectories_html: "Select folder"
+    delete:
+      notAllowedToDelete: "You do not have permission to delete the selected file"
+    download:
+      notAllowedToDownload: "You do not have permission to download the selected file"
+    index:
+      asc: "Sort in increasing order"
+      confirmDirDelete: "Are you sure you want to delete this folder?"
+      confirmFileDelete: "Are you sure you want to delete this file?"
+      delete: "delete"
+      desc: "Sort in decreasing order"
+      directories_view: "View folders"
+      download: "Download"
+      file: "File %{file}"
+      file_upload: "Upload a file"
+      move: "Move"
+      new_dir: "Create folder"
+      rename: "Rename"
+      search: "Search"
+      simple_view: "Simple view"
+      title: "Files of %{user} "
+      title_description: "Description"
+      title_name: "Name"
+      title_size: "size"
+      title_time: "Date"
+      title_type: "Type"
+    moveFile:
+      notAllowedToMove: "You do not have permission to move this file to the selected folder"
+    new:
+      availableStorage_html: "<i><font size='2' color='red'>it is left %{availableStorage} of the storage capacity of your account</font></i>"
+      description: "Description"
+      noFileSelected: "You have not selected any folder"
+      optional: "optional"
+      selectFile: "Select file"
+      submit: "Upload file"
+      title: "Upload file"
+      uploading: "Uploading file..."
+    rename:
+      name: "File name"
+      submit: "Rename file"
+      title: "Rename file"
+    search:
+      date: "Date"
+      exactSearch: "Similar results"
+      extension: "Extension"
+      maxSize: "Maximum size (MB)"
+      minSize: "Minimum size (MB)"
+      name: "Name"
+      size: "Size"
+      startDate: "Uploaded from"
+      submit: "Search"
+      title: "Files search"
+    searchResults:
+      name: "Name"
+      size: "Size"
+      time: "Date"
+      title: "Search results"
+
+  user_directories:
+    changeDirectory:
+      rootDirectory: "main folder"
+      title: "Move folder"
+      submit: "Move folder"
+      userDirectories_html: "Select folder"
+    create:
+      notAllowedToCreate: "You do not have permission to create in the selected location"
+    delete:
+      notAllowedToDelete: "You do not have permission to delete the selected folder"
+    moveDirectory:
+      errorMovingToInnerDirectory: "A folder can not be moved to another which it contains"
+      notAllowedToMove: "You do not have permission to move the folder to the selected location"
+    new:
+      name_html: "Name of the folder"
+      submit: "Create folder"
+      title: "Create folder"
+    rename:
+      name: "Name of the folder"
+      notAllowedToRename: "You do not have permission to rename the selected folder"
+      submit: "Rename folder"
+      title: "Rename folder"
+    show_content:
+      file_upload: "Upload a file"
+      new_dir: "Create folder"
+      notAllowedToRename: "You do not have permission to rename the selected folder"
+      notAllowedToSee: "You do not have permission to visualize the contents of the selected folder"
+      parent_directory: "Go to an upper directory"
+      rootDirectory: "Main folder"
+      search: "Search"
+      title_html: "Contents of the folder <font size='3' color='black'>%{dirName}</font>"
+
+  upload_directories:
+    changeDirectory:
+      notAllowedToMove: "You do not have permission to move the selected folder"
+      rootDirectory: "Main folder"
+      submit: "Move folder"
+      title: "Move folder"
+      userDirectories: "Select folder"
+    changeName:
+      notAllowedToRename: "You do not have permission to rename the selected folder"
+    create:
+      notAllowedToCreate: "You do not have permission to create the folder"
+    delete:
+      notAllowedToDelete: "You do not have permission to delete the selected folder"
+    moveDirectory:
+      errorMovingToInnerDirectory: "The folder can not be moved to another which it contains"
+      notAllowedToMove: "You do not have permission to move the selected folder"
+    new:
+      name: "Name folder"
+      submit: "Create folder"
+      title: "Create folder"
+    rename:
+      name: "Name of the folder"
+      notAllowedToCreate: "You do not have permission to create the folder"
+      submit: "Rename folder"
+      title: "Rename folder"
+    show_content:
+      asc: "asc"
+      confirmFileDelete: "Are you sure you want to delete the file?"
+      delete: "delete"
+      desc: "download"
+      download: "Download"
+      file_upload: "Upload file"
+      move: "Move"
+      new_dir: "Create folder"
+      notAllowedToSee: "You do not have permission to visualize the selected folder"
+      parentDirectory: "Go to an upper directory"
+      rename: "Rename"
+      rootDirectory: "Main folder"
+      search: "Search"
+      title_html: "Folder content <font size='3' color='black'>%{uploadDirName}</font>"
+      title_name: "Name"
+      title_size: "Size"
+      title_time: "Date"
+      title_user: "User"
+

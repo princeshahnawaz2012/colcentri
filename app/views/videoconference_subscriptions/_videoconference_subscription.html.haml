@@ -1,0 +1,27 @@
+.licence
+  .product
+    = t('subscriptions.fields.videoconference')
+
+  .quantity
+    = 1
+
+  .owner
+    = videoconference_subscription.user
+
+  .type
+    = t('subscriptions.fields.cost.videoconference')
+
+  .expiration_date
+    - if videoconference_subscription.expiration_date
+      = videoconference_subscription.expiration_date.strftime("%d-%m-%Y")
+    - else
+      = " - "
+  .cancel_button
+    = cancel_videoconference_subscription_link(videoconference_subscription)
+
+
+
+
+
+
+

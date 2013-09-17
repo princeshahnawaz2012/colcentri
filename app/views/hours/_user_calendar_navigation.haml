@@ -1,0 +1,6 @@
+.calendar_navigation
+  %p.month_value#month_value{ :style => 'clear: both', :value => "#{[year,month].join('_')}"}
+    =link_to_user_last_month(year,month)
+    %span
+      =Time.mktime(year,month).to_s(:month_and_year)
+    =link_to_user_next_month(year,month)

@@ -1,0 +1,8 @@
+.email{ :style => email_global }
+
+  = dont_answer
+
+  .box{ :style => email_box }
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.destruction.hello', :user_name => @user.first_name)
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.destruction.item1', :owner => @owner.first_name + " " + @owner.last_name, :day => @videoconference.start_time.strftime("%d-%m-%Y").to_s)

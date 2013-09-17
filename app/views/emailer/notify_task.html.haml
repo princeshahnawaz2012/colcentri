@@ -1,0 +1,117 @@
+.email{ :style =>  "#{email_global }#{inline_organization_text_colour}"}
+  .header
+    %h1
+      = image_tag('/images/LogoColcentric1.png', :alt => 'Kinubi')
+
+  = answer_instructions
+
+  .box{ :style => email_box }
+    %p{ :style => "#{email_text(:medium)}"}
+      =# t('emailer.notify.project_group')
+      = t('emailer.notify.path')
+      =# link_to(h(@project.project_group.name), project_group_url(@project.project_group), :style => inline_organization_link_colour)
+      = @project.project_group.name
+      = " > "
+      =# link_to(h(@project.name), project_url(@project), :style => inline_organization_link_colour)
+      = @project.name
+      = " > Tareas"
+    %p{ :style => email_text(:medium)}
+      =# link_to(h(@task_list.name), project_task_list_url(@project, @task_list), :style => inline_organization_link_colour)
+      = @task_list.name
+      = " > "
+      = link_to (h(@task.name), project_task_url(@project, @task), :style => inline_organization_link_colour)
+
+
+    -#.box{ :style => email_box(@task)}
+      %h2{ :style => email_text(:big) }
+        = t('emailer.notify.task')
+        = link_to h(@task.name), project_task_url(@project, @task), :style => inline_organization_link_colour
+      - if @task.assigned
+        %p= t('emailer.notify.assigned_to_html', :user => h(@task.assigned.user.name))
+      %p= t('emailer.notify.status', :status => localized_status_name(@task))
+      - if @task.due_on
+        %p= t('emailer.notify.due_on', :date => due_on(@task))
+
+    -#
+      .task
+        %p{ :style => email_text(:big)}
+          = t('emailer.notify.assigned_to_task', :user => @task.assigned.name, :task => @task.name)
+
+
+
+    -# FROM HERE
+
+    - comment = @task.comments.first
+    =# comment.body
+
+    .comment{ :style => email_text(:big) }
+      .body
+        %p{ :style => 'font-size: 12px' }
+          %strong{ :style => 'color: rgb(50,50,50);' }
+            = h(comment.user.name) + ', '
+          %span{ :style => 'color: rgb(150,150,150);' }
+            = I18n.l(comment.created_at.in_time_zone(@recipient.time_zone), :format => "%b %d &mdash; %I:%M %p").html_safe
+          - if comment.task_comment?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              = comment_task_status(comment)
+          - if comment.task_comment? and comment.assigned_transition?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              - if comment.assigned_id?
+                = t('tasks.assigned.assigned_to', :user => comment.assigned.user.name)
+              - else
+                = t('tasks.assigned.unassigned')
+          - if comment.task_comment? and comment.priority_transition?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              =# t('tasks.priority.priority', :priority => t("tasks.priority.#{comment.priority_name}"))
+              = comment_task_priority(comment)
+          - if comment.task_comment? and comment.start_date_transition2?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              = t('emailer.notify.start_date', :start_date => comment.start_date)
+          - if comment.task_comment? and comment.due_on_transition2?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              = t('emailer.notify.due_on', :date => comment.due_on)
+          -# if comment.task_comment? and comment.task_participants_transition?
+            %span{ :style => 'margin-left: 10px; color: rgb(150,150,150);' }
+              = comment_task_participants(comment)
+
+          ~raw comment.body_html
+
+        - if comment.uploads.any?
+          %ul
+            = render :partial => 'emailer/upload', :collection => comment.uploads
+
+    -# TIL HERE
+
+
+
+  =# emailer_list_comments(@task.comments)
+  -#= emailer_recent_tasks(@project, @recipient)
+
+  -#
+    .actions{ :style => email_text(:big) + 'color: rgb(100,100,100); padding: 15px' }
+      %p
+        =# t('emailer.notify.view_this_task_online_html', :task => t('emailer.notify.task_link'))
+        = t('emailer.notify.view_this_task_online_html')
+        =# link_to t('emailer.notify.go_to_task'), project_task_url(@project, @task)
+        = link_to "link", project_task_url(@project, @task)
+      = emailer_answer_to_this_email
+
+  %p{ :style => email_text(:small) }
+    = t('emailer.confirm.plaintext_link')
+    %br
+    = link_to project_task_url(@project, @task), project_task_url(@project, @task), :style => inline_organization_link_colour
+
+  .footer{ :style => email_text(:small) }
+    %p
+      =# t('emailer.confirm.problems_html', :support => Colcentric.config.support)
+      = t('emailer.reset_password.problems')
+      = mail_to Colcentric.config.support, Colcentric.config.support, :style => 'color: #008ac0'
+
+
+    -#%p
+      = @task.watchers.collect {|u| h(u) }.to_sentence
+      = t('emailer.notify.are_watching_task', :count => @task.watchers.size)
+    -#= emailer_commands_for_tasks(@recipient)
+    -#%p
+      = t('emailer.notify.stop_watching_link_html', :stop_watch => link_to(t('emailer.notify.stop_watch'), project_task_url(@project, @task), :style => inline_organization_link_colour) )
+      = t('emailer.notify.notification_settings_link_html', :settings_link => link_to(t('emailer.notify.settings_link'), account_notifications_url, :style => inline_organization_link_colour) )

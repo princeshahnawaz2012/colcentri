@@ -1,0 +1,28 @@
+- if params[:action] == "show_all" or params[:action] == "settings"
+  .first_bar
+    = t('navigation.header.first_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+- elsif params[:action] == "new"
+  .first_bar
+    = t('navigation.header.first_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ec_create', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+
+- if ((!Colcentric.config.community && can?(:create_project, current_user)) || (Colcentric.config.community && !@community_organization) || (@community_organization && @community_role && Membership::ROLES[@community_role] >= 20))
+  .third_bar
+    .project_actions
+      =# link_to '', new_project_group_path, :class => 'new_pg', :id => 'new_project_group_button'
+      =# link_to '', new_project_path, :class => 'new_p', :id => 'new_project_button'
+      = link_to_function image_tag(t('buttons.create_group')), 'Element.show("project_group_new_form"); Element.hide("project_new_form");', :id => 'new_project_group_button'
+      - if not current_user.project_groups == [] or not current_user.people == []
+        = link_to_function image_tag(t('buttons.create_project')), 'Element.show("project_new_form"); Element.hide("project_group_new_form");', :id => 'new_project_button'
+      .clear
+
+  .fourth_bar
+    = render 'project_groups/new'
+    - if not current_user.project_groups == [] or not current_user.people == []
+      = render 'projects/new'
+
+

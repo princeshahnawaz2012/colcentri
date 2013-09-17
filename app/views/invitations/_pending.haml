@@ -1,0 +1,20 @@
+.project
+  = thumb_avatar(invitation.user)
+  .text
+    =raw t('.invited_to_join', :by => user_link(invitation.user), :project => content_tag(:b,h(invitation.target.name)))
+  
+  .actions
+    - if invitation.target.is_a? Project
+      = form_for invitation.target, :url => accept_project_invitation_path(invitation.target,invitation), :html => { :class => 'accept_project' } do |f|
+        = f.submit t('common.accept')
+        %span
+        = t('.to_access_or')
+      = form_for invitation.target, :url => decline_project_invitation_path(invitation.target,invitation), :html => { :class => 'decline_project' } do |f|
+        = f.submit t('common.decline')
+    - else # project group
+      = form_for invitation.target, :url => accept_project_group_invitation_path(invitation.target,invitation), :html => { :class => 'accept_project' } do |f|
+        = f.submit t('common.accept')
+        %span
+        = t('.to_access_or')
+      = form_for invitation.target, :url => decline_project_group_invitation_path(invitation.target,invitation), :html => { :class => 'decline_project' } do |f|
+        = f.submit t('common.decline')

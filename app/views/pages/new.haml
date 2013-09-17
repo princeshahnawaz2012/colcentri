@@ -1,0 +1,21 @@
+%h2= t('.title')
+
+= form_for [@current_project,@page] do |f|
+  = page_fields(f)
+
+  .submit
+    =# f.submit '', :'data-disable-with' => t('.sending'), :class => 'create_page_button'
+    = image_submit_tag t('buttons.save')
+    =# t('common.or')
+    = link_to t('common.cancel'), project_pages_path(@current_project), :class => 'text_button'
+  
+-# content_for :column do
+  %p= t '.define1_html'
+  %p= t '.define2_html'
+  %ul
+    %li= t '.feature1_html'
+    %li= t '.feature2_html'
+    %li= t '.feature3_html'
+    %li= t '.feature4_html'
+  %p= t '.footer1_html'
+  %p= t '.footer2_html'

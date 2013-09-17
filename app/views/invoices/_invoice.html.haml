@@ -1,0 +1,11 @@
+.invoice
+
+  .invoice_number
+    = invoice.invoice_number
+  .invoice_date
+    = invoice.created_at.strftime("%d-%m-%Y")
+  .invoice_ammount
+    = invoice.ammount.to_s + " €"
+  .show
+    = link_to '', show_invoice_path(:id => invoice.id), :class => 'invoice_icon', :title => t('.show')
+

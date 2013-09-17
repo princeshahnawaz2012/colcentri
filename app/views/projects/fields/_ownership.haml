@@ -1,0 +1,5 @@
+.owner
+  .description{ :style => 'margin-left: 10px'}= t('projects.fields.owner_description')
+  .project_title= f.label :user_id, t('projects.fields.owner')
+  .clear
+  .project_select= f.select :user_id, options_for_owner(@current_project.people)

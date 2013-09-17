@@ -1,0 +1,7 @@
+=# delete_project_link(project)
+.project_delete_icon= link_to image_tag('/iconos/borrar22x22.png'),
+    project_path(project),
+    :method => :delete,
+    :title => t('projects.fields.forever'),
+    :confirm => t('projects.fields.confirm_delete')
+= f.hidden_field :archived

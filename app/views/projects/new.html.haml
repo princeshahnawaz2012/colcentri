@@ -1,0 +1,21 @@
+- content_for :current_path do
+  .current_path1
+    =link_to t('shared.path.project'), @current_project
+  .current_path2
+    =link_to t('shared.path.project_new'), new_project_path
+
+%h2
+  .image= image_tag('/iconos/projects22x22.png')
+  .text= t('.title')
+  .clear
+
+%p=t '.explain1_html'
+%p=t '.explain2_html'
+
+= jsProjectFormValidation
+
+= form_for @project, :html => {  :name => 'form', :onsubmit => 'return validate(form);' } do |f|
+  = project_fields(f,@project)
+  .submit
+    =# f.submit t('.submit'), :'data-disable-with' => t('.sending'), :class => 'form_button'
+    = image_submit_tag t('buttons.save'), :'data-disable-with' => t('.sending'), :class => 'save_button_without_image'

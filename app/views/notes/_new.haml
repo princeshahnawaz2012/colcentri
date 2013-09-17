@@ -1,0 +1,32 @@
+= form_for [project,page,note], :html => { :style => 'display: none', :'data-remote' => 'true' } do |f|
+  %h3
+    .image= image_tag('/iconos/notas22x22.png')
+    .text= t('notes.new.new_note')
+    .clear
+
+  -# What's this for???? :?
+  = page_slot_fields
+
+
+  -# Notes fields
+  .documentation
+    =# formatting_documentation_link
+  .note_title= f.label :name, t('notes.fields.title')
+  .clear
+  .note_text_field= f.text_field :name
+
+  .note_title= f.label :body, t('notes.fields.body')
+  .clear
+  .note_text_field_big= f.text_area :body, :id => :note_body, :rows => 5
+
+  =# note_fields(f)
+
+
+  = image_submit_tag t('buttons.save'), :'data-disable-with' => t('pages.new.sending'), :style => 'padding-top: 10px; padding-left: 250px'
+  .note_cancel_button= link_to t('common.cancel'), '#', :class => 'text_button cancelPageWidget'
+  =loading('note_form')
+
+.clear
+
+
+

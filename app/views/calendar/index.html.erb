@@ -1,0 +1,125 @@
+<!-- Probably move the stylesheet to you layout. Also make sure you include the javascript. -->
+
+
+
+<link href="/css/event_calendar.css" rel="stylesheet" type="text/css" />
+
+
+
+<%= jsActivateSelectProject %>
+
+<!--<h1><%= t('calendar.index.title') %></h1>-->
+
+<%= link_to_function image_tag(t('buttons.create_input')), 'Element.show("calendar_entry_form");' %>
+
+<div class="clear"></div>
+
+<%= render 'calendar_entries/new' %>
+
+<div class="clear"></div>
+<div class="filters">
+
+    <form name = "form" action="<%= calendar_path %>" method="post">
+        <div class="project_filter">
+          <div class="category">
+              <% categories = [t('calendar.index.category'), t('calendar.index.all'), t('calendar.index.task'), t('calendar.index.entry')] %>
+              <%= select_tag "category", options_for_select(categories.collect {|c| [c,c]}, @category), :onchange => "activateSelectProject(form)" %>
+            </div>
+            <div class="project">
+
+                <%= select_tag "project", options_from_collection_for_select(@user_projects, "id", "name", @project) %>
+            </div>
+            <div class="calendary_filter_button">
+                <%= image_submit_tag t('buttons.filter'), :name => 'commit' %>
+
+              <!--<input name="commit" type="image_submit_tag t('buttons.filter') " />-->
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<%= raw(event_calendar(@category, @project, @responsible)) %>
+
+<div class="event_lists">
+    <div class="tasks_list">
+        <div class="tasks_list_title">
+            <h2><%= t('calendar.index.task') %></h2>
+        </div>
+        <div class="tasks_list_headers">
+			<div class="start_date"><%= t('calendar.index.start_date_header') %></div>
+            <div class="end_date"><%= t('calendar.index.end_date_header') %></div>
+            <div class="title"><%= t('calendar.index.task_header') %></div>
+        </div>
+        <div class="task_list">
+            <% num_files = 0 %>
+            <% @events_aux.each do |e| %>
+                <div class="task_info">
+                    <% if e.calendar_entry_id.nil?
+                       if num_files % 2 == 0
+                         num_files += 1
+                         row_class = "calendar_row1"
+                       else
+                         num_files += 1
+                         row_class = "calendar_row2"
+                       end %>
+                         <div class="<%= row_class %>">
+                        <% t = Task.find(e.task_id) %>
+                        <div class="start_date">
+                        <% if !t.start_date.nil? %>
+                            <%= t.start_date.strftime("%d/%m/%Y") %>
+                        <% else %>
+                            <%= '-' %>
+                        <% end %>
+                        </div>
+
+                        <div class="end_date">
+                        <% if !t.due_on.nil? %>
+                            <%= t.due_on.strftime("%d/%m/%Y") %>
+                        <% else %>
+                            <%= '-' %>
+                        <% end %>
+                        </div>
+
+                        <div class="title">
+                        <%= link_to e.name, project_task_path(e.permalink_task_project, e.task_id) %>
+                        </div>
+                      </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="entries_list">
+        <div class="entries_list_title">
+            <h2><%= t('calendar.index.entry') %></h2>
+        </div>
+        <div class="entries_list_headers">
+          <div class="start_date"><%= t('calendar.index.start_date_header') %></div>
+           <div class="end_date"><%= t('calendar.index.end_date_header') %></div>
+           <div class="title"><%= t('calendar.index.task_header') %></div>
+        </div>
+        <div class="entry_list">
+          <% num_files = 0 %>
+            <% @events_aux.each do |e| %>
+                <div class="entry_info">
+                    <% if e.task_id.nil?
+                      if num_files % 2 == 0
+                        num_files += 1
+                        row_class = "calendar_row1"
+                      else
+                        num_files += 1
+                        row_class = "calendar_row2"
+                      end %>
+                        <div class="<%= row_class %>">
+                        <div class="start_date"><%= e.start_at.strftime("%d/%m/%Y") %></div>
+                        <div class="end_date"><%= e.end_at.strftime("%d/%m/%Y") %></div>
+                        <div class="title"><%= link_to e.name, show_calendar_entry_path(:entry_id => e.calendar_entry_id) %></div>
+                      </div>
+                  <% end %>
+              </div>
+          <% end %>
+       </div>
+    </div>
+</div>

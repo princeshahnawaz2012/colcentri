@@ -1,0 +1,36 @@
+<script src="/javascripts/tablekit.js" type="text/javascript" language="JavaScript"></script>
+<link href="/css/tablesorter.css" rel="stylesheet" type="text/css" />
+<h2><%=t('admin.invoicesManagement.title')%> </h2>
+  <div style="overflow: auto; height: 300px; width: 630px;">
+    <table class="sortable resizable">
+        <thead>
+            <tr>
+                <th id="login"><%= t('admin.invoicesManagement.invoice_number')%></th>
+                <th id="first_name"><%= t('admin.invoicesManagement.first_name')%></th>
+                <th id="time"><%= t('admin.invoicesManagement.last_name')%></th>
+                <th id="email"><%= t('admin.invoicesManagement.amount')%></th>
+                <th class="sortfirstdesc" id="title"><%= t('admin.invoicesManagement.created_at')%></th>
+                <th class="noSortClass" id="status"><%= t('admin.invoicesManagement.show')%></th>
+                <th class="noSortClass" id="author"><%= t('admin.invoicesManagement.delete')%></th>
+            </tr>
+    </thead>
+    <tbody>
+        <% for invoices in @invoices do %>
+            <div class='invoices'>
+              <tr>
+                 <td><%= invoices.invoice_number %></td>
+                 <td><%= invoices.first_name %></td>
+                 <td><%= invoices.last_name %></td>
+                 <td><%= invoices.ammount %></td>
+                 <td><%= invoices.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y") %></td>
+                 <td><%= link_to t('admin.invoicesManagement.show'), showInvoice_admin_path(:invoiceId => invoices.id) %></td>
+                 <td><%= link_to t('admin.invoicesManagement.delete'), deleteInvoice_admin_path(:invoiceId => invoices.id), {:confirm => t('admin.invoicesManagement.confirmDelete')} %></td>
+              </tr>
+            </div>
+        <% end %>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+
+

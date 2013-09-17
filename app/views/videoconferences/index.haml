@@ -1,0 +1,46 @@
+-#
+  %h2= t(".title")
+
+.videoconferences
+  .create
+    .button_create_now= link_to image_tag(t('buttons.create_videoconference')), new_videoconference_path(current_user)
+    .create_now= t('.videoconference_message')
+
+  .clear
+
+  .created_rooms
+    .title
+      %h2= t('.next_videoconferences_html', :user => current_user)
+
+    .room_titles
+      .topic= t('.topic')
+      .start_time= t('.start_time')
+      .duration= t('.duration')
+      .timezone=# t('.timezone')
+
+    .rooms_list
+      - if current_user.videoconferences.any?
+        = render @videoconferences
+
+      - if current_user.participations.any?
+        = render @participations
+
+
+
+  .old_rooms
+    .title
+      %h2= t('.old_videoconferences_html')
+
+    .room_titles
+      .topic= t('.topic')
+      .start_time= t('.start_time')
+      .duration= t('.duration')
+      .timezone=# t('.timezone')
+
+    .rooms_list
+      - if current_user.videoconferences.any?
+        = render @old_videoconferences
+      - if current_user.participations.any?
+        = render @old_participations
+
+

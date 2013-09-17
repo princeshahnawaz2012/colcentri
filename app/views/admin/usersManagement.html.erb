@@ -1,0 +1,33 @@
+<script src="/javascripts/tablekit.js" type="text/javascript" language="JavaScript"></script>
+<link href="/css/tablesorter.css" rel="stylesheet" type="text/css" />
+  <div style="overflow: auto; height: 300px; width: 630px;">
+    <table class="sortable resizable">
+        <thead>
+            <tr>
+                <th id="login"><%= t('admin.usersManagement.login')%></th>
+                <th id="first_name"><%= t('admin.usersManagement.first_name')%></th>
+                <th id="time"><%= t('admin.usersManagement.last_name')%></th>
+                <th id="email"><%= t('admin.usersManagement.email')%></th>
+                <th class="sortfirstdesc" id="title"><%= t('admin.usersManagement.created_at')%></th>
+                <th class="noSortClass" id="status"><%= t('admin.usersManagement.show')%></th>
+                <th class="noSortClass" id="author"><%= t('admin.usersManagement.delete')%></th>
+            </tr>
+    </thead>
+    <tbody>
+        <% for users in @users do %>
+            <div class='users'>
+              <tr>
+                 <td><%= users.login %></td>
+                 <td><%= users.first_name %></td>
+                 <td><%= users.last_name %></td>
+                 <td><%= users.email %></td>
+                 <td><%= users.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y") %></td>
+                 <td><%= link_to t('admin.usersManagement.show'), showUser_admin_path(:userId => users.id) %></td>
+                 <td><%= link_to t('admin.usersManagement.delete'), deleteUser_admin_path(:userId => users.id), {:confirm => t('admin.usersManagement.confirmDelete')} %></td>
+              </tr>
+            </div>
+        <% end %>
+    </tr>
+    </tbody>
+    </table>
+  </div>

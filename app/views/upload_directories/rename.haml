@@ -1,0 +1,16 @@
+-#Not used anymore
+.renameDirectory
+  %h2= t('upload_directories.rename.title')
+
+  .renameDirectoryForm
+    = form_tag(changeName_upload_directory_path, :method=>'post', :multipart => true) do
+      .rename
+        = t('upload_directories.rename.name')
+        = text_field_tag "newName", @currentName
+      .id
+        = hidden_field_tag "uploadDirId", @id
+      .currentProjectId
+        = hidden_field_tag "currentProjectId", @currentProjectId
+      .submit
+        =# submit_tag t('upload_directories.rename.submit'), :class => 'form_button'
+        = image_submit_tag t('buttons.save')

@@ -1,0 +1,16 @@
+-#not needed anymore
+.renameFile
+  %h2= t('user_files.rename.title')
+
+  .renameFileForm
+    = form_tag(change_name_user_files_path, :method=>'post', :multipart => true) do
+      .rename
+        = t('user_files.rename.name')
+        = text_field_tag "nname", @currentName
+      .id
+        = hidden_field_tag "fileId", params[:fileId]
+      .simpleView
+        - if (@simpleView)
+          = hidden_field_tag "simpleView", true
+      .rename_submit
+        = image_submit_tag t('buttons.save')

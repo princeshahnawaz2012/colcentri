@@ -1,0 +1,124 @@
+/ ACCOUNT DETAILS
+
+%h2
+  .image= image_tag('/images/ImgPaso1.gif')
+  .text=t('.signup_title')
+  .clear
+
+
+.login
+  .title2= f.label :login, t('users.form.login')
+  .user_text_field= f.text_field :login
+  .clear
+  .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :login
+  .clear
+
+
+#password_fields{ :style => 'display: none' }
+  .password
+    .title2= f.label :old_password, t('users.form.old_password')
+    .user_text_field= f.password_field :old_password, :autocomplete => 'off'
+    .clear
+    .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :old_password
+    .clear
+  .password
+    .title2= f.label :password, t('users.form.new_password')
+    .user_text_field= f.password_field :password, :autocomplete => 'off'
+    .clear
+    .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :password
+    .clear
+  .password
+    .title2= f.label :password_confirmation, t('users.form.password_confirmation2')
+    .user_text_field= f.password_field :password_confirmation, :autocomplete => 'off'
+    .clear
+    .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :password_confirmation
+    .clear
+
+.clear
+
+#change_password_link
+  = link_to_function t('users.form.change_password'), show_user_password_fields, :class => 'text_button'
+
+
+-#.betatester.check_box
+  = f.check_box :betatester
+  = f.label :betatester, t('users.form.betatester'), :style => 'float: none'
+
+
+
+/ USER DETAILS
+
+%h2
+  .image= image_tag('/images/ImgPaso2.gif')
+  .text= t('.contact_details')
+  .clear
+
+
+
+
+
+-# The old profile
+.first_name
+  .title2= f.label :first_name, t('users.form.first_name')
+  .user_text_field= f.text_field :first_name, :autofocus => 'autofocus'
+  .clear
+  .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :first_name
+.clear
+.last_name
+  .title2= f.label :last_name, t('users.form.last_name')
+  .user_text_field= f.text_field :last_name
+  .clear
+  .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :last_name
+  .clear
+.email
+  .title2= f.label :email, t('users.form.email')
+  - if (@invitation || @app_link)
+    .user_text_field= f.text_field :email, :readonly => 'readonly', :style => 'color: #999'
+  - else
+    .user_text_field= f.text_field :email
+    .clear
+    .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :email
+  .clear
+.phone
+  .title2= f.label :phone, t('users.form.phone')
+  .user_text_field= f.text_field :phone
+  .clear
+  .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :phone
+  .clear
+.company_name
+  .title2= f.label :company_name, t('users.form.company_name')
+  .user_text_field= f.text_field :company_name
+  .clear
+.country.select
+  .title2= f.label :country, t('users.form.country')
+  .selectPaisReg
+    = f.localized_country_select :country, [], :include_blank => t('support.select.prompt'), :style => 'width: 230px'
+  .clear
+  .user_settings_error{ :style => 'margin-left: 204px'}= errors_for user, :country
+.language.select
+  .title2= f.label :locale, t('users.form.language')
+  = f.select :locale, locale_select_values
+.time_zone.select
+  .title2= f.label :time_zone, t('users.form.time_zone')
+  = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Eastern Time (US & Canada)"
+-# We don't use that at the moment
+  .first_day_of_week.select
+    .title2= f.label :first_day_of_week, t('users.form.first_day_of_week')
+    = f.select :first_day_of_week, [[t('users.form.sunday'), 'sunday'],[t('users.form.monday'), 'monday']]
+
+
+
+/ ADDITIONAL INFO
+%h2{ :style => 'margin-top: 30px'}
+  .image= image_tag('/images/ImgPaso3.gif')
+  .text= t('.more_details')
+  .clear
+
+.description.text_area
+  .title2= f.label :biography, t('users.form.biography')
+  = f.text_area :biography, :style => 'width: 545px'
+
+
+-#= list_card_fields(f,%w(phone_numbers email_addresses websites addresses ims social_networks))
+-#= Deleted phone numbers
+= list_card_fields(f,%w(email_addresses websites addresses))

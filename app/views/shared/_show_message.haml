@@ -1,0 +1,56 @@
+
+%h2
+  =@message.subject
+.show_mail
+  -unless @messages.nil? # if mail part of a conversation, show old mails
+    .previous_mails
+      -@messages.each do |m|
+        -if m.sent?
+          .mail
+            .mail_header
+              .mail_user_image
+                = image_tag avatar_or_gravatar(m.user, :thumb), :class => 'avatar'
+              .mail_user_login
+                %span
+                  = m.user.login
+              .mail_date
+                = m.created_at.to_s(:short)
+            .mail_body
+              = m.body
+      .clear
+
+.answer_form
+  -form_for @message, :url => {:controller => "mailbox", :action => "message_actions"}  do |f|
+
+    -unless params[:controller] == 'drafts' # if we're viewing a received or sent mail
+      .mail_body_textarea
+        =f.text_area :body, :value => ""
+      .reply_button
+        =submit_tag "reply", :name => 'reply_all'
+      .save_mail_button
+        = submit_tag "save draft", :name => 'save_draft'
+
+    -else #if we're viewing a saved mail,display the body, the recipients and the subject
+      -if @messages.blank? #the draft is not from a conversation, specify recipients and subject
+        .mail_recipients_label
+          =f.label t('mail.show_message.edit_draft.to')
+        .mail_recipients
+          =f.text_field :draft_recipients, :value =>  @message.draft_recipients.to_sentence(:last_word_connector => ', ')
+        .mail_subject_label
+          =f.label t('mail.show_message.edit_draft.subject')
+        .mail_subject
+          =f.text_field :subject
+      .mail_body_label
+        =f.label t('mail.show_message.edit_draft.body')
+      .draft_body_textarea
+        =f.text_area :body
+      .reply_button
+        =submit_tag "send draft", :name => 'send_draft'
+      -if @message.conv_id.nil? #the draft is not from a conversation, update all fields
+        .save_mail_button
+          = submit_tag "save draft", :name => 'update_draft'
+      -else #the draft is from a conversation, only update body
+        .save_mail_button
+          = submit_tag "save draft", :name=> 'update_conv_draft'
+
+

@@ -1,0 +1,62 @@
+=jsPagesValidation
+
+=# page_column(@current_project, @pages)
+
+-# Link to create new page.
+- if can? :make_pages, @current_project
+  =# link_to image_tag('/buttons/bot_verde_pagina.png'), new_project_page_path(@current_project)
+  = link_to_function image_tag(t('buttons.create_page')), 'Element.show("new_page_form");'
+- else
+  %p= t('.cant_create')
+
+.clear
+
+-# Create new page form
+
+- @page = Page.new
+
+= form_for [@current_project,@page], :html => {:method => "post", :style => 'display: none', :id => "new_page_form", :class => "new_page_form", :name => "page_form", :onsubmit => "return validate_pages(page_form);"} do |f|
+
+  %h3
+    .image= image_tag('/iconos/paginas22x22.png')
+    .text= t('pages.new.title')
+    .clear
+
+  =# page_fields(f)
+
+  .page_title_new= f.label :name, t('pages.fields.name')
+  .clear
+  .page_text_field_new= f.text_field :name
+  .clear
+  .errors_for#blank_name_error{:style => "display: none"}
+    =t('activerecord.errors.messages.blank')
+  .clear
+
+  .page_title_new= f.label :description, t('pages.fields.description')
+  .clear
+  .page_text_field_new= f.text_field :description
+  .errors_for#blank_description_error{:style => "display: none"} = t('activerecord.errors.messages.blank')
+
+
+  .clear
+  .submit
+    =# f.submit '', :'data-disable-with' => t('.sending'), :class => 'create_page_button'
+    = image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+  -#
+    .page_cancel_button_index= link_to t('common.cancel'), project_pages_path(@current_project), :class => 'text_button', :style => 'margin-left: 8px'
+  .page_cancel_button_index= link_to_function t('common.cancel'), 'Element.hide("new_page_form");', :class => 'text_button', :style => 'margin-left: 8px'
+  .clear
+
+
+-# Old title
+-#
+  %h2= t('.title', :project => @current_project)
+
+-# Show all other pages.
+- if @pages.any?
+  #pages
+    = render @pages
+
+-# else
+  -# create first page
+  = page_primer(@current_project)

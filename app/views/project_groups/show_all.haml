@@ -1,0 +1,85 @@
+-#
+  %h2=t('project_groups.show_all.title')
+
+.projects_table
+  .projects_headers
+    .project_group
+      = t('project_groups.show_all.project_group')
+    .project_owner
+      = t('project_groups.show_all.project_group_proprietary')
+    .project_name
+      = t('project_groups.show_all.project_name')
+    .user_role
+      = t('project_groups.show_all.user_role')
+  - previous_group_name = ' '
+
+
+  - num_group = 0
+
+  .projects_info
+    - @projects.each do |p|
+      - if not p[0].nil? and (p[0].name != previous_group_name)
+        - num_group += 1
+      - if num_group % 2 == 0
+        .project_info_row2
+          .project_info_group
+            - if not p[0].nil? and (p[0].name != previous_group_name)
+              -# num_group += 1
+              =# num_group.to_s + "---" + previous_group_name
+              - if can?(:update, p[0])
+                = link_to p[0], settings_project_group_path(:project_group_id => p[0].id)
+              - else
+                = p[0]
+            -#else
+              = num_group
+              = p[0]
+
+          .project_info_owner
+            - if not p[0].nil? and (p[0].name != previous_group_name)
+              = p[0].owner_name
+            -# else
+              .blank= '-'
+          .project_info_name
+            = link_to p[1].name, project_path(p[1]) unless p[1].nil?
+          .project_info_user_role
+            = role_name_by_number(p[2]) unless p[2].nil?
+          - previous_group_name = p[0].name if not p[0].nil?
+          .clear
+
+      - else
+        .project_info_row1
+          .project_info_group
+            - if not p[0].nil? and (p[0].name != previous_group_name)
+              -# num_group += 1
+              =# num_group.to_s + "---" + previous_group_name
+              - if can?(:update, p[0])
+                = link_to p[0], settings_project_group_path(:project_group_id => p[0].id)
+              - else
+                = p[0]
+            -#else
+              = num_group
+              = p[0]
+
+          .project_info_owner
+            - if not p[0].nil? and (p[0].name != previous_group_name)
+              = p[0].owner_name
+            -# else
+              .blank= '-'
+          .project_info_name
+            = link_to p[1].name, project_path(p[1]) unless p[1].nil?
+          .project_info_user_role
+            = role_name_by_number(p[2]) unless p[2].nil?
+          - previous_group_name = p[0].name if not p[0].nil?
+          .clear
+
+
+
+
+
+
+  .clear
+  .show_archived
+    - if @archived_projects
+      = link_to t('project_groups.show_all.dont_show_archived'), show_all_project_groups_path(:archived_projects => false)
+    - else
+      = link_to t('project_groups.show_all.show_archived'), show_all_project_groups_path(:archived_projects => true)

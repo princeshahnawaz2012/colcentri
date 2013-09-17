@@ -1,0 +1,21 @@
+= form_for [project,page,divider], :html => { :style => 'display: none', :'data-remote' => 'true' } do |f|
+  = page_slot_fields
+
+  %h3{ :style => 'margin-right: 8px'}
+    .image= image_tag('/iconos/separador22x22.png')
+    .text= t('dividers.new.new_divider')
+    .clear
+
+  =# divider_fields(f)
+
+  .divider_title= f.label :name, t('dividers.fields.title')
+  = f.text_field :name, :class => 'divider_text_field'
+
+  =# f.submit '', :'data-disable-with' => t('pages.new.sending'), :class => 'create_divider_button'
+  = image_submit_tag t('buttons.save'), :'data-disable-with' => t('pages.new.sending'), :style => 'float: left; margin-right: 10px'
+  .divider_cancel_button= link_to t('common.cancel'), '#', :class => 'text_button cancelPageWidget'
+  =# t('common.or')
+  =loading('divider_form')
+
+
+.clear

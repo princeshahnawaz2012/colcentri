@@ -1,0 +1,13 @@
+.title
+%h2= t('user_directories.new.title')
+
+.newDirectoryForm
+  = form_tag(create_user_directory_path, :method=>'post', :multipart => true) do
+    .name
+      = t('user_directories.new.name_html')
+      = text_field_tag "name"
+    .id
+      = hidden_field_tag "dirId", @dirId
+    .submit
+      = image_submit_tag t('buttons.save')
+

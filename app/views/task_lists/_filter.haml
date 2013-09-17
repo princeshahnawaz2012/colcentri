@@ -1,0 +1,23 @@
+-#Old filter
+  .task_filters
+    .task_filter_title= t('.filter_tasks') + ": "
+    .task_filter_input_name
+      %input#filter_tasks_by_name{ :type => 'search', :placeholder => t('.by_name') }
+    .task_filter_type= filter_assigned_dropdown(@current_project)
+    .task_filter_owner= filter_due_date_dropdown(@current_project)
+  =# link_to t('.hide'), "", :class => 'closeThis'
+
+.task_filters
+  .task_filter_form
+    = form_tag(show_filtered_task_list_path, :method => 'post', :multipart => true) do
+      .task_filter_owner
+        = select_tag "responsible", options_for_select(@project_users.collect {|c, n| [c,n]}, @responsible)
+      .task_filter_date
+        = select_tag "date", options_for_select(@dates.collect {|c| [c,c]}, @date)
+      .current_project_id
+        = hidden_field_tag "current_project_id", @current_project.id
+      .current_user_id
+        - current_user_id = @current_user.id
+        = hidden_field_tag "current_user_id", current_user_id
+      .task_filter_submit
+        = image_submit_tag t('buttons.filter')

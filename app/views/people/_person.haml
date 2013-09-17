@@ -1,0 +1,57 @@
+%div[person]
+  = thumb_avatar(person.user)
+  - id = "person" + person.id.to_s
+  .person_header
+    .name
+      %h4== #{user_link(person.user)} @#{person.user.login}
+      %p{ :style => 'padding-bottom: 5px'}
+        =# time_ago_in_words(person.user.updated_at)
+      -#%p
+        %strong= t(person.owner?? '.owner' : ".#{person.role_name}")
+
+    - if request.format != :m and can?(:update, person)
+      .actions334584385943860945
+        = link_to_function '', "Element.show('#{id}')", :class => 'edit_icon', :title => t('people.link.edit')
+        =# link_to t('people.link.edit'), edit_role_people_path( :id => person.id )
+        - unless project.owner?(person.user)
+          = link_to t('people.header.remove'), project_person_path(project, person, :anchor => 'destroy'),
+            'data-confirm' => t('people.header.confirm_delete'), 'data-method' => 'delete', 'data-remote' => true,
+            :class => 'text_button'
+
+
+.edit_person_role
+  - unless person.user == current_user
+    = form_tag(update_role_people_path, :method=>'post', :id => id, :class => 'people_form', :style => 'display: none;') do
+      = hidden_field_tag :person_id, person.id
+      = hidden_field_tag :project_id, project.id
+      %br
+      %h3="Modificar rol"
+
+      %label
+        = radio_button_tag :role, Person::ROLES[:observer], person.role == Person::ROLES[:observer]
+        = t('people.fields.observer_html')
+
+      .clear{ :style => 'margin-bottom: 10px'}
+
+      %label
+        = radio_button_tag :role, Person::ROLES[:commenter], person.role == Person::ROLES[:commenter]
+        = t('people.fields.commenter_html')
+
+      .clear{ :style => 'margin-bottom: 10px'}
+
+      %label
+        = radio_button_tag :role, Person::ROLES[:participant], person.role == Person::ROLES[:participant]
+        = t('people.fields.participant_html')
+
+      .clear{ :style => 'margin-bottom: 10px'}
+
+      %label
+        = radio_button_tag :role, Person::ROLES[:admin], person.role == Person::ROLES[:admin]
+        = t('people.fields.admin_html')
+
+      .clear{ :style => 'margin-bottom: 10px'}
+
+      .person_submit_button= image_submit_tag t('buttons.save'), :class => 'save_button_without_image_small'
+      .person_cancel_button{ :style => 'margin-top: 23px' }= link_to_function t('common.cancel'),"Element.hide('#{id}')", :class => 'people_text_button'
+      .clear
+

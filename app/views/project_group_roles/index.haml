@@ -1,0 +1,17 @@
+.index_people
+  .content
+    - if can? :admin, @project_group
+      = render 'invitations/new', :target => @project_group, :invitation => Invitation.new(:role => 20)
+
+  #people.people
+    - if can? :admin, @project_group
+      = render @invitations
+    = render @roles, :project_group => @project_group
+
+- if can? :admin, @project_group
+  - content_for :column do
+    - unless @project_group.owner?(current_user)
+      - current_role = @roles.find { |p| p.user == current_user }
+      %h2= t('people.column.leaving')
+      %p= t('people.column.you_can_leave')
+      %p= leave_project_group_link(@project_group)

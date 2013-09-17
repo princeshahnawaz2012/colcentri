@@ -1,0 +1,100 @@
+%h2= t('.title')
+
+.edit_room
+
+  = form_tag(edit_room_videoconference_path, :method=>'post') do
+
+    .id
+      = hidden_field_tag :id, @videoconference.id
+
+    .topic.text_field
+      =# f.label :topic, t('videoconferences.index.topic')
+      = #f.text_field :topic
+
+      .nombre= label_tag t('videoconferences.index.topic')
+      = text_field_tag :topic, @videoconference.topic
+
+    .start_time.text_field
+      .nombre= label_tag t('videoconferences.index.start_time')
+      = select_datetime (@videoconference.start_time + @videoconference.timezone.to_i), :order => [ :day, :month, :year ]
+
+    .duration.text_field
+      =# f.label :duration, t('videoconferences.index.duration')
+      =# f.text_field :duration
+
+      .nombre= label_tag t('videoconferences.index.duration')
+      - duration= [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240 ].entries
+      = select_tag :duration, options_for_select( duration.collect {|c| [c.to_s + " min.",c]} , @videoconference.duration)
+
+    .timezone.text_field
+      =# f.label :timezone, t('videoconferences.index.timezone')
+      =# f.text_field :timezone
+
+      .nombre= label_tag t('videoconferences.index.timezone')
+      = select_tag :timezone, options_for_select(Videoconference::TIMEZONE2, @videoconference.timezone)
+
+    .password.text_field
+      =# f.label :password, t('videoconferences.index.password')
+      =# f.text_field :password
+
+      .nombre= label_tag t('videoconferences.index.password')
+      = password_field_tag :password, ("NOTHING" if @videoconference.password)
+
+    .repeat_password.text_field
+      .nombre= label_tag t('videoconferences.index.repeat_password')
+      = password_field_tag :repeat_password, ("NOTHING" if @videoconference.password)
+
+
+    .participants
+
+      .title
+        %h2= t('.participants')
+      .moderators
+        .titles=t('videoconferences.show.moderators')
+        .names
+          - @moderators.each do |p|
+            = p.login_or_email
+            = cancel_participant_link(p.id, @videoconference.id, p.login_or_email)
+            %br
+      .participants2
+        .titles=t('videoconferences.show.participants')
+        .names
+          - @participants.each do |p|
+            = p.login_or_email
+            = cancel_participant_link(p.id, @videoconference.id, p.login_or_email)
+            %br
+      .observers
+        .titles=t('videoconferences.show.observers')
+        .names
+
+          - @observers.each do |p|
+            = p.login_or_email
+            = cancel_participant_link(p.id, @videoconference.id, p.login_or_email)
+            %br
+
+    .clear
+
+    .invite
+      %h2= t('videoconferences.new.participants', :target => current_user)
+      .text_field
+
+        = label_tag t('invitations.search.username_or_email')
+        = text_field_tag :user_or_email
+
+        = select_tag :role, options_for_select( Participant::ROLE.map { |role, value| [ t("videoconferences.new.#{role}"), value]}, Participant::ROLE[:participant])
+    .submit
+      =# submit_tag t('videoconferences.show.edit'), :class => 'form_button'
+      = image_submit_tag t('buttons.save')
+
+    .back
+      = link_to t('videoconferences.show.back'), index_videoconference_path, :class => 'button'
+
+
+.styles
+  - max_participants = [@participants.count, @moderators.count, @observers.count].max
+  - pixels = max_participants * 20
+  %style{:type => "text/css", :media => "screen"}
+    :plain
+      .names {
+        height: #{pixels}px;
+      }

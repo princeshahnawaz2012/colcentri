@@ -1,0 +1,27 @@
+=jsForConversationValidation
+
+.conversation_title= f.label :name, t('.name')
+.clear
+= f.text_field :name, :style => 'width: 230px'
+= errors_for f.object, :name
+
+- if f.object.new_record?
+  = f.fields_for :comments do |comment_fields|
+    .conversation_title= comment_fields.label :description, t('conversations.new.description')
+    .conversation_comment= comment_fields.text_area :body, :placeholder => t("comments.new.conversation"), :style => 'width: 545px'
+    .errors_for
+      #no_description_error{:style => "display: none"}
+        =t("activerecord.errors.models.conversation.attributes.comments.must_have_one")
+
+    .extra
+      .upload_area
+        %p= t('uploads.new.select_a_file')
+        - comment_fields.object.uploads.build
+        = comment_fields.fields_for :uploads do |uploads|
+          = uploads.file_field :asset, :id => 'upload_file'
+      .actions
+        .attach
+          -#
+            %span= t('comments.fields.attach') + ": "
+          = link_to t('uploads.comment_upload_link'), '#uploads', :class => 'attach_icon hoverable', :title => "Attach a file"
+        = render 'google_docs/form', :f => comment_fields

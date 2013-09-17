@@ -1,0 +1,20 @@
+#user_utilities
+  %ol.global_navigation
+    /= micro_avatar(current_user)
+    -#%li= link_to t('.home'), root_path
+      %li= link_to current_user.login, current_user
+      %li= link_to t('.settings'), account_settings_path
+      - if current_user.invitations.pending_projects.count > 0
+        %li= link_to_unless_current t('.project_invitations', :count => current_user.invitations.count),
+          user_invitations_path(:user_id => current_user.id)
+      %li= link_to t('.help'), "http://guide.colcentric.com##{controller_name}", :target => "_blank"
+
+
+
+    - if I18n.locale.to_s == "es"
+      = link_to t('.help'), first_section_help_path, :class => 'text_button', :style => 'margin-right: 10px', :target => '_blank'
+    - elsif I18n.locale.to_s == "pt-BR"
+      = link_to t('.help'), first_section_pt_help_path, :class => 'text_button', :style => 'margin-right: 10px', :target => '_blank'
+    - else
+      = link_to t('.help'), first_section_en_help_path, :class => 'text_button', :style => 'margin-right: 10px', :target => '_blank'
+    = link_to t('.logout'), logout_path, :class => 'text_button'

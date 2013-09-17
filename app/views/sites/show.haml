@@ -1,0 +1,27 @@
+.login_page
+
+  -#
+    - if Colcentric.config.community
+      -#
+      %h1= image_tag 'LogoColcentric1.png', :alt => @organization.name
+    -else
+      %h1= image_tag @organization.logo.url(:top), :alt => @organization.name
+
+  .custom_html
+    =# @organization.description.try(:html_safe) || "Configure this text by going editing your organization's preferences."
+
+  -# content_for :column do
+  .column_login
+    = form_tag sites_path, :class => 'new_session', :id => 'new_session' do
+      = hidden_field_tag :id, @organization.permalink
+      = upgrade_browser
+      = render 'sites/fields'
+      =# submit_tag t('.submit'), :class => 'form_button'
+      = image_submit_tag(t('buttons.send'), :style => 'margin-top: 90px; margin-left: 100px ')
+      = chrome_frame
+
+
+    .signup_or_forgot_links{ :style => 'margin-top: -140px'}
+      - if @signups_enabled
+        %p= link_to t('.signup'), signup_url
+      %p= link_to t('sessions.fields.forgot'), forgot_password_path, :tabindex => 203

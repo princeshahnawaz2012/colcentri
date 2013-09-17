@@ -1,0 +1,30 @@
+%div[upload]{ :class => cycle('alternate', '') }
+  .header
+    .icon
+      - icon_name = Upload::ICONS.include?(upload.file_type) ? upload.file_type : '_blank'
+      - icon_path = "file_icons/16px/#{icon_name}.png"
+      = image_tag icon_path
+    .file
+      = link_to_upload upload, upload.file_name
+    .size
+      - fileSize = upload.size/1024
+      - if (fileSize >= 1024)
+        - fileSize = number_with_precision(fileSize/1024.0, :precision => 2)
+        = fileSize.to_s + "MB"
+      - else
+        - fileSize = number_with_precision(fileSize, :precision => 2)
+        = fileSize.to_s + "KB"
+    .time
+      = upload.created_at.in_time_zone(current_user.time_zone).strftime("%d/%m/%Y %H:%M")
+    .author
+      = upload.user
+
+  .download
+    = link_to_upload upload, t('.download'), :class => 'file_download'
+    - if can?(:update, upload) # and request.format != :m
+      = link_to t('.remove'), [upload.project, upload], :'data-remote' => true,
+        :'data-method' => 'delete', :'data-confirm' => t('confirm.delete_upload'), :class => 'file_remove'
+  .rename
+    = link_to t('.rename'), rename_uploads_path(:uploadId => upload.id, :currentProjectId => @current_project.id)
+  .move
+    = link_to t('.move'), changeDirectory_uploads_path(:uploadId => upload.id, :currentProjectId => @current_project.id)

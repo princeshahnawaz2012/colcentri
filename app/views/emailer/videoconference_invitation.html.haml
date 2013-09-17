@@ -1,0 +1,38 @@
+.email{ :style => email_global }
+
+  %p{ :style => email_text(:small) }
+    = t('emailer.common.do_not_answer')
+
+  .box{ :style => email_box }
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.hello', :user_name => @user.first_name)
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.item1', :invited_by_name => @invited_by.first_name + " " + @invited_by.last_name)
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.start', :start_time => @videoconference.start_time.strftime("%d-%m-%Y %H:%M").to_s)
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.duration', :duration => @videoconference.duration)
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.item2')
+
+    %br
+    %p{ :style => email_text(:big) }
+      = link_to t('emailer.videoconference.invitation.link'), @url_video, :style => inline_organization_link_colour
+
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.item3')
+
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.item4', :user_email => @invited_by.email)
+
+    %br
+    %p{ :style => email_text(:big) }=raw t('emailer.videoconference.invitation.item5_html')
+
+    %br
+    %p{ :style => email_text(:big) }
+      = link_to t('emailer.videoconference.invitation.link2'), @url_colcentric, :style => inline_organization_link_colour
+
+
+
+
+
+

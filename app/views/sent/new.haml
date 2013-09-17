@@ -1,0 +1,21 @@
+%h2 Compose
+
+.form_new_message
+  =form_for @message, :url => {:controller => "sent", :action => "create"}  do |f|
+    .recipients_label
+      = f.label "To:"
+    .mail_text_field= f.text_field :to
+    .clear
+    .subject_label
+      = f.label "Subject:"
+    .mail_text_field= f.text_field :subject
+    .clear
+    .body_label
+      = f.label "Body:"
+    .mail_text_field_big= f.text_area :body
+    .clear
+    .send
+      = image_submit_tag(t('buttons.send'), :name => 'do_send')
+    .save
+      = image_submit_tag(t('buttons.save'), :name => 'save_draft')
+

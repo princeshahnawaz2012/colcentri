@@ -1,0 +1,329 @@
+@import shared
+@import forms
+@import header
+@import icons
+
+
+html
+  margin: 0px
+  padding: 0px
+
+body
+  margin: 0px
+  padding: 0px
+  font-family: Verdana, Arial, Helvetica
+  //font: normal 14px "Lucida Grande", Arial, Helvetica, sans-serif
+
+h1, h2, h3, h4
+  font-family: Helvetica, Arial
+  font-size: 15px
+  margin: 0px
+
+p
+  margin: 10px 0px
+  line-height: 1.7em
+
+a
+  color: rgb(0, 0, 255)
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+img
+  display: block
+  border: 0px
+
+br
+  clear: both
+
+
+.selectPaisReg select
+  width: 284px
+
+div
+  &.clear
+    clear: both
+  &.header
+    display: none
+  &.navigation
+    width: 900px
+    margin: 0px auto
+    ul
+      display: block
+      margin: 0
+      padding: 0
+      list-style-type: none
+      width: auto
+    li
+      display: block
+      float: left
+      margin: 0
+      padding: 0
+      a
+        //font-family: "Lucida Sans", "Lucida Grande", Helvetica, Arial, sans-serif
+        font-size: 15px
+        display: block
+        float: left
+        color: #3d3d3d
+        text-decoration: none
+        padding: 8px 16px 7px
+        border-bottom: none
+        background: transparent url(/images/nav_divider.gif) no-repeat top right
+        &:hover
+          color: white
+          background: rgb(65, 181, 193)
+          border-bottom: 1px solid rgb(65, 181, 193)
+      &.selected a
+        color: white
+        background: #0b0b0a
+        border-bottom: 1px solid #0b0b0a
+      &.right_side
+        float: right
+        a
+          padding-left: 50px
+          padding-right: 50px
+
+h1
+  color: #111111
+  font-family: Verdana, sans-serif
+  font-size: 270%
+  font-weight: normal
+  margin: 0 0 15px 0
+
+h2
+  font-family: Verdana, sans-serif
+  //font-size: 195%
+  //margin: 0 0 15px 0
+  //font-weight: bold
+
+h3
+  margin-top: 10px
+  margin: 30px 0 15px 0
+
+.new_session, .create_session
+  p.right_link
+    float: right
+    padding:
+      right: 100px
+
+.flash_box
+  display: block
+  margin: 15px 0
+  float: none
+
+form
+  margin: 20px 0
+
+.time_zone, .language
+  margin-top: 10px
+
+div
+  &.wrapper
+    width: 900px
+    margin: 0px auto
+    padding-top: 30px
+  &.content
+    float: left
+    width: 570px
+    //padding-bottom: 25px
+  &.sidebar, &.content_single
+    padding-bottom: 25px
+  &.wrapper a
+    text-decoration: none
+    //border-bottom: 1px dotted #ddddff
+    //color: rgb(0, 0, 200)
+  &.wrapper a:hover
+    text-decoration: underline
+  &.column
+    float: right
+    width: 320px
+  &.box
+    padding: 10px
+    font-size: 12px
+    margin: 20px 0
+    border: 1px solid #dbd6d1
+    background-color: #efedeb
+    p
+      margin: 5px 0
+    h2
+      font-size: 18px
+      margin-bottom: 2px
+  &.footer
+    //border-top: solid 1px rgb(220, 220, 220)
+    clear: both
+    color: #777777
+    width: 900px
+    margin: 0px auto
+    padding-top: 10px
+    margin-bottom: 15px
+    overflow: hidden
+    p
+      font-size: 12px
+      margin: 0px
+      text-align: right
+      &.copyright
+        float: left
+        font-size: 12px
+        color: #656565
+    a
+      color: #054d9f
+      text-decoration: underline
+
+form
+  .text_field
+    label
+      font-weight: bold
+
+@import signup
+
+
+.clear
+  clear: both
+
+
+.reset_password_image
+  h1
+    float: left
+    padding-right: 15px
+    margin-right: 15px
+    margin-left: 50px
+    margin-top: 80px
+    position: absolute
+
+
+.reset_password
+  background: url(/images/FdoRecContrasena.gif)
+  color: white
+  width: 960px
+  height: 530px
+  overflow: hidden
+  margin:
+    bottom: 10px
+  h1
+    float: left
+    padding-right: 15px
+    margin-right: 15px
+    margin-left: 50px
+    margin-top: 80px
+  h2
+    color: #1D4976
+    float: left
+    font-size: 30px
+    font-weight: normal
+    padding-top: 175px
+    padding-left: 50px
+    margin-left: -280px
+  a
+    color: white
+
+
+
+
+
+.login_page
+  background: url(/images/FdoLogin.png)
+  width: 960px
+  height: 530px
+  overflow: hidden
+  color: white
+  margin:
+    bottom: 10px
+
+
+  h1
+    float: left
+    border-right: dotted 1px #bdbdbd
+    padding-right: 15px
+    margin-right: 15px
+    margin-left: 50px
+    margin-top: 80px
+
+  .column_login
+    .signup_or_forgot_links
+      a
+        &:link
+        color: #fff
+        font-size: 12px
+
+  .custom_html
+    padding-top: 65px
+    float: left
+    font-size: 30px
+    color: #fff
+
+
+
+
+
+.column_login, .column_reset
+  margin:
+    top: -80px
+    bottom: 10px
+
+  form
+    margin-left: 550px
+    margin-top: 158px
+    border-left: dotted 1px #939393
+    padding-top: 13px
+    padding-left: 53px
+    padding-bottom: 10px
+
+    input#login, input#password, input#reset_password_email
+      width: 250px
+      margin-bottom: 10px
+
+    .form_button
+      margin-left: 101px
+      margin-top: 70px
+
+
+  .signup_or_forgot_links
+    color: #636363
+    margin-left: 603px
+    margin-top: -120px
+    font-size: 12px
+
+    p
+      margin-bottom: 7px
+
+  .signup_or_forgot_links a
+    color: #636363
+    border: none
+
+
+.column_reset
+  form
+    padding-bottom: 80px
+    .form_button
+      margin-left: 101px
+      margin-top: 20px
+  .new_reset_password
+    .explanation
+      font-size: 12px
+      margin-bottom: 30px
+  a
+    color: #636363
+    margin-left: 603px
+    margin-top: -60px
+    font-size: 12px
+    position: absolute
+
+
+
+
+.form_button // boton formulario
+  color: #fff
+  font-size: 12px
+  font-weight: bold
+  text-align: center
+  border: solid 1px #dc6d03
+  background-color: transparente
+  background-image: url(/images/FdoBtnNaranja.gif)
+  -moz-border-radius: 4px
+  -webkit-border-radius: 4px
+  padding:
+    left: 7px
+    rigth: 7px
+    top: 2px
+    bottom: 4px
+  cursor: pointer

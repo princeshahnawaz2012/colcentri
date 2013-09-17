@@ -1,0 +1,54 @@
+
+.header_mailbox
+  .new_button_message
+    = link_to image_tag('/iconos/bot_verde_mensajes.png'), new_message_path
+  .received_messages
+    -unless params[:controller] == 'mailbox'
+      = link_to t("mail.mailbox.received_messages"), show_inbox_path, :class => 'text_button'
+    -else
+      = t("mail.mailbox.received_messages")
+  .sent_messages
+    -unless params[:controller] == 'sent'
+      = link_to t("mail.mailbox.sent_messages"), show_sent_path, :class => 'text_button'
+    -else
+      = t("mail.mailbox.sent_messages")
+  .saved_messages
+    -unless params[:controller] == 'drafts'
+      = link_to t("mail.mailbox.saved_messages"), show_drafts_path, :class => 'text_button'
+    -else
+      = t("mail.mailbox.saved_messages")
+.clear
+
+-unless @messages.nil?
+  -num_files = 0
+  -for message in @messages
+    -unless message.deleted?
+      -if message.class == MessageCopy
+        -if message.read?
+          - row_class = 'read_mail_row'
+        - else
+          - row_class = 'unread_mail_row'
+      -else
+        - row_class = 'read_mail_row'
+
+      %div{:class => row_class}
+        .message_row
+          .user_image
+            = image_tag avatar_or_gravatar(message.user, :micro), :class => 'avatar'
+          .recipients
+            = mailbox_recipients(message)
+          .message
+            -unless message.subject == ""
+              = link_to message.subject, mailbox_path(message)
+            -else
+              = link_to t('mail.mailbox.no_subject'), mailbox_path(message)
+          .time
+            = t('mail.mailbox.since') + ' ' + distance_of_time_in_words(message.created_at, Time.now) + ' ' + t('mail.mailbox.ago')
+          .delete_message
+            -if params[:controller] == 'mailbox'
+              = link_to image_tag('/iconos/borrar_peq.png'), delete_received_path(message), :confirm => t('mail.mailbox.confirm_delete')
+            -else
+              = link_to image_tag('/iconos/borrar_peq.png'), delete_sent_saved_path(message), :confirm => t('mail.mailbox.confirm_delete')
+      .clear
+
+= will_paginate @messages

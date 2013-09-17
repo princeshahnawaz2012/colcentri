@@ -1,0 +1,16 @@
+<%= dont_answer %>
+
+<%= t("emailer.membership_notification.you_have_been_added_to_#{@target.class_name}", :target => h(@target.name)) %>
+
+<%= t('emailer.project_membership_notification.target_link', :project => h(@project.name)) %>:
+<% if @target.is_a? Project%>
+    <%= project_url(@project) %>
+
+    <%= t('emailer.invitation.current_users') %> <%= @project.people.collect { |p| h(p.name) }.to_sentence %>
+<% elsif @target.is_a? ProjectGroup%>
+    <%= project_group_url(@project) %>
+<% elsif @target.is_a? Organization%>
+    <%= organization_url(@project) %>
+<%end%>
+
+<%= t('emailer.invitation.report_abuse') %>

@@ -1,0 +1,67 @@
+- if params[:action] == 'index'
+  .first_bar
+    = t('navigation.header.first_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+- elsif params[:action] == 'show' || params[:action] == 'edit' || params[:action] == 'update'
+  - if params[:action] == 'show'
+    - @project = Project.find_by_id_or_permalink(params[:id].to_s)
+  - else
+    - @project = @current_project
+
+  - project_name = @project.name
+  - begin
+    - @project_group = ProjectGroup.find_by_id_or_permalink(@project.project_group_id)
+    - project_group_name = @project_group.name
+  - rescue
+    - project_group_name = "Sin grupo"
+
+  .first_bar
+    = t('navigation.header.first_bar.ec_project', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :p_name => project_name)
+  .second_bar
+    = t('navigation.header.second_bar.ec_project', :pg_name => project_group_name, :p_name => project_name, :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+  .third_bar
+    = render 'shared/project_actions'
+
+  .fourth_bar
+    = render 'project_groups/new'
+    = render 'projects/new'
+
+
+- elsif params[:action] == 'new'
+  .first_bar
+    = t('navigation.header.first_bar.ec', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :user => current_user)
+  .second_bar
+    = t('navigation.header.second_bar.ec_project_groups', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+
+  - if ((!Colcentric.config.community && can?(:create_project, current_user)) || (Colcentric.config.community && !@community_organization) || (@community_organization && @community_role && Membership::ROLES[@community_role] >= 20))
+    .third_bar
+      .project_actions
+        =# link_to '', new_project_group_path, :class => 'new_pg', :id => 'new_project_group_button'
+        =# link_to '', new_project_path, :class => 'new_p', :id => 'new_project_button'
+        = link_to_function image_tag(t('buttons.create_group')), 'Element.show("project_group_new_form"); Element.hide("project_new_form");', :id => 'new_project_group_button'
+        = link_to_function image_tag(t('buttons.create_project')), 'Element.show("project_new_form"); Element.hide("project_group_new_form");', :id => 'new_project_button'
+        .clear
+
+    .fourth_bar
+      = render 'project_groups/new'
+      = render 'projects/new'
+
+-# elsif params[:action] == 'edit'
+  - project_name = @project.name
+  - begin
+    - @project_group = ProjectGroup.find_by_id_or_permalink(@project.project_group_id)
+    - project_group_name = @project_group.name
+  - rescue
+    - project_group_name = "Sin grupo"
+
+  .first_bar
+    = t('navigation.header.first_bar.ec_project', :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s), :p_name => project_name)
+  .second_bar
+    = t('navigation.header.second_bar.ec_project', :pg_name => project_group_name, :p_name => project_name, :action => t('navigation.sidebar.' + params[:controller].to_s + '.' + params[:action].to_s) )
+
+  .third_bar
+    = render 'shared/project_actions'

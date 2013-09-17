@@ -1,0 +1,7 @@
+-# Commented on 20.09.2011. To delete after a week or two.
+
+  .text_actions
+    = edit_page_link(@current_project, @page)
+    - if can? :destroy, @page
+      = t('common.or')
+      = delete_page_link(@current_project, @page)

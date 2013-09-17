@@ -1,0 +1,16 @@
+.title
+%h2= t('upload_directories.new.title')
+
+.newDirectoryForm
+  = form_tag(create_upload_directory_path, :method=>'post', :multipart => true) do
+    .name
+      = t('upload_directories.new.name')
+      = text_field_tag "name"
+    .uploadDirId
+      = hidden_field_tag "uploadDirId", @uploadDirId
+    .currentProjectId
+      = hidden_field_tag "currentProjectId", @currentProjectId
+    .submit
+      =# submit_tag '', :class => 'create_folder_button'
+      = image_submit_tag t('buttons.save')
+    %br

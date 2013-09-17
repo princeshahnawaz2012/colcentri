@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="css/EstilosFra.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="ContGral">
+	<div class="Cabecera">
+    	<img src="http://pro-test.kinubi.com/images/LogoColcentric1.png" class="ImgLogo" />
+    </div>
+    <div class="Contenido">
+        <div class="DatosCliente">
+        	<strong>FACTURA A:</strong><br />
+            <%= @invoice.first_name + " " + @invoice.last_name %><br />
+            <%= @invoice.organization %><br />
+            <%= @invoice.address %><br />
+            <%= @invoice.city %><br />
+            <%= @invoice.country %><br />
+            <%= @invoice.postal_code %><br />
+
+            NIF / CIF
+        </div>
+      <div class="DatosFra">
+        	<strong>FECHA:</strong> <%= @invoice.created_at.strftime("%d-%m-%Y") %><br />
+            <strong>NÚMERO DE FACTURA</strong>: <%= @invoice.invoice_number %>
+      </div>
+        <div class="TablaFra">
+        	<table width="600" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <th width="351" align="left" scope="col">Descripción</th>
+                <th width="110" align="right" scope="col">Cantidad</th>
+                <th width="123" align="right" scope="col">Precio</th>
+              </tr>
+
+              <%
+                monthly_ammount = @invoice.n_monthly_licenses * Subscription::LICENCE_TYPE_AMOUNT[Subscription::LICENCE_TYPE[:monthly]]
+                biannual_ammount = @invoice.n_biannual_licenses * Subscription::LICENCE_TYPE_AMOUNT[Subscription::LICENCE_TYPE[:biannual]]
+                annual_ammount = @invoice.n_annual_licenses * Subscription::LICENCE_TYPE_AMOUNT[Subscription::LICENCE_TYPE[:annual]]
+                video_ammount = @invoice.n_videoconferences * Subscription::LICENCE_TYPE_AMOUNT[Subscription::LICENCE_TYPE[:videoconference]]
+                #storage_ammount = @invoice.n_storage * Subscription::LICENCE_TYPE_AMOUNT[Subscription::LICENCE_TYPE[:storage]]
+                total_ammount = monthly_ammount + biannual_ammount + annual_ammount + video_ammount
+
+
+              %>
+
+
+              <% if (@invoice.n_monthly_licenses > 0) %>
+              <tr>
+                <td align="left">Subscripción mensual a Kinubi</td>
+                <td align="right"><%= @invoice.n_monthly_licenses %></td>
+                <td align="right"><%= monthly_ammount %> €</td>
+              </tr>
+              <% end
+
+                  if (@invoice.n_biannual_licenses > 0) %>
+
+              <tr>
+                <td align="left">Subscripción semestral a Kinubi</td>
+                <td align="right"><%= @invoice.n_biannual_licenses %></td>
+                <td align="right"><%= biannual_ammount %> €</td>
+              </tr>
+              <% end
+
+                  if @invoice.n_annual_licenses > 0 %>
+
+              <tr>
+                <td align="left">Subscripción anual a Kinubi</td>
+                <td align="right"><%= @invoice.n_annual_licenses %></td>
+                <td align="right"><%= annual_ammount %> €</td>
+              </tr>
+              <% end %>
+            </table>
+
+            <table border="0" align="right" cellpadding="0" cellspacing="0" style="margin-top:20px; margin-bottom:20px;">
+              <tr>
+                <td width="107" align="right"><strong>Total</strong></td>
+                <td width="120" align="right"><%= total_ammount %> €</td>
+              </tr>
+          </table>
+
+            <table border="0" align="right" cellpadding="0" cellspacing="0" style="margin-bottom:20px; clear:both">
+              <tr>
+                <td width="107" align="right"><strong>Base imponible</strong></td>
+                <td width="120" align="right"><%= total_ammount %> €</td>
+              </tr>
+              <tr>
+                <td align="right"><strong>IVA 18%</strong></td>
+                <td align="right"><%=
+                   if (@invoice.apply_iva)
+                      iva = total_ammount * 0.18
+                   else
+                     iva = 0
+                   end
+        %> €</td>
+              </tr>
+              <tr>
+                <td align="right"><strong>Total a pagar</strong></td>
+                <td align="right"><%=
+                    if (iva == 0)
+                        total_ammount
+                    else
+                      total_ammount + iva
+                    end
+
+
+    %> €</td>
+              </tr>
+          </table>
+      </div>
+    </div>
+    <div class="Pie">
+    	B – 65545352 Colcentric Tecnología e Innovación, S.L.  <br />
+		Rambla Badal 36–38 7º 2ª ESC B,  -  08014 Barcelona
+	</div>
+</div>
+
+</body>
+</html>

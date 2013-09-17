@@ -1,0 +1,135 @@
+- task_form = nil unless local_assigns[:task_form]
+- task = task_form.object if task_form
+
+.field.text_area
+  %a.micro_avatar.my_avatar{ :href => '#' }
+  .textarea
+    = f.text_area :body, :placeholder => local_assigns[:placeholder], :id => nil, :style => request.xhr? ? 'max-height: 300px' : nil
+
+.extra
+  - if task_form
+    .field.text_field.hours_field
+      %label
+        = t('comments.hours.hours')
+        = f.text_field :human_hours
+      = time_tracking_doc
+
+  .actions
+    .attach
+
+      = link_to '', '#uploads', :id => 'attach_icon', :class => 'attach_icon hoverable', :title => t('.attach_file'), :onClick => 'Element.hide("attach_icon"); Element.show("mail_icon"); Element.hide("add_watchers_box"); Element.show("comment_cancel_button");'
+      = render 'google_docs/form', :f => f
+      = link_to "", '#watchers', :id => 'mail_icon', :class => 'mail_icon add_watchers hoverable', :title => t('.notify_people'),  :onClick => 'Element.show("attach_icon"); Element.hide("mail_icon"); Element.hide("upload_area"); Element.show("comment_cancel_button");'#"Notify people"
+
+
+      - if local_assigns[:conversation_form] && local_assigns[:project]
+        - if f.object.target && can?(:update, f.object.target) && can?(:make_tasks, local_assigns[:project])
+          =# link_to t('comments.conversations.convert_to_task'), '#convert_to_task', :class => 'text_button', :onclick => 'Element.show("convert_to_task");'
+          %br
+          -# Not necessary at this moment
+            - if task_form
+              = link_to t('comments.hours.tooltip'), '#hours', :class => 'add_hours_icon hoverable', :title => t('.log_hours')
+
+
+
+  .upload_area#upload_area
+    .upload_title= t('uploads.new.select_a_file')
+    - f.object.uploads.build
+    =  f.fields_for :uploads do |fields|
+      .upload_text_field= fields.file_field :asset, :id => 'upload_file'
+    .clear
+
+  .add_watchers_box#add_watchers_box{ :style => 'display: none' }
+    %p= t('comments.watchers.explain')
+    .clear
+
+  .clear
+  .actions
+    - if task_form
+      .task_actions
+        - if can? :edit, task
+          .task_status_priority_private
+            .task_status
+              .title3= t('comments.new.status_html')
+              = task_form.select :status, task_statuses_for_select
+            .task_priority
+              .title3= t('comments.new.priority_html')
+              .campo3= task_form.select :priority, task_priorities_for_select
+            .clear
+            -# if can? :admin, task
+              .task_private
+                = t('tasks.fields.private_html')
+                = task_form.label :private
+                = task_form.check_box :private
+          .task_responsible_participants
+            .task_responsible
+              .title3= t('comments.new.responsible_html')
+              -# Only the owner and the responsible can set a new responsible.
+              - if not task.assigned.nil? and not current_user.nil?
+                - if current_user.id == task.user_id or current_user.login == task.assigned.login
+                  .campo3= task_form.select :assigned_id, [], {}, :'data-assigned' => task_form.object.assigned_id, :style => 'width: 100px'
+                - else
+                  .campo4{ :style => 'float: left; margin-left: 5px; margin-top: 5px;'}= task.assigned.login
+              - else
+                .campo3= task_form.select :assigned_id, [], {}, :'data-assigned' => task_form.object.assigned_id, :style => 'width: 100px'
+            .task_participants
+              .title3{ :style => 'margin-left: 20px'}= t('tasks.fields.participants_html')
+              - if task.has_participants
+                .campo3= task_form.text_field :task_participants, :value => task.participants_logins, :class => "input_task_participants", :style => 'width: 100px'
+              - else
+                .campo3= task_form.text_field :task_participants, :placeholder => t('tasks.fields.participants_example'), :class => "input_task_participants", :style => 'width: 100px'
+          .clear
+          .task_dates{ :style => 'width: 600px'}
+            .task_start_date
+              .title3= t('comments.new.start_date2_html')
+              .date_picker= date_picker(task_form, :start_date)
+            .task_due_on
+              .title3= t('comments.new.due_on_html')
+              .date_picker{ :style => 'float: left'}= date_picker(task_form, :due_on)
+
+
+        - else
+          = localized_status_name_from_index(task.status) + ' - '
+          = task.assigned ? task.assigned.name : t('comments.new.assigned_to_nobody')
+          - unless (due_on(task).nil?)
+            = " - " + due_on(task)
+
+
+    -# Mensaje "Selecciona notificar para...." eliminado
+    -# if !local_assigns[:project]
+      %span.new{ :style => 'display: none' }
+        &larr; &nbsp;&nbsp;
+        = t('comments.watchers.popup_note_html')
+
+    - if local_assigns[:conversation_form] && local_assigns[:project]
+      - if f.object.target && can?(:update, f.object.target) && can?(:make_tasks, local_assigns[:project])
+
+
+        .convert_to_task#convert_to_task{:style => 'display:none;'}
+          .conversation_actions
+            .fields
+              = conversation_form.label :name, "#{t('conversations.convert_form.name')}:"
+              = conversation_form.text_field :name, :placeholder => t('comments.conversations.task_name'), :error_message => t('tasks.errors.name.cant_be_blank'), :disabled => true, :class => 'required'
+            .fields
+              = conversation_form.label :task_list_id, "#{t('conversations.convert_form.task_list')}:"
+              = conversation_form.select :task_list_id, [[t('comments.comment.loading'),""]], {}, :disabled => true
+            .fields
+              = conversation_form.label :status, "#{t('conversations.convert_form.status')}:"
+              = conversation_form.select :status, task_statuses_for_select, {}, :disabled => true
+              = conversation_form.select :assigned_id, [], {}, :'data-assigned' => conversation_form.object.assigned_id, :disabled => true
+            .fields
+              = date_picker(conversation_form, :due_on, false, :disabled => true)
+          .submit
+            = link_to t('common.cancel'), '#cancel_conversion', :class => 'cancel'
+            = f.submit t('comments.convert_form.submit'), :'data-disable-with' => t('comments.new.sending'), :disabled => true
+
+    -#%span.help= formatting_documentation_link
+    = #preview_button
+    =# f.submit '', :'data-disable-with' => t('comments.new.sending'), :class => 'publish_button'
+
+  = image_submit_tag t('buttons.save'), :'data-disable-with' => t('comments.new.sending'), :class => 'save_button_without_image_small', :style => 'margin-top: px', :onclick => 'Element.hide("add_watchers_box"); Element.hide("upload_area"); Element.hide("comment_cancel_button"); Element.show("attach_icon"); Element.show("mail_icon");'
+  .comment_cancel_button= link_to_function 'Cancelar', 'Element.hide("upload_area"); Element.hide("add_watchers_box"); Element.hide("comment_cancel_button"); Element.show("attach_icon"); Element.show("mail_icon");', :id => 'comment_cancel_button', :style => 'margin-left: 10px; color: green; display: none'
+  .clear
+
+
+
